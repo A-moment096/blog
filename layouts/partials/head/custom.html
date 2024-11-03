@@ -1,47 +1,49 @@
 <!-- 回到顶部 -->
-<div id="back-top">
-    <a href="#top" title="To Top"></a>
+<div id="back-top" style="display: none;">
+    <a href="#top" title="To Top">
+        <img src="/back_top.svg" alt="Back to Top" />
+    </a>
 </div>
+
 <style>
     #back-top {
         position: fixed;
         bottom: 30px;
         right: 80px;
-    }
-    #back-top a {
-        width: 54px;
-        height: 54px;
-        display: block;
-        background: #ddd url(/back_top.svg) no-repeat center center;
-        background-color: rgba(218, 214, 214, 0.87);
-        -webkit-border-radius: 7px;
-        -moz-border-radius: 7px;
+        background: #dbdbd9;
         border-radius: 7px;
-        -webkit-transition: 1s;
-        -moz-transition: 1s;
-        transition: 1s;
+        padding: 10px;
+        transition: background-color 0.3s;
     }
-    #back-top a:hover {
+
+    #back-top a {
+        text-decoration: none;
+        color: black;
+    }
+
+    #back-top:hover {
         background-color: #4b4b4b42;
-        display: block;
     }
 </style>
 
 <script type="text/javascript">
-    $("#back-top").hide();
-    $(document).ready(function () {
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 100) {
-                $('#back-top').fadeIn();
+    document.addEventListener('DOMContentLoaded', function () {
+        var backTopButton = document.getElementById('back-top');
+
+        window.onscroll = function () {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backTopButton.style.display = 'block';
             } else {
-                $('#back-top').fadeOut();
+                backTopButton.style.display = 'none';
             }
-        });
-        $('#back-top a').click(function () {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
+        };
+
+        backTopButton.onclick = function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Smooth scroll to top
+            });
+        };
     });
 </script>

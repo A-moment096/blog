@@ -2,17 +2,43 @@
 
 <script type="text/javascript" src="https://unpkg.com/artitalk"></script>
 <div id="artitalk_main"></div>
+
 <script>
     new Artitalk({
-    appId: "byXrVTN6U4YYOGIn0CXiXDTw-MdYXbMMI",
-    appKey: "PJjby2E9G7kOHusN4JcVqbW1",
-    pageSize: 100,
-    motion: 1,
-    color3: "var(--card-text-color-main)",
-    color1: "var(--color-codebg)",
-    color2: "var(--color-codebg)",
-    atComment: 0,
+        appId: "byXrVTN6U4YYOGIn0CXiXDTw-MdYXbMMI",
+        appKey: "PJjby2E9G7kOHusN4JcVqbW1",
+        pageSize: 100,
+        motion: 1,
+        color3: "var(--card-text-color-main)",
+        color1: "var(--color-codebg)",
+        color2: "var(--color-codebg)",
+        atComment: 0,
     });
 </script>
+<script>
+    // Wait until the dynamically generated content is available
+    const interval = setInterval(() => {
+        const listItems = document.querySelectorAll("#ccontent .cbp_tmtimeline li");
 
+        // Check if the elements are present
+        if (listItems.length > 0) {
+            listItems.forEach((li) => {
+                const icon = li.querySelector(".shuoshuo_author_img");
+                const contentBox = li.querySelector(".cbp_tmlabel");
+                const delete_right = li.querySelector(".delete_right");
+
+                // Move the icon inside the content box, if both elements exist
+                if (icon && contentBox) {
+                    contentBox.prepend(icon); // Move icon to the start of content box
+                }
+                
+                delete_right.insertAdjacentElement('afterend', icon);
+            });
+
+            // Stop checking once elements are found and moved
+            clearInterval(interval);
+        }
+    }, 100); // Check every 100 milliseconds
+
+</script>
 {{ end }}
