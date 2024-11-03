@@ -1,3 +1,804 @@
 /*
     You can add your own custom styles here.
 */
+// 页面基本配色
+:root {
+  // 全局顶部边距
+  --main-top-padding: 30px;
+  // 全局卡片圆角
+  --card-border-radius: 25px;
+  // 标签云卡片圆角
+  --tag-border-radius: 8px;
+  // 卡片间距
+  --section-separation: 40px;
+  // 全局字体大小
+  --article-font-size: 1.8rem;
+  // 行内代码背景色
+  --code-background-color: #f8f8f8;
+  // 行内代码前景色
+  --code-text-color: #e96900;
+
+  // 暗色模式下样式
+  &[data-scheme="dark"] {
+    // 行内代码背景色
+    --code-background-color: #ff6d1b17;
+    // 行内代码前景色
+    --code-text-color: #e96900;
+  }
+}
+
+//------------------------------------------------------
+// 修复引用块内容窄页面显示问题
+a {
+  word-break: break-all;
+}
+
+//--------------------------------------------------
+// 文章封面高度
+.article-list article .article-image img {
+  width: 100%;
+  height: 200px !important;
+  object-fit: cover;
+
+  @include respond(md) {
+    height: 250px !important;
+  }
+
+  @include respond(xl) {
+    height: 285px !important;
+  }
+}
+
+//---------------------------------------------------
+// 文章内容图片圆角阴影
+.article-page .main-article .article-content {
+  img {
+    max-width: 96% !important;
+    height: auto !important;
+    border-radius: 8px;
+  }
+}
+
+//------------------------------------------------
+// 文章内容引用块样式
+.article-content {
+  blockquote {
+    border-left: 6px solid #358b9a1f !important;
+    background: #3a97431f;
+  }
+}
+
+code {
+  word-break: break-all;
+  border-radius: var(--tag-border-radius);
+  font-family: var(--code-font-family);
+  border-radius: var(--category-border-radius);
+}
+
+// 代码块基础样式修改
+.highlight {
+  border-radius: 20px;
+
+  &:hover {
+    .copyCodeButton {
+      opacity: 1;
+    }
+  }
+
+  pre {
+    margin: initial;
+    padding: 0;
+    margin: 0;
+    width: auto;
+  }
+}
+
+//-------------------------------------------
+// 设置选中字体的区域背景颜色
+//修改选中颜色
+::selection {
+  color: #fff;
+  background: #557697;
+}
+
+
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+
+  &:hover {
+    color: var(--accent-color-darker);
+  }
+
+  &.link {
+    color: #4288b9ad;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+//固定代码块的高度
+.article-content {
+  .highlight {
+    padding: var(--card-padding);
+
+    pre {
+      width: auto;
+      max-height: 50em;
+    }
+  }
+}
+
+//-------------------------------------------------
+//文章封面高度更改
+.article-list article .article-image img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+
+  @include respond(md) {
+    height: 200px;
+  }
+
+  @include respond(xl) {
+    height: 305px;
+  }
+}
+
+//---------------------------------------------------
+// 全局页面布局间距调整
+.main-container {
+  min-height: 100vh;
+  align-items: flex-start;
+  padding: 0 15px;
+  gap: var(--section-separation);
+  padding-top: var(--main-top-padding);
+
+  @include respond(md) {
+    padding: 0 37px;
+  }
+}
+
+//--------------------------------------------------
+//页面三栏宽度调整
+.container {
+  margin-left: auto;
+  margin-right: auto;
+
+  .left-sidebar {
+    order: -3;
+    max-width: var(--left-sidebar-max-width);
+  }
+
+  .right-sidebar {
+    order: -1;
+    max-width: var(--right-sidebar-max-width);
+
+    /// Display right sidebar when min-width: lg
+    @include respond(lg) {
+      display: flex;
+    }
+  }
+
+  &.extended {
+    @include respond(md) {
+      max-width: 1024px;
+      --left-sidebar-max-width: 25%;
+      --right-sidebar-max-width: 22% !important;
+    }
+
+    @include respond(lg) {
+      max-width: 1280px;
+      --left-sidebar-max-width: 20%;
+      --right-sidebar-max-width: 30%;
+    }
+
+    @include respond(xl) {
+      max-width: 1453px; //1536px;
+      --left-sidebar-max-width: 15%;
+      --right-sidebar-max-width: 25%;
+    }
+  }
+
+  &.compact {
+    @include respond(md) {
+      --left-sidebar-max-width: 25%;
+      max-width: 768px;
+    }
+
+    @include respond(lg) {
+      max-width: 1024px;
+      --left-sidebar-max-width: 20%;
+    }
+
+    @include respond(xl) {
+      max-width: 1280px;
+    }
+  }
+}
+
+//-------------------------------------------------------
+//全局页面小图片样式微调
+.article-list--compact article .article-image img {
+  width: var(--image-size);
+  height: var(--image-size);
+  object-fit: cover;
+  border-radius: 17%;
+}
+
+//----------------------------------------------------
+// 菜单栏样式
+// 下拉菜单改圆角样式
+.menu {
+  padding-left: 0;
+  list-style: none;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  flex-grow: 1;
+  font-size: 1.6rem;
+  background-color: var(--card-background);
+
+  box-shadow: var(--shadow-l2); //改个阴影
+  display: none;
+  margin: 0; //改为0
+  border-radius: 10px; //加个圆角
+  padding: 30px 30px;
+
+  @include respond(xl) {
+    padding: 15px 0;
+  }
+
+  &,
+  .menu-bottom-section {
+    gap: 30px;
+
+    @include respond(xl) {
+      gap: 25px;
+    }
+  }
+
+  &.show {
+    display: flex;
+  }
+
+  @include respond(md) {
+    align-items: flex-end;
+    display: flex;
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    margin: 0;
+  }
+
+  li {
+    position: relative;
+    vertical-align: middle;
+    padding: 0;
+
+    @include respond(md) {
+      width: 100%;
+    }
+
+    svg {
+      stroke-width: 1.33;
+
+      width: 20px;
+      height: 20px;
+    }
+
+    a {
+      height: 100%;
+      display: inline-flex;
+      align-items: center;
+      color: var(--body-text-color);
+      gap: var(--menu-icon-separation);
+    }
+
+    span {
+      flex: 1;
+    }
+
+    &.current {
+      a {
+        color: var(--accent-color);
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+//  ~\blog\assets\scss\custom.scss
+
+//------------------------------------------------
+//将滚动条修改为圆角样式
+//菜单滚动条美化
+.menu::-webkit-scrollbar {
+  display: none;
+}
+
+// 全局滚动条美化
+html {
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+}
+
+//--------------------------------------------------
+//归档页面双栏
+/* 归档页面两栏 */
+@media (min-width: 1024px) {
+  .article-list--compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      box-shadow: var(--shadow-l2);
+      margin-bottom: 8px;
+      border-radius: 16px;
+    }
+  }
+}
+
+//--------------------------------------------------
+//链接三栏
+@media (min-width: 1024px) {
+  .article-list--compact.links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; //三个1fr即为三栏,两个1fr则为双栏,以此类推即可.
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      box-shadow: var(--shadow-l2);
+      margin-bottom: 8px;
+      border-radius: var(--card-border-radius);
+
+      &:nth-child(odd) {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+
+//---------------------------------------------------------
+//首页欢迎板块样式
+.welcome {
+  color: var(--card-text-color-main);
+  background: var(--card-background);
+  box-shadow: var(--shadow-l2);
+  border-radius: 30px;
+  display: inline-block;
+}
+
+// 👋emoji实现摆动效果
+.shake {
+  display: inline-block;
+  animation: shake 1s;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  animation-name: shake;
+  animation-timeline: auto;
+  animation-range-start: normal;
+  animation-range-end: normal;
+  animation-delay: 2s;
+
+  @keyframes shake {
+    0% {
+      transform: rotate(0);
+    }
+
+    25% {
+      transform: rotate(45deg) scale(1.2);
+    }
+
+    50% {
+      transform: rotate(0) scale(1.2);
+    }
+
+    75% {
+      transform: rotate(45deg) scale(1.2);
+    }
+
+    100% {
+      transform: rotate(0);
+    }
+  }
+}
+
+// 实现字符跳动动画
+.jump-text1 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+}
+
+.jump-text2 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.1s;
+}
+
+.jump-text3 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.2s;
+}
+
+.jump-text4 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.3s;
+}
+
+.jump-text5 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.4s;
+}
+
+.jump-text6 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.5s;
+}
+
+.jump-text7 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.6s;
+}
+
+.jump-text8 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.7s;
+}
+
+.jump-text9 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.9s;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.main-container .right-sidebar {
+  order: 2;
+  max-width: var(--right-sidebar-max-width);
+
+  /// Display right sidebar when min-width: lg
+  @include respond(lg) {
+    display: flex;
+  }
+}
+
+main.main {
+  order: 1;
+  min-width: 0;
+  max-width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-separation);
+
+  @include respond(md) {
+    padding-top: var(--main-top-padding);
+  }
+}
+
+//----------------------------------------------------------
+
+.article-category {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  a {
+    background: var(--card-background);
+    box-shadow: var(--shadow-l1);
+    border-radius: var(--category-border-radius);
+    padding: 8px 20px;
+    color: var(--card-text-color-main);
+    font-size: 1.4rem;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: var(--shadow-l2);
+    }
+  }
+}
+
+/* Category widget */
+.category {
+  .category-label {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    a {
+      border-left: 6px solid;
+      background: var(--card-background);
+      box-shadow: var(--shadow-l1);
+      border-radius: var(--category-border-radius);
+      padding: 12px 20px;
+      color: var(--card-text-color-main);
+      font-size: 1.5rem;
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: var(--shadow-l2);
+      }
+    }
+  }
+
+  .category-count {
+    color: var(--body-text-color);
+  }
+}
+
+.article-subtitle {
+  margin-top: -5px;
+  font-size: 1.5rem;
+
+  @include respond(md) {
+    font-size: 1.6rem;
+  }
+}
+
+/*头像旋转动画*/
+.sidebar header .site-avatar .site-logo {
+  transition: transform 1.65s ease-in-out; //旋转时间
+
+}
+
+.sidebar header .site-avatar .site-logo:hover {
+  transform: rotate(360deg); //旋转角度为360度
+}
+
+/*社交菜单居中*/
+.social-menu svg {
+  gap: 15px;
+  justify-content: center;
+  width: 30px;
+  height: 25px; //社交菜单大小
+  stroke: var(--body-text-color);
+  stroke-width: 1.33;
+}
+
+/*页面加载动画部分*/
+#loading-box .loading-left-bg,
+#loading-box .loading-right-bg {
+  position: fixed;
+  z-index: 1000;
+  width: 50%;
+  height: 100%;
+  // 我在这里小改了一下颜色，
+  background-color: #b1c0c7;
+  transition: all 0.5s;
+}
+
+#loading-box .loading-right-bg {
+  right: 0;
+}
+
+#loading-box>.spinner-box {
+  position: fixed;
+  z-index: 1001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+#loading-box .spinner-box .configure-border-1 {
+  position: absolute;
+  padding: 3px;
+  width: 115px;
+  height: 115px;
+  background: #ffab91;
+  animation: configure-clockwise 3s ease-in-out 0s infinite alternate;
+}
+
+#loading-box .spinner-box .configure-border-2 {
+  left: -115px;
+  padding: 3px;
+  width: 115px;
+  height: 115px;
+  background: rgb(63, 249, 220);
+  transform: rotate(45deg);
+  animation: configure-xclockwise 3s ease-in-out 0s infinite alternate;
+}
+
+#loading-box .spinner-box .loading-word {
+  position: absolute;
+  color: #ffffff;
+  // 我在这里小改了一下文字大小和字体，注意！
+  font-size: 1.8rem;
+  font-family: 'Zhi Mang Xing', cursive;
+}
+
+#loading-box .spinner-box .configure-core {
+  width: 100%;
+  height: 100%;
+  background-color: #37474f;
+}
+
+div.loaded div.loading-left-bg {
+  transform: translate(-100%, 0);
+}
+
+div.loaded div.loading-right-bg {
+  transform: translate(100%, 0);
+}
+
+div.loaded div.spinner-box {
+  // 你可以把这个注释掉，这样就能一直看那个动画的效果了！
+  display: none !important;
+}
+
+@keyframes configure-clockwise {
+  0% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(90deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(270deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes configure-xclockwise {
+  0% {
+    transform: rotate(45deg);
+  }
+
+  25% {
+    transform: rotate(-45deg);
+  }
+
+  50% {
+    transform: rotate(-135deg);
+  }
+
+  75% {
+    transform: rotate(-225deg);
+  }
+
+  100% {
+    transform: rotate(-315deg);
+  }
+}
+
+
+/* 头像旋转 */
+.home .home-profile .home-avatar img {
+  width: 5rem;
+
+  /* 设置循环动画
+  [animation:
+	(play)动画名称
+	(2s)动画播放时长单位秒或微秒
+	(ease-out)动画播放的速度曲线为以低速结束
+	(1s)等待1秒然后开始动画
+	(1)动画播放次数(infinite为循环播放) ]*/
+
+  /* 鼠标经过头像旋转360度 */
+  -webkit-transition: -webkit-transform 1.0s ease-out;
+  -moz-transition: -moz-transform 1.0s ease-out;
+  transition: transform 1.0s ease-out;
+
+  &:hover {
+    /* 鼠标经过停止头像旋转
+      -webkit-animation-play-state:paused;
+      animation-play-state:paused;*/
+
+    /* 鼠标经过头像旋转360度 */
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+.widget--toc {
+  #TableOfContents {
+    max-height: 65vh;
+
+    ol,
+    ul {
+      list-style-type: none;
+    }
+
+    li {
+      margin: 10px 10px;
+
+      &>ol,
+      &>ul {
+        margin-top: 10px;
+        padding-left: 10px;
+        margin-bottom: -5px;
+
+        &>li:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+}

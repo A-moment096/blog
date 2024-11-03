@@ -60,6 +60,6 @@ You can [mail me](mailto:amoment096@gmail.com) if you would like.
 你可以通过[邮箱](mailto:amoment096@gmail.com)联系到我。
 
 ## This page is bilingual, why others not? | 为什么这个页面有中英文, 别的没有？
-This self-intro (might) have used up my effort. Maybe he will translate other pages into English/Chinese in the future, far or further future.
+This self-intro (might) have used up his effort. Maybe he will translate other pages into English/Chinese in the future, far or further future.
 
-我是蓝狗。
+他是蓝狗。

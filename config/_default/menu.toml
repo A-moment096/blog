@@ -1,16 +1,28 @@
 # Configure main menu and social menu
-#[[main]]
-#identifier = "home"
-#name = "Home"
-#url = "/"
-#[main.params]
-#icon = "home"
-#newtab = true
+[[main]]
+identifier = "home"
+name = "Home"
+url = "/"
+weight = -10
+[main.params]
+icon = "home"
+
+[[social]]
+identifier = "rss"
+name = "RSS"
+url = "/index.xml"
+weight = 10
+pre = "RSS"
+
+[social.params]
+newtab = true
+icon = "rss"
 
 [[social]]
 identifier = "github"
 name = "GitHub"
 url = "https://github.com/A-moment096"
+weight = 1
 
 [social.params]
 icon = "brand-github"
@@ -19,6 +31,17 @@ icon = "brand-github"
 identifier = "bilibili"
 name = "Bilibili"
 url = "https://space.bilibili.com/44789578"
+weight = 5
 
 [social.params]
 icon = "brand-bilibili"
+
+[[social]]
+identifier = "mail"
+name = "Contact Me"
+url = "mailto:amoment096@gmail.com"
+weight = 9
+
+[social.params]
+icon = "mail"
+
