@@ -15,7 +15,6 @@ links:
     website: https://github.com/A-moment096/Python-with-VSCode
 math: true
 ---
-
 *这是一篇写给初学 Python 的同学的教程，帮助使用 VS Code 快速配置好 Python 的开发环境，写于今年9月14日，
 先搬运至此并改为 Markdown，作为 Programming部分的第一篇博文*
 

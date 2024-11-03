@@ -22,7 +22,7 @@ links:
 Phase Field Method, 直译为相场法，是一种材料模拟方法，其通过宽界面（平滑界面）的特点，克服了另一个模拟方法：Stefan 法的窄界面
 无法计算的缺点，实现了对材料中的相的演化的模拟。
 
-### Phase Field, Order Parameter, Free Energy Functional, Governing Equation (AC & CH)
+### 基本概念解析
 
 - Phase Field：所谓的相场，可以理解为模拟域，给每个点赋予一个值来表示不同的相以及相界面
 - Order Parameter：序参量，即上一条中用来表示不同相的变量。一般0代表没有这个相，1代表完全占据这个相，介于0到1之间的即为相界面。

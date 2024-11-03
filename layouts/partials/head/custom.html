@@ -1,0 +1,47 @@
+<!-- 回到顶部 -->
+<div id="back-top">
+    <a href="#top" title="To Top"></a>
+</div>
+<style>
+    #back-top {
+        position: fixed;
+        bottom: 30px;
+        right: 80px;
+    }
+    #back-top a {
+        width: 54px;
+        height: 54px;
+        display: block;
+        background: #ddd url(/back_top.svg) no-repeat center center;
+        background-color: rgba(218, 214, 214, 0.87);
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        border-radius: 7px;
+        -webkit-transition: 1s;
+        -moz-transition: 1s;
+        transition: 1s;
+    }
+    #back-top a:hover {
+        background-color: #4b4b4b42;
+        display: block;
+    }
+</style>
+
+<script type="text/javascript">
+    $("#back-top").hide();
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+            }
+        });
+        $('#back-top a').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+</script>

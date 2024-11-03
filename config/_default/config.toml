@@ -14,5 +14,10 @@ hasCJKLanguage = true
 # Change it to your Disqus shortname before using
 disqusShortname = "hugo-theme-stack"
 
+timeZone = "Etc/GMT-8"
+
 [pagination]
 pagerSize = 5
+
+[frontmatter]
+lastmod=["lastmod",":fileModTime"]
