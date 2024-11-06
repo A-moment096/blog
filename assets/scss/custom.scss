@@ -63,8 +63,20 @@ a {
 // 文章内容引用块样式
 .article-content {
   blockquote {
-    border-left: 6px solid #358b9a1f !important;
-    background: #3a97431f;
+    border-left: 6px solid #d1e6df;
+    background: #e7f2e8;
+  }
+
+  blockquote.warning {
+    border-left-color: #fde39b;
+  }
+
+  blockquote.note {
+    border-left-color: #a5a5ff;
+  }
+
+  blockquote.danger {
+    border-left-color: #f19a9a;
   }
 }
 
@@ -126,8 +138,12 @@ a {
 //固定代码块的高度
 .article-content {
   .highlight {
-    padding: var(--card-padding);
-
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    .chroma{
+      background-color: #f0f0f0;
+    }
     pre {
       width: auto;
       max-height: 50em;
@@ -835,11 +851,11 @@ div.loaded div.spinner-box {
                 margin-left: 15px;
               }
 
-              .shuoshuo_time{
+              .shuoshuo_time {
                 margin-left: 15px;
               }
 
-              .delete_right{
+              .delete_right {
                 margin: 15px;
               }
 

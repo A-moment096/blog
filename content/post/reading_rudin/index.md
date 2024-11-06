@@ -6,6 +6,7 @@ categories:
 # - Others
 tags:
 - Mathematical Analysis
+- Reading
 title: "Baby Rudin 读后感"
 description: 一篇水文，读完其实约等于没读
 image: yoyoko.jpeg

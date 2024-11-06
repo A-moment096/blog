@@ -5,6 +5,7 @@ tags:
 - Python
 - VS Code
 - Document
+- Tutorial
 title: "Python + VSCode 快速配置"
 description: 快速配置VSCode的Python开发环境
 image: 妹红.jpeg
@@ -106,11 +107,12 @@ VSCode是一个强大的文本编辑器.
 能会询问您是否信任该文件夹. 请选择”信任”以使您安装的插件正常
 运行, 否则插件可能会被VSCode所屏蔽.
 
-3. 现在您可以编辑该文件了. 输入一些Python代码, 下面是一个简单的测
-试代码:
+3. 现在您可以编辑该文件了. 输入一些Python代码, 下面是一个简单的测试代码:
+
 ```python
 print("Hello Python!")
 ```
+
 请写好并保存该文件.
 
 4. 现在请尝试运行该脚本. 如果您成功安装Python插件, 该文件界面的
@@ -245,9 +247,7 @@ New Jupyter Notebook)即可创建新的Jupyter Notebook. 后续操作类似于�
 感谢您能读到这里. 如果您对本文的内容有何看法或意见, 欢迎联系笔
 者. 最后, 希望本文能真的实现, 并帮助您实现Python的那句名言:
 
-{{< quote >}}
-人生苦短, 我用Python. <p>
-Life is short, I use Python.
-{{< /quote >}}
+> 人生苦短, 我用Python. <p>
+> Life is short, I use Python.
 
 祝您生活愉快.
