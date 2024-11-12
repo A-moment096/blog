@@ -8,7 +8,7 @@ tags:
 title: "从零开始的 Arch Linux 安装"
 description: 记录一下自己学习安装 Arch Linux 的过程
 date: 2024-11-10T22:34:55+08:00
-image: 
+image: Reimu_Water.jpg
 math: 
 links: 
   - title: Arch Linux+KDE安装流程和踩坑记录 By Azure Zeng
