@@ -24,3 +24,17 @@ comments: false
 [SCSS参考的博文: QX的笔记](https://lqxhub.github.io/posts/a660c9b1/)
 
 [加载进度条参考：平方君的后花园](http://i-square.us.kg/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/)
+
+[Utterances评论参考:](https://roife.github.io/posts/use-utterances-for-blog-comment/)
+
+<!-- 
+[Hugo Stack 主题装修笔记](https://thirdshire.com/hugo-stack-renovation/)
+[Hugo Stack 主题装修笔记 Part 2](https://thirdshire.com/hugo-stack-renovation-part-two/)
+[Hugo Stack 主题美化](https://yelleis.top/p/61fdb627/)
+[hugo stack 主题美化 2](https://yelleis.top/p/67e50e46/)
+[建站技术 | 使用 Hugo + Stack 简单搭建一个博客](https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/#marktext-%E4%B8%AD%E5%9B%BE%E5%BA%8A%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE)
+[Hugo | 在 Stack 主题上可行的短代码们](https://www.sleepymoon.cyou/2023/hugo-shortcodes/)
+[Hugo&Stack主题的使用和装修记录](http://qisiii.asia/post/site/hugo_stack_record/)
+[Fancybox 图片放大](https://tianma8023.github.io/post/hexo-material-intergrate-image-display-feature/)
+[Hugo Stack 主题配置与使用](https://bore.vip/archives/3bf3725e/index.html#archetypes%E9%BB%98%E8%AE%A4%E6%A8%A1%E6%9D%BF)
+ -->

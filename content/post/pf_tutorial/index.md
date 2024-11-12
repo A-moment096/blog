@@ -16,6 +16,9 @@ links:
   - title: PF_Tutorial_1 相场法介绍&部分数学基础
     description: 放在B站的讲课录播
     website: https://www.bilibili.com/video/BV1961uYiEpJ/
+  - title: 相场理论基础-Foundation of Phase Field Modeling
+    description: CSDN上发现的相场介绍文章, 内容很好
+    website: https://blog.csdn.net/kuailezhizi1996/article/details/129011165
 ---
 *这学期开了相场模拟培训, 故尝试将相场培训笔记性质的内容记录下来, 期望观感应该是目录式的笔记, 外带可有可无的说明文字.那么就开始吧*
 
