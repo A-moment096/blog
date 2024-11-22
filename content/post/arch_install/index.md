@@ -8,7 +8,7 @@ tags:
 title: "从零开始的 Arch Linux 安装"
 description: 记录一下自己学习安装 Arch Linux 的过程
 date: 2024-11-10T22:34:55+08:00
-image: Reimu_Water.jpg
+image: imgs/Reimu_Water.jpg
 math: 
 links: 
   - title: Arch Linux+KDE安装流程和踩坑记录 By Azure Zeng
@@ -29,18 +29,18 @@ links:
 目前我使用 Linux 系统还是主要通过 WSL, 毕竟真的很方便. 但是, 心里总是痒痒的: 为什么我不能装个 Arch 呢? 所以这一次, 我一定要安装好 Arch Linux 口牙! 即便可能后面还是会沦为文件夹角落的落灰软件, 我也要骄傲地喊出: "BTW, I use Arch!" (下期可能是 Debian 也说不定, 哈哈哈) 
 
 ## 准备: VirtualBox 和 Arch 镜像站
-环顾电脑一圈, 发现我以前用的 VMware Workspace 安装包没有导到这台新电脑上来, 而且即便现在安装 VMware Workspace 17 Pro 是免费的, 它竟然还要我注册…… 于是我还是选择了 Oracle 家开源的 VirtualBox. 再下来便是 Arch Linux 的源了, 我选择使用 ISO 镜像安装, 下载是通过淘宝的[阿里云镜像站](https://mirrors.aliyun.com/archlinux/iso/2024.11.01/)(其实就是第一个而已, 懒得往下翻了). 下载了大概40来分钟吧, 感觉速度还行, 1G 的大小来讲感觉还不错.
+环顾电脑一圈, 发现我以前用的 VMware Workspace 安装包没有导到这台新电脑上来, 而且即便现在安装 VMware Workspace 17 Pro 是免费的, 它竟然还要我注册…… 于是我还是选择了 Oracle 家开源的 VirtualBox. 再下来便是 Arch Linux 的源了, 我选择使用 ISO 镜像安装, 下载是通过淘宝的[阿里云镜像站](imgs/https://mirrors.aliyun.com/archlinux/iso/2024.11.01/)(其实就是第一个而已, 懒得往下翻了). 下载了大概40来分钟吧, 感觉速度还行, 1G 的大小来讲感觉还不错.
 
 VirtualBox 里给 Arch 预留了 4096MB (4GB)内存和 8GB 的硬盘容量, 希望这么多够 Arch 用. 校验过 SHA256 之后, 因为之前设置虚拟机的时候没有指定 Arch 的镜像文件 (因为还没有下载好), 所以在启动虚拟机之后会显示 "failed to boot" 并且要求指定 DVD 的路径. 这里选好 Arch 的镜像之后直接 `mount and reboot`, 便会进入 Arch 的安装界面了. 从这里开始也算是正式进入 Arch Linux 的安装环节了.
 
 ## 开始 (准备) 安装
 ### 帅气的开屏, 然后进入 Shell
-![开始安装!](Welcome.png)
-这里我们打开 [Arch Linux Installation Guide](https://wiki.archlinux.org/title/Installation_guide)以便根据官方教程进行安装. 我不打算用 Arch Install, 感觉那个没什么意思 (~~上次也是这么说的~~). 按照小节 1.4.2, 我们使用了光盘介质 (ISO也算是光盘镜像), 所以直接第一个选项就可以了.
-![很帅](Hacking.png)
+![开始安装!](imgs/Welcome.png)
+这里我们打开 [Arch Linux Installation Guide](imgs/https://wiki.archlinux.org/title/Installation_guide)以便根据官方教程进行安装. 我不打算用 Arch Install, 感觉那个没什么意思 (~~上次也是这么说的~~). 按照小节 1.4.2, 我们使用了光盘介质 (ISO也算是光盘镜像), 所以直接第一个选项就可以了.
+![很帅](imgs/Hacking.png)
 旋即屏幕闪过很有黑客感觉的画面 (个人猜测是系统自检, 感觉像是 systemd, 因为左边有很多绿色 OK 字样), 然后便进入了如下画面:
 
-![安装画面1](Install_1.png)
+![安装画面1](imgs/Install_1.png)
 
 根据 1.4.3, 我们这是来到了第一个虚拟终端 (Virtual Console), 身份是管理员用户 root, 使用的 Shell 是 Zsh. 感谢虚拟机, 让我不用担心在 root 账户下做的愚蠢操作会害死我的电脑和我自己. 那么我们继续吧~
 
@@ -54,7 +54,7 @@ VirtualBox 里给 Arch 预留了 4096MB (4GB)内存和 8GB 的硬盘容量, 希�
 ### 验证网路环境, 然后更新系统时间
 然后尝试联网. 作为网络小白, 我只能按照说明上的一步步来了. 首先检查网络接口 (network interface) 有没有打开, 使用命令 `ip link`, 得到了两行内容, 一行是 *lo*, 另一行是 *enp0s3*. 看不懂. 查看 Arch Wiki 上关于网络接口的部分, lo 是 *virtual loopback interface* 的意思, 且不会用在联网上. 而另一个 enp0s3 看起来像是正确的网络接口. 根据说明, *en* 代表的是以太网 (Ethernet), 而且只要显示了 *UP* 的字样, 便表明该接口是已启用了的. 很好, 说明我们的网络接口设置没遇到什么阻碍. 
 
-我的虚拟机是使用的 NAT, 这个 NAT 根据 Google 得到的结果来看, 是 Network Address Translation 的缩写, 是一种把 IP 地址重映射的技术. 听起来很像是路由器在做的工作. 根据安装引导的说明, 我们需要做的是插好网线并且配置好动态IP, 而动态 IP 又好像是会自动配置好的. 所以实际上什么都不需要做就可以了其实. 那么网络这块儿的最后一步便是尝试 `ping archlinux.org`. 很不错, ping 出来结果了. 这个命令就我的认知而言, 是尝试向某个网址发送一些短数据包, 然后让对应网址的服务器返回一个数据包, 以此来检测网络延迟情况. 除了尝试 [archlinux.org](archlinux.org), 我还试了试 ping B站, Google, 百度. 结果除了谷歌以外都不错. 可能是因为代理没有代理虚拟机的端口吧 (瞎猜). 无论如何, 网络这块儿是搞定了. 接下来是更新系统时间. 这个简单, `timedatectl` 就可以. 轻轻松松. 看来这会儿是美国时间下午4点半.
+我的虚拟机是使用的 NAT, 这个 NAT 根据 Google 得到的结果来看, 是 Network Address Translation 的缩写, 是一种把 IP 地址重映射的技术. 听起来很像是路由器在做的工作. 根据安装引导的说明, 我们需要做的是插好网线并且配置好动态IP, 而动态 IP 又好像是会自动配置好的. 所以实际上什么都不需要做就可以了其实. 那么网络这块儿的最后一步便是尝试 `ping archlinux.org`. 很不错, ping 出来结果了. 这个命令就我的认知而言, 是尝试向某个网址发送一些短数据包, 然后让对应网址的服务器返回一个数据包, 以此来检测网络延迟情况. 除了尝试 [archlinux.org](imgs/archlinux.org), 我还试了试 ping B站, Google, 百度. 结果除了谷歌以外都不错. 可能是因为代理没有代理虚拟机的端口吧 (瞎猜). 无论如何, 网络这块儿是搞定了. 接下来是更新系统时间. 这个简单, `timedatectl` 就可以. 轻轻松松. 看来这会儿是美国时间下午4点半.
 
 ### 磁盘分区咯, 还要格式化并挂载
 现在要进行的就是磁盘分区了. 每次到了这里总会感觉紧张, 不知道是不是因为之前搞坏过磁盘的缘故 (虽然是物理损坏, 和操作系统没关系). 先来看看都有哪些设备可用: `fdisk -l`. 结果显示找到了两个设备: `/dev/sda` 和 `/dev/loop0`, 一个是我预留好的 8GB 固态虚拟文件系统, 另一个是什么我不是很懂. 教程上讲, 以 `loop` 结尾的可以不用管. 可是我这是以 `loop` 开头的呀…… 算了, 应该没问题. 这里提示如果没有显示硬盘, 需要确保硬盘控制器没有处于 RAID 模式. RAID 阿, 看来磁盘阵列这种好像还不太好直接搞 Arch? 因为我这里的硬盘是普通的 SATA, 所以就忽略NVMe 等的提示了.
@@ -71,7 +71,7 @@ Waiting...
 
 这个时候可以用 `p` 来查看分区结果, 会有一个表格写着所有的内容. 确认无误就可以 `w` 来写入分区结果了. 接下来要格式化文件系统, 不然操作系统不知道文件是怎么存放的. 首先用命令 `lsblk -f` 来查看现在的磁盘信息 (或者就是刚刚的分区情况). 这里我显示的结果如下:
 
-![lsblk -f 结果](DiskPartition.png)
+![lsblk -f 结果](imgs/DiskPartition.png)
 
 说明之前的 `sda` 磁盘已经被分成了三个区域, 且都没有挂载. 现在我发现了一个问题: 我用的是 MBR 分区表, 为什么使用了 GPT分区表推荐的 `/boot`呢? 而且之前还说没有开启 EFI, 现在又要搞 EFI 适用的 `/boot`, 离谱. 很好, 那就重新分区吧.
 
@@ -79,11 +79,11 @@ Waiting...
 
 很好, 在熟练的操作下~~ (指现学)~~, 先用 `d` 删除所有分区, 然后创建 4G 的 Swap 分区, 以及 bootable 的主目录分区. 现在的分区结果是这样的:
 
-![新的分区结果](DiskPartition1.png)
+![新的分区结果](imgs/DiskPartition1.png)
 
 我们采用最经典的 `ext4` 文件格式 (其实就是教程里这么推荐的) 来格式化 `/dev/sda2`, 命令为: `mkfs.ext4 /dev/sda2`; 然后用命令 `mkswap /dev/sda1` 将 `/dev/sda1`格式化为 `swap`.  整体结果如下:
 
-![分区格式化](DiskFormat.png)
+![分区格式化](imgs/DiskFormat.png)
 
 最后, 我们终于要挂载文件系统了. 这个我了解过, 使用 `mount` 命令即可挂载硬件到某个目录下. 首先我们挂载根目录, 把根目录挂载到 `/mnt` 下: `mount /dev/sda2 /mnt`. 因为我没有别的什么文件分区, 只剩下一个 Swap 分区, 所以我们直接使用命令: `swapon /dev/sda1` 来启动 Swap.
 
@@ -94,7 +94,7 @@ Waiting...
 
 接下来要安装必要的包. 根据教程, 这里安装的包有 `base` 包, Linux 内核以及一些常见的固件. 使用命令: `pacstrap -K /mnt base linux linux-firmware`. 之后便进入了安装界面.
 
-![安装界面](Installation.png)
+![安装界面](imgs/Installation.png)
 
 看来要安装 127 个包, 不是个小数目. 而且我这里的网速看起来也比较一般. 慢慢等吧. 这个安装进度让我莫名想起安装 $\LaTeX$ 时候的样子. 
 
@@ -102,7 +102,7 @@ Waiting...
 
 ? 后续过程这么快的吗? 127个包看来都不是很大的样子. 安装好之后的样子是这样的:
 
-![安装完成](AfterInstall.png)
+![安装完成](imgs/AfterInstall.png)
 
 可以看到其实有一些部分是缺失的. 这个应该没什么关系, 毕竟虚拟机可能确实会缺一些不紧要的组件. 这里还可以安装一些别的组件, 比如 CPU 的指令集更新 (`microcode`), 使用 RAID 的工具之类. 这里就先跳过了, 之后使用 `pacman` 安装需要的内容. `microcode` 由于我使用的是虚拟机, 指令集补丁应该存在于主机 (这台Windows) 上,
 所以不需要安装.
@@ -115,7 +115,7 @@ Waiting...
 
 接下来 change root 到新系统下: `arch-chroot /mnt`. 根据中文 Arch Wiki 的解释, chroot 是 "修改当前进程及其子进程的可见根目录的操作". 似乎修改之后进程就会以 `/mnt` 为根目录 `/`:
 
-![chroot 之后](Chroot.png)
+![chroot 之后](imgs/Chroot.png)
 
 我大胆猜测, 现在就是把进程从 ISO 文件中的系统转移到了我虚拟机上的系统. 不过怎么验证这个想法我没什么主意. 下一步吧.
 
@@ -155,7 +155,7 @@ Arch Linux 默认使用 `pacman` 作为包管理器. 用包管理器可以安装
   - 可是 ip 我也不懂啊, 互联网 (物理) 小白是真的搞不懂这些网络协议之类的. 回去翻看安装说明, 也没有讲到这里呀.
 - 回忆: 安装的时候是有网络的, 安装完好像没碰过网络环境.
 - 猜测3: 该不会是我自己系统上没有装驱动吧
-  - 坏了, 网上一通搜, 真的是没有装网络服务 `dhcpcd` 和 `networkmanager`. 乖乖回去用安装镜像进入, `mount` 根分区 `/dev/sda2` 到安装镜像的 `/mnt` 然后 `arch-chroot /mnt`, 开始老实安装 `dhcpcd` 和 `networkmanager`. 这里要感谢[讨论串](https://bbs.archlinuxcn.org/viewtopic.php?id=12603)和[一篇博文](https://www.cnblogs.com/yuxiayizhengwan/p/16576946.html). 
+  - 坏了, 网上一通搜, 真的是没有装网络服务 `dhcpcd` 和 `networkmanager`. 乖乖回去用安装镜像进入, `mount` 根分区 `/dev/sda2` 到安装镜像的 `/mnt` 然后 `arch-chroot /mnt`, 开始老实安装 `dhcpcd` 和 `networkmanager`. 这里要感谢[讨论串](imgs/https://bbs.archlinuxcn.org/viewtopic.php?id=12603)和[一篇博文](imgs/https://www.cnblogs.com/yuxiayizhengwan/p/16576946.html). 
 回看安装指引, 这时才明白, 条目 1.7 最底下的 Note 是什么意思了: 网络服务在新装的系统上面是通通没有滴! Okay, 安装完毕, 继续回到 `pacman` 上.
 
 ### pacman: 没错, 孩子, 又是我
@@ -176,7 +176,7 @@ Arch Linux 默认使用 `pacman` 作为包管理器. 用包管理器可以安装
 
 首先打开蓝牙: `sudo systemctl enable --now bluetooth`, 然后通过 `sudo systemctl enable --now sddm` 即可进入 KDE Plasma 桌面. 剩下的就是点点点了, 点点点, 爽! 我必须立刻把任务栏 (这里叫 panel) 移至左边!
 
-![KDE Plasma 桌面环境](KDE.png)
+![KDE Plasma 桌面环境](imgs/KDE.png)
 
 ### 安装别的工具……
 
@@ -198,4 +198,26 @@ SDL_IM_MODULE=fcitx
 
 为了能把我在 Windows 上的配置文件直接导入到 Arch 里, 需要在 Arch Linux 里面下载: `virtualbox-guest-utils` (不支持 X 的话要安装带个 `-nox` 后缀的版本), 然后把它加入到 `systemd` 的服务中去: `sudo systemctl enable --now vboxservice.service`. 然后再在虚拟机上打开 Drag and Drop 以及 Shared Folders. 我将我用的 Rime 配置文件打包成 tar 之后放在了 Shared Folder里, 然后就可以从虚拟机上的指定位置取出来然后解压缩到需要的路径了. 其实期间有考虑过使用 `ssh` 或者是其他的方式来传输这个压缩包, 后面还是放弃了. 反正能完成目标就好, `ssh`? 不用也罢! ()
 
-> To be Continued ...
+
+#### 不能科学上网吗？
+
+虽然是虚拟机, 还是想试试安装一些科学上网的工具. 目前 Windows 上有在用的工具, 但是貌似在 Linux 上并不是很好用呀 ... 经过一通搜索之后锁定到了 V2rayA, 使用 `yay` 就能很简单的安装 (? 代理? Github?). 
+
+实际尝试过后, 发现这个工具好像和我目前在用的有点八字不合? 在 Windows 上也尝试同款工具之后, 发现确实是不太好用, 唉. 那就算了吧. 不科学上网, 那又能怎么样呢?
+
+#### 终端字体怎么怪怪的? Alacritty?
+
+听闻 Alacritty 使用 Rust, 性能十分优异, 然而在我满心欢喜地调整系统字体为中文之后, Alacritty 的字体变得惨不忍睹了 ...
+
+![奇怪的字体](imgs/alacritty_font.png)
+
+这究竟是怎么回事? 在热心群友的帮助下, 我查阅了 Alacritty 的 Arch Wiki, 得到了令人震惊的事实: 我竟然没有配置字体文件. 直接下载安装 `ttf-cascadia-mono-nerd` (其实不下载也可以), 然后在家文件夹下创建新文件夹和文件: `.config/alacritty/alacritty.toml` 并使用 `vim` 修改内容. 格式如下: 
+
+![alt text](imgs/alacritty_fc.png)
+
+保存的时候便会直接应用. 其中 `family` 是可以从设置的字体管理部分看到字体族的名字, 输入即可. 这里字体族主要是需要等宽字体族才能正常显示, 选择这款字体是因为我 Windows 上的终端字体也是用的这套 `Cascadia`, 很喜欢所以就干脆保持一致了.
+
+#### 试试 Zsh!
+
+
+

@@ -1,0 +1,28 @@
+{{/*
+    将此文件放在/layouts/shortcodes/目录下，不要改名。
+    给你的hugo页面安装空调，用法，在md文件中输入:
+    
+    {{< AirConditioner >}}
+    
+     */}}
+
+<style>
+    .aspect-ratio {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        padding-bottom: 100%;
+        }
+          
+    .aspect-ratio iframe {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        }
+    </style>
+
+<div align=center class="aspect-ratio">
+    <iframe src="https://air-conditioner-guole.vercel.app"></iframe>
+</div>
