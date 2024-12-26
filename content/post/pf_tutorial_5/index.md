@@ -117,7 +117,7 @@ OK，现在我们应该对这次模拟所需要的演化方程以及能量构造
 
 我们依旧使用 C++ 实现，这里一次性全都贴出来。
 
-```cpp
+```cpp {lineNos=inline}
 #include <filesystem>
 #include <fstream>
 #include <iostream>

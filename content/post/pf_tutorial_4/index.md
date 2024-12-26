@@ -94,7 +94,7 @@ $$
 
 下面直接一口气给出所有的代码：
 
-```cpp
+```cpp {lineNos=inline}
 #include <filesystem>
 #include <fstream>
 #include <iostream>

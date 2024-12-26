@@ -345,7 +345,7 @@ STL 是 Standard Template Library的缩写，即标准模板库，是一系列�
 ### 代码实现
 下面是我编写的一个例子：
 
-```cpp
+```cpp {lineNos=inline}
 #include <chrono>
 #include <filesystem>
 #include <fstream>
