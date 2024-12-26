@@ -19,7 +19,6 @@ links:
     description: 放在 Github 上的讲义, 包含课件和用到的资料
     website: https://github.com/A-moment096/Phase-Field-Tutorial/tree/main/PF_T2-Numerical_Method_and_Python
 
-draft: true
 ---
 
 *其实这节就是换成 Allen-Cahn 方程，然后多个变量而已，主要是俺不想实现 Voronoi 结构（逃*
@@ -97,10 +96,179 @@ $$
 
 ### 相场演化方程与扩散方程之间的关系
 
+我们其实很早就发现了 Allen-Cahn 和 Cahn-Hilliard 两个方程与扩散方程（Fick 定律）之间的相似性。我们现在来更仔细地看看这些方程与 Fick 定律之间有什么关系吧。
+
+对于 Cahn-Hilliard 方程而言，可以看到它与 Fick 第二定律的形式非常地像。如何看待这种相似性呢？我们可以讲，对于 Fick 第二定律而言，其提供扩散驱动力的部分是浓度本身，或者说浓度的梯度。而当这个驱动力放在更加广阔的语境下时，例如，上坡扩散等现象发生时，我们必须根据热力学原理，使用扩散势来解释这类现象。因此，可以将 Cahn-Hilliard 方程看作是更加符合热力学原理的扩散方程。
+
+那么，Allen-Cahn 方程呢？ 我们需要把 Allen-Cahn 方程和经典的能量泛函构造联系起来，并展开公式。这时我们得到：
+$$
+\frac{\partial \eta_i}{\partial t} = L_{ij}\nabla^2 \eta_j - L\mu_i
+$$
+
+这个形式，熟悉吗？如果去掉第二项，那么这个方程就是 Fick 第二定律！那么第二项代表了什么呢？第二项实际上代表了某种界面上发生的反应。为什么说是界面上的？观察这个方程与 Fick 第二定律所代表的情况，第一项代表了某个变量是守恒的，然而第二项的化学势的存在打破了这种平衡。我们使用界面上的反应来解释这种情况的出现是最合适的：不守恒的序参量是被“消耗”掉了。实际上，按照这种思路，我们可以构造出更加复杂的演化方程，即根据体系内存在的反应，向能量中添加反应造成的能量变动，最后则会反映到 Allen-Cahn 方程的反应项中。
+
 ## 问题分析
+
+OK，现在我们应该对这次模拟所需要的演化方程以及能量构造有一定的理解了。这次我们要尝试的问题是：假设有两块单晶，一块出于另一块的中心，中心晶粒的形状是半径 14 单元的一个圆盘。现在需要通过模拟得到晶粒长大的过程。
+
+十分简单的问题，只需要创建两个序参量网格，然后对每个网格进行迭代即可。也许求和部分有一些问题，然而可以通过一些程序技巧简化一部分的运算。直接看代码吧。
 
 ## 代码实现
 
+我们依旧使用 C++ 实现，这里一次性全都贴出来。
+
+```cpp
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+double laplacian(double eta_l, double eta_r, double eta_d, double eta_u, double eta_c, double dx) {
+    return (eta_l + eta_r + eta_d + eta_u - 4.0 * eta_c) / (dx * dx);
+}
+
+double df_deta(double A, double B, double eta_square_sum, double this_eta) {
+    return -1.0 * A * this_eta + B * this_eta * this_eta * this_eta + 2.0 * this_eta * (eta_square_sum - this_eta * this_eta);
+}
+
+std::ofstream create_vtk(std::string file_path, int time_step) {
+    std::filesystem::create_directory(file_path);
+    std::filesystem::path f_name{"step_" + std::to_string(time_step) + ".vtk"};
+    f_name = file_path / f_name;
+
+    std::ofstream ofs{f_name};
+    return ofs;
+}
+
+void write_vtk_head(std::ofstream &ofs, std::string filename, double dx, size_t Nx, size_t Ny) {
+    ofs << "# vtk DataFile Version 3.0\n";
+    ofs << filename << std::endl;
+    ofs << "ASCII\n";
+    ofs << "DATASET STRUCTURED_GRID\n";
+
+    ofs << "DIMENSIONS " << Nx << " " << Ny << " " << 1 << "\n";
+    ofs << "POINTS " << Nx * Ny * 1 << " float\n";
+
+    for (size_t i = 0; i < Nx; i++) {
+        for (size_t j = 0; j < Ny; j++) {
+            ofs << (double)i * dx << " " << (double)j * dx << " " << 1 << std::endl;
+        }
+    }
+    ofs << "POINT_DATA " << Nx * Ny * 1 << std::endl;
+}
+
+void write_vtk_data(std::vector<std::vector<double>> mesh, std::ofstream &ofs, std::string data_label, double dx) {
+    size_t Nx{mesh.size()}, Ny{mesh.at(0).size()};
+    ofs << "SCALARS " << data_label << " float 1\n";
+    ofs << "LOOKUP_TABLE default\n";
+    for (size_t i = 0; i < Nx; i++) {
+        for (size_t j = 0; j < Ny; j++) {
+            ofs << mesh.at(i).at(j) << std::endl;
+        }
+    }
+}
+
+int main() {
+    int Nx = 64;
+    double dx = 0.5, dt = 0.005;
+    int nstep = 20000, pstep = 100;
+    int radius = 14;
+    double mobility = 5.0, kappa = 0.1;
+    double A = 1.0, B = 1.0;
+    double eta_trun = 1e-6;
+
+    std::vector<std::vector<double>> grain_1(Nx, std::vector<double>(Nx, 0));
+    auto grain_2 = grain_1;
+
+    for (int i = 0; i < Nx; i++) {
+        for (int j = 0; j < Nx; j++) {
+            if ((i - Nx / 2) * (i - Nx / 2) + (j - Nx / 2) * (j - Nx / 2) < radius * radius) {
+                grain_1.at(i).at(j) = 1.0;
+                grain_2.at(i).at(j) = 0.0;
+            } else {
+                grain_1.at(i).at(j) = 0.0;
+                grain_2.at(i).at(j) = 1.0;
+            }
+        }
+    }
+
+    std::vector<std::vector<std::vector<double>>> grains = {grain_1, grain_2};
+    auto grains_temp = grains;
+
+    for (int istep = 0; istep < nstep + 1; istep++) {
+        std::vector<std::vector<double>> grain_square_sum(Nx, std::vector<double>(Nx, 0));
+        for (int igrain = 0; igrain < 2; igrain++) {
+            for (int i = 0; i < Nx; i++) {
+                for (int j = 0; j < Nx; j++) {
+                    grain_square_sum.at(i).at(j) += grains.at(igrain).at(i).at(j) * grains.at(igrain).at(i).at(j);
+                }
+            }
+        }
+        for (int igrain = 0; igrain < 2; igrain++) {
+            for (int i = 0; i < Nx; i++) {
+                for (int j = 0; j < Nx; j++) {
+                    int im = i - 1, jm = j - 1, ip = i + 1, jp = j + 1;
+                    if (im == -1) {
+                        im = Nx - 1;
+                    }
+                    if (jm == -1) {
+                        jm = Nx - 1;
+                    }
+                    if (ip == Nx) {
+                        ip = 0;
+                    }
+                    if (jp == Nx) {
+                        jp = 0;
+                    }
+                    double eta_l = grains.at(igrain).at(im).at(j);
+                    double eta_r = grains.at(igrain).at(ip).at(j);
+                    double eta_d = grains.at(igrain).at(i).at(jm);
+                    double eta_u = grains.at(igrain).at(i).at(jp);
+                    double eta_c = grains.at(igrain).at(i).at(j);
+
+                    grains_temp.at(igrain).at(i).at(j) = eta_c - mobility * dt * (df_deta(A, B, grain_square_sum.at(i).at(j), eta_c) - kappa * laplacian(eta_l, eta_r, eta_d, eta_u, eta_c, dx));
+
+                    if (grains_temp.at(igrain).at(i).at(j) > 1.0 - eta_trun) {
+                        grains_temp.at(igrain).at(i).at(j) = 1.0;
+                    }
+                    if (grains_temp.at(igrain).at(i).at(j) < eta_trun) {
+                        grains_temp.at(igrain).at(i).at(j) = 0.0;
+                    }
+                }
+            }
+        }
+        grains = grains_temp;
+        if (istep % pstep == 0) {
+            auto ofs = create_vtk("./result", istep);
+            write_vtk_head(ofs, "step_" + std::to_string(istep), dx, Nx, Nx);
+            write_vtk_data(grains.at(0), ofs, "grain_1", dx);
+            write_vtk_data(grains.at(1), ofs, "grain_2", dx);
+        }
+    }
+}
+```
+
+这次我们优化了 `vtk` 文件的生成函数，使之能够分部写入。其余部分都是非常简单的。考虑到计算过程，这次的模拟甚至比上次的还要简单一些。运行这里的代码之后，程序会在其位置生成一个 `result/` 文件夹并且把结果文件都放在里面。和之前一样，使用 Paraview 即可打开这些文件了。
 ## 结果
+和上次一样，这里就贴一下几张截图。
+| | |
+|:-:|:-:|
+|![第5步](modified_5.png) |![第25步](modified_25.png) 
+|第5步|第25步|
+|![第75步](modified_75.png)| ![第100步](modified_100.png)
+|第75步|第150步|
+
+可以看到，随着时间推进，小晶粒（中间红色部分）被大晶粒（蓝色部分）不断吞并。而且根据步数，可以看到一开始由于两个晶粒的体积近似，演化速率并不大；随着不断的演化，两个晶粒的体积差距越来越大，演化速率也变大了。这符合我们对晶粒长大过程的认知，小晶粒会非常快速地消失，而较大的晶粒则会演化地比较慢。
 
 ## 结语
+
+我刚开始写的时候也没有想到这里会写这么多的模型解析的内容。不过也算是补充了之前对相场模型介绍不足的问题吧。这里的模拟部分，因为是参考的 *Programming Phase Field Modeling* 的 Case Study II，实际上还应该实现一下 Voronoi 结构的模拟，然后把多序参量情况下的代码结构处理一下。这里的代码应该是没有完全支持多相场情况的。但，我实在不想手搓一个 Voronoi 结构生成的函数，而能生成这个结构的库都太大了，我也不想给这个示例/教学代码引入什么第三方库。所以，结果就是，这里只实现了两个晶粒的模拟。也许之后会突然对 Voronoi 结构生成算法开窍了，然后就写进这个程序里呢？那也是以后的事了。
+
+和上一个部分一样，对模型和模拟过程更深层的理解是离不开调整参数进行测试的。这两个案例都是比较简单的案例，可调的参数并不多，而且在模拟一开始的时候就已经有了参考的参数了，也不是面对的实际存在的体系，填入的数字的物理意义并没有很大，或者说是比较唯结果论的一些数据。在面对实际物理体系的时候，填参数这块儿是模拟过程最折磨的部分了。如何精确地控制这些参数，让他们配合起来形成一个符合物理特性，而且也能跑出合理结果，这也许是相场方法最麻烦的点。参数的可解释性经常会和参数的数值特性相悖，而能平衡二者的结果几乎都是经过精心设计的。总而言之，多调参数总没错。
+
+那么这就是这个教程（自称）系列的最后一部分了。相场方法作为一种材料模拟方法，能做的东西非常多，但是其本身也有一定的限制。它最大的限制就是所谓的扩散界面，这样的界面解决了微分方程不好解的问题，但是也让这个方法很容易滑向物理意义不明确的道路，也经常会因为界面的存在而导致一些模拟发生数值失稳（即便引入界面常常就是希望能解决数值失稳的）。这些特点注定让相场成为一门比较复杂的交叉学科：需要对材料科学有深入的理解，对材料的物理特性有清晰的物理图像，对数值方法有清晰的认知，明白各种方法之间的优缺点选择合适的方法，最后还需要有一定的程序能力来支撑实现模拟。这也许也是相场复杂的地方吧。
+
+相场方法并不是一个很新的模拟方法，但是它还有很大的发展空间。不论是比较传统的调幅分解的深入研究模拟，还是使用相场法研究固体力学、电磁学、流体力学这些更复杂的外场，又或者是开发新的程序软件来帮助进行相场模拟，甚至是使用机器学习来辅佐相场计算，这些都是相场正在发展的方向。这个系列的教程希望能够提供相场方法最基础的部分，比如相场的数学基础，程序基础等等。这些内容应该能够成为学习相场过程中比较重要的工具，以便于学习和发展更深层的更复杂的理论/实践。希望阅读本教程的您可以从中有所收获。
+
+那么就是这样，最后祝您生活愉快，科研顺利~
