@@ -18,12 +18,16 @@
   // 行内代码前景色
   --code-text-color: #e96900;
 
+  --detail-background: #e7f2e8;
+
   // 暗色模式下样式
   &[data-scheme="dark"] {
     // 行内代码背景色
     --code-background-color: #ff6d1b17;
     // 行内代码前景色
     --code-text-color: #e96900;
+
+    --detail-background: #5b5b5b;
   }
 }
 
@@ -57,6 +61,7 @@ a {
     height: auto !important;
     border-radius: 8px;
   }
+
   // 带编号公式去除右边距
   span.katex .vlist-t2 {
     margin-right: 0px;
@@ -83,14 +88,16 @@ a {
     border-left-color: #f19a9a;
   }
 
-  details{
+  details {
     padding: 15px;
+
     summary {
-    font-weight: bold;
+      font-weight: bold;
     }
   }
+
   details[open] {
-    background: #e7f2e8;
+    background: var(--detail-background);
   }
 }
 
@@ -119,9 +126,11 @@ code {
     width: auto;
   }
 }
+
 .highlight .ln {
   user-select: none;
 }
+
 //-------------------------------------------
 // 设置选中字体的区域背景颜色
 //修改选中颜色
@@ -156,11 +165,13 @@ a {
 .article-content {
   .highlight {
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: var(--code-background-color);
     border-radius: 5px;
-    .chroma{
-      background-color: #f0f0f0;
+
+    .chroma {
+      background-color: var(--code-background-color);
     }
+
     pre {
       width: auto;
       max-height: 50em;
