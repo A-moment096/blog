@@ -57,6 +57,10 @@ a {
     height: auto !important;
     border-radius: 8px;
   }
+  // 带编号公式去除右边距
+  span.katex .vlist-t2 {
+    margin-right: 0px;
+  }
 }
 
 //------------------------------------------------
@@ -78,7 +82,18 @@ a {
   blockquote.danger {
     border-left-color: #f19a9a;
   }
+
+  details{
+    padding: 15px;
+    summary {
+    font-weight: bold;
+    }
+  }
+  details[open] {
+    background: #e7f2e8;
+  }
 }
+
 
 code {
   word-break: break-all;

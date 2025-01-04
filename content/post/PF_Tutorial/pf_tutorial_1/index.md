@@ -75,7 +75,7 @@ $$ \dfrac{y_i - y_{i-1}}{h} = f(x_{i},y_{i}). \tag{隐式欧拉法}$$
 $$ y_i = h f(x_{i-1},y_{i-1}) + y_{i-1}. $$
 
 
-<!-- 这里使用 Python 实现显式欧拉法：
+这里使用 Python 实现显式欧拉法：
 ```python
 '''
 Explicit Euler Method
@@ -88,10 +88,10 @@ def explicit_euler(
     for i in range(N):
         x.append(x[i]+h)
         y.append(f(x[i],y[i])*h+y[i])
-``` -->
+```
 
 对于隐式欧拉法, 在给出$f(x,y)$的具体表达式的情况下, 可以显式给出非递归的算法, 否则由于等式右侧存在待求量, 无法显式逐步解出. 除了两种欧拉法, 还有梯形公式 (算术平均 $ f(x_i,y_i) $ 与 $f(x_{i-1},y_{i-1})$), 通过*预估-校正*技术实现的改进欧拉公式, 以及精度较高的 Runge-Kutta 方法. 
-<!-- 这里给出四阶 Runge-Kutta 法的 Python 实现: 
+这里给出四阶 Runge-Kutta 法的 Python 实现: 
 ```python
 """
 Runge-Kutta Method
@@ -106,7 +106,7 @@ def runge_kutta(
         k_3: float = f(x[i] + h / 2, y[i] + h / 2 * k_2)
         k_4: float = f(x[i] + h, y[i] + h * k_3)
         y.append(y[i] + h / 6 * (k_1 + 2 * k_2 + 2 * k_3 + k_4))
-``` -->
+```
 
 ---
 

@@ -138,8 +138,88 @@ $$
 
 为了演化保守场变量，我们经常需要使用 Cahn-Hilliard 方程。然而，为了得到更好的结果，又或者当我们遇到了一些由演化方程引入的数值上的问题，我们也许需要对这个经典的方程做一些改变，就像上面的 Allen-Cahn 方程和多相场模型之间的关系一样。对于浓度这个最经典的变量而言，我们有总浓度场模型（考虑整个模拟域的浓度），相浓度场模型（考虑每个相内部的物质浓度），以及我们这里要介绍的巨势方程（演化模拟域内的化学势）。
 
+在介绍巨势方程具体的表达式之前，我们先来看一下所谓的“相浓度”和“总浓度”吧。我们知道，对于整个体系而言，其组分数量（元素）是固定的，而一个体系中可能有多个晶粒，而每个晶粒又可能分属不同的相。对不同的相而言，其成分很有可能是不同的。因此，一个组分的浓度在每个相内应该是不变的（不随位置变化），而在整个模拟域内会发生改变（随着相的不同而变化）。另外，浓度的改变是依赖于扩散势的，扩散势梯度会引导浓度进行变化，从高势处流向低势处。因此，相生长过程中浓度的变化可以认为是相浓度不同所导致的相之间扩散势不同所引发的。根据这一点，我们还可以通过演化模拟域内扩散势的变化来间接地模拟浓度的变化。这里我们要介绍的巨势方程，就是这么一个用来模拟扩散势变化的方程。
+
 巨势方程的表达式如下：
 
 $$
+\frac{\partial \mu_i}{\partial t} = \left[\phi_\alpha \frac{\partial c_j^\alpha}{\partial \mu_i} \right]^{-1} \left( \nabla\cdot \bar{M}_{jk} \nabla\mu_k + R_j - c_j^\alpha\frac{\partial \phi_\alpha}{\partial t} \right).
+$$
+
+我需要解释一下这个方程的记号。首先，和往常相似，$c$ 代表相浓度（即一个相内部的浓度），$\phi$ 代表相。此外，这个公式中的 $\mu$ 代表化学势（严格来讲是巨势，这也是这个方程名称的由来，但为方便理解我们就称为化学势），$M$ 代表浓度的移动性参数， $R$ 代表可能存在的浓度/物质源。再者，这个方程实际上使用了爱因斯坦求和约定，即如果一个乘积中一个指标出现了两次，那么就对这个指标求和。我们举个例子，比如方程右侧圆括号中的最后一项的记号代表的是：
+$$
+c_j^\alpha\frac{\partial \phi_\alpha}{\partial t} \coloneqq \sum_{\alpha}^{N}c_j^\alpha\frac{\partial \phi_\alpha}{\partial t}.
+$$
+因此，上面的方程实际上是一个复杂求和。另外，记号中的 $i,j,k$ 都是用以标记元素（组分）的，我们设一共有 $K$ 个组分，所以独立组分一共有 $K-1$ 个（最后一个的量可以用 1 减去其余所有的组分的量），同时 $\alpha,\beta$ 等是用来标记相的，我们设一共有 $N$ 个相。根据我们的记号，上面的公式中如果有某个量没有重复指标（重复指标通常也称为哑指标，dummy index），则说明这个变量实则是代表了一个向量，这个向量根据指标的记号区别有 $N$ 或者 $K-1$ 个分量。而如果一个变量有两个指标，则说明这个变量实则是一个矩阵。我们后文记 $K-1$ 为 $\tilde{K}$ 以方便书写。
+
+最后我们要解释的是中括号和 $-1$ 的上标。这个记号是代表我们先以括号内的元素组成一个矩阵，然后对矩阵求逆。至此方程中的下标记号应该已经全部清晰明了了。
+
+### 方程推导
+
+下面我们来尝试对这个方程进行推导。我们直接从 Cahn-Hilliard 方程出发：
+$$
+\frac{\partial \tilde{c}_i}{\partial t} = \nabla \cdot \sum_{j}^{\tilde{K}}\nabla M_{ij}\nabla \frac{\delta F}{\delta \tilde{c}_j} + R_i.
+$$
+这里我们再次对记号做一些解释。这里我们先不使用爱因斯坦求和约定，方便解释方程内部发生了什么，另外这里的 $\tilde{c}_i$ 代表的是体系内的总浓度。我们加上了波浪线是为了强调是整个体系内的总浓度，方便和后面的相浓度做出区分。
+
+由于我们这里使用了总浓度，它实际上可以使用相浓度和相分数来表示：$\tilde{c}_i = \sum_\alpha^N \phi_\alpha c^\alpha_i$。另外我们知道，$\frac{\delta F}{\delta \tilde{c}_j}$ 实际上是表示的体系内化学势（巨势）。所以我们直接用 $\mu_j$ 来替代。这样就有：
+$$
+\frac{\partial \sum_\alpha^N \phi_\alpha c^\alpha_i}{\partial t} = \nabla \cdot \sum_{j}^{\tilde{K}}\nabla M_{ij}\nabla \mu_j + R_i.
+$$
+现在我们把目光聚焦在等式左侧，因为等式右侧，可以看到，其实已经是最终结果的一部分了。对于等式左侧，首先对有限求和而言，求导的线性性保证了我们可以把求导和求和交换次序。然后我们考虑使用对乘积偏导（求导）的规则，则有：
+$$
+\frac{\partial \sum_\alpha^N \phi_\alpha c^\alpha_i}{\partial t}  = \sum_\alpha^N\left(\phi_\alpha \frac{\partial  c^\alpha_i}{\partial t} + c^\alpha_i \frac{\partial  \phi_\alpha }{\partial t} \right) = \nabla \cdot \sum_{j}^{\tilde{K}}\nabla M_{ij}\nabla \mu_j + R_i.
+$$
+我们考虑把求和拆开，把含有相分数对时间求偏导的部分挪到等式右侧，则有：
+$$
+\sum_\alpha^N \phi_\alpha \frac{\partial  c^\alpha_i}{\partial t} = \nabla \cdot \sum_{j}^{\tilde{K}}\nabla M_{ij}\nabla \mu_j + R_i - \sum_\alpha^N c^\alpha_i \frac{\partial  \phi_\alpha }{\partial t} .
+$$
+接下来是比较关键的一步，我们考虑把浓度和化学势联系起来。即考虑相浓度作为化学势的函数：$c_i^\alpha = c_i^\alpha\left( \mu_1, \mu_2, \cdots, \mu_{\tilde{K}} \right)$。这样我们就可以使用求（偏）导的链式法则，有：
+$$
+\sum_\alpha^N \phi_\alpha \frac{\partial  c^\alpha_i}{\partial t} = \sum_\alpha^N \phi_\alpha \sum_k^{\tilde{K}}\frac{\partial  c^\alpha_i}{\partial \mu_k}\frac{\partial \mu_k}{\partial t},
+$$
+然后考虑到对成分求和实际上与相无关，我们把对成分求和的求和号挪到最外面，这样就得到了：
+$$
+\sum_\alpha^N \phi_\alpha \sum_k^{\tilde{K}}\frac{\partial  c^\alpha_i}{\partial \mu_k}\frac{\partial \mu_k}{\partial t} = \sum_k^{\tilde{K}} \sum_\alpha^N \phi_\alpha \frac{\partial  c^\alpha_i}{\partial \mu_k}\frac{\partial \mu_k}{\partial t}.
+$$
+我们先在这里暂停一下，回忆矩阵乘法的记号。设我们有两个矩阵，一个 $n\times m$ 矩阵 $A = \{a_{ij}\}$ 和一个 $m\times p$ 矩阵 $B = \{b_{jk}\}$，则它们的乘积矩阵 $C$ 应该是一个 $n \times p$ 矩阵，它的元素可以记为：$\sum_j^m a_{ij}b_{jk}$。另外，我们考察偏导 $\frac{\partial  c^\alpha_i}{\partial \mu_k}$ ，这个偏导在当 $i$ 和 $k$ 都在 $\tilde{K}$ 个元素中取值时，实际上它组成了一个 $\tilde{K} \times \tilde{K}$ 矩阵中的元素。对应的，我们可以把 $\partial \mu_k$ 看作一个具有 $\tilde{K}$ 个分量的向量（或者 $\tilde{K} \times 1$ 的矩阵）。
+
+根据上面的内容，我们可以发现，实际上这里的求和可以写作两个矩阵的乘积（或者矩阵乘以一个向量）。至此我们采用爱因斯坦求和约定，则有：
+$$
+\sum_k^{\tilde{K}} \sum_\alpha^N \phi_\alpha \frac{\partial  c^\alpha_i}{\partial \mu_k}\frac{\partial \mu_k}{\partial t} \coloneqq \phi_\alpha\frac{\partial  c^\alpha_i}{\partial \mu_k}\frac{\partial \mu_k}{\partial t}.
+$$
+我们把上面等式右边的三个因子做简单的区分，前两个因子的乘积实际上由于 $\alpha$ 指标重复的原因，代表了一个求和，而后又因为这个求和与第三个因子的 $k$ 指标重复，代表了矩阵的乘法。或者我们可以把 $\sum_\alpha^N \phi_\alpha \frac{\partial  c^\alpha_i}{\partial \mu_k}$ 理解为矩阵中的第 $\left( i,k \right)$ 个元素
+
+那么经过上面的说明，我们将等价变量依次带回，并对整个方程使用爱因斯坦求和约定重写，则有下面的结果：
 
 $$
+\phi_\alpha \frac{\partial c_i^\alpha}{\partial \mu_k}\frac{\partial \mu_k}{\partial t} = \nabla\cdot \bar{M}_{ij} \nabla\mu_j + R_i - c_i^\alpha\frac{\partial \phi_\alpha}{\partial t}.
+$$
+现在我们可以将上式翻译为：一个 $\tilde{K} \times \tilde{K}$ 的矩阵 $\left\{\phi_\alpha \frac{\partial c_i^\alpha}{\partial \mu_k} \right\}$ 与一个 $\tilde{K} \times 1$ 矩阵 $\frac{\partial \mu_k}{\partial t}$ 相乘，得到的结果是三个 $\tilde{K} \times 1$ 矩阵相加。而我们希望的是能够得到演化体系扩散势变化的方程，这正好可以用 $\frac{\partial \mu_k}{\partial t}$ 来表示。所以我们的最后一步就是在等式两边同时左乘上这个 $\tilde{K} \times \tilde{K}$ 矩阵的逆矩阵，得到了：
+$$
+\frac{\partial \mu_k}{\partial t} = \left[\phi_\alpha \frac{\partial c_i^\alpha}{\partial \mu_k}\right]^{-1}\left(\nabla\cdot \bar{M}_{ij} \nabla\mu_j + R_i - c_i^\alpha\frac{\partial \phi_\alpha}{\partial t}\right).
+$$
+也许你会发现这个式子和我们一开始给出的式子在下标上有差别。这个实际上是为了公式美观而改变了下标的排列顺序。只要保证公式内部的记号顺序一致，就可以保证公式，或者说矩阵乘法的逻辑顺序一致，因此我们这里得到的结果和上面给出的公式是没有本质区别的。
+
+### 模型解释
+
+我知道，这里其实留了很多的坑，比如说什么是巨势方程里的“巨势”？巨势和化学势有什么关系？为什么非要用化学势/巨势来演化整个体系，用总浓度不好吗？相浓度不行吗？我们来一个个解释这些问题。
+
+首先，巨势是什么呢？我们知道，热力学中有很多不同的热力学函数，比如焓 $H$，熵 $S$，内能 $U$，吉布斯自由能 $G$，亥姆霍兹自由能 $F$ 等等。巨势，又称朗道自由能也是一种热力学函数，其表达式为：
+$$
+\Omega \coloneqq F-\mu N = U-TS-\mu N,
+$$
+其中 $F$ 是亥姆霍兹自由能，$U$ 是内能，$T$ 是体系温度，$S$ 是熵，$\mu$ 是化学势，$N$ 是体系内的粒子数。巨势的微分形式为：
+$$
+\mathrm{d}\Omega = \mathrm{d}U-T\mathrm{d}S-S\mathrm{d}T-\mu\mathrm{d}N-N\mathrm{d}\mu = -P\mathrm{d}V-S\mathrm{d}T-N\mathrm{d}\mu.
+$$
+巨势在体系达到热力学平衡的时候会取到最小值。当体系内的其余变量 $V$，$T$ 不变时，巨势的变化实际上就反映了化学势的变化。另外我们还可以从这个公式中得到浓度的表达方式：考虑将巨势除以体系的体积得到能量密度，此时 $N$ 将从体系内粒子数量变为体系内的粒子浓度/数密度 $\rho$。假设我们还得到了物质的原子体积 $V_a$，那么浓度 $c$ 就可以表达为：
+$$
+c = V_a \rho = V_a \left(\frac{\partial \Omega}{\partial \mu}\right)_{V,T}.
+$$
+据此，我们可以考虑将浓度表达为化学势的函数。这也是前述的浓度能对化学势求导的一个佐证吧。
+
+那么，为什么要用巨势方程呢？它对比总浓度或者相浓度有什么优势呢？我们考虑一个多元多相体系，每个相内部都有多种组元，在相内部这些组元的浓度是固定的，而相与相之间的组元浓度一般是不同的。当发生相变时，相内物质浓度可能会发生变化。在这个情况下，我们如果想演化整个体系的浓度分布情况，就不可避免地必须演化每个相的浓度分布。
+
+我们首先会想到使用相浓度去演化整个体系，这样再将相浓度和相分数相结合就可以得到整个体系内的浓度分布。这个方法从理论上讲很不错，但从实际处理过程中会发生一些数值问题：在相界面处，特别是相分数较小的情况下，不可避免的要用一个数去除以一个非常小的（接近于0）的数字。此时由于计算机精度问题，很容易造成结果不稳定。那如果直接考虑总浓度呢？很遗憾，总浓度和相浓度是相互依存的，而相浓度又和相分数相关。要从总浓度反推出相浓度
+
