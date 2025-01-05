@@ -16,6 +16,8 @@ math: true
 
 *头图出自 [かとうれい](https://twitter.com/katorei_) 太太， 为 [Mikito P](https://space.bilibili.com/108833238) 所作的 [少女レイ](https://www.bilibili.com/list/ml1197098078?spm_id_from=333.1007.0.0&oid=27304533&bvid=BV1Rs411N7Aq) 的曲绘*
 
+{{< music auto="https://music.163.com/#/song?id=1334077117" loop="none">}}
+
 ## 简介
 
 目前在做的 U-Nb 体系不连续析出的模拟，里面用到了这两个演化方程。之前一直没有仔细思考过这两个演化方程到底是什么来头，为什么这个体系适合使用这两个方程，导致现在想大概修改一下它们也无从下手。这里就作为笔记记录下这两个方程的推导方法，优缺点，以及我个人的一些看法吧。

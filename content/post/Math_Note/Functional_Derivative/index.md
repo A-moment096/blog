@@ -15,6 +15,8 @@ draft: false
 
 *头图出自 [雨野](https://x.com/amn_amn_/status/1580863274081349632) 太太，为 [r-906](https://twitter.com/arukuremu) 所作的 [Hello World!](https://www.bilibili.com/video/BV1Ee4y1E7J6/) 的曲绘*
 
+{{< music auto="https://music.163.com/#/song?id=2076684514" loop="none">}}
+
 ## 晶体相场公式带来的问题
 
 在一个阳光明媚的晚上，师兄找到我问了一个问题：下面的这个相场公式是怎么组装起来的？具体来讲是：从下面的公式（2）和公式（3）是怎么得到公式（4）的：
