@@ -13,6 +13,8 @@ draft: false
 
 *本文系拾人牙慧之作，仅为解决公式推导过程中的一些边角料的数学问题，内容如有错漏还请谅解。另外，感谢老大中先生的《变分法基础》第三版。本文的主要内容几乎全部参考本书。*
 
+*头图出自 [雨野](https://x.com/amn_amn_/status/1580863274081349632) 太太，为 [r-906](https://twitter.com/arukuremu) 所作的 [Hello World!](https://www.bilibili.com/video/BV1Ee4y1E7J6/) 的曲绘*
+
 ## 晶体相场公式带来的问题
 
 在一个阳光明媚的晚上，师兄找到我问了一个问题：下面的这个相场公式是怎么组装起来的？具体来讲是：从下面的公式（2）和公式（3）是怎么得到公式（4）的：
@@ -142,19 +144,19 @@ $$
 \delta F = \int_\Omega f(x,y, \nabla y) - f(x,\varphi,\nabla\varphi) \mathrm{d} \,\omega = \int_\Omega \delta f\, \mathrm{d}\omega.
 $$
 
-这个积分不等式的被积分项里，变量 $x$ 没有什么变化，那我们干脆将 $f$ 在现在看作一个二元函数。我们把 $\varphi$ 改写为以 $y$ 为基础加上一个扰动的形式：$\varphi = y+\delta y$，那么我们可以模仿全微分那样，把这里函数的变分的 $\delta y$ 看作函数的全微分，就可以根据它的两个变量的偏导来写出其全变分的表达式。带入上式，则有：
+上面的第二个等号是我们把被积函数的差记为了这样对函数的全变分。这个积分不等式的被积分项里，变量 $x$ 没有什么变化，那我们干脆将 $f$ 在现在看作一个二元函数。我们把 $\varphi$ 改写为以 $y$ 为基础加上一个扰动的形式：$\varphi = y+\delta y$，那么我们可以模仿全微分那样，把这里对函数的全变分 $\delta f$ 做全微分式的处理，就可以根据它的两个变量的偏导来写出其全变分的表达式。带入上式，则有：
 
 $$
-\delta F = \int_\Omega \delta f\, \mathrm{d}\omega = \int_\Omega \left(\frac{\partial f}{\partial y}\delta y + \frac{f}{\partial \nabla y}\cdot\delta\nabla y \right) \, \mathrm{d}\omega.
+\delta F = \int_\Omega \delta f\, \mathrm{d}\omega = \int_\Omega \left(\frac{\partial f}{\partial y}\delta y + \frac{\partial f}{\partial \nabla y}\cdot\delta\nabla y \right) \, \mathrm{d}\omega.
 $$
 
-这个形式已经是我们很熟悉的形式了，但是还有一些区别。这里我们指出，函数对向量求偏导得到的也是一个向量，所以这里需要用向量内积，其中的技术细节我们不多赘述，我们更关注的是：怎么把 $\delta \nabla y$ 写成别的形式，来进一步向我们的目标函数逼近。注意到 $\nabla$ 是对坐标求导，而 $\delta$ 则是在保持定义域不发生改变的情况下，改变了函数的值。因此二者应该是相互独立的，也意味着两个算符是可以相交换的。再使用点乘的乘积律：$\nabla \cdot (f{\bf{}v}) = f\nabla{\bf v}+{\bf v}\cdot\nabla f$，这样一通操作，就得到：
+这个形式已经是我们很熟悉的形式了，但是还有一些区别。这里我们指出，函数对向量求偏导得到的也是一个向量，所以这里需要用向量内积，其中的技术细节我们不多赘述，我们更关注的是：怎么把 $\delta \nabla y$ 写成别的形式，来进一步向我们的结果前进。注意到 $\nabla$ 是对坐标求导，而 $\delta$ 则是在保持定义域不发生改变的情况下，改变了函数的值。因此二者应该是相互独立的，也意味着两个算符是可以相交换的。再使用点乘的乘积律：$\nabla \cdot (f{\bf{}v}) = f\nabla\cdot{\bf v}+{\bf v}\cdot\nabla f$，这样一通操作，就得到：
 
 $$
 \begin{align}
- \delta F = \int_\Omega \delta f\, \mathrm{d}\omega &= \int_\Omega \left(\frac{\partial f}{\partial y}\delta y + \frac{f}{\partial \nabla y}\cdot\nabla\delta y \right) \, \mathrm{d}\omega \\
-&= \int_\Omega \left(\frac{\partial f}{\partial y}\delta y  - \nabla \cdot \frac{f}{\partial \nabla y}\delta y \right) \, \mathrm{d}\omega + \int_\Omega \nabla\cdot\left(\frac{f}{\partial \nabla y}\delta y\right) \, \mathrm{d}\omega\\
-&= \int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega + \int_\Omega \nabla\cdot\left(\frac{f}{\partial \nabla y}\delta y\right) \, \mathrm{d}\omega  .
+ \delta F = \int_\Omega \delta f\, \mathrm{d}\omega &= \int_\Omega \left(\frac{\partial f}{\partial y}\delta y + \frac{\partial f}{\partial \nabla y}\cdot\nabla\delta y \right) \, \mathrm{d}\omega \\
+&= \int_\Omega \left(\frac{\partial f}{\partial y}\delta y  - \nabla \cdot \frac{\partial f}{\partial \nabla y}\delta y \right) \, \mathrm{d}\omega + \int_\Omega \nabla\cdot\left(\frac{\partial f}{\partial \nabla y}\delta y\right) \, \mathrm{d}\omega\\
+&= \int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega + \int_\Omega \nabla\cdot\left(\frac{\partial f}{\partial \nabla y}\delta y\right) \, \mathrm{d}\omega  .
 \end{align}
 $$
 
@@ -162,9 +164,9 @@ $$
 
 $$
 \begin{align}
-\delta F &= \int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega + \int_\Omega \nabla\cdot\left(\frac{f}{\partial \nabla y}\delta y\right) \, \mathrm{d}\omega\\
-&=\int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega + \int_{\partial\Omega} \left(\frac{f}{\partial \nabla y}\delta y\right) \, \mathrm{d}A\\
-&=\int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega.
+\delta F &= \int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega + \int_\Omega \nabla\cdot\left(\frac{\partial f}{\partial \nabla y}\delta y\right) \, \mathrm{d}\omega\\
+&=\int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega + \int_{\partial\Omega} \left(\frac{\partial f}{\partial \nabla y}\delta y\right) \, \mathrm{d}A\\
+&=\int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega.
 \end{align}
 $$
 
@@ -172,11 +174,11 @@ $$
 
 我们可以看到，上面的过程，可以分为大致四个部分：得到全变分形式，将非目标变分以变分和微分的交换律改写为目标函数变分，消去多余项，由变分任意性得到被积函数内部等于 0。我们因此，可以根据我们已经熟悉的函数导数的概念，将公式（18）中的被积函数括号内这个关键部分定义为泛函的导数，即：
 $$
-\frac{\delta F}{\delta y} = \frac{\partial f}{\partial y}  - \nabla \cdot \frac{f}{\partial \nabla y},
+\frac{\delta F}{\delta y} = \frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y},
 $$
 当其为 0 时，
 $$
-\frac{\delta F}{\delta y} = \frac{\partial f}{\partial y}  - \nabla \cdot \frac{f}{\partial \nabla y} = 0,
+\frac{\delta F}{\delta y} = \frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y} = 0,
 $$
 泛函即取到极值（在我们的情境下即为最小值）。这就是所谓的 Euler-Lagrange 方程。
 
@@ -201,7 +203,7 @@ $$
 $$
 
 <details>
-<summary>如果你愿意看推导过程的话</summary>
+<summary>如果你愿意看推导过程的话：</summary>
 
 不，你其实不想看，你只是好奇我到底有没有真的写这些推导过程。事实是：写了，下面就是。
 
