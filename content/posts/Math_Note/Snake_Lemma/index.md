@@ -358,7 +358,9 @@ Under Construction~
 
 #### 开始验证
 
-我们取 $\operatorname{Coker} \alpha$ 中的一个元素 $\hat{a}$，这个元素是一个等价类，等价关系由 $ a-a^\prime \in \hat{a} \hArr a \sim a^\prime$ 给出。此时我们就取这个等价类中的这两个元素 $a,\\,a^\prime \in A^\prime$。
+我们取 $\operatorname{Coker} \alpha$ 中的一个元素 $\hat{a}$，这个元素是一个等价类，等价关系由 $a - a^\prime \in \operatorname{Im} \alpha \hArr a \sim a^\prime$ 给出。此时我们就取这个等价类中的这两个元素 $a,\\,a^\prime \in A^\prime$。那么，此时这两个元素在经过 $f^\prime$ 作用后得到的就是 $f^\prime (a)$ 以及 $f^\prime(a^\prime)$。这两个 $B^\prime$ 中的元素应该依旧会被映射到同一个等价类中，也就是两个元素等价。判断两元素等价的条件则类似于前面的判断条件：$f^\prime (a) - f^\prime(a^\prime) \in \operatorname{Im} \beta$。我们可以看到：由于 $f^\prime$ 是一个同态，同态是保运算的，则 $f^\prime (a) - f^\prime(a^\prime) = f^\prime(a-a^\prime)$。注意到 $a-a^\prime \in \operatorname{Im} \alpha$，由像的性质，我们就一定可以找到一个存在于 $A$ 中的一个元素 $a^*$，使得 $\alpha(a^*) = a-a^\prime$。
+
+我们理一下思路：我们先选取了两个在 $A^\prime$ 中等价的元素；这两个元素的差，根据等价类划分的规则，必须是属于 $\alpha$ 的像的，那么就一定有一个对应的 $A$ 中的元素 $a^*$ 在 $\alpha$ 的作用下等于这两个 $A^\prime$ 中元素的差。那么这时，我们就可以使用图表交换的性质了：$f^\prime(\alpha(a^*)) = \beta(f(a^*))$。请注意这个地方：右侧显示 $\beta(f(a^*))$ 是属于 $\beta$ 的像的：$\beta(f(a^*)) \in \operatorname{Im} \beta$。这就说明了 $f^\prime(\alpha(a^*)) = f^\prime(a-a^\prime) \in \operatorname{Im} \beta$。这样，我们就得到了我们所需要的：任取两个 $A^\prime$ 中的等价元素，它们最终被映入了 $B^\prime$ 的等价类，因为 $f^\prime (a) - f^\prime(a^\prime) \in \operatorname{Im} \beta$。
 
 
 [^1]:我其实挺纠结应该说 *函数* 还是 *映射* 的。函数我认为用以指代给集合上每个点指派一个数字的东西更合适，更符合我心目中对函**数**的想象。而映射又太广泛了，因为很多地方代数结构之间不会一板一眼地讲 “同态”，而是直接就说映射了。思来想去，还是函数更合适，毕竟接触最多，接受程度也最广泛。
