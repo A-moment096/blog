@@ -36,8 +36,11 @@ VirtualBox 里给 Arch 预留了 4096MB (4GB)内存和 8GB 的硬盘容量, 希�
 ## 开始 (准备) 安装
 ### 帅气的开屏, 然后进入 Shell
 ![开始安装!](imgs/Welcome.png)
+
 这里我们打开 [Arch Linux Installation Guide](imgs/https://wiki.archlinux.org/title/Installation_guide)以便根据官方教程进行安装. 我不打算用 Arch Install, 感觉那个没什么意思 (~~上次也是这么说的~~). 按照小节 1.4.2, 我们使用了光盘介质 (ISO也算是光盘镜像), 所以直接第一个选项就可以了.
+
 ![很帅](imgs/Hacking.png)
+
 旋即屏幕闪过很有黑客感觉的画面 (个人猜测是系统自检, 感觉像是 systemd, 因为左边有很多绿色 OK 字样), 然后便进入了如下画面:
 
 ![安装画面1](imgs/Install_1.png)
