@@ -5,6 +5,10 @@ unsafe = true
 [goldmark.extensions.passthrough]
 enable = true
 
+[goldmark.extensions.typographer]
+leftSingleQuote = "'"
+rightSingleQuote = "'"
+
 [goldmark.parser.attribute]
 block = true
 
