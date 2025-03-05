@@ -20,14 +20,18 @@
 
   --detail-background: #e7f2e8;
 
+  --block-background-color: #e7f2e8;
+
   // 暗色模式下样式
   &[data-scheme="dark"] {
-    // 行内代码背景色
-    --code-background-color: #ff6d1b17;
-    // 行内代码前景色
-    --code-text-color: #e96900;
+
+    --code-text-color: #e7c6a9;
 
     --detail-background: #5b5b5b;
+
+    --block-background-color: #5f5f5f;
+
+    --figure-background: #858585;
   }
 }
 
@@ -73,7 +77,7 @@ a {
 .article-content {
   blockquote {
     border-left: 6px solid #d1e6df;
-    background: #e7f2e8;
+    background: var(--block-background-color);
   }
 
   blockquote.warning {
@@ -99,6 +103,12 @@ a {
 
   details[open] {
     background: var(--detail-background);
+  }
+
+  figure {
+    img {
+      background: var(--figure-background);
+    }
   }
 }
 
