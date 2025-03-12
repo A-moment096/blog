@@ -482,7 +482,7 @@ $$\varphi\circ\alpha = 0,$$
 
 好了，我们开始正式的证明过程吧。
 
-### 验证 $f|$ 的定义，然后 $g|$
+### 验证 $f|$ 的定义，然后 \$g|\$
 
 我们第一个要验证的是 $f|$ 的定义，或者说仔细考虑怎么样去定义它。从图上可以看到，这个同态是 $f$ 在 $\Ker \alpha$ 上的限制，对它的定义的验证则是要验证 $f|$ 是否真的能把 $\Ker \alpha$ 映射入 $\Ker \beta$ 中，即验证 $\Img f| \subseteq \Ker \beta$。
 
@@ -492,11 +492,11 @@ $$\varphi\circ\alpha = 0,$$
 
 最后我们指出，这里的验证过程没有借助图表交换以及核的性质以外的任何要素，因此这套证明也可以直接照搬到下一个交换块，也就是关于 $g|$ 的定义的验证问题上。这里就不啰嗦了。
 
-### 验证 $\hat{f'}$ 的定义，顺带 $\hat{g'}$
+### 验证 $\hat{f'}$ 的定义，顺带 \$\hat{g'}\$
 
 接下来要验证的就是 $\hat{f'}$ 的定义了。我们要验证的东西其实和上面类似，也是 $\Img \hat{f'} \subseteq \Coker \beta$。然而我们现在还不知道 $\hat{f'}$ 具体是怎样的，只知道它的定义域是 $\Coker \alpha$。所以我们先来看看 $\Coker \alpha$ 里都有什么，再看看 $\hat{f'}$ 是一个什么样的同态，最后来考虑验证上面所要求的定义。
 
-#### $\operatorname{Coker} \alpha$ 里是什么样的
+#### \$\operatorname{Coker} \alpha\$ 里是什么样的
 
 由于 $\Coker \alpha = A' / \Img \alpha$，其中的每个元素都应该是 $\Img \alpha$ 这种形式的陪集。
 
@@ -506,7 +506,7 @@ $$\varphi\circ\alpha = 0,$$
 
 现在一切都明了了。对于我们所要研究的问题而言，$\Coker \alpha$ 中的元素，就是一个个等价类，这些等价类用原群的元素作为代表元进行标记，如 $\hat{0}$, $\hat{a'}$ 这样。而其运算直接继承自群 $A'$，具体而言，只需要将用来与子群作用的元素相运算，最后再作用回子群即可。
 
-#### $\hat{f'}$ 是什么样的
+#### \$\hat{f'}\$ 是什么样的
 
 从交换图上可以看到，$\hat{f'}$ 是从 $\Coker \alpha$ 到 $\Coker \beta$ 上的。而在 $\Coker \alpha$ 中的元素则是众多的以代表元所代表的等价类。那么，在使用 $\hat{f'}$ 作用到 $\Coker \alpha$ 中的一个元素 $\hat{a'}$ 后，得到的则应该是位于 $\Coker \beta$ 中的一个元素，这个元素应该是形如 $b'+\Img \beta$ 这样的等价类，自然也可以被表示为 $\hat{b'}$。这就是我们需要验证的同态，$\hat{f'}$，具体在做的事。
 
@@ -562,17 +562,17 @@ $$\begin{align*}
 
 </details>
 
-### $\delta$ 的定义与验证
+### \$\delta\$ 的定义与验证
 
 这个 $\delta$ 的定义算是证明蛇引理过程中的一个难点吧，这也是蛇引理的关键一步，也是 “蛇” 这个字的由来吧。我们应该如何从一个核映射到余核呢？从交换图上来看，是需要从 $C$ 中的子集映射到 $A'$ 上的等价类的。这应该如何是好呢？
 
-#### $\delta$ 应该是什么样的
+#### \$\delta\$ 应该是什么样的
 
 好消息是：我们对同态 $g$ 以及 $f'$ 是有一些说法的：$g$ 一定是满态，而 $f'$ 则一定是单态。这是根据这两个正合列的性质，或者说是正合列中 $C$ 点与 $A'$ 点的性质而得到的。我们前面也有提到这个结论，这里简单说明一下：由于 $C$ 映射到平凡群的同态一定是一个满态，这个满态的核就一定是 $C$ 本身；由于正合的要求，$g$ 的像就必须是 $C$ 了，也就是 $g$ 是满的；由于 $0$ 到 $A'$ 作为同态必须也只能映射到 $A'$ 中的单位元，所以这个映射的像就只能是那个单位元自己形成的平凡群；由于正合列的性质，$f'$ 的核则只能是这个平凡群，也就是说它是一个单态。
 
 这两个信息对于 $\delta$ 的构造是必须的，否则我们没有一个很好的从 $C$ 一路走回 $A'$ 的方法。当然，有了上面的提示，我们很自然想到，这个 $\delta$ 的构造应该是什么样的。它会从 $C$ 出发，从 $g$ 反着走到 $B$ 点，在经过 $\beta$ 的映射之后，再通过 $f'$ 反过来到 $A'$ 上。我们来更细致地考察这个映射构造过程的每一步吧。
 
-#### $\delta$ 的具体构造
+#### \$\delta\$ 的具体构造
 
 我们的 $\delta$ 是从 $\Ker \gamma$ 开始的，自然我们就取 $C$ 中的子集 $\Ker \gamma$ 里的一个元素 $c$。得益于满态的性质，我们一定是可以在 $B$ 中找到某个元素 $b$，使得 $g(b) = c$ 的。
 
@@ -590,7 +590,7 @@ $$\begin{align*}
 
 如果这个命题得到了验证，那么就说明这条路走得通，一个唯一的 $\Ker \gamma$ 中的 $c$，不论它在 $B$ 中对应有多少个元素，最后都会在 $A'$ 里对应到同一个等价类里，也就是在 $\Coker \alpha = A'/\Img \alpha$ 中有唯一的一个元素与之对应。这样就验证了 $\delta$ 的定义。
 
-#### $\delta$ 构造的验证
+#### \$\delta\$ 构造的验证
 
 我们开始上面这个命题的证明吧。这里需要注意的第一个问题，同时也是指明了我们应该朝着哪个方向前进的信息，是：我们最后要得到的内容是和 $\Img \alpha$ 有关的。为此，我们一定是要用到 $\alpha$ 这个映射的相关信息的，而这也不可避免地涉及到 $A$ 这个群。因此，我们得想办法先把 $g(b) = g(b^* )$ 这个信息反映到 $A$ 这个群内。
 
@@ -631,7 +631,7 @@ $$
 
 这里再重申一下单态和满态的性质。单态意味着若陪域中的元素的原像要么非空，要么则只有一个元素，同时单态拥有唯一的左逆；满态则意味着陪域中的所有元素的原像都不是空集。我们利用满态原像的性质得出，$\Ker \gamma$ 中的元素一定可以在 $B$ 中找到对应元素，而又通过单态的性质得出，在已知 $\beta(b)$ 存在于 $f'^* $ 的条件下，$A'$ 中有且只有唯一一个元素与之对应，且通过给 $\beta (b-b^* )$ 作用左逆得出它存在于 $\alpha$ 的像内。
 
-### $\operatorname{Ker} \beta$ 处正合性的证明
+### \$\operatorname{Ker} \beta\$ 处正合性的证明
 
 前面我们证明了我们要验证的点的 1-5，借此我们成功地将这些核呀余核呀之类的连起来了。然而，要成为正合列，它需要在中间的每个点上都是正合的。现在已经到手的链条是这样的：
 
@@ -647,7 +647,7 @@ $$ \Ker \alpha \xrightarrow{f|} \Ker \beta \xrightarrow{g|} \Ker \gamma $$
 
 那我们就开始吧，先从 $\Img f| \subseteq \Ker g|$ 开始。
 
-#### 证明 $\operatorname{Im} f| \subseteq \operatorname{Ker} g|$
+#### 证明 \$\operatorname{Im} f| \subseteq \operatorname{Ker} g|\$
 
 我们就取 $\Img f|$ 中的一个元素 $b$，根据像的性质，一定有一个 $a\in \Ker\alpha$ 满足 $f|(a) = b$。而 $f|(a)$ 实际上就是 $f$ 在 $\Ker \alpha$ 上的一个限制，所以也就有 $f(a) = b$；同时，我们取 $g|(b) = c$，由于 $g|$ 也是 $g$ 在 $\Ker\beta$ 上的限制，所以 $g|(b) = g|(f(a)) = g(b) = g(f(a)) = c$。此时，我们考虑原正合列： 
 
@@ -656,7 +656,7 @@ $$A\xrightarrow{f} B \xrightarrow{g} C,$$
 
 这个命题的得证完全依赖与原正合列的性质，且通过证明该命题，我们得知上面的短链条已经是一个链复型了。下面我们需要证明的就是另一个方向的包含性，也就是：
 
-#### 证明 $\operatorname{Im} f| \supseteq \operatorname{Ker} g|$
+#### 证明 \$\operatorname{Im} f| \supseteq \operatorname{Ker} g|\$
 
 我们故伎重施，取 $\Ker g|$ 中的一个元素，也叫它 $b$ 好了。既然它在 $g|$ 的核中，那么就有 $g|(b) = 0$，我们此时把 $b$ 放到 $B$ 集合中，此时 $g|(b) = g(b) =0$，说明 $b\in\Ker g$。而根据原链条的正合性，我们有 $\Ker g = \Img f$，因此 $b\in\Img f$。
 
@@ -670,7 +670,7 @@ $$A\xrightarrow{f} B \xrightarrow{g} C,$$
 
 可以看到，前半部分的证明非常简单，直接借助原正合列性质即可，这样直接就证明了这个链条是一个链复型；而后面为了证明正合性的部分则需要使用到 $f'$ 是单态的条件。也许我们在证明 $\Coker \beta$ 处的正合性时，也会遇到这样的特点？我们直接开始吧。
 
-### $\operatorname{Coker} \beta$ 处正合性的证明
+### \$\operatorname{Coker} \beta\$ 处正合性的证明
 
 和上面一样，我们证明这样的正合性，会以对应映射的像与核相互包含为切入点进行。这次我们还是先证明这个短链：
 
@@ -680,7 +680,7 @@ $$
 
 是一个链复型（$\Img \hat{f'} \subseteq \Ker \hat{g'}$），再证明在中间的 $\Coker \beta$ 处是正合的（$\Img \hat{f'} \supseteq \Ker \hat{g'}$）。
 
-#### 证明 $\operatorname{Im} \hat{f'} \subseteq \operatorname{Ker} \hat{g'}$
+#### 证明 \$\operatorname{Im} \hat{f'} \subseteq \operatorname{Ker} \hat{g'}\$
 
 照旧我们选择 $\Img \hat{f'}$ 中的一个元素，由于 $\Img \hat{f'} \subseteq \Coker \beta$，这个元素将会是等价类 $\hat{b'} = b' + \Img \beta$。我们想要证明，在前面这个条件下的任何 $\hat{b'}$ 都会被 $\hat{g'}$ 映射到 $\hat{0} \in \Coker \gamma$ 上。既然 $\hat{b'}\in\Img\hat{f'}$，我们就可以取到 $\Coker \alpha$ 中的一个元素 $\hat{a'}$，使得 $\hat{f'}(\hat{a'}) = \hat{b'}$。
 
@@ -694,7 +694,7 @@ $$\hat{g'}(\hat{b'}) = \hat{g'}(\hat{f'}(\hat{a'})) = \hat{g'}(\widehat{f'(a')})
 
 其中，第一个等式是我们一开始取到的 $\hat{f'}(\hat{a'}) = \hat{b'}$，第二个等式是利用了我们上面给出的 $\hat{f'}$ 的性质，而第三个等式则是同样，再次利用 $\hat{g'}$ 它与 $\hat{f'}$ 同样的性质（因为定义是类似的）。最后，第四个等式则利用了原正合列的性质，有 $g'(f'(a')) = 0$。由此，我们再一次地，像上面证明 $\Ker \beta$ 处正合的第一部分一样，证明了 $\Coker \beta$ 处正合的第一部分：无论 $\hat{b}$ 如何取，只要它位于 $\Img \hat{f'}$ 中，就一定位于 $\Ker \hat{g'}$ 中。
 
-#### 证明 $\operatorname{Im} \hat{f'} \supseteq \operatorname{Ker} \hat{g'}$
+#### 证明 \$\operatorname{Im} \hat{f'} \supseteq \operatorname{Ker} \hat{g'}\$
 
 下来我们就证明 $\Coker \beta$ 处正合的第二部分。我们希望能从 $\Ker \hat{g'}$ 中取到的元素能够以某种方式放到 $B'$ 中去，然后借助原正合列的性质去取得在 $A'$ 中或者 $\Coker \alpha$ 中的一些结论。 因此依旧，我们取 $\hat{b'} \in \Ker \hat{g'} \subseteq \Coker \beta$。由于 $\hat{b'}$ 在 $\hat{g'}$ 的核中，我们有 $\hat{g'}(\hat{b'}) = \hat{0}$。我们把这个运算拆开，有
 
@@ -729,7 +729,7 @@ $$
 
 可以看到，对于 $\operatorname{Coker} \beta$ 处正合性的证明，是和 $\operatorname{Ker} \beta$ 处正合性的证明很类似的。不过我个人感觉，后面证明的这个，相比于 $\operatorname{Ker} \beta$ 处正合性的证明是要难一些的。这可能是因为需要手动构造一个 $b'-\beta(b)$ 来满足应用正合性的条件，以及对余核的性质的不熟悉吧。总之，顺利地证明了。而下面要证明的，就和我们自己构造出的 $\delta$ 相关了。
 
-### $\operatorname{Ker} \gamma$ 处正合性的证明
+### \$\operatorname{Ker} \gamma\$ 处正合性的证明
 
 接下来我们尝试证明短链
 
@@ -737,7 +737,7 @@ $$\Ker\beta\xrightarrow{g|}\Ker\gamma\xrightarrow{\delta}\Coker\alpha $$
 
 在中间一点处的正合性。我们依旧采取原来的策略。
 
-#### 证明 $\operatorname{Im} g| \subseteq \operatorname{Ker} \delta$
+#### 证明 \$\operatorname{Im} g| \subseteq \operatorname{Ker} \delta\$
 
 照旧取一个 $\Img g|$ 中的元素 $c\in C$，我们希望能证明 $\delta(c) = \hat{0}$ 恒成立，这样一来自然就有 $\Img g| \subseteq \Ker \delta$ 了。
 
@@ -745,7 +745,7 @@ $$\Ker\beta\xrightarrow{g|}\Ker\gamma\xrightarrow{\delta}\Coker\alpha $$
 
 注意到我们上面的步骤，实际上就是在对 $c$ 作用 $\delta$。因此，我们得到了我们想要的结论：$\delta(c) = \hat{0} \in \Coker \alpha$，也就证明了本命题。
 
-#### 证明 $\operatorname{Im} g| \supseteq \operatorname{Ker} \delta$
+#### 证明 \$\operatorname{Im} g| \supseteq \operatorname{Ker} \delta\$
 
 我们还是取 $c\in \Ker \delta$。因此，$\delta(c) = \hat{0} = 0 + \Img \alpha$。我们回顾 $\delta$ 的构造，或者说从 $c\in\Ker\gamma$ 出发抵达 $\Coker \alpha$ 的过程，如果 $\delta(c) = \Img \alpha$，那么 $c$ 就一定会经理这样的过程：它首先在 $B$ 中找到原像中的元素 $b$ 们，然后把这些元素打包被 $\beta$ 映射到 $B'$ 上，此时由于我们的构造，所有的 $\beta(b) \in \Img f'$。此时就一定有许多对应的 $a' \in  A'$ 满足 $f'(a') = \beta(b)$。最后由于 $\delta(c) = \hat{0} = \Img \alpha$，必须要有 $a' \in \Img\alpha$ （注意，不是 $a' = 0$，因为只需属于 $\Img \alpha$ 即可满足条件）。
 
@@ -767,19 +767,19 @@ $$\Ker\beta\xrightarrow{g|}\Ker\gamma\xrightarrow{\delta}\Coker\alpha $$
 
 好了，我们开始准备证明蛇引理主体的最后一部分吧：$\Coker\alpha$ 处的正合性。
 
-### $\operatorname{Coker} \alpha$ 处正合性的证明。
+### \$\operatorname{Coker} \alpha\$ 处正合性的证明。
 
 我们不多废话，还是先证明 $\Img \delta \subseteq \Ker \hat{f'}$，后证明 $\Img \delta \supseteq \Ker \hat{f'}$。对应的短链是：
 
 $$\Ker \gamma \xrightarrow{\delta} \Coker \alpha \xrightarrow{\hat{f'}} \Coker \beta$$
 
-#### 证明 $\operatorname{Im} \delta \subseteq \operatorname{Ker} \hat{f'}$
+#### 证明 \$\operatorname{Im} \delta \subseteq \operatorname{Ker} \hat{f'}\$
 
 取 $\Img \delta$ 中的元素 $\hat{a'} \in \Coker\alpha$，通过证明 $\hat{f'}(\hat{a'}) = \hat{0} = \Img \beta \in \Coker\beta$ 即可证明本命题。由于 $\hat{f'}$ 的定义，我们有 $\hat{f'}(\hat{a'}) = \widehat{f'(a')} = f'(a') + \Img \beta = 0 + \Img \beta$，也就是说只需要证明 $f'(a') \in \Img \beta$，我们就能证明本命题。由于 $\hat{a'}\in\Img\delta$，一定有一个 $\Ker\gamma$ 中的元素 $c$ 满足 $\delta(c) = \hat{a'}$。 
 
 我们这时使用 $\delta$ 的定义：若 $\delta(c) = \hat{a'}$，就说明一定有一个 $b\in B$，这个 $b$ 在 $c$ 的原像中，而且 $\beta(b) = f'(a')$。啊，这不就是我们要的结论吗？既然 $f'(a') = \beta(b)$ 了，那自然 $f'(a')$ 就在 $\beta$ 的像里面了呀。就这样，我们证明了这个命题。
 
-#### 证明 $\operatorname{Im} \delta \supseteq \operatorname{Ker} \hat{f'}$
+#### 证明 \$\operatorname{Im} \delta \supseteq \operatorname{Ker} \hat{f'}\$
 
 还是一样，取 $\Ker \hat{f'}$ 中的元素 $\hat{a'} \in \Coker\alpha$。既然在 $\Ker\hat{f'}$ 里，我们就有 $\hat{f'}(\hat{a'}) = \hat{0} = \Img \beta \in \Coker\beta$（我们是不是刚刚见过这句，那就快进吧），进而 $f'(a') \in \Img \beta \subseteq B'$。那么，既然是在 $\Img \beta$ 中的，我们就取所有满足 $\beta(b) = f'(a')$ 的 $b\in B$。此时我们用交换图右侧的交换性，给这个式子左右两边左作用上 $g'$，就得到 
 
@@ -799,13 +799,13 @@ $$0 = g'(f'(a')) = g'(\beta(b)) = \gamma(g(b)),$$
 
 我们还是先证第一个，也就是从 $0\to A$ 的存在可以得到 $0\to\Ker\alpha$ 且 $\Ker\alpha$ 处正合。
 
-#### 证明 $\operatorname{Ker}\alpha$ 处的正合性
+#### 证明 \$\operatorname{Ker}\alpha\$ 处的正合性
 
 若有 $0\to A$，则根据正合列的性质（或者直接看交换图下面的那个链条），我们就有 $f$ 也是个单态。因此，对 $f$ 做出在 $\Ker\alpha$ 上的限制得到的 $f|$ 并不会改变它是单态的事实（只缩小了定义域）。此时，由于 $f|$ 是单态，它的核根据单态的性质，就一定是一个平凡群。
 
 此时我们补上 $0\to\Ker\alpha$，由于它一定是单态，它的像只能是平凡群。这自然地就证明了链条在 $\Ker\alpha$ 处是正合的。
 
-#### 证明 $\operatorname{Coker}\gamma$ 处的正合性
+#### 证明 \$\operatorname{Coker}\gamma\$ 处的正合性
 
 如果有 $C'\to 0$，则根据正合列的性质，我们知道 $g'$ 就必须是满态，这也就意味着 $\Img g' = C'$。
 

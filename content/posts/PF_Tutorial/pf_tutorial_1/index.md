@@ -155,7 +155,7 @@ $$
 \frac{\delta J[y]}{\delta y} = \frac{\partial L}{\partial y}-\frac{\mathrm{d} }{\mathrm{d} x}\frac{\partial L}{\partial y'} + \dots + (-1)^n \frac{\mathrm{d}^n }{\mathrm{d} x^n}\frac{\partial L}{\partial y^{(n)}}.
 $$
 
-## 向量微积分: $\nabla$
+## 向量微积分: \$\nabla\$
 
 这里主要讨论 $\nabla$ 算符运算法则, 以及该算符与不同函数之间的作用结果. $\nabla$ 算符定义如下:
 
