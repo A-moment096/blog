@@ -1,3 +1,21 @@
+<!-- 按照 weight 重排 Categories 顺序 -->
+{{ define "main" }}
+    <header>
+        {{- $taxonomy := $.Site.GetPage "taxonomyTerm" "categories" -}}
+        {{- $terms := $taxonomy.Pages -}}
+        {{ if $terms }}
+        <h2 class="section-title">{{ $taxonomy.Title }}</h2>
+        <div class="subsection-list">
+            <div class="article-list--tile">
+                {{ range .Pages.Byweight }}
+                    {{ partial "article-list/tile" (dict "context" . "size" "250x150" "Type" "taxonomy") }}
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </header>
+{{ end }}
+
 <!-- 回到顶部 -->
 <div id="back-top" style="display: none;">
     <a href="#top" title="To Top">

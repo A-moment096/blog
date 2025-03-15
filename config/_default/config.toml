@@ -17,7 +17,7 @@ disqusShortname = "hugo-theme-stack"
 timeZone = "Etc/GMT-8"
 
 [pagination]
-pagerSize = 5
+pagerSize = 20
 
 [frontmatter]
 lastmod=["lastmod",":fileModTime"]

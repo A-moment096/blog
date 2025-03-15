@@ -1,7 +1,8 @@
 ---
 title: Mathematics
 description: Things related to mathematics
-image: https://upload.wikimedia.org/wikipedia/commons/1/14/E8Petrie.svg
+image: E8Petrie.svg
+weight: -90
 
 # Badge style
 style:

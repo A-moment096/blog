@@ -28,7 +28,7 @@ If you mean my skill, currently, I can code with C++, Python, several LaTeX and 
 
 如果是指我的技能，我会 C++，Python，一些 LaTeX 以及一点点的Javascript 的面向Google编程。我还会一些本科生级别的数学，主要是一点神奇的概念。我应该还能做点什么，但是我一时间想不起来。
 
-If you mean "What Can You Do" literaturally, I can do something as normal people do. I'm a normal, ordinary one. Thanks.
+If you mean "What Can You Do" literally, I can do something as normal people do. I'm a normal, ordinary one. Thanks.
 
 如果是字面意义上地问“你能干嘛”，我能做正常人能做的事。我是个正常的普通人，谢谢。
 
