@@ -1,19 +1,19 @@
 <!-- 按照 weight 重排 Categories 顺序 -->
 {{ define "main" }}
-    <header>
-        {{- $taxonomy := $.Site.GetPage "taxonomyTerm" "categories" -}}
-        {{- $terms := $taxonomy.Pages -}}
-        {{ if $terms }}
-        <h2 class="section-title">{{ $taxonomy.Title }}</h2>
-        <div class="subsection-list">
-            <div class="article-list--tile">
-                {{ range .Pages.Byweight }}
-                    {{ partial "article-list/tile" (dict "context" . "size" "250x150" "Type" "taxonomy") }}
-                {{ end }}
-            </div>
+<header>
+    {{- $taxonomy := $.Site.GetPage "taxonomyTerm" "categories" -}}
+    {{- $terms := $taxonomy.Pages -}}
+    {{ if $terms }}
+    <h2 class="section-title">{{ $taxonomy.Title }}</h2>
+    <div class="subsection-list">
+        <div class="article-list--tile">
+            {{ range .Pages.Byweight }}
+            {{ partial "article-list/tile" (dict "context" . "size" "250x150" "Type" "taxonomy") }}
+            {{ end }}
         </div>
-        {{ end }}
-    </header>
+    </div>
+    {{ end }}
+</header>
 {{ end }}
 
 <!-- 回到顶部 -->
@@ -63,5 +63,28 @@
                 behavior: 'smooth' // Smooth scroll to top
             });
         };
+    });
+</script>
+
+<!-- 数学符号 目录渲染 -->
+{{- partial "helper/external" (dict "Context" . "Namespace" "KaTeX") -}}
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
     });
 </script>
