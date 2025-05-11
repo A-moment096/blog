@@ -158,7 +158,7 @@ Arch Linux 默认使用 `pacman` 作为包管理器. 用包管理器可以安装
   - 可是 ip 我也不懂啊, 互联网 (物理) 小白是真的搞不懂这些网络协议之类的. 回去翻看安装说明, 也没有讲到这里呀.
 - 回忆: 安装的时候是有网络的, 安装完好像没碰过网络环境.
 - 猜测3: 该不会是我自己系统上没有装驱动吧
-  - 坏了, 网上一通搜, 真的是没有装网络服务 `dhcpcd` 和 `networkmanager`. 乖乖回去用安装镜像进入, `mount` 根分区 `/dev/sda2` 到安装镜像的 `/mnt` 然后 `arch-chroot /mnt`, 开始老实安装 `dhcpcd` 和 `networkmanager`. 这里要感谢[讨论串](imgs/https://bbs.archlinuxcn.org/viewtopic.php?id=12603)和[一篇博文](imgs/https://www.cnblogs.com/yuxiayizhengwan/p/16576946.html). 
+  - 坏了, 网上一通搜, 真的是没有装网络服务 `dhcpcd` 和 `networkmanager`. 乖乖回去用安装镜像进入, `mount` 根分区 `/dev/sda2` 到安装镜像的 `/mnt` 然后 `arch-chroot /mnt`, 开始老实安装 `dhcpcd` 和 `networkmanager`. 这里要感谢[讨论串](https://bbs.archlinuxcn.org/viewtopic.php?id=12603)和[一篇博文](https://www.cnblogs.com/yuxiayizhengwan/p/16576946.html). 
 回看安装指引, 这时才明白, 条目 1.7 最底下的 Note 是什么意思了: 网络服务在新装的系统上面是通通没有滴! Okay, 安装完毕, 继续回到 `pacman` 上.
 
 ### pacman: 没错, 孩子, 又是我
