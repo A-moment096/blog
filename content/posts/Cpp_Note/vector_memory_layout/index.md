@@ -6,9 +6,11 @@ categories:
 # - Others
 tags:
 - C++
+- Data Structure
+- Benchmark
 title: "C++ Vector 的内存布局"
 description: "C++ Vector 容器的内存是连续的吗？"
-date: 2025-03-24T09:53:29+08:00
+date: 2025-05-27T09:53:29+08:00
 image: 
 math: true
 license: 
@@ -61,37 +63,156 @@ draft: true
 
 ### `vector` 的内存分配方法
 
-我们首先给出肯定的回复：Yes, `vector` 是“我需要一块我不知道内存大小的连续内存段”的非常好的解决方案。实际上也许 `vector` 会比想象中的更好用。`vector` 首先是符合 *RAII* 的，这使得我们不需要特别关注声明的资源：这些资源在离开其作用域时就自动被销毁了。不用再担心内存泄漏，也不用担心空指针之类。另外 `vector` 虽然实际上是将资源放在堆上的，对 `vector` 的操作实际上就像是在栈上操作它一样，对它的操作要比指针操作之类要直观的多。最后，使用 `vector` 不用担心空间不足：当 `vector` 内的空间不足以容纳新的东西时，`vector` 会自动增加其容量，来容纳这些新的东西。这个操作在编程侧是近乎无感的：你可以直接把 `vector` 当做一个无限容量的容器，你要做的事情就是往里装就 OK 了。使用 `vector` 是很符合直觉的，给代码作者的心智负担也很小，是非常用户友好的高效容器类型。
+我们首先给出肯定的回复：Yes, `vector` 是“我需要一块我不知道内存大小的连续内存段”的非常好的解决方案。实际上也许 `vector` 会比想象中的更好用。`vector` 首先是符合 *RAII* 的，这使得我们不需要特别关注声明的资源：这些资源在离开其作用域时就自动被销毁了。不用再担心内存泄漏，也不用担心空指针之类。另外 `vector` 虽然实际上是将资源放在堆上的，对 `vector` 的操作实际上就像是在栈上操作它一样，对它的操作要比指针操作之类要直观的多。最后，使用 `vector` 不用担心空间不足：当 `vector` 内的空间不足以容纳新的东西时，`vector` 会自动增加其容量，来容纳这些新的东西。这个操作在编程侧是近乎无感的：你可以直接把 `vector` 当做一个无限容量的容器，你要做的事情就是往里装就 OK 了。使用 `vector` 是很符合直觉的，给代码作者的心智负担也
 
-也许有人会担心：`vector` 就一点问题都没有？很可惜， `vector` 也是需要正确使用的，否则就是会很低效。这一点主要体现在 `vector` 的自动扩容上。`vector` 的扩容机制是这样的：如果容量不够，就在当前容量上乘2（或1.5，取决于具体实现）来容纳新东西。乍一听没什么问题，而实际上扩容是一个很复杂也很慢的过程。我们下面会更深入地聊聊这个问题。另外，`vector` 的内存真的是连续的吗？可以通过什么方法来看到其内存布局吗？我们后面也会尝试使用程序来把内存地址打印到屏幕上，看看是个什么样子。
+也许有人会担心：`vector` 就一点问题都没有？很可惜， `vector` 也是需要正确使用的，否则就是会很低效。这一点主要体现在 `vector` 的自动扩容上。`vector` 的扩容机制是这样的：如果容量不够，就在当前容量上乘2（或1.5，取决于具体实现）来容纳新东西。乍一听没什么问题，而实际上扩容是一个很复杂也很慢的过程。我们下面会更深入地聊聊这个问题。另外，`vector` 的内存真的是连续的吗？可以通过什么方法来看到其内存布局吗？我们后面也会尝试使用程序来把内存地址打印到屏幕上，看看是个什么样子。最后，当你很明确自己需要的就是固定长度的内存区域时，`vector` 自动增长内存空间的做法可能就不合适了。这时你也许会更想使用数组的现代包装 `std::array`，而非 `vector`。
 
 最后，`vector` 实际上也提供了和 C 的裸指针相容的对象，通过调用 `vector::data()` 方法即可获得 `vector` 内存段对应的裸指针。这样一来，需要精细操作或者与老 API 做兼容时也很方便。
 
+### 连续的内存空间很重要吗？
 
+上面我们一直强调“连续的内存空间”，也许有人会好奇，连续的内存空间很重要吗？答案是肯定的：连续的内存空间可以有效提高内存寻址速度，从而提高访问和读写的速度。事实上，有连续内存空间，自然也就有非连续的内存空间。如果一个内存段是连续的，那么就意味着从内存段头部开始，需要取用第5个元素就只需要令头指针向右（或者某个方向，取决于你）偏移4个元素，就可以取到这个元素了。典型的拥有连续内存结构的数据结构有传统的数组，以及我们这里介绍的 `vector`。而非连续内存结构的数据结构里，非常有代表性的一个就是链表。使用链表上的第5个元素需要先从头节点向后寻找第一个节点，找到之后再跳转到第二个，不断进行这样的跳转直到找到第五个元素。使用链表的好处是链表可以极大程度利用内存空间，因为不受*连续的大段内存空间*的条件约束，代价便是寻址速度相比数组或 `vector` 会慢很多。
 
+另一个角度讲，`vector` 可能会低效的原因也在于此。由于 `vector` 需要保证内存是连续的，当它遇到内存不足时，便需要做下面的事：
+
+1. 在内存中寻找一块新的地址，这个地址有一段连续的足够大的内存来存放老数据以及即将到来的新数据；
+2. 把老数据复制到新的地址下；
+3. 把新数据添加到老数据的后面。
+
+这个过程最耗时的部分是第三步。设想这样一个情况，操作系统在给程序分配内存时分配地非常零散，且希望最最高效地利用内存，以至于内存空间内部只有长度为 1, 2, 4, 8, 16, 32 这6段长度的内存，它们的地址相隔甚远，且你拥有的一个 `vector` 目前只保存了长度为1的数据（也就被系统分配到长度为1的地址下）。现在你打算向里面补充新数据，比如，你要往里面添加31个新数据，但是这个过程中需要做一些特别的判断，以至于编译器不能帮你做优化，直接分配给你32位长度的内存。
+
+现在，在你向后补充第一个元素时，`vector` 会尝试寻找长度大于2的一个内存空间，它找到了第三块内存（长度为4）；你又向后补充了一个元素，此时 `vector` 发现内存不够，但是直接扩张大小也可以，此时就不需要寻址，直接声明后面的两位内存被使用即可；你又打算向后补充三位数据。这时 `vector` 发现内存又不够了，它寻址到第四块内存（长度为8），然后把第三块内存中的数据一个个复制到第四块内存中，然后再把新的三位数据补充到后面。
+
+发现问题了吗？`vector` 的机制让编译器不太愿意把本就很大的内存空间直接交给 `vector`。当你要往 `vector` 里填充大量数据时，让它这样自己一点点增长长度的做法会非常耗时。好消息是，我们可以通过 `vector::reserve` 提前告诉 `vector` 我们需要大概多少的内存，以便编译器一开始就找好一个够大的地方。而且这样的机制也算是强有力地说明了 `vector` 具有连续内存结构。
+
+## 在？看看内存结构
+
+下面我们就来尝试用代码打印出 `vector` 里元素的内存地址吧。我们向一个 `vector` 中填充5个元素，每次填入时检查 `vector` 的状态：
+
+```cpp
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> v;
+
+    for (int i = 0; i < 5; ++i) 
+        // We use "push_back" push an element to the back of a vector
+        v.push_back(i);
+        std::cout << "Added: " << i
+                  << ", Size: " << v.size()
+                  << ", Capacity: " << v.capacity()
+                  << ", Address of first element: " << &v[0] << '\n';
+    }
+
+    // Check contiguity
+    std::cout << "Contiguous memory check:\n";
+    for (size_t i = 0; i < v.size(); ++i)
+        std::cout << "Address of v[" << i << "] = " << &v[i] << '\n';
+
+    return 0;
+}
+```
+
+得到的结果如下：
+
+```
+Added: 0, Size: 1, Capacity: 1, Address of first element: 0x56041b4592b0
+Added: 1, Size: 2, Capacity: 2, Address of first element: 0x56041b4596e0
+Added: 2, Size: 3, Capacity: 4, Address of first element: 0x56041b4592b0
+Added: 3, Size: 4, Capacity: 4, Address of first element: 0x56041b4592b0
+Added: 4, Size: 5, Capacity: 8, Address of first element: 0x56041b459700
+Contiguous memory check:
+Address of v[0] = 0x56041b459700
+Address of v[1] = 0x56041b459704
+Address of v[2] = 0x56041b459708
+Address of v[3] = 0x56041b45970c
+Address of v[4] = 0x56041b459710
+```
+
+可以看到，在添加元素时，`vector` 的 `size` 指示 `vector` 有多少的元素，而 `capacity` 指示了 `vector` 还有多少的空间。当空间不足时，`vector` 的空间会扩大一倍来容纳新的元素，同时头元素的位置也会发生变化。而在元素填入结束后，通过检查地址可以发现这些元素在地址上是连续的（一个 `int` 的大小是4，注意到使用了16进制所以 `8` 后面是 `c` 也就是 12，`c` 后面就进一位因为达到了16）。
+
+这是一个很简单的小例子，但是用来说明 `vector` 的内存结构应该已经足够。
+
+## 做个 Benchmark 看看
+
+也许一个简单的 Benchmark 可以展示一下 `vector` 和传统的数组相比效率如何。下面我们初始化一个 `vector` 和一个数组，它们有同样的大小，并且执行累加操作，最后记录累加的用时。
 
 ```cpp
 #include <iostream>
 #include <vector>
+#include <ctime>
+
+const int SIZE = 10000000;
 
 int main() {
-    // Declare two vector, one for element push_back,
-    // and another one for recording the elements address
-    std::vector<int> array;
-    std::vector<int *> array_element_address;
+    std::vector<int> vec(SIZE, 1);
+    int* arr = new int[SIZE];
+    for (int i = 0; i < SIZE; ++i)
+        arr[i] = 1;
 
-    //? Reserve the space or not ?//
-    // array.reserve(100);
+    // Benchmark vector
+    clock_t start_vec = clock();
+    long long sum_vec = 0;
+    for (int i = 0; i < SIZE; ++i)
+        sum_vec += vec[i];
+    clock_t end_vec = clock();
 
-    // Start the element push back
-    for (int i = 0; i < 10000; i++) {
-        array.push_back(i);
-        array_element_address.push_back(&array.back());
-    }
+    // Benchmark array
+    clock_t start_arr = clock();
+    long long sum_arr = 0;
+    for (int i = 0; i < SIZE; ++i)
+        sum_arr += arr[i];
+    clock_t end_arr = clock();
 
-    // Output the length between address of the first and last element ?
-    std::cout << array.end() - array.begin() << std::endl;
-    // Output the length between the "ACTUAL" address the first and last element in array
-    std::cout << *(array_element_address.end() - 1) - *array_element_address.begin() << std::endl;
+    std::cout << "Vector sum: " << sum_vec
+              << ", Time: " << (end_vec - start_vec) << " ticks\n";
+
+    std::cout << "Array sum:  " << sum_arr
+              << ", Time: " << (end_arr - start_arr) << " ticks\n";
+
+    // Don't forget to delete[] the array!
+    delete[] arr;
+    return 0;
 }
 ```
+
+我们先不开启优化并尝试运行几次，看看结果：
+
+```bash
+> g++ test.cpp -o test && ./test
+Vector sum: 10000000, Time: 21530 ticks
+Array sum:  10000000, Time: 16693 ticks
+> ./test
+Vector sum: 10000000, Time: 21059 ticks
+Array sum:  10000000, Time: 16560 ticks
+> ./test
+Vector sum: 10000000, Time: 20729 ticks
+Array sum:  10000000, Time: 15812 ticks
+```
+
+我们再开启 `O3` 优化然后看看结果：
+
+```bash
+> g++ test.cpp -o test -O3 && ./test
+Vector sum: 10000000, Time: 2684 ticks
+Array sum:  10000000, Time: 2122 ticks
+> ./test                            
+Vector sum: 10000000, Time: 4091 ticks
+Array sum:  10000000, Time: 3686 ticks
+> ./test
+Vector sum: 10000000, Time: 3205 ticks
+Array sum:  10000000, Time: 2813 ticks
+```
+
+看来不开启优化的时候，两个方法的差距还是比较明显的，而当开启优化之后，两种方法的差距并不大。然而，使用 `vector` 最大的优势在于心智负担小，不用担心奇怪的内存问题，而且如果使用 `vector::at` 方法还能自动进行边界检查，在遇到越界问题时会抛出异常，避免程序以奇怪的，错误的方式运行。
+
+## 总结
+
+希望这篇小短文能帮助你了解 `vector` 的特点，或者打消你对 `vector` 性能的顾虑。`vector` 是用来说明 C++ **Zero-overhead principle**（零成本抽象原则）的一个很好的例子。`vector` 提供了一个动态数组的抽象，它会以最低成本来实现这个东西的特性，避免引入过多额外的性能开销，让调用者可以放心使用，不必担忧性能问题。对零成本抽象感兴趣可以查看 [CppReference的介绍](https://en.cppreference.com/w/cpp/language/Zero-overhead_principle)，里面介绍了这一原则的具体情况。
+
+当然，每次使用新的特性，总是会引入一点点的开销。或许你会考虑，辛苦一下自己，让程序能再跑快点。这本身没什么问题，但是要指出的是，警惕提前优化。如果 `vector` 并不是制约程序运行效率的关键部分（也就是所谓的*性能瓶颈*），那么就先不要管它。当程序遇到了这个瓶颈，且只能通过优化数据结构才能提高性能时，再考虑把 `vector` 修改为别的容器或者数据类型，这样做也许会更实际一些。
+
+当然，如果这个小短文有什么问题，请直接指出来。本人也不是科班出身，写这篇笔记纯粹是记录一下学习过程。欢迎交流讨论。欢迎大佬拷打，动作轻一些就更好了。
+
+那么最后，一如既往，祝您身心健康。
