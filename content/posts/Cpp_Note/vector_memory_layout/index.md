@@ -11,12 +11,12 @@ tags:
 title: "C++ Vector 的内存布局"
 description: "C++ Vector 容器的内存是连续的吗？"
 date: 2025-05-27T09:53:29+08:00
-image: 
+image: Bamboo_Reimu.jpg 
 math: true
 license: 
 hidden: false
 comments: true
-draft: true
+draft: false
 ---
 
 *探索一下 C++ 的容器 `vector` 的内存布局，也算是解答我自己的一些疑虑咯*
