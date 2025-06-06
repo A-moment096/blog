@@ -3,6 +3,7 @@ categories:
 - Mathematics
 tags:
 - Calculus of Variations
+- Note
 title: "关于泛函导数和变分法-来自相场公式推导的问题"
 description: 相场演化方程究竟应该怎么推，才离正确不远
 image: HelloWorld-r-906.jpg
