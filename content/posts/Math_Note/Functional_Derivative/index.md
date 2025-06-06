@@ -17,6 +17,10 @@ draft: false
 
 {{< music auto="https://music.163.com/#/song?id=2076684514" loop="none">}}
 
+
+2025.06.06 更新：感谢[@which-is-my-way](https://github.com/which-is-my-way)指正，公式 [16](#modify) 补上点乘单位法向量
+
+
 ## 晶体相场公式带来的问题
 
 在一个阳光明媚的晚上，师兄找到我问了一个问题：下面的这个相场公式是怎么组装起来的？具体来讲是：从下面的公式（2）和公式（3）是怎么得到公式（4）的：
@@ -164,10 +168,11 @@ $$
 
 而在式（13）中，最后的积分可以根据多元积分的 Green 公式，化成对区域 $\Omega$ 的边界 $\partial \Omega$ 积分。而此时，由于在边界上所有的函数的值都要相等，此时 $\delta y = 0$，这样最后一项积分就化为0了。我们写为下面的结果：
 
+<span id="modify"></span>
 $$
 \begin{align}
 \delta F &= \int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega + \int_\Omega \nabla\cdot\left(\frac{\partial f}{\partial \nabla y}\delta y\right) \, \mathrm{d}\omega\\
-&=\int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega + \int_{\partial\Omega} \left(\frac{\partial f}{\partial \nabla y}\delta y\right) \, \mathrm{d}A\\
+&=\int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega + \int_{\partial\Omega} \left(\frac{\partial f}{\partial \nabla y}\delta y\right)\cdot\hat{n} \, \mathrm{d}A\\
 &=\int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega.
 \end{align}
 $$
