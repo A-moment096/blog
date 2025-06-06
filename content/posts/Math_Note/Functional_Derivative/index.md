@@ -169,7 +169,8 @@ $$
 
 而在式（13）中，最后的积分可以根据多元积分的 Green 公式，化成对区域 $\Omega$ 的边界 $\partial \Omega$ 积分。而此时，由于在边界上所有的函数的值都要相等，此时 $\delta y = 0$，这样最后一项积分就化为0了。我们写为下面的结果：
 
-<span id="modify"></span>
+<span id="modify"> 
+
 $$
 \begin{align}
 \delta F &= \int_\Omega \left(\frac{\partial f}{\partial y}  - \nabla \cdot \frac{\partial f}{\partial \nabla y} \right)\delta y \, \mathrm{d}\omega + \int_\Omega \nabla\cdot\left(\frac{\partial f}{\partial \nabla y}\delta y\right) \, \mathrm{d}\omega\\
@@ -178,6 +179,7 @@ $$
 \end{align}
 $$
 
+</span>
 这样，我们就距离我们希望得到的形式，Euler-Lagrange 公式只差一步了。注意到这里使用的 $\delta y$ 是任意的，假如 $\delta F = 0$，从积分里的内容来看，只能是括号内的部分等于 0。
 
 我们可以看到，上面的过程，可以分为大致四个部分：得到全变分形式，将非目标变分以变分和微分的交换律改写为目标函数变分，消去多余项，由变分任意性得到被积函数内部等于 0。我们因此，可以根据我们已经熟悉的函数导数的概念，将公式（18）中的被积函数括号内这个关键部分定义为泛函的导数，即：
