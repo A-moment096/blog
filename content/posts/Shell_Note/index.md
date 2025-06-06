@@ -11,7 +11,7 @@ tags:
 title: "Shell 速查笔记：以 ZSH 为例"
 description: "一份（也许）简单的 Shell 速查笔记"
 date: 2025-06-04T15:09:18+08:00
-image: 
+image: SEASIDE_SOLILOQUIES.png 
 math: true
 license: 
 hidden: false
@@ -20,6 +20,10 @@ draft: false
 ---
 
 *学了一些 `bash` 命令（然而也许是 `zsh`），感觉随时会忘，就干脆在这里记一下好了*
+
+*头图出自 Orangestar 的专辑 **SEASIDE SOLILOQUIES**, 好看又好听。所以这里贴曲就贴这个专辑的主打歌好了：一首 **Alice in 冷凍庫**，希望你喜欢。*
+
+{{< music auto="https://music.163.com/#/song?id=458231453" loop="none">}}
 
 ## 使用的配置
 
