@@ -8,6 +8,7 @@ tags:
 - C++
 - Data Structure
 - Benchmark
+- Note
 title: "C++ Vector 的内存布局"
 description: "C++ Vector 容器的内存是连续的吗？"
 date: 2025-05-27T09:53:29+08:00

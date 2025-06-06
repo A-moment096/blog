@@ -9,6 +9,7 @@ tags:
 - Numerical Analysis
 - Finite Element Method
 - Python
+- Note
 image: star river.png
 math: true
 comments: true

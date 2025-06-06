@@ -4,6 +4,7 @@ categories:
 tags:
 - Algebra
 - Category Theory
+- Note
 title: "蛇年，Snake Lemma！"
 description: 蛇年我也试证一下蛇引理
 image: Post Shelter-Inaba Kumori.png
