@@ -16,7 +16,7 @@ math: true
 license: 
 hidden: false
 comments: true
-draft: false
+draft: true
 ---
 
 *学了一些 `bash` 命令（然而也许是 `zsh`），感觉随时会忘，就干脆在这里记一下好了*
@@ -155,3 +155,18 @@ one two three four
 | `:e`       | 获取文件扩展名               | `echo !!:1:e` → `txt`      |
 | `:s/旧/新/`  | 替换第一个出现的子串            | `!!:1:s/foo/bar/`          |
 | `:gs/旧/新/` | 替换所有出现的子串             | `!!:1:gs/foo/bar/`         |
+
+## 使用 `rsync` 进行同步
+
+### 使用场景
+
+有时候我们有多个远程电脑，或者是服务器，上面的文件内容我们希望下载到本地。我们通常有这么几个选择：使用一些功能成熟的，专用于 SSH 连接的终端模拟器，比如 MobaXTerm 这样的软件；或者我们可以使用 `scp`，`sftp` 这样的工具，但是界面有点简陋，特别是 `sftp`，需要反复确认文件名是否输入错误。而且有时我们只需要下载不同的部分，不希望重复下载已经有了的部分。这时候，`rsync` 作为 *remote sync* 的工具，就到了发挥其作用的地方了。
+
+#### 使用方法
+
+`rsync` 命令使用方法是：
+
+```bash
+rsync --option1 --option2 /pass/files/from/here/ /path/file/to/here
+```
+所以大概就是遵循：`命令，选项，从哪里来，到哪里去` 这样的规则。
