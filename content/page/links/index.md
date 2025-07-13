@@ -38,3 +38,13 @@ comments: false
 [Fancybox 图片放大](https://tianma8023.github.io/post/hexo-material-intergrate-image-display-feature/)
 [Hugo Stack 主题配置与使用](https://bore.vip/archives/3bf3725e/index.html#archetypes%E9%BB%98%E8%AE%A4%E6%A8%A1%E6%9D%BF)
  -->
+
+## Linux/Shell 学习
+
+[rsync 使用教程](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories)
+
+## C/C++ 学习
+
+[三大主流编译器比较](https://www.cnblogs.com/luoweifu/p/18348981)
+
+

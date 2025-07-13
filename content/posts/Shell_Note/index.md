@@ -169,4 +169,17 @@ one two three four
 ```bash
 rsync --option1 --option2 /pass/files/from/here/ /path/file/to/here
 ```
-所以大概就是遵循：`命令，选项，从哪里来，到哪里去` 这样的规则。
+所以大概就是遵循：`命令，选项，从哪里来，到哪里去` 这样的规则。另外，既然 `rsync` 是 *remote sync* 的简称，自然这个命令也是可以被用于远程服务器之间的文件传输的。方法也很简单，就是给对应的文件路径添加上使用 `ssh` 的用户名、服务器地址等信息。具体用法我们下面介绍。
+
+首先，这里需要强调的是，请注意 `从哪里来` 的
+
+## 帮到我的链接
+
+这里简单记录一些我学习这些命令时用到的网页链接。感谢~
+
+- 首先，ChatGPT 和 Deepseek，完全不了解的时候和这些 AI 问一下还是挺好用的；
+- [rsync tutorial](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories): 一个简单的 rsync walkthrough，帮了我很多；
+<!-- - [](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories) -->
+
+
+
