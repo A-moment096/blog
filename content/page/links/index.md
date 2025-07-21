@@ -10,7 +10,7 @@ comments: true
 toc: false
 ---
 
-*图片来源：[白ゆき](https://www.pixiv.net/en/users/96825901) 老师的作品 [花と水飴、最終電車](https://www.pixiv.net/en/artworks/132033239)。老师的画超美~ 花了超多 n-buna 的 “曲绘”，这也算其中之一吧。*
+*图片来源：[白ゆき](https://www.pixiv.net/en/users/96825901) 老师的作品 [花と水飴、最終電車](https://www.pixiv.net/en/artworks/132033239)。老师的画超美~ 画了超多 n-buna 的 “曲绘”，这也算其中之一吧。*
 
 既然如此，为什么不听听这张专辑的标题曲呢？
 
