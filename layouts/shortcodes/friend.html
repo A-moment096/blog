@@ -1,0 +1,30 @@
+<div class="article-list--compact links" style="margin: 1rem 0;">
+    {{ range $.Site.Data.links }}
+        <article>
+            <a href="{{ .website }}" target="_blank" rel="noopener">
+                <div class="article-details">
+                    <h2 class="article-title">
+                        {{- .title -}}
+                    </h2>
+                    
+                    {{ with .description }}
+                    <footer class="article-time">
+                        {{ . }}
+                    </footer>
+                    {{ end }}
+                    {{ with .notes }}
+                    <footer class="article-link">
+                        {{ . }}
+                    </footer>
+                    {{ end }}
+                </div>
+        
+                {{ with .image }}
+                <div class="article-image">
+                    <img src="{{ . }}" loading="lazy">
+                </div>
+                {{ end }}
+            </a>
+        </article>
+    {{ end }}
+</div>
