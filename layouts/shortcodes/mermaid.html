@@ -1,0 +1,13 @@
+{{- $diagramType := .Get 0 | default "graph" -}}
+{{- $align := .Get "align" | default "center" -}}
+{{- $caption := .Get "caption" -}}
+
+{{- $caption := .Get "caption" | default "" -}}
+<div class="mermaid-container mermaid-shortcode">
+    {{- if $caption -}}
+    <div class="mermaid-caption">{{ $caption | markdownify }}</div>
+    {{- end -}}
+    <div class="mermaid">
+{{- .Inner | safeHTML -}}
+    </div>
+</div>
