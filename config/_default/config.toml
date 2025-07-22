@@ -2,6 +2,7 @@
 baseurl = "https://a-moment096.github.io/"
 languageCode = "zh-cn"
 title = "A Moment's Rest"
+theme = "stack"
 
 # Theme i18n support
 # Available values: en, fr, id, ja, ko, pt-br, zh-cn, zh-tw, es, de, nl, it, th, el, uk, ar
