@@ -1,3 +1,6 @@
-<div class="mermaid">
-  {{- .Inner | safeHTML }}
-</div>
+<figure class="mermaid-container">
+  <div class="mermaid">
+    {{- .Inner | safeHTML }}
+  </div>
+  <figcaption>{{ .Attributes.title | markdownify }}</figcaption>
+</figure>

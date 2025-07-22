@@ -9,17 +9,13 @@ tags:
 - Tutorial
 mermaid: true
 draft: false
+hide: true
 ---
-<!-- <style>
-/* svg[id^="mermaid-"] { min-width: 1000px; max-width: 1000px;} */
-svg[id^="mermaid-"] { min-width: 200px; max-width: 500px; font-size: 20px; }
-</style> -->
-
 
 这个页面展示了博客中 Mermaid 图表的各种使用方式。
 
 ## 流程图 (Flowchart)
-{{< mermaid caption="GitHub Actions 工作流程" >}}
+```mermaid {title="Figure 1: GitHub Actions 工作流"}
 graph TD
     A[推送代码到私有仓库] --> B[触发 GitHub Actions]
     B --> C[检出代码和子模块]
@@ -36,11 +32,11 @@ graph TD
     class A,H startEnd
     class B,C,D,E process
     class F,G deploy
-{{< /mermaid >}}
+```
 
 ## 序列图 (Sequence Diagram)
 
-{{< mermaid caption="Hugo 博客部署序列图">}}
+```mermaid {title="Hugo 博客部署序列图"}
 sequenceDiagram
     participant Dev as 开发者
     participant Private as 私有仓库
@@ -54,11 +50,10 @@ sequenceDiagram
     Actions->>Public: 推送静态文件
     Public->>Pages: 自动部署
     Pages-->>Dev: 网站更新完成
-{{< /mermaid >}}
-
+```
 ## 甘特图 (Gantt Chart)
 
-{{< mermaid caption="博客搭建项目时间线" >}}
+```mermaid {title="博客搭建项目时间线"}
 gantt
     title 博客搭建与优化计划
     dateFormat  YYYY-MM-DD
@@ -75,7 +70,7 @@ gantt
     Mermaid 集成     :active,  mermaid, 2025-01-20, 2025-01-22
     自动化部署       :         deploy, 2025-01-22, 2025-01-25
     性能优化         :         perf, 2025-01-25, 2025-01-30
-{{< /mermaid >}}
+```
 
 ## 类图 (Class Diagram)
 

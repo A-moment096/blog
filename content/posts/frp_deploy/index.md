@@ -26,39 +26,74 @@ draft: true
 
 为了方便提交任务，做相场计算，组里配了一台计算服务器，一个管理节点+两个计算节点，劲呀！然而坏消息是：组里没有多余的空间放置服务器了，只能托管到另一个老师那里。
 
-OK，没什么关系，给服务器配个公网IP，那不就和在自己组里一样咯？可是实际上并没有那样的好事，公网IP也不是想申请就申请的。课题组内貌似对网络配置这块不了解，也不打算了解，所以就只能交给装机的小哥处理。而他和那边老师协商后，决定采用的方案是：使用 ToDesk 连接到和服务器处于同一公网下的 Windows 电脑，再用那个 Windows 电脑 SSH 到服务器上。
+OK，没什么关系，给服务器配个公网IP，那不就和在自己组里一样咯？可是实际上并没有那样的好事，公网IP也不是想申请就申请的。课题组内貌似对网络配置这块不了解，也不打算了解，所以就只能交给装机的小哥处理。而他和那边老师协商后，决定采用的方案是：使用 ToDesk 连接到和服务器处于同一公网下的 Windows 电脑，再用那个 Windows 电脑 SSH 到服务器上。整体过程大概是这样的：
 
-这个方案，说实在的感觉很蠢。一个服务器，搭载着多用户操作系统，竟然必须用 Windows 做跳板然后跳过去！？这不就意味着，如果有两个人同时使用服务器，我就会和对方产生会话冲突？而且如果有人盯着那台 Windows 电脑的屏幕，我的操作不就暴露地清清楚楚了！？怎么想都是很愚蠢的做法，不过也能理解：这应该（也许）是一个临时的解决方案。而后面谁来解决这个问题呢？
-
-那必须是我了！
-
-## FRP 网络架构图
-
-{{< mermaid caption="FRP 内网穿透网络架构示意图" >}}
-graph TB
-    subgraph "公网环境"
-        Client[客户端<br/>你的电脑]
-        Server[云服务器<br/>有公网IP]
+```mermaid {title="通过 Windows ToDesk 跳板连接示意图"}
+graph LR
+    subgraph "内网环境1"
+        Client[客户端<br/>我的电脑]
     end
-    
-    subgraph "内网环境"
+
+    subgraph "内网环境2"
+        OtherUser[其他用户]
+    end
+
+    subgraph "内网环境3"
         Windows[Windows电脑<br/>ToDesk远控]
         Compute[计算服务器<br/>无公网IP]
     end
     
-    Client -->|SSH连接| Server
-    Server <-->|FRP隧道<br/>端口7000| Compute
-    Client -.->|原始方案<br/>ToDesk远控| Windows
-    Windows -.->|局域网SSH| Compute
+    Client -->|ToDesk远控| Windows
+    Windows -->|局域网SSH| Compute
+    OtherUser -.->|❌<br/>无法连接| Windows
     
     classDef public fill:#e1f5fe
     classDef private fill:#fff3e0
     classDef deprecated fill:#ffebee
+    classDef forbidden stroke:#f44336,stroke-width:2px,stroke-dasharray:5
     
-    class Client,Server public
+    class Client public
     class Compute private
     class Windows deprecated
-{{< /mermaid >}}
+    class OtherUser forbidden
+```
+
+这个方案，说实在的感觉很蠢。一个服务器，搭载着多用户操作系统，竟然必须用 Windows 做跳板然后跳过去！？这不就意味着，如果有两个人同时使用服务器，我就会和对方产生会话冲突？而且如果有人盯着那台 Windows 电脑的屏幕，我的操作不就暴露地清清楚楚了！？怎么想都是很愚蠢的做法，不过也能理解：这应该（也许）是一个临时的解决方案。而后面谁来解决这个问题呢？
+
+那必须是我了！我们可以搭建一个 FRP（快速反向代理） 服务，让流量通过一个跳板服务器转发到计算服务器上，不再蠢蠢地堵在同一台 Windows 设备上。这样一来，每个人都可以自己自由地连接上这个服务器，只需要把流量交给反代服务器（跳板服务器），让它处理转发端口之类的，就可以啦。搞好之后的示意图大概是：
+
+```mermaid {title="FRP 内网穿透网络架构示意图"}
+graph LR
+    subgraph "内网环境1"
+        Client[客户端<br/>我的电脑]
+    end
+    
+    subgraph "内网环境2"
+        OtherUser[其他用户]
+    end
+
+    subgraph "外网环境"
+        FRPServer[FRP服务端<br/>公网IP中转]
+    end
+    
+    subgraph "内网环境3"
+        Compute[计算服务器<br/>无公网IP]
+    end
+
+    Client -->|SSH| FRPServer
+    OtherUser -->|SSH| FRPServer
+    FRPServer -->|FRP客户端<br/>反向代理| Compute
+    
+    classDef public fill:#e1f5fe,stroke:#039be5
+    classDef private fill:#fff3e0,stroke:#fb8c00
+    classDef server fill:#e8f5e9,stroke:#43a047,stroke-width:2px
+    
+    class Client,OtherUser public
+    class Compute private
+    class FRPServer server
+```
+
+嗯哼，那就开始吧~
 
 ## 搭建：也许需要个 TL;DR
 
@@ -66,6 +101,8 @@ graph TB
 
 ### TL;DR
 *下面的流程大量参考自开源教程：[Frp内网穿透搭建教学](https://github.com/CNFlyCat/UsefulTutorials/)，内容非常详细，感觉这里不清楚的可以去看看*
+
+下面是我的解决过程：
 
 1. 租个服务器：在阿里云用学生认证白嫖三个月的便宜服务器，有个公网IP就行，待会儿会用这个IP
 2. 先用 ToDesk 连到远程计算服务器上，然后用 `curl ifconfig.me` 得到服务器所在公网的公网IP，待会儿会用到
@@ -116,41 +153,46 @@ bindPort = 7000
 
 整个流程大概就是这样啦，看起来挺长的，实际上只需要寥寥几步就OK了。
 
-## FRP 部署流程图
+### 解说环节~
 
-{{< mermaid caption="FRP 服务部署的详细步骤流程" >}}
-sequenceDiagram
-    participant You as 你的电脑
-    participant Cloud as 云服务器
-    participant Compute as 计算服务器
-    participant Test as 测试连接
-    
-    Note over You,Compute: 第一阶段：环境准备
-    You->>Cloud: 1. 租用云服务器，获取公网IP
-    You->>Compute: 2. 通过ToDesk连接到计算服务器
-    
-    Note over You,Compute: 第二阶段：下载和配置
-    You->>Compute: 3. 下载frp客户端
-    You->>Compute: 4. 配置frpc.toml
-    You->>Cloud: 5. 下载frp服务端
-    You->>Cloud: 6. 配置frps.toml
-    
-    Note over You,Compute: 第三阶段：启动服务
-    You->>Cloud: 7. 启动frps服务
-    You->>Compute: 8. 启动frpc客户端
-    Compute->>Cloud: 建立FRP隧道连接
-    
-    Note over You,Compute: 第四阶段：测试验证
-    Test->>Cloud: 9. SSH连接到云服务器端口6000
-    Cloud->>Compute: 转发连接到计算服务器
-    Compute->>Test: 建立SSH会话
-    
-    Note over You,Test: 🎉 FRP内网穿透部署完成！
-{{< /mermaid >}}
+有了 TL;DR，也许你可以从这些步骤上看到整个搭建过程的轮廓。然而这样或许还是不能解答一些疑惑：为什么这样这样再这样，就好了？所以这里简单讲解一下，每一步都是在干什么，以及要注意的点。虽然说这里要做解说，实际上也只是拾人牙慧，再对上面的内容进行一些简单的补充而已。还望大佬手下留情。
 
-### 详细步骤呢？
+#### So，什么是 FRP？
 
-有了 TL;DR，也许你可以从这些步骤上看到整个搭建过程的轮廓。虽然说这里要将详细步骤，实际上也只是对上面的内容进行一些简单的补充而已。
+当遇到一个奇怪的，有着英文缩写的概念时，最应该从这个缩写的含义来展开。FRP，全称 Fast Reverse Proxy，也就是 “快速反向代理”。也许有人要说了，什么是代理，什么是反向代理，什么又是 “快速反向代理”？
+
+很可惜，我也是超级小白，只能斗胆分享一下自己的看法。代理可能大家更熟一些，就是指把流量交给某个服务，让所有服务的流量都从这里出去。大概就是：
+
+```mermaid
+graph TB
+    %% 正向代理
+    subgraph "正向代理"
+        User1[客户端] -->|"1. 主动配置代理
+        (如浏览器设置)"| FProxy[正向代理服务器]
+        FProxy -->|"2. 代访互联网"| Internet[目标网站]
+    end
+
+    classDef proxy fill:#c8e6c9,stroke:#4caf50
+    class FProxy,RProxy proxy
+```
+
+这里正向代理服务器就是中间的一层马甲，代替客户端进行访问，访问后再把内容反传给客户端。这样一来，目标网站就不太容易知道代理服务器的背后是谁，形成了一定的匿名性。
+
+那么反向代理呢？与正向代理正好相反，正向代理是由代理服务器做客户端的马甲，而反向代理则是让代理服务器给目标服务器打工。反代服务器会接收到客户端的请求再告诉服务端，反代服务器会负责把内容转发到对应的位置，交给服务端，而服务端后面要与客户端通信，还是得走反代服务器。图形表示的话就是这样的：
+
+```mermaid
+graph TB
+
+    %% 反向代理
+    subgraph "反向代理" 
+        User2[客户端] -->|"1. 直接访问"| RProxy[反向代理服务器]
+        RProxy -->|"2. 转发给内网"| Backend[后端服务器]
+    end
+
+    classDef proxy fill:#c8e6c9,stroke:#4caf50
+    class FProxy,RProxy proxy
+    
+```
 
 #### 来个服务器
 
@@ -168,7 +210,9 @@ sequenceDiagram
 
 我们先来配置好计算服务器。上面说可以用远控软件来操作远程服务器，其实那是我们一开始的工作方式。理论上来讲，我们是不需要计算服务器 *被* 外界访问到，而是通过搭建的 frp 服务来 *访问外界*，再让外界传到别的地方，从而建立数据通路。所以，你只要能把 `frpc` 的客户端以及对应的配置文件塞到计算服务器上能上网且你喜欢的位置，就可以了。
 
-由于我们的目的就是通过 frp 来通过跳板机访问计算服务器，因此自然不会考虑直接 `ssh` 上去。因为服务器没有公网 IP，为了 *有办法* 连上这个服务器，采用了很神奇的做法：把服务器和一台 Windows 机器放在同一局域网下，这样这个 Windows 机器就可以走局域网内部 ssh 上计算服务器。而因为 Windows 侧这种远控软件实在太多，随便选择了 `ToDesk` 来供该局域网外的设备连接进这个 Windows 机器。
+由于我们的目的就是通过 frp 来通过跳板机访问计算服务器，因此自然不会考虑直接 `ssh` 上去。因为服务器没有公网 IP，为了 *有办法* 连上这个服务器，采用了很神奇的做法：把服务器和一台 Windows 机器放在同一局域网下，这样这个 Windows 机器就可以走局域网内部 ssh 上计算服务器。而因为 Windows 侧这种远控软件实在太多，随便选择了 `ToDesk` 来供该局域网外的设备连接进这个 Windows 机器。就像上面的示意图那样，必须要绕个弯才能连上，而且远程桌面几乎就是独占的，一个人上线的时候，别人就等着排队吧。这太不符合 Linux 一开始的设计初衷：多人多工分时系统。
+
+所以为了解决这个问题，一个不错的方法就是绕过可恶的 Windows，用什么东西把计算服务器半暴露在公网环境下，进而让用户就像普通地 `ssh` 一台远程服务器那样，连上这个内网里的计算服务器。但是这就引出一个问题：
 
 <!-- 诶~！那既然聊到这里了，就简单说说密钥和加密是怎么个事儿吧。
 
