@@ -1,0 +1,119 @@
+// =============================================================================
+// CODE MODULE
+// Code Blocks, Syntax Highlighting, and Related Styles
+// =============================================================================
+
+code {
+  word-break: break-all;
+  border-radius: var(--tag-border-radius);
+  font-family: var(--code-font-family);
+}
+
+// 代码块基础样式修改 (合并优化)
+.highlight {
+  border-radius: 20px;
+
+  &:hover {
+    .copyCodeButton {
+      opacity: 1;
+    }
+  }
+
+  pre {
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  .ln {
+    user-select: none;
+  }
+}
+
+// 固定代码块的高度和滚动条问题
+.article-content {
+  .highlight {
+    padding: 20px;
+    background-color: var(--code-background-color);
+    border-radius: 5px;
+
+    .chroma {
+      background-color: var(--code-background-color);
+      
+      // 修复表格布局的双滚动条问题
+      .lntable {
+        overflow-x: auto; // 统一滚动行为
+        
+        // 确保行号和代码同步滚动
+        tbody > tr > td {
+          vertical-align: top;
+          
+          // 移除最后一列的独立滚动
+          &:last-child {
+            overflow-x: visible !important;
+          }
+        }
+      }
+      
+      // 行号样式优化
+      .lnt, .ln {
+        user-select: none; // 行号不可选择
+        margin-right: 0.8em;
+        padding: 0 0.4em;
+        color: #7f7f7f;
+      }
+    }
+
+    pre {
+      width: auto;
+      max-height: 50em;
+      overflow-x: auto; // 确保代码块有水平滚动
+      overflow-y: auto; // 确保代码块有垂直滚动
+    }
+  }
+}
+
+// 额外的代码块优化
+.chroma {
+  // 确保代码块容器的滚动行为一致
+  overflow-x: auto;
+  
+  // 优化行号和代码的对齐
+  .lntable {
+    display: table;
+    width: 100%;
+    border-spacing: 0;
+    
+    tbody {
+      display: table-row-group;
+      
+      tr {
+        display: table-row;
+        
+        td {
+          display: table-cell;
+          vertical-align: top;
+          padding: 0;
+          border: 0;
+          
+          // 行号列
+          &:first-child {
+            width: auto;
+            min-width: max-content;
+          }
+          
+          // 代码列
+          &:last-child {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  
+  // 内联行号样式 (当 lineNumbersInTable = false 时)
+  .ln {
+    display: inline;
+    margin-right: 0.8em;
+  }
+}

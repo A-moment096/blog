@@ -1,0 +1,158 @@
+// =============================================================================
+// ANIMATIONS MODULE
+// All Animations, Transitions, and Interactive Effects
+// =============================================================================
+
+// 头像旋转动画 (统一定义)
+.sidebar header .site-avatar .site-logo,
+.home .home-profile .home-avatar img {
+  transition: transform 1.65s ease-in-out;
+
+  &:hover {
+    transform: rotate(360deg);
+  }
+}
+
+.home .home-profile .home-avatar img {
+  width: 5rem;
+}
+
+// 👋emoji实现摆动效果
+.shake {
+  display: inline-block;
+  animation: shake 1s ease 2s 1 normal none running;
+
+  @keyframes shake {
+    0% {
+      transform: rotate(0);
+    }
+
+    25% {
+      transform: rotate(45deg) scale(1.2);
+    }
+
+    50% {
+      transform: rotate(0) scale(1.2);
+    }
+
+    75% {
+      transform: rotate(45deg) scale(1.2);
+    }
+
+    100% {
+      transform: rotate(0);
+    }
+  }
+}
+
+// 实现字符跳动动画
+@for $i from 1 through 9 {
+  .jump-text#{$i} {
+    display: inline-block;
+    animation: jump 0.5s 1;
+    animation-delay: #{$i * 0.1}s;
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+// 页面加载动画部分
+#loading-box {
+  .loading-left-bg,
+  .loading-right-bg {
+    position: fixed;
+    z-index: 1000;
+    width: 50%;
+    height: 100%;
+    background-color: #b1c0c7;
+    transition: all 0.5s;
+  }
+
+  .loading-right-bg {
+    right: 0;
+  }
+
+  > .spinner-box {
+    position: fixed;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+
+    .configure-border-1 {
+      position: absolute;
+      padding: 3px;
+      width: 115px;
+      height: 115px;
+      background: #ffab91;
+      animation: configure-clockwise 3s ease-in-out 0s infinite alternate;
+    }
+
+    .configure-border-2 {
+      left: -115px;
+      padding: 3px;
+      width: 115px;
+      height: 115px;
+      background: rgb(63, 249, 220);
+      transform: rotate(45deg);
+      animation: configure-xclockwise 3s ease-in-out 0s infinite alternate;
+    }
+
+    .loading-word {
+      position: absolute;
+      color: #ffffff;
+      font-size: 1.8rem;
+      font-family: 'Zhi Mang Xing', cursive;
+    }
+
+    .configure-core {
+      width: 100%;
+      height: 100%;
+      background-color: #37474f;
+    }
+  }
+}
+
+div.loaded {
+  div.loading-left-bg {
+    transform: translate(-100%, 0);
+  }
+
+  div.loading-right-bg {
+    transform: translate(100%, 0);
+  }
+
+  div.spinner-box {
+    display: none !important;
+  }
+}
+
+@keyframes configure-clockwise {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes configure-xclockwise {
+  0% { transform: rotate(45deg); }
+  25% { transform: rotate(-45deg); }
+  50% { transform: rotate(-135deg); }
+  75% { transform: rotate(-225deg); }
+  100% { transform: rotate(-315deg); }
+}

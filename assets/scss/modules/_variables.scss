@@ -1,0 +1,40 @@
+// =============================================================================
+// VARIABLES MODULE
+// CSS Custom Properties and Theme Variables
+// =============================================================================
+
+:root {
+  // 全局顶部边距
+  --main-top-padding: 30px;
+  // 全局卡片圆角
+  --card-border-radius: 25px;
+  // 标签云卡片圆角  
+  --tag-border-radius: 8px;
+  // 分类标签圆角
+  --category-border-radius: 8px;
+  // 卡片间距
+  --section-separation: 40px;
+  // 全局字体大小
+  --article-font-size: 1.8rem;
+  // 行内代码背景色
+  --code-background-color: #f8f8f8;
+  // 行内代码前景色
+  --code-text-color: #e96900;
+  
+  --detail-background: #e7f2e8;
+  --block-background-color: #e7f2e8;
+
+  // 暗色模式下样式
+  &[data-scheme="dark"] {
+    --code-text-color: #e7c6a9;
+    --detail-background: #5b5b5b;
+    --block-background-color: #5f5f5f;
+    --figure-background: #858585;
+  }
+}
+
+// 设置选中字体的区域背景颜色
+::selection {
+  color: #fff;
+  background: #557697;
+}
