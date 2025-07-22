@@ -1,4 +1,17 @@
-public
+# Hugo build artifacts
 resources
 .hugo_build.lock
-themes/
+
+# Built site (will be deployed to separate public repo)
+public
+
+# IDE and OS files
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local environment files
+.env
+.env.local
