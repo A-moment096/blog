@@ -41,7 +41,7 @@ jobs:
         
         # Clone public repo with shallow history for speed
         echo "🔄 Cloning public repository..."
-        git clone --depth=1 https://${{ secrets.GITHUB_TOKEN }}@github.com/A-moment096/A-moment096.github.io.git public-repo
+        git clone --depth=1 https://${{ secrets.DEPLOY_TOKEN }}@github.com/A-moment096/A-moment096.github.io.git public-repo
         cd public-repo
         
         # Switch to gh-pages branch (or create it)
