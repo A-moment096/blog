@@ -1,30 +1,31 @@
-name: Deploy Hugo Site to GitHub Pages
+name: Optimized Deploy to Public GitHub Pages
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: # Allow manual triggers
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# Minimal permissions needed
 permissions:
   contents: read
 
 # Allow only one concurrent deployment
 concurrency:
-  group: "pages"
+  group: "dual-repo-deploy"
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
+    - name: Checkout private repository
       uses: actions/checkout@v4
       with:
         submodules: true
-        fetch-depth: 0
+        fetch-depth: 1  # Shallow clone for speed
 
     - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2
+      uses: peaceiris/actions-hugo@v3
       with:
         hugo-version: 'latest'
         extended: true
@@ -32,49 +33,35 @@ jobs:
     - name: Build with Hugo
       run: hugo --minify
 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: ./public
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: ./public
-      
-      - name: Extract GitHub Pages artifact
-        run: |
-          cd public
-          tar -xf artifact.tar
-
-      - name: Deploy to public repository
-        run: |
-          # Configure git
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          
-          # Clone the public repository
-          git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/A-moment096/A-moment096.github.io.git public-repo
-          cd public-repo
-          
-          # Switch to gh-pages branch (or create it)
-          git checkout gh-pages || git checkout -b gh-pages
-          
-          # Remove all files except .git
-          find . -not -path './.git*' -delete
-          
-          # Copy static files from Hugo build
-          cp -r ../public/* .
-          
-          # Add a CNAME file if needed for custom domain
-          # echo "yourdomain.com" > CNAME
-          
-          # Commit and push
+    - name: Optimized deploy to public repository
+      run: |
+        # Configure git with bot credentials
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        
+        # Clone public repo with shallow history for speed
+        echo "🔄 Cloning public repository..."
+        git clone --depth=1 https://${{ secrets.GITHUB_TOKEN }}@github.com/A-moment096/A-moment096.github.io.git public-repo
+        cd public-repo
+        
+        # Switch to gh-pages branch (or create it)
+        echo "📂 Switching to gh-pages branch..."
+        git checkout gh-pages || git checkout -b gh-pages
+        
+        # Smart sync: only update changed files (much faster than delete-all)
+        echo "🚀 Syncing files efficiently..."
+        rsync -av --delete --exclude='.git' --exclude='.github' ../public/ ./
+        
+        # Add CNAME if you have a custom domain
+        # echo "yourdomain.com" > CNAME
+        
+        # Only commit if there are actual changes
+        if [[ -n $(git status --porcelain) ]]; then
+          echo "✅ Changes detected, deploying..."
           git add .
-          git commit -m "Deploy static site - $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git commit -m "🚀 Deploy: $(date +'%Y-%m-%d %H:%M:%S')"
           git push origin gh-pages
+          echo "🎉 Site deployed successfully!"
+        else
+          echo "ℹ️ No changes detected, skipping deployment"
+        fi
