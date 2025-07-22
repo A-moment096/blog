@@ -33,35 +33,13 @@ jobs:
     - name: Build with Hugo
       run: hugo --minify
 
-    - name: Optimized deploy to public repository
-      run: |
-        # Configure git with bot credentials
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        
-        # Clone public repo with shallow history for speed
-        echo "🔄 Cloning public repository..."
-        git clone --depth=1 https://${{ secrets.DEPLOY_TOKEN }}@github.com/A-moment096/A-moment096.github.io.git public-repo
-        cd public-repo
-        
-        # Switch to gh-pages branch (or create it)
-        echo "📂 Switching to gh-pages branch..."
-        git checkout gh-pages || git checkout -b gh-pages
-        
-        # Smart sync: only update changed files (much faster than delete-all)
-        echo "🚀 Syncing files efficiently..."
-        rsync -av --delete --exclude='.git' --exclude='.github' ../public/ ./
-        
-        # Add CNAME if you have a custom domain
-        # echo "yourdomain.com" > CNAME
-        
-        # Only commit if there are actual changes
-        if [[ -n $(git status --porcelain) ]]; then
-          echo "✅ Changes detected, deploying..."
-          git add .
-          git commit -m "🚀 Deploy: $(date +'%Y-%m-%d %H:%M:%S')"
-          git push origin gh-pages
-          echo "🎉 Site deployed successfully!"
-        else
-          echo "ℹ️ No changes detected, skipping deployment"
-        fi
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.DEPLOY_TOKEN }}
+        external_repository: A-moment096/A-moment096.github.io
+        publish_dir: ./public
+        publish_branch: gh-pages
+        force_orphan: false  # Preserves git history
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
