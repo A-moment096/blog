@@ -21,13 +21,10 @@ draft: false
 ---
 
 *怎么连接个服务器还得先用 ToDesk 连上个 Windows 电脑，再从这个电脑上 ssh 进服务器呀！？受不鸟，自己搭个 FRP 服务吧*
-<<<<<<< HEAD
-=======
 
 *图为可爱的风笛小姐，据不可靠消息，应该是来自于画师 [Liyu黎](https://weibo.com/u/5979033109) 老师画的 2022 音律联觉的贺图。既然如此，就配一首风笛小姐的个人 EP：《故乡的风》吧。*
 
 {{<music auto="https://music.163.com/#/album?id=86572348" loop="none">}}
->>>>>>> 93290f6 (Finish FRP Deploy, add new Encrypt and Secret)
 
 ## 引子：为什么要跳板机
 
@@ -351,8 +348,4 @@ WantedBy=multi-user.target
 
 还有要说的是，有一些场景是不可以使用 FRP 服务或者类似的远程访问的服务的。没错，向日葵，ToDesk 这类也不行。网上是有使用类似服务结果酿成大祸的情况的。在使用这类服务前，还是要先三思呀。
 
-<<<<<<< HEAD
 最后，一如既往地，辛苦你看到这里。感谢您的支持，也同时祝您生活愉快~
-=======
-最后，一如既往地，辛苦你看到这里。感谢您的支持，也同时祝您生活愉快~
->>>>>>> 93290f6 (Finish FRP Deploy, add new Encrypt and Secret)
