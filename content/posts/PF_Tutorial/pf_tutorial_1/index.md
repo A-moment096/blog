@@ -9,7 +9,7 @@ tags:
 - Numerical Analysis
 title: "Phase Field: 相场模拟学习笔记 I"
 description: 记录相场方法的学习内容
-image: Skadi.png
+image: "/posts/PF_Tutorial/Skadi.png"
 date: 2024-11-01
 math: true
 links:
