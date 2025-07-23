@@ -9,7 +9,7 @@ tags:
 - Tutorial
 mermaid: true
 draft: false
-hide: true
+hidden: true
 ---
 
 这个页面展示了博客中 Mermaid 图表的各种使用方式。
@@ -74,7 +74,7 @@ gantt
 
 ## 类图 (Class Diagram)
 
-{{< mermaid caption="Hugo 项目结构类图" >}}
+```mermaid {title="Hugo 项目结构类图"}
 classDiagram
     class HugoSite {
         +config.toml
@@ -109,17 +109,17 @@ classDiagram
     HugoSite ||--o{ Content : contains
     HugoSite ||--|| Theme : uses
     HugoSite ||--|| Deployment : deploys with
-{{< /mermaid >}}
+```
 
 ## 饼图 (Pie Chart)
 
-{{< mermaid caption="博客内容分布" >}}
+```mermaid title="博客内容分布"
 pie title 博客文章分类分布
     "相场模拟" : 45
     "编程技术" : 25
     "数学笔记" : 15
     "其他内容" : 15
-{{< /mermaid >}}
+```
 
 ## 使用方法
 
