@@ -1,14 +1,17 @@
 ---
 categories:
 # - Mathematics
-# - Programming
+- Programming
 # - Phase Field
 # - Others
 tags:
-# - 
-title: "EncryptAndSecret"
-description: 
-date: 2025-07-23T12:07:49+08:00
+- Linux
+- Shell
+- Server
+- Talk
+title: "聊聊加密与验证"
+description: "大概是科普向的杂谈？"
+date: 2025-07-26T12:07:49+08:00
 image: 
 math: true
 license: 
