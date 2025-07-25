@@ -101,7 +101,7 @@ draft: false
 int main() {
     std::vector<int> v;
 
-    for (int i = 0; i < 5; ++i) 
+    for (int i = 0; i < 5; ++i) {
         // We use "push_back" push an element to the back of a vector
         v.push_back(i);
         std::cout << "Added: " << i

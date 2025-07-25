@@ -1,0 +1,46 @@
+{{- $content := string .Inner -}}
+{{- $lines := split $content "\n" -}}
+
+{{- $prefixes := slice "$ " "> " "% " "# " -}}
+{{- $commandLines := slice -}}
+
+<div class="bash-block highlight chroma">
+  <button class="copyCodeButton" data-copy-target>
+    {{/* 默认 Copy 按钮 HTML，比如 Stack 主题 */}}
+    Copy
+  </button>
+
+  {{- range $lines }}
+  {{- $line := . -}}
+  {{- $found := false -}}
+
+  {{- range $p := $prefixes }}
+  {{- if and (not $found) (hasPrefix $line $p) -}}
+  {{- $cmd := replace $line $p "" -}}
+  {{- $commandLines = $commandLines | append $cmd -}}
+  <div class="bash-line bash-command">
+    <span class="bash-prompt">{{ $p | html }}</span>
+    {{ $codeWords := split $cmd " " }}
+    <span class="bash-code">
+      <span class="bash-app">{{ index $codeWords 0 }}</span>
+      {{ range $i, $w := $codeWords }}
+      {{ if gt $i 0 }} {{ $w }}{{ end }}
+      {{ end }}
+    </span>
+  </div>
+  {{- $found = true -}}
+  {{- end -}}
+  {{- end }}
+
+  {{- if not $found }}
+  {{- if ne $line "" }}
+  <div class="bash-line bash-output">{{ $line | html }}</div>
+  {{- end }}
+  {{- end }}
+  {{- end }}
+
+  {{- /* 渲染 commandLines 为 data attribute */ -}}
+  <textarea class="copy-target" style="display:none;">
+{{- range $commandLines }}{{ . }}
+{{ end -}}</textarea>
+</div>

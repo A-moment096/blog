@@ -117,3 +117,54 @@ code {
     margin-right: 0.8em;
   }
 }
+
+.bash-block {
+  position: relative;
+
+  &::before {
+    content: "Bash";
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 0.75em;
+    color: var(--code-foreground-color, #aaa);
+    opacity: 0.6;
+  }
+}
+
+
+.bash-block {
+  @extend .highlight;
+  background-color: var(--code-background-color);
+  padding: 20px 20px 20px 30px !important;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-family: var(--code-font-family);
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.bash-command {
+  color: inherit;
+
+  .bash-prompt {
+    --bash-color: #00aeff;
+    color: var(--bash-color);
+    margin-right: 0.4em;
+    user-select: none;
+  }
+
+  .bash-code {
+    color: inherit;
+  }
+}
+
+.bash-output {
+  color: var(--code-foreground-color, #b88c13);
+  padding-left: 1.5em;
+}
+
+.bash-command .bash-app {
+  color: #a0cf7f; // 明亮橙或其他对比色
+  font-weight: bold;
+}

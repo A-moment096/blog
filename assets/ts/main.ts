@@ -63,8 +63,8 @@ let Stack = {
          * Add copy button to code block
         */
         const highlights = document.querySelectorAll('.article-content div.highlight');
-        const copyText = `Copy`,
-            copiedText = `Copied!`;
+        const copyText = `Copy`;
+        const copiedText = `Copied!`;
 
         highlights.forEach(highlight => {
             const copyButton = document.createElement('button');
@@ -72,30 +72,45 @@ let Stack = {
             copyButton.classList.add('copyCodeButton');
             highlight.appendChild(copyButton);
 
+            // 普通代码块：<code data-lang>
             const codeBlock = highlight.querySelector('code[data-lang]');
-            if (!codeBlock) return;
+
+            // Bash 代码块：隐藏 <textarea.copy-target>
+            const bashHiddenText = highlight.querySelector('textarea.copy-target') as HTMLTextAreaElement | null;
 
             copyButton.addEventListener('click', () => {
-                const lines = codeBlock.querySelectorAll('.line .cl');
-                let codeTexts = [];
-                lines.forEach(line => {
-                    codeTexts.push(line.textContent);
-                });
-                const finalCode = codeTexts.join('');
+                let finalCode = '';
+
+                if (codeBlock) {
+                    // 原有逻辑：逐行复制
+                    const lines = codeBlock.querySelectorAll('.line .cl');
+                    let codeTexts: string[] = [];
+                    lines.forEach(line => {
+                        codeTexts.push(line.textContent || '');
+                    });
+                    finalCode = codeTexts.join('');
+                } else if (bashHiddenText) {
+                    // 新增逻辑：复制 textarea 内容
+                    finalCode = bashHiddenText.value;
+                } else {
+                    // fallback：啥都找不到
+                    return;
+                }
+
                 navigator.clipboard.writeText(finalCode)
                     .then(() => {
                         copyButton.textContent = copiedText;
-
                         setTimeout(() => {
                             copyButton.textContent = copyText;
                         }, 1000);
                     })
                     .catch(err => {
-                        alert(err)
-                        console.log('Something went wrong', err);
+                        alert('复制失败：' + err);
+                        console.error('Copy error:', err);
                     });
             });
         });
+
 
         new StackColorScheme(document.getElementById('dark-mode-toggle'));
     }
