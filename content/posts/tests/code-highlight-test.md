@@ -1,12 +1,53 @@
 ---
 title: "代码高亮测试"
-date: 2025-07-25
-draft: false
+date: 3000-07-25
+draft: true
+# hidden: true
 ---
 
 这是用于测试 Hugo 中各种编程语言的代码高亮支持情况。
 
 ---
+
+## Bash-Session (Console)
+
+```console
+> echo hello
+hello
+$ ls -l
+total 12
+-rw-r--r--  1 user user  123 Jul 25 12:01 file1.txt
+-rw-r--r--  1 user user  456 Jul 25 12:02 file2.log
+drwxr-xr-x  2 user user 4096 Jul 25 12:03 dir1
+$ cat file1.txt
+This is a sample text file.
+It contains multiple lines.
+End of file.
+% df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        50G   20G   28G  42% /
+tmpfs           1.9G  2.0M  1.9G   1% /run
+# whoami
+root
+# pacman -Qqe
+base
+>>> echo "Custom prompt!"
+Custom prompt!
+```
+
+## PowerShell
+
+```powershell
+PS> Get-ChildItem
+
+    Directory: C:\Users\User
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----        7/26/2025  10:05 AM                Documents
+-a----        7/25/2025  11:30 PM           1024 notes.txt
+```
+
 
 ## Bash
 

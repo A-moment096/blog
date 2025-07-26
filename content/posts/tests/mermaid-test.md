@@ -1,15 +1,15 @@
 ---
 title: "Mermaid 图表测试页面"
 description: "展示博客中各种 Mermaid 图表的效果"
-date: 2025-01-22T10:00:00+08:00
+date: 3000-01-22T10:00:00+08:00
 categories:
 - Others
 tags:
 - Document
 - Tutorial
 mermaid: true
-draft: false
-hidden: true
+draft: true
+# hidden: true
 ---
 
 这个页面展示了博客中 Mermaid 图表的各种使用方式。

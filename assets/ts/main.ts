@@ -28,86 +28,36 @@ let Stack = {
         }
 
         /**
-         * Add linear gradient background to tile style article
-         */
-        // const articleTile = document.querySelector('.article-list--tile');
-        // if (articleTile) {
-        //     let observer = new IntersectionObserver(async (entries, observer) => {
-        //         entries.forEach(entry => {
-        //             if (!entry.isIntersecting) return;
-        //             observer.unobserve(entry.target);
-
-        //             const articles = entry.target.querySelectorAll('article.has-image');
-        //             articles.forEach(async articles => {
-        //                 const image = articles.querySelector('img'),
-        //                     imageURL = image.src,
-        //                     key = image.getAttribute('data-key'),
-        //                     hash = image.getAttribute('data-hash'),
-        //                     articleDetails: HTMLDivElement = articles.querySelector('.article-details');
-
-        //                 const colors = await getColor(key, hash, imageURL);
-
-        //                 articleDetails.style.background = `
-        //                 linear-gradient(0deg, 
-        //                     rgba(${colors.DarkMuted.rgb[0]}, ${colors.DarkMuted.rgb[1]}, ${colors.DarkMuted.rgb[2]}, 0.5) 0%, 
-        //                     rgba(${colors.Vibrant.rgb[0]}, ${colors.Vibrant.rgb[1]}, ${colors.Vibrant.rgb[2]}, 0.75) 100%)`;
-        //             })
-        //         })
-        //     });
-
-        //     observer.observe(articleTile)
-        // }
-
-
-        /**
          * Add copy button to code block
         */
         const highlights = document.querySelectorAll('.article-content div.highlight');
-        const copyText = `Copy`;
-        const copiedText = `Copied!`;
 
         highlights.forEach(highlight => {
             const copyButton = document.createElement('button');
-            copyButton.innerHTML = copyText;
+            copyButton.innerHTML = 'Copy';
             copyButton.classList.add('copyCodeButton');
             highlight.appendChild(copyButton);
 
-            // 普通代码块：<code data-lang>
             const codeBlock = highlight.querySelector('code[data-lang]');
-
-            // Bash 代码块：隐藏 <textarea.copy-target>
-            const bashHiddenText = highlight.querySelector('textarea.copy-target') as HTMLTextAreaElement | null;
+            const consoleBlock = highlight.classList.contains('console-block');
 
             copyButton.addEventListener('click', () => {
                 let finalCode = '';
 
-                if (codeBlock) {
-                    // 原有逻辑：逐行复制
+                if (consoleBlock) {
+                    const hidden = highlight.querySelector('textarea.copy-target') as HTMLTextAreaElement | null;
+                    if (hidden) {
+                        finalCode = hidden.value;
+                    }
+                } else if (codeBlock) {
                     const lines = codeBlock.querySelectorAll('.line .cl');
-                    let codeTexts: string[] = [];
-                    lines.forEach(line => {
-                        codeTexts.push(line.textContent || '');
-                    });
-                    finalCode = codeTexts.join('');
-                } else if (bashHiddenText) {
-                    // 新增逻辑：复制 textarea 内容
-                    finalCode = bashHiddenText.value;
-                } else {
-                    // fallback：啥都找不到
-                    return;
+                    finalCode = Array.from(lines).map(line => line.textContent ?? '').join('');
                 }
 
-                navigator.clipboard.writeText(finalCode)
-                    .then(() => {
-                        copyButton.textContent = copiedText;
-                        setTimeout(() => {
-                            copyButton.textContent = copyText;
-                        }, 1000);
-                    })
-                    .catch(err => {
-                        alert('复制失败：' + err);
-                        console.error('Copy error:', err);
-                    });
+                navigator.clipboard.writeText(finalCode).then(() => {
+                    copyButton.textContent = 'Copied!';
+                    setTimeout(() => (copyButton.textContent = 'Copy'), 1000);
+                });
             });
         });
 
