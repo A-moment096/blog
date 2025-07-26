@@ -6,7 +6,7 @@
         {
             "label": "Serve Drafts",
             "type": "shell",
-            "command": "hugo server -D",
+            "command": "hugo server -D -F -E --disableFastRender -O",
             "group": {
                 "kind": "test",
                 "isDefault": true
