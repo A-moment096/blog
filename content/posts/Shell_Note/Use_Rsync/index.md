@@ -9,8 +9,8 @@ tags:
 - Shell
 - Tools
 - Note
-title: "使用 `rsync` 进行同步"
-description: '一篇对 `rsync` 使用方法的简单记录'
+title: "使用 rsync 进行同步"
+description: '一篇对 rsync 使用方法的简单记录'
 date: 2025-07-28T12:43:39+08:00
 image: Pianist.jpg
 math: true

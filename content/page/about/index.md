@@ -6,7 +6,7 @@ slug: "about"
 image: Reimu.png
 menu:
     main:
-        weight: 2
+        weight: 10 
         params:
             icon: user
 ---

@@ -5,7 +5,7 @@ date: 2024-11-02 14:34:18
 slug: "thoughts"
 menu:
     main:
-        weight: 3
+        weight: 80
         params:
             icon: sticker
 ---

@@ -5,8 +5,7 @@ date: 3000-01-22T10:00:00+08:00
 categories:
 - Others
 tags:
-- Document
-- Tutorial
+- Test
 mermaid: true
 draft: true
 # hidden: true
