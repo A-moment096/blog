@@ -11,18 +11,19 @@ tags:
 - Note
 title: "使用 `rsync` 进行同步"
 description: '一篇对 `rsync` 使用方法的简单记录'
-date: 2025-07-29T20:12:39+08:00
+date: 2025-07-28T12:43:39+08:00
 image: Pianist.jpg
 math: true
 license: 
 hidden: false
 comments: true
-draft: true
 ---
 
 *有点受不太了 `scp` 和 `sftp` 了，也许是食用姿势不对吧，总之我选择 `rsync`！*
 
-*图源找不到诶……从朋友那里薅过来的图，很漂亮就放在这里了。既然如此就分享一首钢琴曲吧。*
+*图源找不到诶……从朋友那里薅过来的图，很漂亮就放在这里了。既然如此就分享一首钢琴曲吧。一首 **騎士王の誇り** (骑士王的荣耀) 送给大家。*
+
+{{< music auto="https://music.163.com/#/song?id=448119" loop="never">}}
 
 ## 为什么要选择 `rsync` 呢？
 
