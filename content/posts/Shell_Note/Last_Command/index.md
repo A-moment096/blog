@@ -7,6 +7,7 @@ categories:
 tags:
 - Linux
 - Shell
+- Tools
 - Note
 title: "上一个命令是什么？"
 description: "在交互式 [BA,Z]SH 中使用宏获取上个命令的信息"

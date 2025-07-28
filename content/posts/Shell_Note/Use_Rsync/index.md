@@ -5,11 +5,14 @@ categories:
 # - Phase Field
 # - Others
 tags:
-# - 
+- Linux
+- Shell
+- Tools
+- Note
 title: "使用 `rsync` 进行同步"
-description: 
+description: '一篇对 `rsync` 使用方法的简单记录'
 date: 2025-07-29T20:12:39+08:00
-image: 
+image: Pianist.jpg
 math: true
 license: 
 hidden: false
@@ -18,6 +21,8 @@ draft: true
 ---
 
 *有点受不太了 `scp` 和 `sftp` 了，也许是食用姿势不对吧，总之我选择 `rsync`！*
+
+*图源找不到诶……从朋友那里薅过来的图，很漂亮就放在这里了。既然如此就分享一首钢琴曲吧。*
 
 ## 为什么要选择 `rsync` 呢？
 
@@ -67,21 +72,23 @@ rsync -r /home/amoment/myfiles/ amoment@localhost:/home/amoment/somefolder
 
 来把我家目录下的 `myfiles` 文件夹里的内容复制/同步到同在家目录下的 `somefolder` 文件夹下。有了这个例子，你应该也明白怎么跨设备使用 `rsync` 通过 SSH 进行连接与文件传输了吧。
 
+除了使用 SSH 协议以外，`rsync` 还支持一些其他的协议，比如所谓的 RSH，或者 `rsync` 自带的 `rsync://` 协议。但是由于 SSH 的支持还是更加广泛，我们这里还是只介绍该方案。如果感兴趣的话，可以查阅 `rsync` 的手册或者文档等资料。
+
 ### 一些重要的参数
 
 下面列举一些重要的，可能会经常使用到的参数。我们按一个大致的类别做区分，方便查找。
 
 #### 文件操作
 
-- `-r`：recursive
+- `-r --recursive`: 递归模式
 
 它的意思是 *recursive*，也就是递归地把所有内容都传过去。如果不加这个东西，会发生什么呢？好消息是你照样能完成传输，但是坏消息是，你 **只传过去了文件夹**。也就是说，如果你不是只想在目标位置创建一个可能是新的文件夹的话，而是想把文件都传过去，请记得带上 `-r`。
 
-- `-a`: archive
+- `-a -- archive`: 存档模式
 
 你也可以选择不使用 `-r` 而是使用 `-a`，使用 `-a` 会以存档方式传输文件，也就是说，文件夹内的所有东西都会 *保持原样* 地传过去：不论是文件，文件夹，还是链接，设备描述符等，全都会原样传过去。`-a` 实际上是一系列参数的总和。根据帮助文档所述，是 `-rlptgoD`。还挺多的……
 
-- `--delete`
+- `--delete`: 允许删除不同步的内容
 
 因为 `rsync` 如其名所示，是 *同步软件*，因此我们也许希望不是 “上传” 文件，而是 *把本地文件结构同步到远程*。此时，我们需要用到 `--delete` 这个参数，它给了 `rsync` 删除目标文件夹内多余文件的权利，从而保证你确实是在 *同步* 内容。
 
@@ -93,31 +100,31 @@ rsync -r /home/amoment/myfiles/ amoment@localhost:/home/amoment/somefolder
 
 加上这个参数会让 `rsync` 检查接收端已有文件的名字，如果本地和接收端都有这么个文件（名称相同），则会跳过这个文件不进行传输。
 
-- `-u`: --update
+- `-u --update`: 只传输更新的内容
 
 这个参数意味着你是打算 *更新* 文件们。那么，如果接收端的文件比发送端更新（还要新）呢？答案就是不会碰这些文件。
 
-- `-z`: compress
+- `-z --compress`: 先压缩一下
 
 这个参数会告诉 `rsync` 传输前先帮你把要传的东西压缩一下。`rsync` 会自己选择一个压缩方法，所以一般不用担心。
 
 #### 信息提供
 
-- `-n`: dry-run
+- `-n --dry-run`: 试运行
 
-你要是害怕传过去的内容不是你实际打算传的东西，你可以先让 `rsync` 告诉你目前的命令会传些什么，且不真的开始工作，只需要加上 `-n` 就可以。你可以把它理解为 *no*，即便实际上它对应的长参数是 `--dry-run`。拿不准会传些什么过去的时候，这个命令会很有用。
+你要是担心传过去的内容不是你实际打算传的东西，你可以先让 `rsync` 告诉你目前的命令会传些什么，且不真的开始工作，只需要加上 `-n` 就可以。你可以把它理解为 *no*，即便实际上它对应的长参数是 `--dry-run`。拿不准会传些什么过去的时候，这个命令会很有用。
 
-- `-v`: verbose
+- `-v --verbose`: 更啰嗦一些
 
 几乎所有（较复杂）的命令行程序都会内置这样一个命令，来把工作信息 “更啰嗦” 地显示出来。如果你需要额外的信息，请使用这个参数。
 
-- `-P`: Progress
+- `-P`: 进度条
 
 就是让 `rsync` 报告当前的传输进度。我很喜欢用。
 
 #### 涉及 `rsync` 本身 / 远程协作
 
-- `-e`: 要走哪个 shell （rsh）
+- `-e --rsh`: 指定传输协议 
 
 可能我们要传输的设备开放的 SSH 端口不在默认的 `22` 而是一个自定义的端口。此时我们就需要 `-e` 然后在后面带上一个字符串来表示使用的 shell 是哪个。比如我的远程接收端接口是 `1145`，则我会使用
 
@@ -137,13 +144,19 @@ rsync -r --rsync-path 'wsl rsync' me@remote:/myfiles/ /myfiles
 
 来让远程使用 WSL 上的 `rsync` 为我进行工作。
 
-## 帮到我的链接
+## 后记
 
-这里简单记录一些我学习这些命令时用到的网页链接。感谢~
+我一开始使用 `rsync` 的主要理由其实是为了在不同的设备之间同步我的歌曲库。由于我有一些歌曲通过移动硬盘已经移动了一部分，而还有一部分没有同步，在另一台电脑上我甚至新添加了一张专辑，所以感觉单纯地自己手动搜索要迁移的文件有点太累了。而此时，`rsync` 用它 **增量同步** 的特性吸引了我，我便使用这么个方式来把远程的歌曲同步到本地电脑上来。
+
+`rsync` 还是挺好用的，它的语法可能没有那么智能，但是已经足以应付我遇到的问题了。印象中还有一些别的同步软件，比如朋友推荐的 `Syncthing`，也许后面会尝试使用一下。
+
+另外不得不提的是我在准备该文章时查阅过的信息源。非常感谢！
 
 - 首先，ChatGPT 和 Deepseek，完全不了解的时候和这些 AI 问一下还是挺好用的；
 - [rsync tutorial](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories): 一个简单的 rsync walkthrough，帮了我很多；
-<!-- - [](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories) -->
+- [rsync command in Linux with Examples](https://www.geeksforgeeks.org/linux-unix/rsync-command-in-linux-with-examples/): GeeksForGeeks 下的一个博客，内容很丰富。
+
+最后，感谢您能看到这里，祝您身体健康，心情愉悦~
 
 
 
