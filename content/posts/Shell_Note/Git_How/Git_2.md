@@ -12,7 +12,7 @@ tags:
 title: "Git，你能帮帮我吗？其二"
 description: "（也许是）一个 Git 教程？"
 date: 2025-07-28T22:49:16+08:00
-image: 
+image: /posts/Shell_Note/Git_How/Tatara Kogasa.jpg
 math: true
 license: 
 hidden: false

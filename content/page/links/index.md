@@ -27,6 +27,7 @@ toc: false
 ## 工具类网站
 
 [Comment Block Generator](https://blocks.jkniest.dev/): 生成注释块，格式化注释很漂亮
+[Mermaid Chart](https://www.mermaidchart.com/play): Mermaid Playground，可以用来画图/预览图
 
 ## Blog 装修
 
@@ -57,6 +58,10 @@ toc: false
 
 - [Github FRP](https://github.com/fatedier/frp): Github 上的 `frp` 项目主页
 - [FRP 配置教程](https://github.com/CNFlyCat/UsefulTutorials/): 非常详细的教程，参考了很多
+
+### Git
+
+- [给傻子的 Git 教程](https://www.bilibili.com/video/BV1Hkr7YYEh8): 非常好的教程，使我大脑旋转
 
 ## 数学笔记
 

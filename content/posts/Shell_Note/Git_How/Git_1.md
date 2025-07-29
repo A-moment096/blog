@@ -12,15 +12,20 @@ tags:
 title: "Git，你能帮帮我吗？其一"
 description: "（也许是）一个 Git 教程？"
 date: 2025-07-28T22:49:16+08:00
-image: 
+image: /posts/Shell_Note/Git_How/Tatara Kogasa.jpg
 math: true
 license: 
 hidden: false
 comments: true
-draft: true
+draft: false
+mermaid: true
 ---
 
 *Git 真的很好用，但是 Git 的命令真的好复杂。尝试从使用目的/使用流程上来写一写可以怎么用 Git 吧~*
+
+*头图出自 [夏空](https://www.pixiv.net/en/users/75383094) 太太所画的 [多多良 小伞](https://www.pixiv.net/en/artworks/116876998)，可爱捏~ 那就来一曲小伞的个人曲吧*
+
+{{<music auto= "https://music.163.com/#/song?id=22636608" loop="never">}}
 
 ## 如果你几乎没听说过 Git ……
 
@@ -138,10 +143,28 @@ Tig 的故事貌似有点无聊，毕竟，给 Git 硬套个背景，貌似有�
 
 这个命令要注意的点是，不要在本地有修改没存的情况下执行 `git pull`。如果本地和远程起了冲突，会很麻烦。避免麻烦的最好方式是，先 `git pull` 之后再做自己的修改。
 
+### 画个流程图
+
+```mermaid {{title = "Git 日常工作流"}}
+flowchart LR
+    A[开始] --> B[git init\n创建新仓库]
+    A --> C[git clone\n克隆已有仓库]
+    B --> D[在仓库中做出变更]
+    C --> D
+    D -- 暂时存下 --> E[git add .\n暂存已有变更]
+    E -- 满意已暂存内容 --> F[git commit\n提交所有暂存的变更]
+    F --> G[git push\n上传至远程仓库]
+    G --> H[其他设备: git pull\n从远程获取最新变更]
+    H --> D
+    F --> D
+```
+
 ## 好累，先聊到这里吧
 
 我们已经介绍了 Git 是什么以及日常会用到的功能。我可以说，除了剩下关于 Git 另一个非常强大的功能：分支的两三个命令，以及一两个我觉得好用的命令以外，剩下的命令都是我很不常用的命令了。剩下的命令几乎只有在我搞砸了什么东西的时候临时从网上搜来救火用的，而保持良好的使用习惯的话真的是很少用到这些麻烦/复杂/难以理解的功能的。
 
 所以，如果你看到了这里，恭喜你已经掌握了 Git 单分支的工作流程了。就是改文件，暂存，提交，推送。而下一章我们会看看 Git 被吹的神乎其神的分支到底是个啥。
+
+这里要特别声明的是，这篇文章的比喻借鉴了 [HDAlex_John](https://space.bilibili.com/337242418) 的 Git 教程系列：[给傻子的 Git 教程](https://www.bilibili.com/video/BV1Hkr7YYEh8)，讲的相当好。好在我不是傻子，看着也不累，哈哈哈哈。（还是自己写起来比较累）
 
 那么最后，感谢你看到这里，祝你心情愉悦，生活顺遂！~
