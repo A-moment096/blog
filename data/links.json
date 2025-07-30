@@ -4,10 +4,23 @@
     "website": "https://0o0.codeberg.page/",
     "image": "https://0o0.codeberg.page/img/avatar_hu_d4c2d797ac3a9b7.png",
     "description": "愿走向深渊的旅途里可以遇见无限美好"
-  },{
+  },
+  {
     "title": "曦涵猫猫的Blog",
     "website": "https://next-cat.com",
     "image": "https://next-cat.com/logo",
-    "description":  "一只小猫的小窝 "
+    "description": "一只小猫的小窝 "
+  },
+  {
+    "title": "Kokosa's Blog",
+    "website": "https://www.kokosa.icu/",
+    "image": "https://avatars.githubusercontent.com/u/119999228?v=4",
+    "description": "ココサ、あなたを救♥助します……です?"
+  },
+  {
+    "title": "ClovertaTheTrilobita",
+    "website": "https://cloverta.top/",
+    "image": "http://blog.cloverta.top/wp-content/uploads/2025/04/512x512-1.jpg",
+    "description": "a.k.a. 寒武纪的三叶虫?"
   }
 ]
