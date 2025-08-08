@@ -24,10 +24,19 @@ toc: false
 
 欢迎投稿哦~ 你可以把你觉得好用的网站链接发到这里来。
 
+## 觉得特别好所以很值得一个手动置顶
+
+- [**提问的智慧**](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md)
+
+    每当有问题/有点子，在上群组/论坛查消息/看帖子的时候，又或是看到网上的逆天提问/爷新出现的时候，我总是会想起大一网上冲浪时，某早已记不得的链接带领我点进这篇文章的下午。虽然通篇其实是面向在 “黑客” 或者极客群体论坛/群组/邮件列表提问时的注意事项（甚至有点黑客群体自白的意思？），但是我感觉内容完全不需要拘束于某几个特定领域。*提问的智慧* 这个名称恰如其分。
+
+    这里还是贴上本文的[英文原文](http://www.catb.org/~esr/faqs/smart-questions.html)以及本中文文档的[原繁中仓库](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)
+
 ## 工具类网站
 
-[Comment Block Generator](https://blocks.jkniest.dev/): 生成注释块，格式化注释很漂亮
-[Mermaid Chart](https://www.mermaidchart.com/play): Mermaid Playground，可以用来画图/预览图
+- [Comment Block Generator](https://blocks.jkniest.dev/): 生成注释块，格式化注释很漂亮
+- [Mermaid Chart](https://www.mermaidchart.com/play): Mermaid Playground，可以用来画图/预览图
+- [IT-TOOLS](https://it-tools.tech/): 非常好工具站，使我大脑旋转
 
 ## Blog 装修
 

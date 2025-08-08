@@ -1,15 +1,17 @@
 # https://just.systems
-set windows-shell :=["C:\\Program Files\\Git\\usr\\bin\\sh.exe","-c"]
-
-default:
-    echo 'Hello, world!'
+set positional-arguments
 
 full-test:
     hugo server -D -F -E --disableFastRender -O
 
+rm-build:
+    rm -rfi public resources
+
+rebuild-test: rm-build full-test
+
 pre-test:
     hugo server --minify -O
-
+    
 publish:
     git checkout draft
     git push
