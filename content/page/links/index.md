@@ -71,6 +71,7 @@ toc: false
 ### Git
 
 - [给傻子的 Git 教程](https://www.bilibili.com/video/BV1Hkr7YYEh8): 非常好的教程，使我大脑旋转
+- [Learn Git Branching](https://learngitbranching.js.org/): 很不错的 Git 分支操作游戏，在实际操作中了解如何管理 Git 分支。我玩了一下午通关了，很好玩。
 
 ## 数学笔记
 
