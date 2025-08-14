@@ -11,13 +11,12 @@ tags:
 - VCS 
 title: "Git，你能帮帮我吗？其二"
 description: "看看 Git 分支（branch）吧！"
-date: 2025-07-28T22:49:16+08:00
+date: 2025-08-14T16:49:16+08:00
 image: /posts/Shell_Note/Git_How/Tatara Kogasa.jpg
 math: true
 license: 
 hidden: false
 comments: true
-draft: true
 mermaid: true
 ---
 
@@ -25,7 +24,7 @@ mermaid: true
 
 *头图信息请参考上一节内容，谢谢~*
 
-{{<music auto="https://music.163.com/#/playlist?id=7632549733&creatorId=8023998238">}}
+{{<music auto="https://music.163.com/#/song?id=785695" loop="never">}}
 
 ## 分支，是那个分支吗？
 
