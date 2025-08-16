@@ -56,6 +56,7 @@ toc: false
 - [记得装 networkmanager 之一](ttps://bbs.archlinuxcn.org/viewtopic.php?id=12603)，[之二](https://www.cnblogs.com/yuxiayizhengwan/p/16576946.html): 也算是被狠狠坑过了
 - [连校园网 之一](https://www.cnblogs.com/holaworld/p/17839616.html)，[之二](https://www.bilibili.com/opus/852262124483772422): 其实如果有浏览器就好说很多了，`192.168.0.1` 一般就是网关
 - [管理电脑上的字体](https://catcat.cc/post/2021-03-07/): 解决电脑上字体渲染问题，特别是一些丑丑的日韩港澳台地区使用的繁体/旧体/变体汉字
+- [Remap Caps Lock to Escape and Control](https://ejmastnak.com/tutorials/arch/caps2esc/): 使用 `interception-caps2esc` 来把没什么用的 **CapsLock** 映射为更常用的 **Esc**
 
 ## Linux 命令笔记
 
