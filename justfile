@@ -25,3 +25,6 @@ sync:
     git pull
     git checkout draft
     git pull
+
+new name:
+    hugo new content 'content/posts/{{name}}/index.md'
