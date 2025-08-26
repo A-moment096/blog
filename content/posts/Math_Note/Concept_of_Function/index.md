@@ -11,7 +11,7 @@ tags:
 - Notations
 - Talk
 title: "到底啥是函数！？"
-description: "一个我们天天到的，熟悉又陌生的概念"
+description: "一个我们天天用到的，熟悉又陌生的概念"
 date: 2025-07-25T18:41:51+08:00
 image: 
 math: true
