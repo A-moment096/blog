@@ -157,10 +157,6 @@ def example_function():
 
 > 这是一个简单的引用。
 
-> 这是一个多行引用。
-> 
-> 引用可以包含多个段落。
-
 > 嵌套引用示例：
 > 
 > > 这是嵌套的引用内容。
@@ -180,39 +176,17 @@ def example_function():
 > 
 > 这里还有一些 `行内代码` 在引用中的显示效果。
 
-> **警告类型引用块测试：**
+> [!WARNING]
 > 
 > 这是一段比较长的引用内容，用来测试背景色的显示效果。包含 `行内代码` 和其他格式。
-> 
-> ```javascript
-> // 代码块测试
-> function copyButtonTest() {
->     console.log("测试复制按钮位置是否正确");
->     return true;
-> }
-> ```
-{.warning}
 
-> **提示信息：**
+> [!NOTE]
 > 
 > 这是 note 类型的引用块，背景色应该是淡蓝色。
-> 
-> ```bash
-> # 命令行示例
-> ls -la
-> cd /path/to/directory
-> ```
-{.note}
 
-> **危险警告：**
+> [!CAUTION]
 > 
 > 这是 danger 类型的引用块，应该显示为淡红色背景。
-> 
-> ```sql
-> -- 危险的 SQL 操作
-> DROP TABLE users;  -- 千万不要执行！
-> ```
-{.danger}
 
 ## 水平分割线 Horizontal Rules
 

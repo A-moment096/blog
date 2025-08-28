@@ -1,0 +1,29 @@
+{{- $type := .Get 0 | default "note" -}}
+{{- $title := .Get 1 | default (title $type) -}}
+{{- $content := .Inner -}}
+
+{{- $colors := dict 
+    "note" "#0969da"
+    "tip" "#1a7f37" 
+    "important" "#8250df"
+    "warning" "#ff8c00"
+    "caution" "#d1242f"
+-}}
+
+{{- $icons := dict
+    "note" "info"
+    "tip" "light-bulb"
+    "important" "report" 
+    "warning" "alert"
+    "caution" "stop"
+-}}
+
+<div class="github-alert github-{{ $type }}">
+    <div class="github-alert-title">
+        <span>{{ index $icons $type }}</span>
+        <span>{{ $title }}</span>
+    </div>
+    <div class="github-alert-content">
+        {{ $content | markdownify }}
+    </div>
+</div>

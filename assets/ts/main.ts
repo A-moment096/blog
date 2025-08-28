@@ -12,6 +12,7 @@ import createElement from 'ts/createElement';
 import StackColorScheme from 'ts/colorScheme';
 import { setupScrollspy } from 'ts/scrollspy';
 import { setupSmoothAnchors } from "ts/smoothAnchors";
+import { setupGitHubAlerts } from "ts/githubAlerts";
 
 let Stack = {
     init: () => {
@@ -25,6 +26,7 @@ let Stack = {
             new StackGallery(articleContent);
             setupSmoothAnchors();
             setupScrollspy();
+            setupGitHubAlerts();
         }
 
         /**
@@ -51,7 +53,11 @@ let Stack = {
                     }
                 } else if (codeBlock) {
                     const lines = codeBlock.querySelectorAll('.line .cl');
-                    finalCode = Array.from(lines).map(line => line.textContent ?? '').join('');
+                    const lineTexts: string[] = [];
+                    for (let i = 0; i < lines.length; i++) {
+                        lineTexts.push(lines[i].textContent || '');
+                    }
+                    finalCode = lineTexts.join('');
                 }
 
                 navigator.clipboard.writeText(finalCode).then(() => {

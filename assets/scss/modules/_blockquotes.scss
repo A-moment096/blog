@@ -1,6 +1,6 @@
 // =============================================================================
 // BLOCKQUOTES MODULE
-// 引用块样式，包括普通引用块和彩色引用块
+// GitHub 式引用块样式，包括普通引用块和彩色引用块
 // =============================================================================
 
 .article-content {
@@ -11,7 +11,7 @@
     margin: 1.5em 0;
     font-style: normal;
     position: relative;
-    border-radius: 0 6px 6px 0;
+    border-radius: 8px;
     line-height: 1.6;
 
     p {
@@ -88,47 +88,240 @@
       margin: 0.3em 0;
     }
 
-    // 彩色引用块样式
-    &.warning {
-      border-left-color: #fde39b;
-      background: rgba(253, 227, 155, 0.1);
+    // GitHub 式引用块样式
+    // NOTE 样式
+    &.github-note {
+      border-left-color: #0969da;
+      background: linear-gradient(135deg, rgba(9, 105, 218, 0.08) 0%, rgba(9, 105, 218, 0.04) 100%);
+      border-radius: 8px;
+      
+      .github-alert-title {
+        color: #0969da;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .github-alert-icon svg {
+          width: 16px;
+          height: 16px;
+          fill: currentColor;
+        }
+      }
+      
+      .github-alert-content {
+        margin-top: 8px;
+      }
       
       pre {
-        background: rgba(253, 227, 155, 0.15) !important;
-        color: #333 !important;
+        background: rgba(9, 105, 218, 0.1) !important;
       }
     }
 
-    &.note {
-      border-left-color: #a5a5ff;
-      background: rgba(165, 165, 255, 0.1);
+    // TIP 样式
+    &.github-tip {
+      border-left-color: #1a7f37;
+      background: linear-gradient(135deg, rgba(26, 127, 55, 0.08) 0%, rgba(26, 127, 55, 0.04) 100%);
+      border-radius: 8px;
+      
+      .github-alert-title {
+        color: #1a7f37;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .github-alert-icon svg {
+          width: 16px;
+          height: 16px;
+          fill: currentColor;
+        }
+      }
       
       pre {
-        background: rgba(165, 165, 255, 0.15) !important;
-        color: #333 !important;
+        background: rgba(26, 127, 55, 0.1) !important;
       }
     }
 
-    &.danger {
-      border-left-color: #f19a9a;
-      background: rgba(241, 154, 154, 0.1);
+    // IMPORTANT 样式
+    &.github-important {
+      border-left-color: #8250df;
+      background: linear-gradient(135deg, rgba(130, 80, 223, 0.08) 0%, rgba(130, 80, 223, 0.04) 100%);
+      border-radius: 8px;
+      
+      .github-alert-title {
+        color: #8250df;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .github-alert-icon svg {
+          width: 16px;
+          height: 16px;
+          fill: currentColor;
+        }
+      }
       
       pre {
-        background: rgba(241, 154, 154, 0.15) !important;
-        color: #333 !important;
+        background: rgba(130, 80, 223, 0.1) !important;
       }
     }
 
-    // 暗色模式下所有彩色引用块的统一处理
+    // WARNING 样式
+    &.github-warning {
+      border-left-color: #ff8c00;
+      background: linear-gradient(135deg, rgba(255, 140, 0, 0.08) 0%, rgba(255, 140, 0, 0.04) 100%);
+      border-radius: 8px;
+      
+      .github-alert-title {
+        color: #ff8c00;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .github-alert-icon svg {
+          width: 16px;
+          height: 16px;
+          fill: currentColor;
+        }
+      }
+      
+      pre {
+        background: rgba(255, 140, 0, 0.1) !important;
+      }
+    }
+
+    // CAUTION 样式
+    &.github-caution {
+      border-left-color: #d1242f;
+      background: linear-gradient(135deg, rgba(209, 36, 47, 0.08) 0%, rgba(209, 36, 47, 0.04) 100%);
+      border-radius: 8px;
+      
+      .github-alert-title {
+        color: #d1242f;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .github-alert-icon svg {
+          width: 16px;
+          height: 16px;
+          fill: currentColor;
+        }
+      }
+      
+      pre {
+        background: rgba(209, 36, 47, 0.1) !important;
+      }
+    }
+
+    // 暗色模式下的 GitHub 引用块样式
     :root[data-scheme="dark"] & {
-      &.warning, &.note, &.danger {
+      &.github-note {
+        border-left-color: #4dabf7;
+        background: linear-gradient(135deg, rgba(77, 171, 247, 0.15) 0%, rgba(77, 171, 247, 0.08) 100%);
+        
+        .github-alert-title {
+          color: #4dabf7;
+          
+          .github-alert-icon svg {
+            fill: currentColor;
+          }
+        }
+        
         pre {
-          background: rgba(255, 255, 255, 0.05) !important;
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(77, 171, 247, 0.1) !important;
+          border: 1px solid rgba(77, 171, 247, 0.2);
+        }
+      }
+
+      &.github-tip {
+        border-left-color: #51cf66;
+        background: linear-gradient(135deg, rgba(81, 207, 102, 0.15) 0%, rgba(81, 207, 102, 0.08) 100%);
+        
+        .github-alert-title {
+          color: #51cf66;
+          
+          .github-alert-icon svg {
+            fill: currentColor;
+          }
+        }
+        
+        pre {
+          background: rgba(81, 207, 102, 0.1) !important;
+          border: 1px solid rgba(81, 207, 102, 0.2);
+        }
+      }
+
+      &.github-important {
+        border-left-color: #9775fa;
+        background: linear-gradient(135deg, rgba(151, 117, 250, 0.15) 0%, rgba(151, 117, 250, 0.08) 100%);
+        
+        .github-alert-title {
+          color: #9775fa;
+          
+          .github-alert-icon svg {
+            fill: currentColor;
+          }
+        }
+        
+        pre {
+          background: rgba(151, 117, 250, 0.1) !important;
+          border: 1px solid rgba(151, 117, 250, 0.2);
+        }
+      }
+
+      &.github-warning {
+        border-left-color: #ffa500;
+        background: linear-gradient(135deg, rgba(255, 165, 0, 0.15) 0%, rgba(255, 165, 0, 0.08) 100%);
+        
+        .github-alert-title {
+          color: #ffa500;
+          
+          .github-alert-icon svg {
+            fill: currentColor;
+          }
+        }
+        
+        pre {
+          background: rgba(255, 165, 0, 0.1) !important;
+          border: 1px solid rgba(255, 165, 0, 0.2);
+        }
+      }
+
+      &.github-caution {
+        border-left-color: #ff6b6b;
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(255, 107, 107, 0.08) 100%);
+        
+        .github-alert-title {
+          color: #ff6b6b;
+          
+          .github-alert-icon svg {
+            fill: currentColor;
+          }
+        }
+
+        pre {
+          background: rgba(255, 107, 107, 0.1) !important;
+          border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+      }
+
+      // 通用的暗色模式代码样式
+      &.github-note, &.github-tip, &.github-important, &.github-warning, &.github-caution {
+        pre {
           color: #f8f8f2 !important;
           
           code {
-            filter: brightness(1.3) contrast(1.1);
+            filter: brightness(1.2) contrast(1.1);
           }
         }
       }
