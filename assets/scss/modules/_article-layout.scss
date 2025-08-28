@@ -1,0 +1,90 @@
+// =============================================================================
+// ARTICLE LAYOUT MODULE
+// 文章列表、文章内容图片、归档页面等布局相关样式
+// =============================================================================
+
+// 文章封面高度 (统一定义)
+.article-list article .article-image img {
+  width: 100%;
+  height: 200px !important;
+  object-fit: cover;
+
+  @include respond(md) {
+    height: 250px !important;
+  }
+
+  @include respond(xl) {
+    height: 285px !important;
+  }
+}
+
+// 全局页面小图片样式微调
+.article-list--compact article .article-image img {
+  width: var(--image-size);
+  height: var(--image-size);
+  object-fit: cover;
+  border-radius: 17%;
+}
+
+// 文章内容图片圆角阴影
+.article-page .main-article .article-content {
+  img {
+    max-width: 96% !important;
+    height: auto !important;
+    border-radius: 8px;
+  }
+
+  // 带编号公式去除右边距
+  span.katex .vlist-t2 {
+    margin-right: 0px;
+  }
+
+  // 图片背景
+  figure {
+    img {
+      background: var(--figure-background);
+    }
+  }
+}
+
+// 文章副标题
+.article-subtitle {
+  margin-top: -5px;
+  font-size: 1.5rem;
+
+  @include respond(md) {
+    font-size: 1.6rem;
+  }
+}
+
+// 归档页面双栏
+@media (min-width: 1024px) {
+  .article-list--compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      box-shadow: var(--shadow-l2);
+      margin-bottom: 8px;
+      border-radius: 16px;
+    }
+
+    // 链接三栏
+    &.links {
+      grid-template-columns: 1fr 1fr 1fr;
+
+      article {
+        border-radius: var(--card-border-radius);
+
+        &:nth-child(odd) {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+// =============================================================================
+// CATEGORIES MODULE
+// 文章分类和标签样式
+// =============================================================================
+
+// 文章分类和标签
+.article-category {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  a {
+    background: var(--card-background);
+    box-shadow: var(--shadow-l1);
+    border-radius: var(--category-border-radius);
+    padding: 8px 20px;
+    color: var(--card-text-color-main);
+    font-size: 1.4rem;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: var(--shadow-l2);
+    }
+  }
+}
+
+// 分类页面样式
+.category {
+  .category-label {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    a {
+      border-left: 6px solid;
+      background: var(--card-background);
+      box-shadow: var(--shadow-l1);
+      border-radius: var(--category-border-radius);
+      padding: 12px 20px;
+      color: var(--card-text-color-main);
+      font-size: 1.5rem;
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: var(--shadow-l2);
+      }
+    }
+  }
+
+  .category-count {
+    color: var(--body-text-color);
+  }
+}
