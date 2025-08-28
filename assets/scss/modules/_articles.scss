@@ -43,19 +43,105 @@
 // 文章内容引用块样式
 .article-content {
   blockquote {
-    border-left: 6px solid #d1e6df;
-    background: var(--block-background-color);
+    border-left: 3px solid var(--accent-color);
+    background: var(--blockquote-background-color);
+    padding: 16px 20px;
+    margin: 1.5em 0;
+    font-style: normal;
+    position: relative;
+    border-radius: 0 6px 6px 0;
+    line-height: 1.6; // 调整行距为正常值
+
+    p {
+      margin: 0.8em 0; // 减少段落间距
+      
+      &:first-child {
+        margin-top: 0;
+      }
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // 修复引用块中的代码块样式
+    pre {
+      background: rgba(0, 0, 0, 0.08) !important; // 更浅的背景色，适合亮色模式
+      margin: 8px -15px !important; // 左右扩展到引用块边缘
+      padding: 8px 12px !important; // 减少内边距
+      border-radius: 4px;
+      overflow-x: auto;
+      
+      code {
+        background: transparent !important;
+        line-height: 1.4; // 代码行距
+      }
+    }
+
+    // 修复代码块的复制按钮位置
+    .highlight {
+      margin: 8px -15px !important; // 与 pre 保持一致，左右扩展到边缘
+      padding: 0 ;
+      position: relative;
+      
+      pre {
+        margin: 0 !important; // highlight 内的 pre 不需要额外 margin
+        padding: 8px 12px !important;
+      }
+      
+      .copyCodeButton {
+        right: 72px !important; // 调整复制按钮位置
+        top: 12px !important;
+        z-index: 10;
+      }
+    }
+
+    // 行内代码样式
+    code:not(pre code) { // 只针对非代码块中的行内代码
+      background: rgba(0, 0, 0, 0.15); // 稍微深一点的背景
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+
+    // 列表样式调整
+    ul, ol {
+      margin: 0.5em 0;
+      padding-left: 1.5em;
+    }
+
+    li {
+      margin: 0.3em 0; // 减少列表项间距
+    }
 
     &.warning {
       border-left-color: #fde39b;
+      background: rgba(253, 227, 155, 0.1);
+      
+      pre {
+        background: rgba(253, 227, 155, 0.15) !important; // 更浅的背景
+        color: #333 !important;
+      }
     }
 
     &.note {
       border-left-color: #a5a5ff;
+      background: rgba(165, 165, 255, 0.1);
+      
+      pre {
+        background: rgba(165, 165, 255, 0.15) !important; // 更浅的背景
+        color: #333 !important;
+      }
     }
 
     &.danger {
       border-left-color: #f19a9a;
+      background: rgba(241, 154, 154, 0.1);
+      
+      pre {
+        background: rgba(241, 154, 154, 0.15) !important; // 更浅的背景
+        color: #333 !important;
+      }
     }
   }
 

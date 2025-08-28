@@ -5,7 +5,7 @@ full-test:
     hugo server -D -F -E --disableFastRender -O
 
 rm-build:
-    rm -rfi public resources
+    rm -rf public resources
 
 rebuild-test: rm-build full-test
 
