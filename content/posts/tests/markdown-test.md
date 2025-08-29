@@ -1,6 +1,6 @@
 ---
 title: "Markdown 测试页面"
-description: "展示博客支持的 Markdown 语法"
+description: "测试 Markdown 渲染情况"
 date: 3000-08-22T10:00:00+08:00
 categories:
 - Others
@@ -29,21 +29,29 @@ draft: true
 
 P.S. 可以用 `_` 代替
 
-**粗体文本 Bold Text**
+**粗体文本 Bold Text**  
+```**粗体文本 Bold Text**```
 
-*斜体文本 Italic Text*
+*斜体文本 Italic Text*  
+```*斜体文本 Italic Text*```
 
-***粗斜体文本 Bold Italic Text***
+***粗斜体文本 Bold Italic Text***  
+```***粗斜体文本 Bold Italic Text***```  
 
-~~删除线文本 Strikethrough Text~~
+~~删除线文本 Strikethrough Text~~  
+```~~删除线文本 Strikethrough Text~~```
 
-~单个波浪线也可以做删除~
+~单个波浪线也可以做删除~  
+```~单个波浪线也可以做删除~```
 
-<u>下划线文本 Underlined Text</u>
+<u>下划线文本 Underlined Text</u>  
+```<u>下划线文本 Underlined Text</u>```
 
-<mark>高亮文本 Highlighted Text</mark>
+<mark>高亮文本 Highlighted Text</mark>  
+```<mark>高亮文本 Highlighted Text</mark>```
 
-`行内代码 Inline Code`
+`行内代码 Inline Code`  
+``` `行内代码 Inline Code` ```
 
 普通文本中的 **粗体**、*斜体* 和 `代码` 混合使用。
 
@@ -60,6 +68,8 @@ P.S. 可以用 `_` 代替
 
 ### 无序列表 Unordered Lists
 
+使用减号，加号或星号
+
 - 第一项
 - 第二项
   - 嵌套项目 1
@@ -67,12 +77,15 @@ P.S. 可以用 `_` 代替
     - 深层嵌套项目
 - 第三项
 
+下面使用星号和加号，效果同上
 * 使用星号的列表
 * 第二项
   + 混合使用不同符号
   + 另一个项目
 
 ### 有序列表 Ordered Lists
+
+使用数字加点
 
 1. 第一项
 2. 第二项
@@ -83,6 +96,10 @@ P.S. 可以用 `_` 代替
 
 ### 任务列表 Task Lists
 
+` - [ ] 未完成`
+
+` - [x] 已完成`
+
 - [x] 已完成的任务
 - [ ] 未完成的任务
 - [x] 另一个已完成的任务
@@ -90,31 +107,50 @@ P.S. 可以用 `_` 代替
 
 ## 链接 Links
 
-[普通链接](https://example.com)
+[普通链接](https://example.com)  
+```[普通链接](https://example.com)```
 
-[带标题的链接](https://example.com "这是链接标题")
+[带标题的链接](https://example.com "这是链接标题")  
+```[带标题的链接](https://example.com "这是链接标题")```
 
-[相对链接](/page/about/)
+[相对链接](/page/about/)  
+```[相对链接](/page/about/)```
 
-[内部锚点链接](#图片-images)
+[内部锚点链接](#图片-images)  
+```[内部锚点链接](#图片-images)```
 
-自动链接：https://example.com
+不支持自动链接：https://example.com
 
-邮箱链接：<test@example.com>
+邮箱链接：<test@example.com>  
+```邮箱链接：<test@example.com>```
 
 参考式链接：[Google][1] 和 [GitHub][2]
 
 [1]: https://google.com "Google"
 [2]: https://github.com "GitHub"
 
+```
+参考式链接：[Google][1] 和 [GitHub][2]
+
+[1]: https://google.com "Google"
+[2]: https://github.com "GitHub"
+```
 ## 图片 Images
 
-![替代文本](/avatar.jpg "图片标题")
+普通图片 (使用相对路径可以点击打开图片)
 
-![网络图片](https://via.placeholder.com/300x200?text=Placeholder)
+![图片](avatar.jpg)
 
+```
+![网络图片](avatar.jpg)
+```
+
+[![图片链接](/avatar.jpg)](/page/about/)
+
+```
 带链接的图片：
 [![图片链接](/avatar.jpg)](/page/about/)
+```
 
 ## 代码块 Code Blocks
 
@@ -176,17 +212,70 @@ def example_function():
 > 
 > 这里还有一些 `行内代码` 在引用中的显示效果。
 
-> [!WARNING]
-> 
-> 这是一段比较长的引用内容，用来测试背景色的显示效果。包含 `行内代码` 和其他格式。
-
 > [!NOTE]
+> 这是一个 NOTE 引用块
+> - 列表项目
+> - 另一个项目
 > 
-> 这是 note 类型的引用块，背景色应该是淡蓝色。
+> ```python
+> print("引用中的代码块")
+> def test_function():
+>     return "测试代码块在引用中的显示效果"
+> ```
+> 
+> 这里还有一些 `行内代码` 在引用中的显示效果。
+
+> [!TIP]
+> 这是一个 TIP 引用块
+> - 列表项目
+> - 另一个项目
+> 
+> ```python
+> print("引用中的代码块")
+> def test_function():
+>     return "测试代码块在引用中的显示效果"
+> ```
+> 
+> 这里还有一些 `行内代码` 在引用中的显示效果。
+
+> [!IMPORTANT]
+> 这是一个 IMPORTANT 引用块
+> - 列表项目
+> - 另一个项目
+> 
+> ```python
+> print("引用中的代码块")
+> def test_function():
+>     return "测试代码块在引用中的显示效果"
+> ```
+> 
+> 这里还有一些 `行内代码` 在引用中的显示效果。
+
+> [!WARNING]
+> 这是一个 WARNING 引用块
+> - 列表项目
+> - 另一个项目
+> 
+> ```python
+> print("引用中的代码块")
+> def test_function():
+>     return "测试代码块在引用中的显示效果"
+> ```
+> 
+> 这里还有一些 `行内代码` 在引用中的显示效果。
 
 > [!CAUTION]
+> 这是一个 CAUTION 引用块
+> - 列表项目
+> - 另一个项目
 > 
-> 这是 danger 类型的引用块，应该显示为淡红色背景。
+> ```python
+> print("引用中的代码块")
+> def test_function():
+>     return "测试代码块在引用中的显示效果"
+> ```
+> 
+> 这里还有一些 `行内代码` 在引用中的显示效果。
 
 ## 水平分割线 Horizontal Rules
 
@@ -198,6 +287,15 @@ ___
 
 - - -
 
+```
+---
+
+***
+
+___
+
+- - -
+```
 ## 数学公式 Mathematics
 
 ### 行内数学公式
