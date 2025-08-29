@@ -1,6 +1,6 @@
 // =============================================================================
 // BLOCKQUOTES MODULE
-// GitHub 式引用块样式，包括普通引用块和彩色引用块
+// GitHub 式引用块样式
 // =============================================================================
 
 .article-content {
@@ -23,50 +23,6 @@
       
       &:last-child {
         margin-bottom: 0;
-      }
-    }
-
-    // 引用块中的代码块样式
-    pre {
-      background: rgba(0, 0, 0, 0.08) !important;
-      margin: 8px -15px !important;
-      padding: 8px 12px !important;
-      border-radius: 4px;
-      overflow-x: auto;
-      
-      code {
-        background: transparent !important;
-        line-height: 1.4;
-      }
-    }
-
-    // 暗色模式下的代码块优化
-    :root[data-scheme="dark"] & {
-      pre {
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        
-        code {
-          filter: brightness(1.3) contrast(1.1);
-        }
-      }
-    }
-
-    // 代码块的复制按钮位置
-    .highlight {
-      margin: 8px -15px !important;
-      padding: 0;
-      position: relative;
-      
-      pre {
-        margin: 0 !important;
-        padding: 8px 12px !important;
-      }
-      
-      .copyCodeButton {
-        right: 72px !important;
-        top: 12px !important;
-        z-index: 10;
       }
     }
 
@@ -113,10 +69,6 @@
       .github-alert-content {
         margin-top: 8px;
       }
-      
-      pre {
-        background: rgba(9, 105, 218, 0.1) !important;
-      }
     }
 
     // TIP 样式
@@ -138,10 +90,6 @@
           height: 16px;
           fill: currentColor;
         }
-      }
-      
-      pre {
-        background: rgba(26, 127, 55, 0.1) !important;
       }
     }
 
@@ -165,10 +113,6 @@
           fill: currentColor;
         }
       }
-      
-      pre {
-        background: rgba(130, 80, 223, 0.1) !important;
-      }
     }
 
     // WARNING 样式
@@ -190,10 +134,6 @@
           height: 16px;
           fill: currentColor;
         }
-      }
-      
-      pre {
-        background: rgba(255, 140, 0, 0.1) !important;
       }
     }
 
@@ -217,10 +157,6 @@
           fill: currentColor;
         }
       }
-      
-      pre {
-        background: rgba(209, 36, 47, 0.1) !important;
-      }
     }
 
     // 暗色模式下的 GitHub 引用块样式
@@ -236,11 +172,6 @@
             fill: currentColor;
           }
         }
-        
-        pre {
-          background: rgba(77, 171, 247, 0.1) !important;
-          border: 1px solid rgba(77, 171, 247, 0.2);
-        }
       }
 
       &.github-tip {
@@ -253,11 +184,6 @@
           .github-alert-icon svg {
             fill: currentColor;
           }
-        }
-        
-        pre {
-          background: rgba(81, 207, 102, 0.1) !important;
-          border: 1px solid rgba(81, 207, 102, 0.2);
         }
       }
 
@@ -272,11 +198,6 @@
             fill: currentColor;
           }
         }
-        
-        pre {
-          background: rgba(151, 117, 250, 0.1) !important;
-          border: 1px solid rgba(151, 117, 250, 0.2);
-        }
       }
 
       &.github-warning {
@@ -289,11 +210,6 @@
           .github-alert-icon svg {
             fill: currentColor;
           }
-        }
-        
-        pre {
-          background: rgba(255, 165, 0, 0.1) !important;
-          border: 1px solid rgba(255, 165, 0, 0.2);
         }
       }
 
@@ -308,37 +224,135 @@
             fill: currentColor;
           }
         }
-
-        pre {
-          background: rgba(255, 107, 107, 0.1) !important;
-          border: 1px solid rgba(255, 107, 107, 0.2);
-        }
-      }
-
-      // 通用的暗色模式代码样式
-      &.github-note, &.github-tip, &.github-important, &.github-warning, &.github-caution {
-        pre {
-          color: #f8f8f2 !important;
-          
-          code {
-            filter: brightness(1.2) contrast(1.1);
-          }
-        }
       }
     }
   }
 
-  // 折叠详情样式
+  // 卡片式折叠详情样式 (方案2)
   details {
-    padding: 15px;
+    background: var(--card-background);
+    border-radius: 12px;
+    margin: 1.5em 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+      border-color: var(--accent-color);
+    }
 
     summary {
-      font-weight: bold;
+      padding: 18px 24px 18px 48px;
+      background: linear-gradient(135deg, var(--accent-color-lighter) 0%, var(--accent-color-dim) 100%);
+      font-weight: 600;
+      color: var(--card-text-color-main);
       cursor: pointer;
+      user-select: none;
+      position: relative;
+      transition: all 0.2s ease;
+
+      &::marker {
+        content: "";
+      }
+
+      // 左侧动画箭头
+      &::before {
+        content: "▶";
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: var(--accent-color);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: normal;
+      }
+
+      &:hover {
+        background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-lighter) 100%);
+        color: var(--card-text-color-main);
+      }
     }
 
     &[open] {
-      background: var(--detail-background);
+      summary::before {
+        transform: translateY(-50%) rotate(90deg);
+      }
+    }
+
+    // 内容区域样式
+    .details-content, 
+    > *:not(summary) {
+      padding: 24px;
+      line-height: 1.6;
+      border-top: 1px solid var(--card-border);
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // 如果内容直接在 details 下，不在 .details-content 包装中
+    > p, > ul, > ol, > pre, > blockquote, > div:not(.details-content), > h1, > h2, > h3, > h4, > h5, > h6 {
+      margin-left: 24px;
+      margin-right: 24px;
+      
+      &:first-of-type {
+        margin-top: 24px;
+        padding-top: 0;
+        border-top: 1px solid var(--card-border);
+      }
+      
+      &:last-child {
+        margin-bottom: 24px;
+      }
+    }
+
+    // 确保基本的代码样式在 details 中工作
+    code:not(pre code) {
+      background: rgba(0, 0, 0, 0.15);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+
+    // 嵌套的 blockquote 样式调整
+    blockquote {
+      margin: 16px 0;
+      border-left-width: 3px;
+      padding: 16px 20px;
+      border-radius: 6px;
+    }
+
+    // 表格样式调整
+    table {
+      margin: 16px 0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    // 暗色模式优化
+    :root[data-scheme="dark"] & {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      
+      &:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      summary {
+        background: linear-gradient(135deg, rgba(var(--accent-color-rgb), 0.2) 0%, rgba(var(--accent-color-rgb), 0.1) 100%);
+        
+        &:hover {
+          background: linear-gradient(135deg, rgba(var(--accent-color-rgb), 0.3) 0%, rgba(var(--accent-color-rgb), 0.2) 100%);
+        }
+      }
     }
   }
 }
