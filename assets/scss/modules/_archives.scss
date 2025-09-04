@@ -1,0 +1,47 @@
+// =============================================================================
+// TAG CLOUD ARCHIVE MODULE
+// Styling for tag cloud display on archives page
+// =============================================================================
+
+.tag-cloud-archive {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+
+    .tag-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 8px 16px;
+        background: var(--card-background);
+        color: var(--card-text-color-main);
+        border-radius: var(--tag-border-radius, 15px);
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid var(--card-separator-color);
+        box-shadow: var(--shadow-l1);
+
+        &:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-l2);
+
+            .tag-count {
+                background: rgba(255, 255, 255, 0.3);
+            }
+        }
+    }
+
+    .tag-count {
+        font-size: 1.3rem;
+        opacity: 0.8;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 2px 6px;
+        border-radius: 10px;
+        margin-left: 4px;
+    }
+}
