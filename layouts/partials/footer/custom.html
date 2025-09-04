@@ -19,7 +19,7 @@
 </script>
 
 <!-- 回到顶部 -->
-<div id="back-top" style="display: none;">
+<div id="back-top">
     <a href="#top" title="To Top">
         <img src="/back_top.svg" alt="Back to Top" />
     </a>
@@ -27,36 +27,77 @@
 
 <style>
     #back-top {
-        position: fixed;
-        bottom: 30px;
-        right: 80px;
-        background: #dbdbd9;
+        position: absolute;
+        background: var(--card-background);
+        border: 1px solid var(--card-separator-color);
         border-radius: 7px;
         padding: 10px;
-        transition: background-color 0.3s;
+        z-index: 1000;
+        opacity: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+        transition: opacity 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    #back-top.show {
+        opacity: 1;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     #back-top a {
         text-decoration: none;
-        color: black;
+        color: var(--card-text-color-main);
     }
 
     #back-top:hover {
-        background-color: #4b4b4b42;
+        background: var(--accent-color);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    #back-top:hover a {
+        color: white;
     }
 </style>
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
         var backTopButton = document.getElementById('back-top');
-
-        window.onscroll = function () {
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                backTopButton.style.display = 'block';
+        var rightSidebar = document.querySelector('.right-sidebar');
+        
+        function positionBackTopButton() {
+            if (rightSidebar && window.innerWidth >= 1024) { // lg breakpoint
+                var sidebarRect = rightSidebar.getBoundingClientRect();
+                var sidebarBottom = rightSidebar.offsetTop + rightSidebar.offsetHeight;
+                
+                // Position button directly below the sidebar with right edges aligned
+                backTopButton.style.position = 'absolute';
+                backTopButton.style.top = sidebarBottom + 10 + 'px'; // 10px gap below sidebar
+                backTopButton.style.left = (sidebarRect.right - backTopButton.offsetWidth - window.scrollX) + 'px';
+                backTopButton.style.right = 'auto';
             } else {
-                backTopButton.style.display = 'none';
+                // Fallback to fixed positioning for mobile or when no sidebar
+                backTopButton.style.position = 'fixed';
+                backTopButton.style.bottom = '30px';
+                backTopButton.style.right = '30px';
+                backTopButton.style.top = 'auto';
+                backTopButton.style.left = 'auto';
             }
-        };
+        }
+
+        function handleScroll() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backTopButton.classList.add('show');
+                positionBackTopButton();
+            } else {
+                backTopButton.classList.remove('show');
+            }
+        }
+
+        // Position button on load and window resize
+        window.addEventListener('resize', positionBackTopButton);
+        window.addEventListener('scroll', handleScroll);
+        
+        // Initial positioning
+        positionBackTopButton();
 
         backTopButton.onclick = function (event) {
             event.preventDefault(); // Prevent default anchor behavior

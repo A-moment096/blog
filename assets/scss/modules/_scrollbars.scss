@@ -1,26 +1,147 @@
 // =============================================================================
 // SCROLLBARS MODULE
-// Custom Scrollbar Styling for Different Elements
+// 统一的细窄滚动条样式应用到整个博客 - 覆盖主题默认样式
 // =============================================================================
 
-// 全局滚动条美化
-html {
-  ::-webkit-scrollbar {
-    width: 20px;
+// 重置主题的滚动条变量
+:root {
+  --scrollbar-thumb: rgba(0, 0, 0, 0.2) !important;
+  --scrollbar-track: transparent !important;
+  
+  &[data-scheme="dark"] {
+    --scrollbar-thumb: rgba(255, 255, 255, 0.3) !important;
   }
+}
 
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
+// 全局统一滚动条样式 - 覆盖主题默认设置
+html, body {
+  // Firefox 滚动条样式
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--scrollbar-thumb) transparent !important;
+}
+
+// 覆盖主题的 Webkit 滚动条样式
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb) !important;
+  border-radius: 4px !important;
+  border: none !important;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.3) !important;
   }
+}
 
+::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+// 暗色主题下的悬停效果
+:root[data-scheme="dark"] {
   ::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
-
     &:hover {
-      background-color: #a8bbbf;
+      background-color: rgba(255, 255, 255, 0.4) !important;
+    }
+  }
+}
+
+// 重置所有可能的元素滚动条样式
+*, *::before, *::after {
+  &::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb) !important;
+    border-radius: 4px !important;
+    border: none !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent !important;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent !important;
+  }
+}
+
+// 特别针对主题可能定义了特殊滚动条的元素
+.widget--toc,
+.right-sidebar,
+.left-sidebar,
+.tagCloud-tags,
+.scrollable-tags,
+.article-content,
+.main-article,
+.widget,
+.highlight,
+pre,
+code,
+textarea,
+.table-wrapper,
+#TableOfContents,
+.archives,
+.related-content {
+  // 重写所有可能的滚动条样式
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--scrollbar-thumb) transparent !important;
+  
+  &::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb) !important;
+    border-radius: 4px !important;
+    border: none !important;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.3) !important;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent !important;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent !important;
+  }
+}
+
+// 暗色主题下的特定元素悬停效果
+:root[data-scheme="dark"] {
+  .widget--toc,
+  .right-sidebar,
+  .left-sidebar,
+  .tagCloud-tags,
+  .scrollable-tags,
+  .article-content,
+  .main-article,
+  .widget,
+  .highlight,
+  pre,
+  code,
+  textarea,
+  .table-wrapper,
+  #TableOfContents,
+  .archives,
+  .related-content {
+    &::-webkit-scrollbar-thumb {
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.4) !important;
+      }
     }
   }
 }
