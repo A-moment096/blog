@@ -3,7 +3,7 @@ title: "LaTeX 渲染测试页面"
 description: "测试 LaTeX 的支持情况"
 date: 3000-01-22T10:00:00+08:00
 categories:
-- Others
+- Testing
 tags:
 - Test
 mermaid: true

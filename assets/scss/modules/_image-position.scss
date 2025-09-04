@@ -1,0 +1,87 @@
+// =============================================================================
+// IMAGE POSITION MODULE
+// 文章头图位置控制样式
+// =============================================================================
+
+// 基础文章头图样式改进
+.article-header .article-image {
+  position: relative;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    
+    // 默认居中显示
+    object-position: center center;
+  }
+  
+  // 鼠标悬停时轻微放大效果
+  &:hover img {
+    transform: scale(1.02);
+  }
+}
+
+// 位置预设类
+.article-header .article-image {
+  // 顶部对齐
+  &.image-position-top img {
+    object-position: center top;
+  }
+  
+  // 底部对齐
+  &.image-position-bottom img {
+    object-position: center bottom;
+  }
+  
+  // 左侧对齐
+  &.image-position-left img {
+    object-position: left center;
+  }
+  
+  // 右侧对齐
+  &.image-position-right img {
+    object-position: right center;
+  }
+  
+  // 左上角对齐
+  &.image-position-top-left img {
+    object-position: left top;
+  }
+  
+  // 右上角对齐
+  &.image-position-top-right img {
+    object-position: right top;
+  }
+  
+  // 左下角对齐
+  &.image-position-bottom-left img {
+    object-position: left bottom;
+  }
+  
+  // 右下角对齐
+  &.image-position-bottom-right img {
+    object-position: right bottom;
+  }
+  
+  // 居中对齐（默认）
+  &.image-position-center img {
+    object-position: center center;
+  }
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+  .article-header .article-image img {
+    max-height: 40vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .article-header .article-image img {
+    max-height: 30vh;
+  }
+}

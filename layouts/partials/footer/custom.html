@@ -17,3 +17,53 @@
         if (document.readyState === "complete") NProgress.done();
     });
 </script>
+
+<!-- 回到顶部 -->
+<div id="back-top" style="display: none;">
+    <a href="#top" title="To Top">
+        <img src="/back_top.svg" alt="Back to Top" />
+    </a>
+</div>
+
+<style>
+    #back-top {
+        position: fixed;
+        bottom: 30px;
+        right: 80px;
+        background: #dbdbd9;
+        border-radius: 7px;
+        padding: 10px;
+        transition: background-color 0.3s;
+    }
+
+    #back-top a {
+        text-decoration: none;
+        color: black;
+    }
+
+    #back-top:hover {
+        background-color: #4b4b4b42;
+    }
+</style>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var backTopButton = document.getElementById('back-top');
+
+        window.onscroll = function () {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backTopButton.style.display = 'block';
+            } else {
+                backTopButton.style.display = 'none';
+            }
+        };
+
+        backTopButton.onclick = function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Smooth scroll to top
+            });
+        };
+    });
+</script>

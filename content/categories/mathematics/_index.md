@@ -6,6 +6,6 @@ weight: -90
 
 # Badge style
 style:
-    background: "#2a9d8f"
+    background: "#588edfff"
     color: "#fff"
 ---

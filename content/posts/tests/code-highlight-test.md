@@ -3,7 +3,7 @@ title: "代码高亮测试"
 description: "测试代码高亮的支持情况"
 date: 3000-07-25
 categories:
-- Others
+- Testing
 tags:
 - Test
 mermaid: true

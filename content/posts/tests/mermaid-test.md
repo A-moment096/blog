@@ -3,7 +3,7 @@ title: "Mermaid 图表测试页面"
 description: "展示博客中各种 Mermaid 图表的效果"
 date: 3000-01-22T10:00:00+08:00
 categories:
-- Others
+- Testing
 tags:
 - Test
 mermaid: true
