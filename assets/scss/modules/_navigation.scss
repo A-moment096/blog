@@ -8,16 +8,14 @@
   padding-left: 0;
   list-style: none;
   flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: scroll;
   flex-grow: 1;
   font-size: 1.6rem;
   background-color: var(--card-background);
-  box-shadow: var(--shadow-l2);
   display: none;
   margin: 0;
   border-radius: 10px;
   padding: 30px 30px;
+  max-height: max-content;
 
   @include respond(xl) {
     padding: 15px 0;
@@ -94,50 +92,4 @@
   height: 25px;
   stroke: var(--body-text-color);
   stroke-width: 1.33;
-}
-
-// TOC 目录样式
-.widget--toc {
-  #TableOfContents {
-    max-height: 65vh;
-
-    ol,
-    ul {
-      list-style-type: none;
-    }
-
-    li {
-      margin: 10px 10px;
-
-      &>ol,
-      &>ul {
-        margin-top: 10px;
-        padding-left: 10px;
-        margin-bottom: -5px;
-
-        &>li:last-child {
-          margin-bottom: 0;
-        }
-      }
-    }
-  }
-
-  ::-webkit-scrollbar {
-    width: 20px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
-
-    &:hover {
-      background-color: #a8bbbf;
-    }
-  }
 }

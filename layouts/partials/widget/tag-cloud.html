@@ -1,54 +1,58 @@
 {{- $context := .Context -}}
 {{- $limit := default 10 .Params.limit -}}
 <section class="widget tagCloud">
-    <div class="widget-icon">
-        {{ partial "helper/icon" "tag" }}
+    <div class="widget-header">
+        <div class="widget-icon">
+            {{ partial "helper/icon" "tag" }}
+        </div>
+        <h2 class="widget-title section-title">{{ T "widget.tagCloud.title" }}</h2>
     </div>
-    <h2 class="widget-title section-title">{{ T "widget.tagCloud.title" }}</h2>
 
-    <div class="tagCloud-tags scrollable-tags">
-        {{- $tags := $context.Site.Taxonomies.tags.ByCount -}}
-        {{- $maxCount := 0 -}}
-        {{- $minCount := 999999 -}}
-        
-        {{/* 计算最大和最小标签数量 */}}
-        {{- range first $limit $tags -}}
-            {{- if gt .Count $maxCount -}}
-                {{- $maxCount = .Count -}}
-            {{- end -}}
-            {{- if lt .Count $minCount -}}
-                {{- $minCount = .Count -}}
-            {{- end -}}
-        {{- end -}}
-        
-        {{/* 渲染标签，按频率分配颜色等级 */}}
-        {{ range first $limit $tags }}
-            {{- $percentage := 0 -}}
-            {{- if gt $maxCount $minCount -}}
-                {{- $percentage = div (mul (sub .Count $minCount) 100) (sub $maxCount $minCount) -}}
-            {{- else -}}
-                {{- $percentage = 100 -}}
+    <div class="widget-body">
+        <div class="tagCloud-tags scrollable-tags">
+            {{- $tags := $context.Site.Taxonomies.tags.ByCount -}}
+            {{- $maxCount := 0 -}}
+            {{- $minCount := 999999 -}}
+            
+            {{/* 计算最大和最小标签数量 */}}
+            {{- range first $limit $tags -}}
+                {{- if gt .Count $maxCount -}}
+                    {{- $maxCount = .Count -}}
+                {{- end -}}
+                {{- if lt .Count $minCount -}}
+                    {{- $minCount = .Count -}}
+                {{- end -}}
             {{- end -}}
             
-            {{- $colorClass := "" -}}
-            {{- if le $percentage 20 -}}
-                {{- $colorClass = "tag-frequency-1" -}}
-            {{- else if le $percentage 40 -}}
-                {{- $colorClass = "tag-frequency-2" -}}
-            {{- else if le $percentage 60 -}}
-                {{- $colorClass = "tag-frequency-3" -}}
-            {{- else if le $percentage 80 -}}
-                {{- $colorClass = "tag-frequency-4" -}}
-            {{- else -}}
-                {{- $colorClass = "tag-frequency-5" -}}
-            {{- end -}}
-            
-            <a href="{{ .Page.RelPermalink }}" 
-               class="tag-item {{ $colorClass }}" 
-               title="{{ .Page.Title }} ({{ .Count }} {{ if eq .Count 1 }}篇文章{{ else }}篇文章{{ end }})">
-                {{ .Page.Title }}
-                <span class="tag-count">{{ .Count }}</span>
-            </a>
-        {{ end }}
+            {{/* 渲染标签，按频率分配颜色等级 */}}
+            {{ range first $limit $tags }}
+                {{- $percentage := 0 -}}
+                {{- if gt $maxCount $minCount -}}
+                    {{- $percentage = div (mul (sub .Count $minCount) 100) (sub $maxCount $minCount) -}}
+                {{- else -}}
+                    {{- $percentage = 100 -}}
+                {{- end -}}
+                
+                {{- $colorClass := "" -}}
+                {{- if le $percentage 20 -}}
+                    {{- $colorClass = "tag-frequency-1" -}}
+                {{- else if le $percentage 40 -}}
+                    {{- $colorClass = "tag-frequency-2" -}}
+                {{- else if le $percentage 60 -}}
+                    {{- $colorClass = "tag-frequency-3" -}}
+                {{- else if le $percentage 80 -}}
+                    {{- $colorClass = "tag-frequency-4" -}}
+                {{- else -}}
+                    {{- $colorClass = "tag-frequency-5" -}}
+                {{- end -}}
+                
+                <a href="{{ .Page.RelPermalink }}" 
+                   class="tag-item {{ $colorClass }}" 
+                   title="{{ .Page.Title }} ({{ .Count }} {{ if eq .Count 1 }}篇文章{{ else }}篇文章{{ end }})">
+                    {{ .Page.Title }}
+                    <span class="tag-count">{{ .Count }}</span>
+                </a>
+            {{ end }}
+        </div>
     </div>
 </section>

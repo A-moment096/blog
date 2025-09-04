@@ -1,0 +1,173 @@
+/*
+ * ============================================================================
+ * WIDGET STYLES
+ * Universal widget styling for sidebar components
+ * ============================================================================
+ */
+
+/* Widget spacing */
+.right-sidebar .widget {
+    margin-bottom: 20px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+}
+
+/* Widget header styling with collapse/expand functionality */
+.widget-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--card-border-radius, 8px);
+    transition: all 0.3s ease;
+    user-select: none;
+
+    &:hover {
+        background: var(--card-background-selected, rgba(0, 0, 0, 0.05));
+        transform: translateY(-1px);
+
+        .widget-title {
+            color: var(--accent-color);
+        }
+    }
+
+    .widget-icon {
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .widget-title {
+        flex-grow: 1;
+        margin: 0;
+        transition: color 0.3s ease;
+    }
+
+    &.expanded .widget-icon {
+        transform: scale(1.1);
+    }
+}
+
+/* Widget body with collapse/expand animation */
+.widget-body {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: none;
+    padding-bottom: 5px;
+
+    &.show {
+        display: block;
+    }
+}
+
+/* Hide unused toggle buttons */
+.widget-toggle-btn {
+    display: none;
+}
+
+// =============================================================================
+// ARCHIVES WIDGET STYLING
+// Add hover effect to the archives items
+// =============================================================================
+
+/* Hover effect */
+.widget-archive--list .archives-year:hover {
+    background-color: #eaeaea;
+}
+
+/* Optional: extra rounding on first and last for hover, matches container */
+.widget-archive--list .archives-year:first-child:hover {
+    border-top-left-radius: var(--card-border-radius);
+    border-top-right-radius: var(--card-border-radius);
+}
+
+.widget-archive--list .archives-year:last-child:hover {
+    border-bottom-left-radius: var(--card-border-radius);
+    border-bottom-right-radius: var(--card-border-radius);
+}
+
+// =============================================================================
+// TOC WIDGET STYLING
+// Replicate original TOC look with flattened div structure
+// =============================================================================
+
+
+.widget--toc {
+    background-color: var(--card-background);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--shadow-l1);
+    --toc-vertical-padding: 8px;
+    --toc-horizontal-padding: 14px;
+    color: var(--card-text-color-main);
+
+    display: flex;
+    flex-direction: column;
+    max-height: max-content;
+
+    >.toc-item:first-child {
+        a {
+            padding: var(--toc-horizontal-padding) var(--toc-horizontal-padding) var(--toc-vertical-padding) var(--toc-horizontal-padding);
+        }
+    }
+
+    >.toc-item:last-child {
+        a {
+            padding: var(--toc-vertical-padding) var(--toc-horizontal-padding) var(--toc-horizontal-padding) var(--toc-horizontal-padding);
+        }
+    }
+
+    .toc-item {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        display: block;
+
+        &:hover {
+            background-color: var(--card-background-selected, rgba(0, 0, 0, 0.05));
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            padding: var(--toc-vertical-padding) var(--toc-horizontal-padding);
+            box-sizing: border-box;
+
+            .toc-number {
+                font-weight: bold;
+                margin-right: 5px;
+            }
+        }
+
+        // Active state styling like original
+        &.active-class a {
+            border-left: var(--heading-border-size, 3px) solid var(--accent-color);
+            font-weight: bold;
+            background-color: var(--accent-color-lighter, rgba(var(--accent-color-rgb), 0.1));
+        }
+
+        &.toc-level-1 {
+            a {
+                padding-left: 30px;
+            }
+        }
+
+        &.toc-level-2 {
+            a {
+                padding-left: 60px;
+            }
+        }
+
+        &.toc-level-3 {
+            a {
+                padding-left: 90px;
+            }
+        }
+
+    }
+}

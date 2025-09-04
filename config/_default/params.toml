@@ -54,7 +54,28 @@ type = "tag-cloud"
 limit = 1000
 
 [[widgets.page]]
+type = "search"
+
+[[widgets.page]]
 type = "toc"
+
+[[widgets.page]]
+type = "archives"
+
+[widgets.page.params]
+limit = 5
+
+[[widgets.page]]
+type = "categories"
+
+[widgets.page.params]
+limit = 10
+
+[[widgets.page]]
+type = "tag-cloud"
+
+[widgets.page.params]
+limit = 1000
 
 [opengraph.twitter]
 site = ""

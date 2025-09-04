@@ -1,0 +1,82 @@
+{{ if (.Context.Scratch.Get "TOCEnabled") }}
+<section class="widget archives">
+    <div class="widget-header">
+        <div class="widget-icon">
+            {{ partial "helper/icon" "bookmark" }}
+        </div>
+        <h2 class="widget-title section-title">{{ T "article.tableOfContents" }}</h2>
+    </div>
+
+    <div class="widget-body">
+        <div class="widget--toc">
+            {{ .Context.TableOfContents }}
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tocRoot = document.querySelector('.widget--toc');
+            if (!tocRoot) return;
+
+            let counters = [0, 0, 0]; // Only track 3 levels
+
+            function flattenList(ol, level = 1) {
+                let flat = [];
+
+                ol.querySelectorAll(':scope > li').forEach(li => {
+                    const link = li.querySelector(':scope > a');
+                    if (link) {
+                        // Increment counter for current level
+                        counters[level - 1]++;
+                        
+                        // Reset all deeper level counters
+                        for (let i = level; i < 3; i++) {
+                            counters[i] = 0;
+                        }
+
+                        // Generate hierarchical number
+                        let numberText = '';
+                        for (let i = 0; i < level; i++) {
+                            if (counters[i] > 0) {
+                                numberText += (numberText ? '.' : '') + counters[i];
+                            }
+                        }
+                        numberText += '. ';
+
+                        const div = document.createElement('div');
+                        div.className = `toc-item toc-level-${level}`;
+                        
+                        // Create new link with correct numbering
+                        const newLink = document.createElement('a');
+                        newLink.href = link.href;
+                        newLink.innerHTML = `<span class="toc-number">${numberText}</span>${link.textContent}`;
+                        
+                        div.appendChild(newLink);
+                        flat.push(div);
+                    }
+
+                    const nestedOl = li.querySelector(':scope > ol');
+                    if (nestedOl && level < 3) { // Only process nested levels up to 3
+                        flat = flat.concat(flattenList(nestedOl, level + 1));
+                    }
+                });
+
+                return flat;
+            }
+
+            const allTopOls = tocRoot.querySelectorAll('ol');
+            if (allTopOls.length === 0) return;
+
+            let flatDivs = [];
+            // Reset counters for each top-level ol
+            counters = [0, 0, 0];
+            allTopOls.forEach(ol => {
+                flatDivs = flatDivs.concat(flattenList(ol, 1));
+            });
+
+            tocRoot.innerHTML = '';
+            flatDivs.forEach(div => tocRoot.appendChild(div));
+        });
+    </script>
+
+</section>
+{{ end }}

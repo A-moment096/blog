@@ -108,3 +108,63 @@
         };
     });
 </script>
+
+<!-- Universal Widget Collapse/Expand Functionality -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Detect page type
+        const isPostPage = document.body.classList.contains('article-page');
+        
+        // Find all widgets with headers
+        const widgets = document.querySelectorAll('.widget');
+        
+        widgets.forEach(widget => {
+            const widgetBody = widget.querySelector('.widget-body');
+            const widgetHeader = widget.querySelector('.widget-header');
+            
+            if (widgetBody && widgetHeader) {
+                // Set initial state based on page type and widget type
+                const isTOCWidget = widget.classList.contains('archives') && widget.querySelector('.widget--toc');
+                
+                if (isPostPage) {
+                    // On post pages: expand only TOC, collapse others
+                    if (isTOCWidget) {
+                        expandWidget(widgetHeader, widgetBody);
+                    } else {
+                        collapseWidget(widgetHeader, widgetBody);
+                    }
+                } else {
+                    // On other pages: expand all widgets
+                    expandWidget(widgetHeader, widgetBody);
+                }
+                
+                // Make entire header clickable
+                widgetHeader.addEventListener('click', function() {
+                    toggleWidget(widgetHeader, widgetBody);
+                });
+            }
+        });
+        
+        function toggleWidget(widgetHeader, widgetBody) {
+            const isExpanded = widgetBody.classList.contains('show');
+            
+            if (isExpanded) {
+                collapseWidget(widgetHeader, widgetBody);
+            } else {
+                expandWidget(widgetHeader, widgetBody);
+            }
+        }
+        
+        function expandWidget(widgetHeader, widgetBody) {
+            widgetBody.classList.add('show');
+            widgetHeader.classList.add('expanded');
+            widgetBody.style.display = 'block';
+        }
+        
+        function collapseWidget(widgetHeader, widgetBody) {
+            widgetBody.classList.remove('show');
+            widgetHeader.classList.remove('expanded');
+            widgetBody.style.display = 'none';
+        }
+    });
+</script>
