@@ -3,7 +3,7 @@ title: "Markdown 测试页面"
 description: "测试 Markdown 渲染情况"
 date: 3000-08-22T10:00:00+08:00
 categories:
-- Others
+- Testing
 tags:
 - Test
 - Markdown

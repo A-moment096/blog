@@ -151,22 +151,55 @@
             background-color: var(--accent-color-lighter, rgba(var(--accent-color-rgb), 0.1));
         }
 
-        &.toc-level-1 {
-            a {
-                padding-left: 30px;
-            }
+        // Dynamic padding based on visual depth instead of heading level
+        // This allows proper indentation regardless of starting heading level
+        &[data-visual-depth="1"] a {
+            padding-left: 30px;
         }
 
-        &.toc-level-2 {
-            a {
-                padding-left: 60px;
-            }
+        &[data-visual-depth="2"] a {
+            padding-left: 60px;
         }
 
-        &.toc-level-3 {
-            a {
-                padding-left: 90px;
-            }
+        &[data-visual-depth="3"] a {
+            padding-left: 90px;
+        }
+
+        &[data-visual-depth="4"] a {
+            padding-left: 120px;
+        }
+
+        &[data-visual-depth="5"] a {
+            padding-left: 150px;
+        }
+
+        &[data-visual-depth="6"] a {
+            padding-left: 180px;
+        }
+
+        // Fallback: if no data-visual-depth, use heading level
+        &.toc-level-1:not([data-visual-depth]) a {
+            padding-left: 30px;
+        }
+
+        &.toc-level-2:not([data-visual-depth]) a {
+            padding-left: 60px;
+        }
+
+        &.toc-level-3:not([data-visual-depth]) a {
+            padding-left: 90px;
+        }
+
+        &.toc-level-4:not([data-visual-depth]) a {
+            padding-left: 120px;
+        }
+
+        &.toc-level-5:not([data-visual-depth]) a {
+            padding-left: 150px;
+        }
+
+        &.toc-level-6:not([data-visual-depth]) a {
+            padding-left: 180px;
         }
 
     }

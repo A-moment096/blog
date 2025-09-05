@@ -17,7 +17,7 @@
             const tocRoot = document.querySelector('.widget--toc');
             if (!tocRoot) return;
 
-            let counters = [0, 0, 0]; // Only track 3 levels
+            let counters = [0, 0, 0, 0, 0, 0]; // Track up to 6 levels (H1-H6)
 
             function flattenList(ol, level = 1) {
                 let flat = [];
@@ -27,35 +27,40 @@
                     if (link) {
                         // Increment counter for current level
                         counters[level - 1]++;
-                        
+
                         // Reset all deeper level counters
-                        for (let i = level; i < 3; i++) {
+                        for (let i = level; i < 6; i++) {
                             counters[i] = 0;
                         }
 
-                        // Generate hierarchical number
+                        // Generate hierarchical number - only show non-zero levels
                         let numberText = '';
+                        let activeLevels = [];
                         for (let i = 0; i < level; i++) {
                             if (counters[i] > 0) {
-                                numberText += (numberText ? '.' : '') + counters[i];
+                                activeLevels.push(counters[i]);
                             }
                         }
-                        numberText += '. ';
+                        numberText = activeLevels.join('.') + '. ';
 
                         const div = document.createElement('div');
+                        // Use actual level for CSS class
                         div.className = `toc-item toc-level-${level}`;
-                        
+                        // Store the visual depth for CSS calculation
+                        div.setAttribute('data-visual-depth', activeLevels.length);
+
                         // Create new link with correct numbering
                         const newLink = document.createElement('a');
                         newLink.href = link.href;
                         newLink.innerHTML = `<span class="toc-number">${numberText}</span>${link.textContent}`;
-                        
+
                         div.appendChild(newLink);
                         flat.push(div);
                     }
 
+                    // Process nested lists recursively for all levels
                     const nestedOl = li.querySelector(':scope > ol');
-                    if (nestedOl && level < 3) { // Only process nested levels up to 3
+                    if (nestedOl) {
                         flat = flat.concat(flattenList(nestedOl, level + 1));
                     }
                 });
@@ -67,16 +72,18 @@
             if (allTopOls.length === 0) return;
 
             let flatDivs = [];
-            // Reset counters for each top-level ol
-            counters = [0, 0, 0];
-            allTopOls.forEach(ol => {
-                flatDivs = flatDivs.concat(flattenList(ol, 1));
-            });
+            // Reset counters and only process the first (top-level) ol
+            counters = [0, 0, 0, 0, 0, 0];
+
+            // Only process the first ol element, which should be the top-level one
+            // The recursion will handle all nested ol elements
+            if (allTopOls.length > 0) {
+                flatDivs = flattenList(allTopOls[0], 1);
+            }
 
             tocRoot.innerHTML = '';
             flatDivs.forEach(div => tocRoot.appendChild(div));
         });
     </script>
-
 </section>
 {{ end }}
