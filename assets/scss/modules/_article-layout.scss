@@ -26,10 +26,10 @@
   border-radius: 17%;
 }
 
-// 文章头图内容
-.article-header .article-image img {
-  
-}
+// 文章头图内容 (保留以备将来使用)
+// .article-header .article-image img {
+//   
+// }
 
 // 文章内容图片圆角阴影
 .article-page .main-article .article-content {
@@ -70,6 +70,9 @@
     background: none;
     box-shadow: none;
     gap: 1rem;
+    // 确保浮动卡片不被裁剪
+    overflow: visible;
+    padding: 10px 0; // 为悬浮效果预留空间
 
     article {
       background: var(--card-background);
@@ -77,6 +80,15 @@
       box-shadow: var(--shadow-l2);
       margin-bottom: 8px;
       border-radius: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+      position: relative;
+      z-index: 1;
+      
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-l3);
+        z-index: 10; // 确保悬浮时在最上层
+      }
     }
 
     // 链接三栏
@@ -92,4 +104,96 @@
       }
     }
   }
+}
+
+// 主页文章卡片悬浮效果
+.article-list {
+  // 确保容器不会裁剪悬浮的卡片
+  overflow: visible;
+  padding: 8px 0; // 为悬浮效果预留空间
+  
+  article {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    
+    // 使整个卡片可点击 - 扩展标题链接到整个卡片
+    .article-title a {
+      // 重置链接样式以覆盖整个卡片
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+      }
+    }
+    
+    // 确保其他重要链接（如分类标签）仍然可点击
+    .article-category a {
+      position: relative;
+      z-index: 2;
+    }
+    
+    // 图片链接设置较低优先级，让标题链接生效
+    .article-image a {
+      position: relative;
+      z-index: 0;
+    }
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-l3);
+      z-index: 10; // 确保悬浮时在最上层
+    }
+  }
+}
+
+// 瓦片布局悬浮效果 (用于分类页面等)
+.article-list--tile {
+  // 确保容器不会裁剪悬浮的卡片
+  overflow: visible;
+  padding: 8px 8px; // 为悬浮效果预留空间
+  
+  article {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-l3);
+      z-index: 10; // 确保悬浮时在最上层
+    }
+  }
+}
+
+// 通用文章卡片悬浮效果优化
+.article-list, .article-list--compact, .article-list--tile {
+  article {
+    // 防止移动端触摸时的意外悬浮效果
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        // 添加轻微的缩放效果增强视觉反馈
+        transform: translateY(-5px) scale(1.02);
+        z-index: 15; // 更高的层级确保不被覆盖
+      }
+    }
+    
+    // 添加点击时的微反馈
+    &:active {
+      transform: translateY(-2px) scale(0.98);
+      transition: transform 0.1s ease;
+      z-index: 5;
+    }
+  }
+}
+
+// 确保父容器也支持溢出
+.main-container, .container, section {
+  overflow: visible;
 }

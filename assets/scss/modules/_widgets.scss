@@ -76,8 +76,8 @@
 
 /* Hover effect */
 .widget-archive--list .archives-year:hover {
-    background-color: #eaeaea;
-}
+    background-color: var(--card-background-selected);
+}   
 
 /* Optional: extra rounding on first and last for hover, matches container */
 .widget-archive--list .archives-year:first-child:hover {

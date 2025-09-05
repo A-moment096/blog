@@ -21,13 +21,18 @@
 <!-- 回到顶部 -->
 <div id="back-top">
     <a href="#top" title="To Top">
-        <img src="/back_top.svg" alt="Back to Top" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="back-top-icon">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M6 15l6 -6l6 6" />
+        </svg>
     </a>
 </div>
 
 <style>
     #back-top {
-        position: absolute;
+        position: fixed;
+        bottom: 30px; /* Fixed bottom position */
+        right: 30px; /* Default right position for mobile/fallback */
         background: var(--card-background);
         border: 1px solid var(--card-separator-color);
         border-radius: 7px;
@@ -35,7 +40,7 @@
         z-index: 1000;
         opacity: 0;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
-        transition: opacity 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        transition: opacity 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, right 0.3s ease;
     }
 
     #back-top.show {
@@ -46,14 +51,32 @@
     #back-top a {
         text-decoration: none;
         color: var(--card-text-color-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-top-icon {
+        transition: color 0.3s ease, transform 0.3s ease;
     }
 
     #back-top:hover {
-        background: var(--accent-color);
+        background: var(--card-background-selected);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     }
 
-    #back-top:hover a {
+    #back-top:hover .back-top-icon {
+        color: white;
+        transform: translateY(-1px);
+    }
+
+    /* 确保在浅色模式下也有合适的悬浮效果 */
+    [data-scheme="light"] #back-top:hover .back-top-icon {
+        color: var(--accent-color);
+    }
+
+    /* 深色模式下的特殊悬浮效果 */
+    [data-scheme="dark"] #back-top:hover .back-top-icon {
         color: white;
     }
 </style>
@@ -66,27 +89,19 @@
         function positionBackTopButton() {
             if (rightSidebar && window.innerWidth >= 1024) { // lg breakpoint
                 var sidebarRect = rightSidebar.getBoundingClientRect();
-                var sidebarBottom = rightSidebar.offsetTop + rightSidebar.offsetHeight;
-                
-                // Position button directly below the sidebar with right edges aligned
-                backTopButton.style.position = 'absolute';
-                backTopButton.style.top = sidebarBottom + 10 + 'px'; // 10px gap below sidebar
-                backTopButton.style.left = (sidebarRect.right - backTopButton.offsetWidth - window.scrollX) + 'px';
-                backTopButton.style.right = 'auto';
+                // Calculate right position to align with sidebar's right edge
+                var rightPosition = window.innerWidth - sidebarRect.right + window.scrollX;
+                backTopButton.style.right = rightPosition + 'px';
             } else {
-                // Fallback to fixed positioning for mobile or when no sidebar
-                backTopButton.style.position = 'fixed';
-                backTopButton.style.bottom = '30px';
+                // Fallback to default right position for mobile or when no sidebar
                 backTopButton.style.right = '30px';
-                backTopButton.style.top = 'auto';
-                backTopButton.style.left = 'auto';
             }
         }
 
         function handleScroll() {
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 backTopButton.classList.add('show');
-                positionBackTopButton();
+                positionBackTopButton(); // Update horizontal position when showing
             } else {
                 backTopButton.classList.remove('show');
             }

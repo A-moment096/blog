@@ -10,7 +10,7 @@
         overflow-y: auto;
 
         @include respond(lg) {
-            max-height: calc(100vh - var(--main-top-padding) * 2);
+            max-height: calc(100vh - var(--main-top-padding) * 3);
         }
     }
 
