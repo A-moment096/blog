@@ -42,8 +42,8 @@ As you can see, A Moment Rest. Wish you can have a rest here, together with me. 
 
 - [MInDes](https://github.com/A-moment096/MInDes) : A phase-field simulation package developed by our research team. I forked one from the main repo. 一款相场模拟软件，由我们课题组开发。我fork了一份。
 - [MInDes_Documents](https://github.com/A-moment096/MInDes_Documents) : The documentation set of MInDes. Also, forked from main repo. 相场模拟软件的文档，我也fork了一份。
-- [MInDes_LSP](https://github.com/A-moment096/MInDes-LSP) : A little VSCode extension to provide syntax highlighting for MInDes input script file. 一款VSCode插件，可以提供代码高亮等功能给MInDes的输入文件。
-- [Python-with-VSCode](https://github.com/A-moment096/Python-with-VSCode) : A simple LaTeX project providing simple introduction and instruction about how to setup Python environment with VSCode. 一个简单的 LaTeX 文档，提供了VSCode+Python初学入门环境配置的简单教程。
+- [MInDes_LSP](https://github.com/A-moment096/MInDes-LSP) : A little VS Code extension to provide syntax highlighting for MInDes input script file. 一款VS Code插件，可以提供代码高亮等功能给MInDes的输入文件。
+- [Python-with-VS Code](https://github.com/A-moment096/Python-with-VS Code) : A simple LaTeX project providing simple introduction and instruction about how to setup Python environment with VS Code. 一个简单的 LaTeX 文档，提供了VS Code+Python初学入门环境配置的简单教程。
 
 You can also check them in my [GitHub](https://github.com/A-moment096) page.
 

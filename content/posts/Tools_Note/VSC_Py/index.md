@@ -6,14 +6,14 @@ tags:
 - VS Code
 - Document
 - Tutorial
-title: "Python + VSCode 快速配置"
-description: 快速配置VSCode的Python开发环境
+title: "Python + VS Code 快速配置"
+description: 快速配置VS Code的Python开发环境
 image: 妹红.jpeg
 date: 2024-11-01
 links:
-  - title: Python With VSCode
+  - title: Python With VS Code
     description: Github 链接
-    website: https://github.com/A-moment096/Python-with-VSCode
+    website: https://github.com/A-moment096/Python-with-VS Code
 math: true
 ---
 *这是一篇写给初学 Python 的同学的教程，帮助使用 VS Code 快速配置好 Python 的开发环境，写于今年9月14日，
@@ -25,7 +25,7 @@ Python, 一门伟大的语言. 简易的, 贴合人类语言的语法, 丰富的
 大的功能让Python近几年来几乎稳坐最受欢迎编程语言的宝座. 然而, 对于
 刚开始接触编程语言的初学者而言, 最麻烦的可能并非学习语法或者处理报
 错, 而是搭建一个简单易用的开发环境. 本文将尽笔者所能, 介绍如何配置出
-一套使用 VSCode+Python 的新手或轻度使用者适用的编程环境, 以供新手平
+一套使用 VS Code+Python 的新手或轻度使用者适用的编程环境, 以供新手平
 稳度过前期繁琐的边角料过程, 尽快开始主菜.
 
 然而需要提醒各位读者的是, 笔者本人并非Python主力用户, Python于笔
@@ -69,31 +69,31 @@ TO PATH)以避免后续复杂的手动添加环境变量的过程!** 当然, 如
 
 以上便是安装Python解释器的过程.
 
-## VSCode 的安装与配置
+## VS Code 的安装与配置
 
 这一步与上一步是平行的, 没有先后顺序一说, 您可以自由选择先进
 行哪个部分.
 但建议您先进行上一部分, 在本部分结束后您将可以直接
-在VSCode中开始Python编程.
+在VS Code中开始Python编程.
 
-VSCode是一个强大的文本编辑器.
+VS Code是一个强大的文本编辑器.
 其最大的特点是其优秀的插件生
-态以及众多的语言支持(也是通过插件实现的). 通过VSCode与插件之间的
+态以及众多的语言支持(也是通过插件实现的). 通过VS Code与插件之间的
 配合, 可以实现媲美IDE的开发环境搭建.
-笔者推荐由VSCode官方出品的
-在VSCode中使用Python的引导文档: [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python) , 该文档详
-细介绍了如何从0开始在VSCode上使用Python, 除了是英文内容外几乎没有
-缺点(当然, 您可以选择网页翻译). 下面笔者将自行介绍如何安装VSCode与
+笔者推荐由VS Code官方出品的
+在VS Code中使用Python的引导文档: [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python) , 该文档详
+细介绍了如何从0开始在VS Code上使用Python, 除了是英文内容外几乎没有
+缺点(当然, 您可以选择网页翻译). 下面笔者将自行介绍如何安装VS Code与
 相关插件.
 
-点击 [此处](https://code.visualstudio.com/) 即可打开 VSCode 官网. VSCode的安装可以全部选择默认安
-装, 如此便可使用VSCode的基础功能. 安装插件可以在侧边栏选择或者使用
+点击 [此处](https://code.visualstudio.com/) 即可打开 VS Code 官网. VS Code的安装可以全部选择默认安
+装, 如此便可使用VS Code的基础功能. 安装插件可以在侧边栏选择或者使用
 快捷键 Ctrl+Shift+X 打开插件市场, 在页面上方框中输入相应关键词即可
 检索相关插件. 如要进行Python开发, 请安装如下插件.
 
 - Chinese (Simplified)(简体中文) Language Pack for Visual Studio Code: 可
-以使VSCode的语言显示变为中文显示.
-- Python Extension Pack: VSCode上的Python插件全家桶. 安装这个比较
+以使VS Code的语言显示变为中文显示.
+- Python Extension Pack: VS Code上的Python插件全家桶. 安装这个比较
 省事.
 
 ## Python 脚本试运行
@@ -103,9 +103,9 @@ VSCode是一个强大的文本编辑器.
 
 1. 新建一个文件, 将之按照自己喜欢的名字命名, 并修改其后缀为 `.py` .
 
-2. 右键该文件, 选择用VSCode打开. 打开VSCode界面后, 此时VSCode可
+2. 右键该文件, 选择用VS Code打开. 打开VS Code界面后, 此时VS Code可
 能会询问您是否信任该文件夹. 请选择”信任”以使您安装的插件正常
-运行, 否则插件可能会被VSCode所屏蔽.
+运行, 否则插件可能会被VS Code所屏蔽.
 
 3. 现在您可以编辑该文件了. 输入一些Python代码, 下面是一个简单的测试代码:
 
@@ -117,20 +117,20 @@ print("Hello Python!")
 
 4. 现在请尝试运行该脚本. 如果您成功安装Python插件, 该文件界面的
 右上角应该会出现一个小的向右的箭头. 点击该箭头即可开始运行.
-由于您很有可能是第一次在VSCode中运行Python脚本, 因此右下角会
+由于您很有可能是第一次在VS Code中运行Python脚本, 因此右下角会
 弹出一个通知框, 通知您还未选择Python解释器. 此时界面上方会出
 现一个对话框, 让您选择您需要的Python解释器. 您可能会看到多个
 解释器(如您下载了多个解释器版本)或者 创建虚拟环境(Create Virtual
 Environment). 您可以先暂时不考虑设置虚拟环境, 先使用已有的全局
 生效的Python解释器.
 
-5. 选择好后, 请再次重复上一步, 按下小箭头. 这是, VSCode界面下方会出
+5. 选择好后, 请再次重复上一步, 按下小箭头. 这是, VS Code界面下方会出
 现一个新的窗口界面, 显示的便是您程序运行的结果. 此时您便已经成
 功运行了该Python脚本, 也说明您的Python运行环境已经搭建成功了.
 
 ## Python Debug, Pip, Jupyter Notebook
 
-本节将简要介绍有关Python与VSCode的其他方面.
+本节将简要介绍有关Python与VS Code的其他方面.
 
 ### 调试 (Debug)
 
@@ -149,12 +149,12 @@ Environment). 您可以先暂时不考虑设置虚拟环境, 先使用已有的�
 多功能, 仍可以为寻找程序漏洞问题提供帮助.
 
 首先介绍断点, 程序在运行至断点后将会停在该处之前, 等待用户的下
-一步命令. 断点的插入在代码编辑器中一般处于左侧的行号附近 (VSCode在
+一步命令. 断点的插入在代码编辑器中一般处于左侧的行号附近 (VS Code在
 行号的左侧), 插入成功后会出现一个小红点. 当程序停在断点处时, 您可以查
 看变量的值, 函数调用栈等多种信息, 随后您可以逐步向下运行程序, 中断调
-试或者向步入函数内部(VSCode通过右上角小框控制).
+试或者向步入函数内部(VS Code通过右上角小框控制).
 
-要进入VSCode的Debug模式, 请在运行Python脚本时, 在右上角的代表运
+要进入VS Code的Debug模式, 请在运行Python脚本时, 在右上角的代表运
 行的箭头旁找到一个向下的箭头, 点击展开菜单后选择 Python调试器: 调
 试Python文件(Python Debugger: Debug Python File), 随后便可进入调试模式.
 请注意此选项不仅会启动调试, 也会改变右上角的默认启动模式为调试. 调
@@ -205,7 +205,7 @@ Notebook提供了这样的方法.
 Jupyter Notebook集成了Python环境和Markdown, 可以使您在代码框中
 使用并运行Python脚本, 并在Markdown框中使用Markdown语法编辑文字. 两
 种框的位置十分灵活, 且Notebook可以打开在浏览器中直接使用, 省去专门
-的编辑器的麻烦, 也可以选择在VSCode中使用. 下面将介绍如何安装和使
+的编辑器的麻烦, 也可以选择在VS Code中使用. 下面将介绍如何安装和使
 用Jupyter Notebook.
 
 1. 请使用Pip安装Jupyter: `pip install jupyter` 并等待安装完成.
@@ -230,12 +230,12 @@ book 并打开在您的浏览器的新页面中.
 以上, 您便成功安装并试运行了Jupyter Notebook.
 
 除了在浏览器中使用原生的JupyterNotebook以外, 您还可以在安装好Jupyter后
-在VSCode中启动. 请安装好Jupyter的插件后, 在VSCode中使用快捷键 `Ctrl + Shift + P` ,
-或点击VSCode最上侧的搜索框后输入 `>` 以进入命令模式, 然后输入 `jupyter` ,
+在VS Code中启动. 请安装好Jupyter的插件后, 在VS Code中使用快捷键 `Ctrl + Shift + P` ,
+或点击VS Code最上侧的搜索框后输入 `>` 以进入命令模式, 然后输入 `jupyter` ,
 此时对话框会提示您所有的可用命令, 点击创建: 新Jupyter Notebook(Create:
 New Jupyter Notebook)即可创建新的Jupyter Notebook. 后续操作类似于网页
-端操作. 该方法不需要自行打开一个Jupyter服务器, VSCode中安装的Jupyter插
-件将在VSCode的后台自行启动一个Jupyter 服务器.
+端操作. 该方法不需要自行打开一个Jupyter服务器, VS Code中安装的Jupyter插
+件将在VS Code的后台自行启动一个Jupyter 服务器.
 
 ## 后记
 

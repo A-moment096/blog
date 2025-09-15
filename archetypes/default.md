@@ -6,12 +6,11 @@ categories:
 # - Others
 tags:
 # - 
-title: "{{ replace .Name "-" " " | title }}"
+title: 
 description: 
 date: {{ .Date }}
 image: 
 math: true
-license: 
 hidden: false
 comments: true
 draft: true
