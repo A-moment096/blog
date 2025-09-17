@@ -17,7 +17,6 @@ imageObjectPosition: center 20%
 math: true
 hidden: false
 comments: true
-draft: true
 ---
 
 *虽然 VS Code[^1] 严格来讲是编辑器（Editor），然而其实它更像是一个伪装起来的集成开发环境（IDE，Integrated Development Environment）。而且，它最强大的功能其实在于它强大的远程功能。这次我们就来聊聊怎么把 VS Code 配置成一个堪比 Visual Studio 的多用途 IDE 吧*
