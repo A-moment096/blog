@@ -6,10 +6,12 @@
                 {{ .LinkTitle }}
             </a>
         {{ end }}
+        {{ if .Params.Tags }}
+            <span class="category-tags-separator">|</span>
+            {{ partial "article/components/tags" . }}
+        {{ end }}
     </header>
     {{ end }}
-
-    {{ partial "article/components/tags" . }}
 
     <div class="article-title-wrapper">
         <h2 class="article-title">

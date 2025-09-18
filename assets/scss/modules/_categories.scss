@@ -8,6 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  align-items: center;
 
   a {
     background: var(--card-background);
@@ -16,10 +17,70 @@
     padding: 8px 20px;
     color: var(--card-text-color-main);
     font-size: 1.4rem;
-    transition: box-shadow 0.3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
-      box-shadow: var(--shadow-l2);
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+  }
+
+  // 分类和标签之间的分隔符
+  .category-tags-separator {
+    color: var(--body-text-color);
+    font-size: 1.6rem;
+    opacity: 0.6;
+    margin: 0 5px;
+  }
+
+  // 标签样式 - 玻璃效果
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    a {
+      background: rgba(0, 26, 255, 0) !important;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(14, 18, 226, 0);
+      color: black !important;
+      border-radius: var(--tag-border-radius);
+      padding: 6px 16px;
+      font-size: 1.3rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      // 暗色主题下的玻璃效果
+      @media (prefers-color-scheme: dark) {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        
+        &:hover {
+          background: rgba(0, 0, 0, 0.3);
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+
+      // 主题特定的暗色模式
+      [data-scheme="dark"] & {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        
+        &:hover {
+          background: rgba(0, 0, 0, 0.3);
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+      }
     }
   }
 }
