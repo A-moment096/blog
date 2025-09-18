@@ -12,7 +12,7 @@ tags:
 - Theorem
 - Demo
 math: true
-draft: false
+draft: true
 weight: 1
 ---
 
