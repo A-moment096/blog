@@ -1,0 +1,34 @@
+{{- $type := .Get 0 | default "theorem" -}}
+{{- $number := .Get 1 | default "" -}}
+{{- $title := .Get 2 | default "" -}}
+{{- $content := .Inner -}}
+
+{{- $defaultTitles := dict 
+    "theorem" "Theorem"
+    "lemma" "Lemma" 
+    "definition" "Definition"
+    "corollary" "Corollary"
+    "proposition" "Proposition"
+    "proof" "Proof"
+    "example" "Example"
+    "remark" "Remark"
+-}}
+
+{{- $displayTitle := index $defaultTitles $type -}}
+
+{{- if ne $number "" -}}
+    {{- $displayTitle = printf "%s %s" $displayTitle $number -}}
+{{- end -}}
+
+{{- if ne $title "" -}}
+    {{- $displayTitle = printf "%s %s" $displayTitle $title -}}
+{{- end -}}
+
+<blockquote class="math-{{ $type }}">
+    <div class="math-title">
+        {{ $displayTitle }}
+    </div>
+    <div class="math-content">
+        {{ $content | markdownify }}
+    </div>
+</blockquote>

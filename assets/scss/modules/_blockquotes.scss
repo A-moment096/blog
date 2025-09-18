@@ -10,7 +10,19 @@
     padding: 16px 20px;
     padding-right: 60px;
     margin: 1.5em 0;
-    font-style: normal;
+       .math-title {
+        color: #16a34a;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9em;
+        
+        &::before {
+          content: "🔍";
+          font-size: 16px;
+        }}
     position: relative;
     border-radius: 8px;
     line-height: 1.6;
@@ -224,6 +236,278 @@
           .github-alert-icon svg {
             fill: currentColor;
           }
+        }
+      }
+    }
+
+    // Mathematical blockquote styles
+    // THEOREM 样式
+    &.math-theorem {
+      border-left-color: #1e40af;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.08) 0%, rgba(30, 64, 175, 0.04) 100%);
+      border-radius: 8px;
+      position: relative;
+      
+      .math-title {
+        color: #1e40af;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9em;
+        
+        &::before {
+          content: "📐";
+          font-size: 16px;
+        }
+      }
+      
+      .math-content {
+        margin-top: 8px;
+      }
+    }
+
+    // LEMMA 样式
+    &.math-lemma {
+      border-left-color: #059669;
+      background: linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(5, 150, 105, 0.04) 100%);
+      border-radius: 8px;
+      
+      .math-title {
+        color: #059669;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9em;
+        
+        &::before {
+          content: "🔗";
+          font-size: 16px;
+        }
+      }
+    }
+
+    // DEFINITION 样式
+    &.math-definition {
+      border-left-color: #7c3aed;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(124, 58, 237, 0.04) 100%);
+      border-radius: 8px;
+      
+      .math-title {
+        color: #7c3aed;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9em;
+        
+        &::before {
+          content: "📚";
+          font-size: 16px;
+        }
+      }
+    }
+
+    // COROLLARY 样式
+    &.math-corollary {
+      border-left-color: #dc2626;
+      background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(220, 38, 38, 0.04) 100%);
+      border-radius: 8px;
+      
+      .math-title {
+        color: #dc2626;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9em;
+        
+        &::before {
+          content: "➡️";
+          font-size: 16px;
+        }
+      }
+    }
+
+    // PROPOSITION 样式
+    &.math-proposition {
+      border-left-color: #ea580c;
+      background: linear-gradient(135deg, rgba(234, 88, 12, 0.08) 0%, rgba(234, 88, 12, 0.04) 100%);
+      border-radius: 8px;
+      
+      .math-title {
+        color: #ea580c;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9em;
+        
+        &::before {
+          content: "💡";
+          font-size: 16px;
+        }
+      }
+    }
+
+    // PROOF 样式
+    &.math-proof {
+      border-left-color: #6b7280;
+      background: linear-gradient(135deg, rgba(107, 114, 128, 0.08) 0%, rgba(107, 114, 128, 0.04) 100%);
+      border-radius: 8px;
+      
+      .math-title {
+        color: #6b7280;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9em;
+        
+        &::before {
+          content: "✓";
+          font-size: 16px;
+        }
+      }
+      
+      // QED symbol at the end
+      &::after {
+        content: "∎";
+        position: absolute;
+        bottom: 16px;
+        right: 20px;
+        color: #6b7280;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+
+    // EXAMPLE 样式
+    &.math-example {
+      border-left-color: #0891b2;
+      background: linear-gradient(135deg, rgba(8, 145, 178, 0.08) 0%, rgba(8, 145, 178, 0.04) 100%);
+      border-radius: 8px;
+      
+      .math-title {
+        color: #0891b2;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9em;
+        
+        &::before {
+          content: "📋";
+          font-size: 16px;
+        }
+      }
+    }
+
+    // REMARK 样式
+    &.math-remark {
+      border-left-color: #9333ea;
+      background: linear-gradient(135deg, rgba(147, 51, 234, 0.08) 0%, rgba(147, 51, 234, 0.04) 100%);
+      border-radius: 8px;
+      
+      .math-title {
+        color: #9333ea;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9em;
+        
+        &::before {
+          content: "💭";
+          font-size: 16px;
+        }
+      }
+    }
+
+    // 暗色模式下的数学引用块样式
+    :root[data-scheme="dark"] & {
+      &.math-theorem {
+        border-left-color: #60a5fa;
+        background: linear-gradient(135deg, rgba(96, 165, 250, 0.15) 0%, rgba(96, 165, 250, 0.08) 100%);
+        
+        .math-title {
+          color: #60a5fa;
+        }
+      }
+
+      &.math-lemma {
+        border-left-color: #34d399;
+        background: linear-gradient(135deg, rgba(52, 211, 153, 0.15) 0%, rgba(52, 211, 153, 0.08) 100%);
+        
+        .math-title {
+          color: #34d399;
+        }
+      }
+
+      &.math-definition {
+        border-left-color: #a78bfa;
+        background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(167, 139, 250, 0.08) 100%);
+        
+        .math-title {
+          color: #a78bfa;
+        }
+      }
+
+      &.math-corollary {
+        border-left-color: #f87171;
+        background: linear-gradient(135deg, rgba(248, 113, 113, 0.15) 0%, rgba(248, 113, 113, 0.08) 100%);
+        
+        .math-title {
+          color: #f87171;
+        }
+      }
+
+      &.math-proposition {
+        border-left-color: #fb923c;
+        background: linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(251, 146, 60, 0.08) 100%);
+        
+        .math-title {
+          color: #fb923c;
+        }
+      }
+
+      &.math-proof {
+        border-left-color: #9ca3af;
+        background: linear-gradient(135deg, rgba(156, 163, 175, 0.15) 0%, rgba(156, 163, 175, 0.08) 100%);
+        
+        .math-title {
+          color: #9ca3af;
+        }
+        
+        &::after {
+          color: #9ca3af;
+        }
+      }
+
+      &.math-example {
+        border-left-color: #22d3ee;
+        background: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(34, 211, 238, 0.08) 100%);
+        
+        .math-title {
+          color: #22d3ee;
+        }
+      }
+
+      &.math-remark {
+        border-left-color: #c084fc;
+        background: linear-gradient(135deg, rgba(192, 132, 252, 0.15) 0%, rgba(192, 132, 252, 0.08) 100%);
+        
+        .math-title {
+          color: #c084fc;
         }
       }
     }
