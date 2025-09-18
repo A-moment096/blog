@@ -1,7 +1,119 @@
 // =============================================================================
 // BLOCKQUOTES MODULE
-// GitHub 式引用块样式
+// GitHub 式引用块样式（重构版本）
 // =============================================================================
+
+// Mixin for creating alert styles
+@mixin alert-style($border-color, $bg-color, $text-color, $dark-bg-color: null, $dark-text-color: null) {
+  border-left-color: $border-color;
+  background: linear-gradient(135deg, rgba($bg-color, 0.08) 0%, rgba($bg-color, 0.04) 100%);
+  border-radius: 8px;
+
+  .github-alert-title,
+  .math-title {
+    color: $text-color;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+
+    .github-alert-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+  }
+
+  .github-alert-content,
+  .math-content {
+    margin-top: 8px;
+
+    // 确保数学公式在数学环境中正确渲染
+    .katex-display {
+      margin: 1em 0;
+    }
+
+    .katex {
+      font-size: 1em;
+    }
+  }
+
+  // 暗色模式
+  :root[data-scheme="dark"] & {
+    @if $dark-bg-color and $dark-text-color {
+      background: linear-gradient(135deg, rgba($dark-bg-color, 0.15) 0%, rgba($dark-bg-color, 0.08) 100%);
+      border-left-color: $dark-text-color;
+
+      .github-alert-title,
+      .math-title {
+        color: $dark-text-color;
+      }
+    }
+  }
+}
+
+// Mixin for math environments with icons
+@mixin math-env-icon($icon-name, $color) {
+
+  .math-title::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background-image: url('/icons/math-env/#{$icon-name}.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(0) saturate(100%) #{get-filter-values($color)};
+    flex-shrink: 0;
+  }
+}
+
+// Helper function to generate filter values for different colors
+@function get-filter-values($color) {
+  @if $color ==#1e40af {
+    @return "invert(20%) sepia(88%) saturate(1789%) hue-rotate(221deg) brightness(93%) contrast(91%)";
+  }
+
+  // blue
+  @if $color ==#059669 {
+    @return "invert(39%) sepia(91%) saturate(1276%) hue-rotate(142deg) brightness(91%) contrast(96%)";
+  }
+
+  // green  
+  @if $color ==#7c3aed {
+    @return "invert(35%) sepia(89%) saturate(2466%) hue-rotate(261deg) brightness(87%) contrast(92%)";
+  }
+
+  // purple
+  @if $color ==#dc2626 {
+    @return "invert(29%) sepia(76%) saturate(2063%) hue-rotate(348deg) brightness(90%) contrast(89%)";
+  }
+
+  // red
+  @if $color ==#ea580c {
+    @return "invert(39%) sepia(100%) saturate(1847%) hue-rotate(21deg) brightness(96%) contrast(99%)";
+  }
+
+  // orange
+  @if $color ==#6b7280 {
+    @return "invert(49%) sepia(5%) saturate(1080%) hue-rotate(202deg) brightness(91%) contrast(86%)";
+  }
+
+  // gray
+  @if $color ==#0891b2 {
+    @return "invert(56%) sepia(89%) saturate(1320%) hue-rotate(174deg) brightness(96%) contrast(97%)";
+  }
+
+  // cyan
+  @if $color ==#9333ea {
+    @return "invert(44%) sepia(89%) saturate(2466%) hue-rotate(261deg) brightness(87%) contrast(92%)";
+  }
+
+  // violet
+  @return "invert(50%)"; // fallback
+}
 
 .article-content {
   blockquote {
@@ -10,30 +122,17 @@
     padding: 16px 20px;
     padding-right: 60px;
     margin: 1.5em 0;
-       .math-title {
-        color: #16a34a;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9em;
-        
-        &::before {
-          content: "🔍";
-          font-size: 16px;
-        }}
     position: relative;
     border-radius: 8px;
     line-height: 1.6;
 
     p {
       margin: 0.8em 0;
-      
+
       &:first-child {
         margin-top: 0;
       }
-      
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -48,7 +147,8 @@
     }
 
     // 列表样式调整
-    ul, ol {
+    ul,
+    ol {
       margin: 0.5em 0;
       padding-left: 1.5em;
     }
@@ -57,463 +157,87 @@
       margin: 0.3em 0;
     }
 
-    // GitHub 式引用块样式
-    // NOTE 样式
+    // GitHub Alert 样式
     &.github-note {
-      border-left-color: #0969da;
-      background: linear-gradient(135deg, rgba(9, 105, 218, 0.08) 0%, rgba(9, 105, 218, 0.04) 100%);
-      border-radius: 8px;
-      
-      .github-alert-title {
-        color: #0969da;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        
-        .github-alert-icon svg {
-          width: 16px;
-          height: 16px;
-          fill: currentColor;
-        }
-      }
-      
-      .github-alert-content {
-        margin-top: 8px;
-      }
+      @include alert-style(#0969da, #0969da, #0969da, #4dabf7, #4dabf7);
     }
 
-    // TIP 样式
     &.github-tip {
-      border-left-color: #1a7f37;
-      background: linear-gradient(135deg, rgba(26, 127, 55, 0.08) 0%, rgba(26, 127, 55, 0.04) 100%);
-      border-radius: 8px;
-      
-      .github-alert-title {
-        color: #1a7f37;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        
-        .github-alert-icon svg {
-          width: 16px;
-          height: 16px;
-          fill: currentColor;
-        }
-      }
+      @include alert-style(#1a7f37, #1a7f37, #1a7f37, #51cf66, #51cf66);
     }
 
-    // IMPORTANT 样式
     &.github-important {
-      border-left-color: #8250df;
-      background: linear-gradient(135deg, rgba(130, 80, 223, 0.08) 0%, rgba(130, 80, 223, 0.04) 100%);
-      border-radius: 8px;
-      
-      .github-alert-title {
-        color: #8250df;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        
-        .github-alert-icon svg {
-          width: 16px;
-          height: 16px;
-          fill: currentColor;
-        }
-      }
+      @include alert-style(#8250df, #8250df, #8250df, #9775fa, #9775fa);
     }
 
-    // WARNING 样式
     &.github-warning {
-      border-left-color: #ff8c00;
-      background: linear-gradient(135deg, rgba(255, 140, 0, 0.08) 0%, rgba(255, 140, 0, 0.04) 100%);
-      border-radius: 8px;
-      
-      .github-alert-title {
-        color: #ff8c00;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        
-        .github-alert-icon svg {
-          width: 16px;
-          height: 16px;
-          fill: currentColor;
-        }
-      }
+      @include alert-style(#ff8c00, #ff8c00, #ff8c00, #ffa500, #ffa500);
     }
 
-    // CAUTION 样式
     &.github-caution {
-      border-left-color: #d1242f;
-      background: linear-gradient(135deg, rgba(209, 36, 47, 0.08) 0%, rgba(209, 36, 47, 0.04) 100%);
-      border-radius: 8px;
-      
-      .github-alert-title {
-        color: #d1242f;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        
-        .github-alert-icon svg {
-          width: 16px;
-          height: 16px;
-          fill: currentColor;
-        }
-      }
-    }
-
-    // 暗色模式下的 GitHub 引用块样式
-    :root[data-scheme="dark"] & {
-      &.github-note {
-        border-left-color: #4dabf7;
-        background: linear-gradient(135deg, rgba(77, 171, 247, 0.15) 0%, rgba(77, 171, 247, 0.08) 100%);
-        
-        .github-alert-title {
-          color: #4dabf7;
-          
-          .github-alert-icon svg {
-            fill: currentColor;
-          }
-        }
-      }
-
-      &.github-tip {
-        border-left-color: #51cf66;
-        background: linear-gradient(135deg, rgba(81, 207, 102, 0.15) 0%, rgba(81, 207, 102, 0.08) 100%);
-        
-        .github-alert-title {
-          color: #51cf66;
-          
-          .github-alert-icon svg {
-            fill: currentColor;
-          }
-        }
-      }
-
-      &.github-important {
-        border-left-color: #9775fa;
-        background: linear-gradient(135deg, rgba(151, 117, 250, 0.15) 0%, rgba(151, 117, 250, 0.08) 100%);
-        
-        .github-alert-title {
-          color: #9775fa;
-          
-          .github-alert-icon svg {
-            fill: currentColor;
-          }
-        }
-      }
-
-      &.github-warning {
-        border-left-color: #ffa500;
-        background: linear-gradient(135deg, rgba(255, 165, 0, 0.15) 0%, rgba(255, 165, 0, 0.08) 100%);
-        
-        .github-alert-title {
-          color: #ffa500;
-          
-          .github-alert-icon svg {
-            fill: currentColor;
-          }
-        }
-      }
-
-      &.github-caution {
-        border-left-color: #ff6b6b;
-        background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(255, 107, 107, 0.08) 100%);
-        
-        .github-alert-title {
-          color: #ff6b6b;
-          
-          .github-alert-icon svg {
-            fill: currentColor;
-          }
-        }
-      }
+      @include alert-style(#d1242f, #d1242f, #d1242f, #ff6b6b, #ff6b6b);
     }
 
     // Mathematical blockquote styles
-    // THEOREM 样式
     &.math-theorem {
-      border-left-color: #1e40af;
-      background: linear-gradient(135deg, rgba(30, 64, 175, 0.08) 0%, rgba(30, 64, 175, 0.04) 100%);
-      border-radius: 8px;
-      position: relative;
-      
-      .math-title {
-        color: #1e40af;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9em;
-        
-        &::before {
-          content: "📐";
-          font-size: 16px;
-        }
-      }
-      
-      .math-content {
-        margin-top: 8px;
-      }
+      @include alert-style(#1e40af, #1e40af, #1e40af, #60a5fa, #60a5fa);
+      @include math-env-icon('theorem', #1e40af);
     }
 
-    // LEMMA 样式
     &.math-lemma {
-      border-left-color: #059669;
-      background: linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(5, 150, 105, 0.04) 100%);
-      border-radius: 8px;
-      
-      .math-title {
-        color: #059669;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9em;
-        
-        &::before {
-          content: "🔗";
-          font-size: 16px;
-        }
-      }
+      @include alert-style(#059669, #059669, #059669, #34d399, #34d399);
+      @include math-env-icon('lemma', #059669);
     }
 
-    // DEFINITION 样式
     &.math-definition {
-      border-left-color: #7c3aed;
-      background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(124, 58, 237, 0.04) 100%);
-      border-radius: 8px;
-      
-      .math-title {
-        color: #7c3aed;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9em;
-        
-        &::before {
-          content: "📚";
-          font-size: 16px;
-        }
-      }
+      @include alert-style(#7c3aed, #7c3aed, #7c3aed, #a78bfa, #a78bfa);
+      @include math-env-icon('definition', #7c3aed);
     }
 
-    // COROLLARY 样式
     &.math-corollary {
-      border-left-color: #dc2626;
-      background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(220, 38, 38, 0.04) 100%);
-      border-radius: 8px;
-      
-      .math-title {
-        color: #dc2626;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9em;
-        
-        &::before {
-          content: "➡️";
-          font-size: 16px;
-        }
-      }
+      @include alert-style(#dc2626, #dc2626, #dc2626, #f87171, #f87171);
+      @include math-env-icon('corollary', #dc2626);
     }
 
-    // PROPOSITION 样式
     &.math-proposition {
-      border-left-color: #ea580c;
-      background: linear-gradient(135deg, rgba(234, 88, 12, 0.08) 0%, rgba(234, 88, 12, 0.04) 100%);
-      border-radius: 8px;
-      
-      .math-title {
-        color: #ea580c;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9em;
-        
-        &::before {
-          content: "💡";
-          font-size: 16px;
-        }
-      }
+      @include alert-style(#ea580c, #ea580c, #ea580c, #fb923c, #fb923c);
+      @include math-env-icon('proposition', #ea580c);
     }
 
-    // PROOF 样式
     &.math-proof {
-      border-left-color: #6b7280;
-      background: linear-gradient(135deg, rgba(107, 114, 128, 0.08) 0%, rgba(107, 114, 128, 0.04) 100%);
-      border-radius: 8px;
-      
-      .math-title {
-        color: #6b7280;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9em;
-        
-        &::before {
-          content: "✓";
-          font-size: 16px;
-        }
-      }
-      
+      @include alert-style(#6b7280, #6b7280, #6b7280, #9ca3af, #9ca3af);
+      @include math-env-icon('proof', #6b7280);
+
       // QED symbol at the end
       &::after {
-        content: "∎";
+        content: '';
+        background-image: url('/icons/math-env/QED.svg');
+        background-size: 18px 18px;
+        height: 18px;
+        width: 18px;
         position: absolute;
-        bottom: 16px;
-        right: 20px;
-        color: #6b7280;
-        font-size: 18px;
-        font-weight: bold;
+        bottom: 22px;
+        right: 60px;
+        color: #000000;
+      }
+
+      :root[data-scheme="dark"] &::after {
+        color: #9ca3af;
       }
     }
 
-    // EXAMPLE 样式
     &.math-example {
-      border-left-color: #0891b2;
-      background: linear-gradient(135deg, rgba(8, 145, 178, 0.08) 0%, rgba(8, 145, 178, 0.04) 100%);
-      border-radius: 8px;
-      
-      .math-title {
-        color: #0891b2;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9em;
-        
-        &::before {
-          content: "📋";
-          font-size: 16px;
-        }
-      }
+      @include alert-style(#0891b2, #0891b2, #0891b2, #22d3ee, #22d3ee);
+      @include math-env-icon('example', #0891b2);
     }
 
-    // REMARK 样式
     &.math-remark {
-      border-left-color: #9333ea;
-      background: linear-gradient(135deg, rgba(147, 51, 234, 0.08) 0%, rgba(147, 51, 234, 0.04) 100%);
-      border-radius: 8px;
-      
-      .math-title {
-        color: #9333ea;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9em;
-        
-        &::before {
-          content: "💭";
-          font-size: 16px;
-        }
-      }
-    }
-
-    // 暗色模式下的数学引用块样式
-    :root[data-scheme="dark"] & {
-      &.math-theorem {
-        border-left-color: #60a5fa;
-        background: linear-gradient(135deg, rgba(96, 165, 250, 0.15) 0%, rgba(96, 165, 250, 0.08) 100%);
-        
-        .math-title {
-          color: #60a5fa;
-        }
-      }
-
-      &.math-lemma {
-        border-left-color: #34d399;
-        background: linear-gradient(135deg, rgba(52, 211, 153, 0.15) 0%, rgba(52, 211, 153, 0.08) 100%);
-        
-        .math-title {
-          color: #34d399;
-        }
-      }
-
-      &.math-definition {
-        border-left-color: #a78bfa;
-        background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(167, 139, 250, 0.08) 100%);
-        
-        .math-title {
-          color: #a78bfa;
-        }
-      }
-
-      &.math-corollary {
-        border-left-color: #f87171;
-        background: linear-gradient(135deg, rgba(248, 113, 113, 0.15) 0%, rgba(248, 113, 113, 0.08) 100%);
-        
-        .math-title {
-          color: #f87171;
-        }
-      }
-
-      &.math-proposition {
-        border-left-color: #fb923c;
-        background: linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(251, 146, 60, 0.08) 100%);
-        
-        .math-title {
-          color: #fb923c;
-        }
-      }
-
-      &.math-proof {
-        border-left-color: #9ca3af;
-        background: linear-gradient(135deg, rgba(156, 163, 175, 0.15) 0%, rgba(156, 163, 175, 0.08) 100%);
-        
-        .math-title {
-          color: #9ca3af;
-        }
-        
-        &::after {
-          color: #9ca3af;
-        }
-      }
-
-      &.math-example {
-        border-left-color: #22d3ee;
-        background: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(34, 211, 238, 0.08) 100%);
-        
-        .math-title {
-          color: #22d3ee;
-        }
-      }
-
-      &.math-remark {
-        border-left-color: #c084fc;
-        background: linear-gradient(135deg, rgba(192, 132, 252, 0.15) 0%, rgba(192, 132, 252, 0.08) 100%);
-        
-        .math-title {
-          color: #c084fc;
-        }
-      }
+      @include alert-style(#9333ea, #9333ea, #9333ea, #c084fc, #c084fc);
+      @include math-env-icon('remark', #9333ea);
     }
   }
 
-  // 卡片式折叠详情样式 (方案2)
+  // 卡片式折叠详情样式 (保持原有样式)
   details {
     background: var(--card-background);
     border-radius: 12px;
@@ -569,8 +293,8 @@
     }
 
     // 内容区域样式
-    .details-content, 
-    > *:not(summary) {
+    .details-content,
+    >*:not(summary) {
       padding: 24px;
       line-height: 1.6;
       border-top: 1px solid var(--card-border);
@@ -585,16 +309,27 @@
     }
 
     // 如果内容直接在 details 下，不在 .details-content 包装中
-    > p, > ul, > ol, > pre, > blockquote, > div:not(.details-content), > h1, > h2, > h3, > h4, > h5, > h6 {
+    >p,
+    >ul,
+    >ol,
+    >pre,
+    >blockquote,
+    >div:not(.details-content),
+    >h1,
+    >h2,
+    >h3,
+    >h4,
+    >h5,
+    >h6 {
       margin-left: 24px;
       margin-right: 24px;
-      
+
       &:first-of-type {
         margin-top: 24px;
         padding-top: 0;
         border-top: 1px solid var(--card-border);
       }
-      
+
       &:last-child {
         margin-bottom: 24px;
       }
@@ -626,14 +361,14 @@
     // 暗色模式优化
     :root[data-scheme="dark"] & {
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      
+
       &:hover {
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
       }
 
       summary {
         background: linear-gradient(135deg, rgba(var(--accent-color-rgb), 0.2) 0%, rgba(var(--accent-color-rgb), 0.1) 100%);
-        
+
         &:hover {
           background: linear-gradient(135deg, rgba(var(--accent-color-rgb), 0.3) 0%, rgba(var(--accent-color-rgb), 0.2) 100%);
         }

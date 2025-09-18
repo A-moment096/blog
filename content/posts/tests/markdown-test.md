@@ -11,6 +11,7 @@ tags:
 mermaid: true
 math: true
 draft: true
+weight: 1
 # hidden: true
 ---
 

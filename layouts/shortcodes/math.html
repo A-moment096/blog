@@ -21,13 +21,14 @@
 {{- end -}}
 
 {{- if ne $title "" -}}
-    {{- $displayTitle = printf "%s %s" $displayTitle $title -}}
+    {{- $displayTitle = printf "%s (%s)" $displayTitle $title -}}
 {{- end -}}
 
 <blockquote class="math-{{ $type }}">
     <div class="math-title">
         {{ $displayTitle }}
     </div>
+    <p></p>
     <div class="math-content">
         {{ $content | markdownify }}
     </div>

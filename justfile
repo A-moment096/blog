@@ -4,10 +4,10 @@ set positional-arguments
 full-test:
     hugo server -D -F -E --disableFastRender -O
 
-rm-build:
+rm:
     rm -rf public resources
 
-rebuild-test: rm-build full-test
+rebuild: rm full-test
 
 pre-test:
     hugo server --minify -O
