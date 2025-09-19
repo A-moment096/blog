@@ -1,0 +1,14 @@
+// =============================================================================
+// ARTITALK MODULE  
+// Third-party Artitalk Component Styling
+// =============================================================================
+
+:root {
+    --article-font-family: "Noto Serif SC", "Roboto", var(--base-font-family);
+}
+
+em {
+    font-family: "Noto Serif", "Roboto", "LXGW Bright Medium", var(--base-font-family);
+    font-style: normal;
+    font-weight: 400;
+}

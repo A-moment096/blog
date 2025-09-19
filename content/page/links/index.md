@@ -71,6 +71,8 @@ toc: false
 
 ### Git
 
+即便不是 Linux，也算是高频命令了吧（）
+
 - [给傻子的 Git 教程](https://www.bilibili.com/video/BV1Hkr7YYEh8): 非常好的教程，使我大脑旋转
 - [Learn Git Branching](https://learngitbranching.js.org/): 很不错的 Git 分支操作游戏，在实际操作中了解如何管理 Git 分支。我玩了一下午通关了，很好玩。
 - [Git 的故事：這一次沒這麼好玩](https://blog.brachiosoft.com/posts/git/): 一篇非常好的介绍 Git 历史的文章。好看，爱看。
@@ -88,6 +90,15 @@ toc: false
 
 - [CppReference Vector](https://en.cppreference.com/w/cpp/language/Zero-overhead_principle): `std::vector` 的文档
 - [StackOverFlow: Why Are Arrays of References Illegal](https://stackoverflow.com/questions/1164266/why-are-arrays-of-references-illegal): 所以指针真不是数组，数组也真的不是指针（）
+
+## 软件相关
+
+### VS Code
+
+- [The Untold Story of Visual Studio Code: A Revolution in Software Development](https://dev.to/rajeshkumaryadavdotcom/the-untold-story-of-visual-studio-code-a-revolution-in-software-development-44pp): 有关 VS Code 的小故事，挺有意思的。
+- [Download Visual Studio Code](https://code.visualstudio.com/download): 点击下载全宇宙最好的疑似 IDE 吧！
+- [How to use winget to install VSCode with custom options?](https://github.com/microsoft/winget-cli/discussions/1798): WinGet 的神秘 Bug 以及神奇解答
+- [C/C++ for Visual Studio Code](https://code.visualstudio.com/docs/languages/cpp): VS Code 提供的编译环境配置教程。底下还有 C/C++ 的专栏。
 
 ## 材料学
 
