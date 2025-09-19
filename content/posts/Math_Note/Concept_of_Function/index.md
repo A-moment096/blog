@@ -74,6 +74,30 @@ weight: 2
 
 其实这个定义几乎就是我们平时谈论问题时会采用的定义。讨论一般问题的时候完全是够用的。不过，它足够精确吗？映射和函数是同一个东西吗？泛函是什么？不过无论如何，高中时的函数的定义绝对不是这个问题的终极答案。而要找这个答案，我们应该从初等数学迈向高等数学[^2]。
 
+<details>
+<summary>我很难不吐槽新版高中数雪教材</summary>
+我们来看一看，新的人教版高中数学教材是怎么介绍函数的吧。要看一本书，肯定是首先看它的目录：
+
+![第一章内容](img/renjiao-toc1.png)
+
+不错，装帧精美，配图有趣，内容也相当详实，是进入新数学语境的好开端。
+
+我们来看第二章……等一下？啊？
+
+![？](img/renjiao-toc23.png)
+
+什么叫先介绍一元二次函数，再介绍函数的概念与性质？
+
+什么倒反天罡？
+
+WTF is that?
+
+我明白初中已经介绍了什么一次函数和二次函数，毕竟考题就考它们。但，是，这也不是能这样倒过来介绍函数这个概念的理由吧！唉，晕了。它上面关于函数的定义我们先不谈了。
+
+不是我喜欢的教材，直接不参考。
+
+</details>
+
 ## 高等数学中的函数
 
 绝大多数国内高校理工科的同学们应该都是会学 *高等数学* 的。而这其中，又有许许多多的同学的学校（或者自己）选择的数学教材，是大名鼎鼎的 *同济高数*，即 *高等数学 同济大学数学科学学院编 高等教育出版社* （我以为一直是同济大学出版社来着，好像新版换了）。我们取第八版的上册，来看看它是怎么介绍函数的。
@@ -162,11 +186,33 @@ weight: 2
 >
 > $x$ 称为函数的 **自变量**，$y$ 称为函数的 **因变量**， $A$ 称为函数的 **定义域**，通常记为 $D(f)$，而 $f(A) = \left\{y\,\vert\,y=f(x),\, x\in A\right\}$ 称为 $f$ 的 **值域**，记为 $R(f)$。点集 $C = \left\{(x,y)\,\vert y = f(x),\, x\in D(f) \right\}$ 称为 $y = f(x)$ 的图形（或图像）。
 
+<span style="font-size: 0.6em">这个定义和前面人教版数学必修一 A 的定义如出一辙…… What can I say?</span>
+
 对比湖大教材的定义以及同济教材的定义，我们发现其实大同小异。湖大教材的特点在于，它积极地运用了一些集合的符号，这也许是由于它第一章先提过了集合的内容的缘故；另外它提到了所谓的图形和图像，它们是 *括号包起来的 $x$ 和 $y$，用逗号分隔*。
 
 什么？你说这是图像点？不敢苟同。因为我不知道这个括号的含义具体是什么。虽然确实钻了牛角尖，但是说明湖大的这本教材依旧不够严谨。最重要的是，两本教材都同时有意地忽略了那个在箭头右边的可怜孩子。它到底是什么？
 
 #### 高等数学-中南大学
+
+令人悲哀的是，我本科时使用的这本书已经找不到了（因为我卖掉了）；更令人悲伤的是，二手书店已经不卖这本书了！我找遍了整个学校的书摊，都没找到，难受…… 我甚至在校园集市上找过这本书，结果得到的答案却是我早就已经否决的一本：它不是中南大学出版社出版的高等数学，而是高教社出版的高等数学。真是令人心灰意冷，太令人悲哀了。
+
+然而，得到这本并非我目标的书的同时，我得到了消息：其实这本高教社出版的高等数学，主编就是数统院的副院长，郑洲顺教授。此刻，死去的记忆疯狂攻击我，没错，我的高数教材好像就是他主编的！
+
+总之，绕了一大弯子，还是搞到了换皮版的 *高等数学（上册） 郑洲顺主编 任叶庆副主编 高等教育出版社*。我们就当它是中南大学出版社出版的吧。废话太多了，我们直接看定义：
+
+> [!DEF]{函数（中南高数）}
+> 
+> 设 $D$ 为非空实数集，若存在对应法则 $f$，使得对于任意的 $x\in D$，按照对应法则 $f$，总有唯一确定的 $y\in\mathbb{R}$ 与之对应，则称 $f$ 为定义在 $D$ 上的一个 **函数**。通常简记为
+> 
+> $$ y = f(x), x\in D,\ \text{或}\ f\colon x\mapsto y = f(x), x\in D, $$
+>
+> 其中 $x$ 称为 **自变量**， $y$ 称为 **因变量**， $D$ 称为 **定义域**，记作 $D(f)$，即 $D(f) = D$。
+>
+> 在函数定义中，对每个 $x\in D$， 按对应法则 $f$，总有唯一确定的值 $y$ 与之对应，这个称为函数 $f$ 在 $x$ 处的 **函数值**，记作 $f(x)$，即 $y = f(x)$。因变量 $y$ 与自变量 $x$ 之间的这种依赖关系通常称为函数关系。函数值 $f(x)$ 的全体所构成的集合称为函数 $f$ 的值域，记作 $R(f)$ 或 $f(D)$，即
+>
+> $$R(f) = f(D) = \left\{y\,\vert\,y=f(x),\, x\in D\right\}.$$
+
+其实记号有点凌乱……特别是简记的部分。同时，它没有先引入映射，而是直接将函数定义为实数集子集内的元素到实数集内的元素二者的对应关系。另外的部分也是大同小异，不过好处在于，没有用什么幽灵一般的箭头右边的东西，直接就说是非空实数集内的元素到实数集内的元素，绕过了这个问题，也算简洁明快吧。
 
 对了，除了国内教材，国外也应该学高数吧？没错，国外也学这些内容，不过一般叫它 *Calculus*，即 *微积分*。我们看看它们的情况：
 
@@ -194,13 +240,11 @@ Emmm，怎么说呢？非常的口语化。我很难说这个是 “定义”，
 
 > [!REM]{Codomain and Range}
 >
-> So why isn’t the range the same thing as the codomain? Well, the range 
-is actually a subset of the codomain. The codomain is a set of **possible** 
-outputs, while the range is the set of actual outputs.
+> So why isn't the range the same thing as the codomain? Well, the range is actually a subset of the codomain. The codomain is a set of **possible** outputs, while the range is the set of actual outputs.
 
-That explains all. *Codomain* 不是值域。值域是 *Range* 才对，而 *Codomain* 是元素对应函数值可能出现的一个大的集合，也就是说，值域是 *codomain* 的子集。我们这里正式揭晓所谓的 *codomain* 的中文翻译：*陪域*。
+That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *codomain* 是元素对应函数值可能出现的一个大的集合，也就是说，值域是 *codomain* 的子集。我们这里正式揭晓所谓的 *codomain* 的中文翻译：*陪域*。
 
-虽然很口语化，但是它解决了我们之前没有解决的问题！那么，其他教材呢？我们来看看群友在加拿大使用的一本微积分教材：由 Hughes-Hallett 主编的 *Calculus: Single and Multivariable*。
+虽然很口语化，但是它解决了我们之前没有解决的问题！而且，它这样口语化的内容，貌似隐藏了一些细节……先不管了。那么，其他教材呢？我们来看看群友在加拿大使用的一本微积分教材：由 Hughes-Hallett 主编的 *Calculus: Single and Multivariable*。
 
 #### Calculus: Single and Multivariable
 
@@ -214,13 +258,93 @@ That explains all. *Codomain* 不是值域。值域是 *Range* 才对，而 *Cod
 
 > [!DEF]{Function (Calculus: Single and Multivariable)}
 >
-> A **function** is a rule that takes certain numbers as inputs and assigns to each a deﬁnite output number. The set of all input numbers is called the **domain** of the function and the set of 
-resulting output numbers is called the **range** of the function. 
+> A **function** is a rule that takes certain numbers as inputs and assigns to each a deﬁnite output number. The set of all input numbers is called the **domain** of the function and the set of resulting output numbers is called the **range** of the function. 
 > 
 > The input is called the *independent variable* and the output is called the *dependent variable*.
 
-令人失望的是，这个定义没有提到陪域，而是像国内教材一样使用了定义域以及值域的方式。不过嘛，反倒是显得简洁。另外，在这部教材中，没有找到 *codomain* 的字眼，这一点是有点令人失望的。然而值得一提的是，上面介绍了陪域的普林斯顿微积分读本，依旧没有过多使用 *codomain* 一词，全文中只出现了约 5 次而已。
+令人失望的是，这个定义没有提到陪域，而是像国内教材一样使用了定义域以及值域的方式。不过嘛，反倒是显得简洁。另外，在这部教材中，没有找到 *codomain* 的字眼，这一点是有点令人失望的。然而值得一提的是，上面介绍了陪域的普林斯顿微积分读本，依旧没有过多使用 *codomain* 一词，全文中只出现了约 5 次而已。然而我们还可以看看另一本鼎鼎大名的 *Thomas' Calculus*，由 George B. Thomas, Jr 所著，算是美式教材中的顶流之一了。
 
+#### Thomas' Calculus
+
+依旧是熟悉的函数开场，熟悉的先介绍一下函数的地位：
+
+> [!REM]
+>
+> Functions are fundamental to the study of calculus. ...
+>
+> Functions are a tool for describing the real world in mathematical terms. ...
+
+逼格拉满了（复数 + are + a tool 这样的单数真的没问题吗（）），那么定义是什么呢？
+
+> [!DEF]{Function (Thomas' Calculus, full version)}
+>
+> ... the value of one variable quantity, say $y$, depends on the value of another variable quantity, which we often call $x$. We say that "$y$ is a function of $x$" and write this symbolically as
+>
+> $$ y = f(x) \ \ \ \text{("$y$ equals f of $x$")} $$
+>
+> The symbol $f$ represents the function, the letter $x$ is the **independent variable** representing the input value to $f$, and $y$ is the **dependent variable** or output value of $f$ at $x$.
+>
+> （下一行是正式的定义 —— AMoment 留）
+> 
+> A **function** $f$ from a set $D$ to a set $Y$ is a rule that assigns a *unique* value $f(x)$ in $Y$ to each $x$ in $D$.
+> 
+> The set $D$ of all possible input values is called the **domain** of the function. The set of all output values of $f(x)$ as $x$ varies throughout $D$ is called the **range** of the function.
+
+紧接前面的关于值域的内容（就在同一段）是关于值域与 $Y$ 以及函数这一概念的说明：
+
+> [!REM]
+>
+> The range might not include every element in the set Y. The domain and range of a function can be any sets of objects, but often in calculus they are sets of real numbers interpreted as points of a coordinate line.
+
+它依旧没有提多少陪域的事情，只是让幽灵一般的 $Y$ 出现了一下，并说明值域并不总是有所有 $Y$ 里面的元素。然而，有趣的地方来了：它的函数的定义没有把定义域和幽灵 $Y$ 限定在数域上，而是后面补充了说在微积分中函数一般是坐标轴上的实数。所以，它的函数是我们在国内高数教材中的 *映射*！我们再回看那本 *The Calculus Lifesaver*，它没有说 *the object* 是什么！只说了 *input* 和 *output* 是来自于两个 *集合*：domain 与 codomain，所以，*The Calculus Lifesaver* 的函数定义也是 *偏向* 映射的。
+
+看了这么多美国教材，我们再看看英国的教材吧
+
+#### 英国的教材，吗？
+
+……哦不，我只有一篇朋友给的讲义可以参考。而且，这位授课的 Theodore Voronov. 还是一位莫斯科国立毕业的俄国人…… Anyway，我们可以看看，他在讲义中怎么定义函数：
+
+> [!DEF]{Functional dependence (From Prof. Theodore Voronov.)}
+>
+> In many cases application of mathematics to natural science and engineering deals with analyzing **functional dependence**. What is a functional dependence? We have one varying quantity described by a variable, say, $x$, and another quantity described by a variable, say, $y$, so that to each value of the first quantity, $x$, by a certain given law there corresponds a particular value (which should be uniquely defined) of the second quantity, $y$. We write this as
+> 
+>  $$ x\mapsto y \ \ \text{or} \ \ y = f(x) \ \ or \ \ y = y(x) $$
+> 
+> (here the letter $f$ is used to express a *functional law* by which y depends on $x$; but very often we simply write $y = y(x)$). The variable $x$ is called *independent variable* or the *argument* of the function. Respectively, $y$ is called *dependent variable* and $y = y(x)$ is called the value of the function (corresponding to a given value $x$ of the argument).
+
+与其说是给出了函数的定义，不如说这里描述了什么是 *函数关系*。鉴于此，我们得以看到也许更高的视角：这也许是一种普遍存在的关系，而非某个特定的事物（函数、映射）才能携带有的。另外我们可以看到，这里的记号相对比较随意：$y$ 既可以等于 $f(x)$，又可以等于 $y(x)$，都表达一种函数关系。我不评价这种记号的好坏，但是我不喜欢就是了。
+
+#### 竟然还有日本的高中教材
+
+没错，我莫名收藏了几本翻译的日本高中数学教材，原作者是著名日本数学家小平邦彦，采用的版本是 *数学I 小平邦彦编 吉林人民出版社*。我们也来看看是怎么写的吧：
+
+> [!DEF]{函数（日本高中教材）}
+>
+> 设 $X$ 与 $Y$ 是数的集合，使 $X$ 的各个元素分别对应 $Y$ 的唯一的一个元素 $y$，这个对应叫做由 $X$ 到 $Y$ 的 **函数**。函数可用字母 $f$，$g$ 等表示。
+>
+> 当 $f$ 是由 $X$ 到 $Y$ 的函数时，按 $f$ 使 $X$ 的元素 $x$ 所对应的 $Y$ 的元素 $y$，叫做 $f$ 在 $x$ 的值，写作
+>
+> $$ y = f(x)$$
+>
+> 并且，$X$ 叫做函数 $f$ 的定义域。$f$ 的所有值 $f(x)$ 的集合 
+> 
+> $$\left\{f(x)\ \vert\ x \in X\right\} $$
+>
+> 叫做 $f$ 的值域。
+>
+> 一般地，$y = f(x)$ 则说 $y$ 是 $x$ 的函数。 $x$ 叫 **自变数**，$y$ 叫做 **因变数**。
+
+也许是由于年代的原因，一些翻译，比如因变量，自变量，采用了不怎么寻常的翻译方式。另外这本书是直接跳过了映射，指明了函数是从数集到数集的一种对应，也不失为一种好的处理方法。最后，日本原来在高中第一本书就会学函数吗（）
+
+相信看了这么多的高等数学教材中的函数定义，你一定累坏了：这些定义没有一个非常好地说明我们提出的所有问题，必须把它们组合起来，才能回答：
+
+- 函数是什么，记号怎么写；
+- 映射是什么，映射和函数是什么关系；
+- 那个神秘的，箭头右边的集合/数集，到底是什么东西。
+
+这个问题的根源，也许是这些教材都是 *高等数学* 教材。它们不关心别的用处，只关心在本教材中使用的情况。我们可以看到，上面第三个问题鲜少有教材提及，这一点其实相当诡异：大家都知道那里有个东西，大家都当作没看见。然而这一点也是无可厚非的：我们在学习这些教材的过程中，几乎不需要用到这个房间中的大象。
+
+那么，既然普通理工科大学生学习的 *高等数学* 里的定义并不能让我们满意，也许我们应该将目光投向数学系的教材，看看数学系是怎么处理函数这个数学研究中近乎最最基础的概念的。我们首先从距离高等数学并不遥远的 *数学分析* 开始。
 
 ## 数学分析中的函数
 
