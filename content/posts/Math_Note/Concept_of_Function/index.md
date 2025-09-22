@@ -11,7 +11,7 @@ tags:
 - Notations
 - Talk
 title: "到底啥是函数！？"
-description: "一个大家非常熟悉的概念，但是你也许并不很了解它……"
+description: "一个大家常用的概念，而各个教材则……"
 date: 2025-09-01T18:41:51+08:00
 image: 笔中的呓喃之境.jpg
 math: true
@@ -22,7 +22,7 @@ draft: true
 weight: 2
 ---
 
-*我们平时经常会遇到所谓的 **函数**，不管是数学、物理，甚至是程序里，都能看到它的身影。然而，它到底是啥呢？你也许自己心里有一个答案。这里我也斗胆聊聊这个我们或许很熟悉的概念。*
+*我们平时经常会遇到所谓的 **函数**，不管是数学、物理，甚至是程序里，都能看到它的身影。然而，它到底是啥呢？你也许自己心里有一个答案。这里我也斗胆对比一下各个教材中对函数的定义，聊一聊这个我们或许很熟悉的概念。*
 
 *头图依旧选自  [fasnakegod](https://www.pixiv.net/en/users/8605991) 大大的 [笔中的呓喃之境](https://www.pixiv.net/en/artworks/115191853)，实在是非常好看，Aya 太可爱了。曲选自一首经典的吉他指弹曲：岸部眞明的 《Time Travel》，轻松愉快的一首，我很喜欢（甚至学过）（没学会）。*
 
@@ -358,7 +358,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 - *Mathematical Analysis I - Vladimir A. Zorich*
 - *Principles of Mathematical Analysis - Walter Rudin*
 - *Analysis - Terence Tao*
-- 
+- *Roger Godement - Analysis I Convergence, Elementary functions*
 
 其中，前四本书是国内广泛使用的教材；第五本其实算是讲义，但写的很全，我们也来参考；后几本则是国外的数学分析教材：大名鼎鼎的卓里奇，鲁丁，陶哲轩，戈德门特，分别代表俄、美、奥、法四个国家的数学教材。由于这些书名都太像了，全都是什么什么分析，且其作者都十分有名（几乎就是书的代名词），所以我们在书没有别名的情况下采用老师的姓名；有别名的情况下则使用更轻松幽默的别名。最后要提到的是，由于函数和映射的关联性，我们把映射也一并加入考察的对象。
 
@@ -522,9 +522,106 @@ Zorich 在介绍完集合后，函数部分直接给出的是 *The concpet of a 
 
 #### Baby Rudin
 
+为什么这本 *Principles of Mathemattical Analysis* 会被称为 Baby Rudin 呢？其实是因为 Rudin 老爷子写了三本分析学的教材，一本就是这本我们要参考的书，另一本是 *Real and Complex Analysis*，最后一本则是 *Functional Analysis*。而又因为这三本书逐级递进的难度，它们便被冠以 Baby, Papa 和 Grandpa Rudin 的名号。
+
+虽说难度中 Baby Rudin 是最简单的，然而看完这本我的评价是并非简单。作为我第一本读完的数学教材，Rudin 的内容引入很有趣：他先介绍序结构，紧接着介绍代数域的概念，最后通过介绍的这两个东西引入了实数域（以及实数扩域）和复数域到欧氏空间。这个顺序我在初读时是没有想到的，然而更神奇的是，上面的这一切都没有依赖某种函数/映射关系。也正因如此，直到第二章它才引入了函数的概念，而这一章的内容，叫做拓扑。（更神奇的是，通篇在谈拓扑，一整本书只有目录有 Topology）
+
+那么它上面怎么定义的函数呢？
+
+> [!DEF]{Function (Baby Rudin)}
+>
+> Consider two sets $A$ and $B$, whose elements may be any objects whatsoever, and suppose that with each elen1ent $x$ of $A$ there is associated, in some manner, an element of $B$, which we denote by $f(x)$. Then $f$ is said to be a *function* from $A$ to $B$ (or a *mapping* of $A$ into $B$). The set $A$ is called the *domain* of $f$ (we also say $f$ is defined on $A$), and the elements $f(x)$ are called the values of $f$. The set of all values off is called the *range* of $f$.
+
+它貌似和 Zorich 一样，采用了 *function = mapping* 的说法，且这本书并没有用形式化的语言来叙述这个定义，也许这就是美式教材的魅力吧。同样令人失望的是，它没有说明 $B$ 是什么。怎么说呢，多少还是有点点失望的。不过没有关系，我们继续前进，看看另一本著名分析教材：Terence Tao（陶哲轩）的教材怎么定义的函数。
+
+#### Terence Tao
+
+虽然没有看过这本书，但是它的目录很吸引人：第一章首先介绍的不是什么“集合”，“数系”等内容，而是一个 "Introduction"，两个小节，"What is analysis?" 与 "Why do analysis"。我感觉我有必要抽时间看这个部分，一定会很有趣。而它在第二章也没有直接开始我们观念上很分析的内容，而是先介绍了所谓的 Peano axioms（皮亚诺公理），以及加法和乘法，明摆着是打算从自然数一步步走到实数系。终于，它在第三章谈集合论，在里面谈到了函数。首先，它先从观念上谈了函数是什么东西：
+
+> [!REM]{Function}
+>
+> In order to do analysis, it is not particularly useful to just have the notion of a set; we also need the notion of a *function* from one set to another. Informally, a function $f \colon X \to Y$ from one set $X$ to another set $Y$ is an operation which assigns to each element (or “input”) $x$ in $X$, a single element (or “output”) $f(x)$ in $Y$; we have already used this informal concept in the previous chapter when we discussed the natural numbers. 
+
+哈，看来已经在自然数那里使用过这样不正式的定义了。不过从这儿也能看到，这本书也是走的 *function = mapping* 的路数，因为你可以看到，函数是从集合到集合的。不过下面就是正式定义了，我们来看一下：
+
+> [!DEF]{Function (Terence Tao)}
+>
+> Let $X$, $Y$ be sets, and let $P(x, y)$ be a property pertaining to an object $x \in X$ and an object $y \in Y$ , such that for every $x \in X$, there is exactly one $y \in Y$ for which $P(x, y)$ is true (this is sometimes known as the *vertical line test*). Then we define the *function* $f \colon X \to Y$ defined by $P$ on the *domain $X$ and range* $Y$ to be the object which, given any input $x \in X$, assigns an output $f(x) \in Y$, defined to be the unique object $f(x)$ for which $P(x, f(x))$ is true. Thus, for any $x \in X$ and $y \in Y$,
+> 
+> $$y = f(x) \iff P(x, y)\text{ is true.}$$
+
+它的定义很有趣，使用了一个我们此前没有用到的概念："property"。它依旧从两个集合中取元素，随后要求 $P$ 是这样一个性质：每一个 $x\in X$ 都得有一个唯一的 $y\in Y$ 使得 $P(x,y)$ 这样的性质为真，且叫它 “垂线测试”。最后，它让函数成为一个数学对象，它可以接收一个 $x \in X$，结果在 $Y$ 中，然后让这个对象与 $x$ 和 $f(x)$ 能令 $P(x,f(x))$ 为真。这个定义还用一个表达式表达出来了。莫名有种脱裤子放屁的感觉，不过也是很好地体现了函数作为 *数学对象* 的特点：它不止是一种关系，更是一个可操作的数学对象。
+
+另外令人欣喜的是，它把那个 $Y$ 也给出来了。在这里它叫…… *range*？啊？为什么是 “值域” 的单词？那这样的话，值域怎么办？貌似它放弃了值域这个概念，转而直接使用了 *image*（像）。从后续 *Onto functions* 的定义也能看出，似乎它确实是选择了使用 *range* 作为那个神秘集合的名字。虽然说可能和我们预期的不一样，且貌似大多数数学家没有把 *range* 用在这个概念上，但是这本书里的内容是自洽的，这也就够了。另外，它最后也同样有一个注解：
+
+> [!REM]
+>
+> Functions are also referred to as *maps* or *transformations*, depending on the context. They are also sometimes called *morphisms*, although to be more precise, a morphism refers to a more general class of object, which may or may not correspond to actual functions, depending on the context.
+
+很明确，它也是持 *function = mapping* 的观点的，只不过这里没有使用 *mapping* 而是使用了 *map*。可能澳洲是喜欢这么讲吧，但 *map* 一般用作动词表示映到，而 *mapping* 则是动名词形式，意为映射。嘛，没什么大问题。那就让我们最后来看一下法国数学家戈德门特的这本教材吧。
+
+#### Godement
+
+我在我自己的书库里找这个人名时，只找到了一本 *代数学教程*，且是由国内老师翻译的；而我是怎么知道他写的分析教材呢？我是从清华大学刘思齐老师（他有自己的B站主页：[我真的不懂分析](https://space.bilibili.com/85657899)）的视频 [如何选择一本适合你的《数学分析》教科书？北京某高校数学老师为你揭示选书的秘密](https://www.bilibili.com/video/BV1xp4y1e7Nh/) 中得知的。其实，前面选的一些教材，是从这个视频里了解到的，就包括这次选择的 Godement。考虑到我找到的是英译本，且我不会法语，我就还是以这本英译本为参考吧。
+
+从目录上看，这本书首先介绍的是集合论，紧接着就是函数了。然而它的语言，说实话比较长：它不只是定义了函数，它甚至给了一些函数这个定义发展的历史脉络。我们把它的描述放在下面，为了方便阅读我做了折叠，然后在下面进行了一些总结。不想看可以跳过这些文字，说实在的，确实挺长的。
+
+<details>
+<summary>函数的定义：Godement</summary>
+
+The concept of the cartesian product allows one to introduce the general
+concept of a *function* or *map*, which is as fundamental as that of a set and
+which, as we shall see, reduces to it as do all others. In elementary education
+and in the whole history of mathematics up to the beginning of the XIX<sup>th</sup>
+century, a function was given by a "formula" such as $f (x ) = x^2 - 3$, $f (x) =
+\sin x$, etc., but starting with Descartes one often also defined a function from a
+curve whose "equation" one sought. For experimental scientists and engineers
+a function is very often also given by its *graph*, the geometrical locus of those
+points $(x , y)$ in the plane such that $y = f( x)$ for a function $f$ which, quite
+often, one does not really know.
+
+Starting with the XIX<sup>th</sup> century the concept of a function ceased to be
+associated with a simple or complicated "formula"; the German Dirichlet for
+example speaks of the function equal to 0 if $x$ is a rational number and to 1
+if $x$ is irrational, and one later envisaged much stranger functions, until the
+general and abstract concept emerged of a *function defined on a set $X$ and
+having values in a set $Y$*; such a function $f$ associates to every $x \in X$ a well
+determined $y = f (x) \in Y$ depending on $x$ according to a precise rule. The
+graph of $f$ is then the set of ordered pairs $(x , y) \in X \times Y$ such that $y = f (x)$
+for every $x \in X$. One encounters this in everyday life: if, in a monogamous
+society, one denotes by $H$ the set of married men and by $F$ the set of women,
+the relation "$y$ is the wife of $x$" is a function with values in $F$ defined on $H$.
+Its graph is clearly a set of ... couples.
+
+Conversely, a subset $G$ of $X \times Y$ is the graph of a function $f$ provided that
+$G$ has the following property: for every $x \in X$ there exists one, and only one,
+$y \in Y$ such that $(x , y) \in G$; and then one writes $y = f( x)$ . This convention
+allows one to reduce the concept of a function to that of a set: *by definition*
+a function defined on X with values in $Y$ *is* a subset of $X \times Y$ subject to the
+preceding condition; no longer is there a "formula".
+</details>
+
+它从笛卡尔积出发构建的函数的概念，先是介绍了十九世纪时人们对函数的定义停留在要有一个表达式，或者工程师们需要一个图像；随后德国数学家狄利克雷所定义的奇怪函数：在有理点取 0 而在无理点取 1 的函数（所谓狄利克雷函数）让人们重新思考函数的概念，确定为了要让一个集合中的 $x$ 有另一个集合的唯一对应。而利用笛卡尔积，我们则能构建出函数的图像：笛卡尔积 $X \times Y$ 的一个子集，其元素（有序对）的第一个分量 $x\in X$ 有唯一确定的一个 $Y$ 中的 $y$ 与之对应。实在是非常巧妙的做法：通过对函数图像的刻画同时反向地描述了函数应该怎么样定义。
+
+即便此前从未看过这本书，这段文字依旧非常吸引我。而我也大概看了看后续的内容，非常地细致入微，介绍了很多符号以及概念上的细节，包括 “如果这个对应关系不唯一，那会怎么样” 这样的问题。另外它也是声称 *function = map* 的，这从后面表述函数的记法与叫法能看出。可惜的是，它并没有指出 $X$ 或 $Y$ 有什么特殊的名称：函数就是单纯地 *定义在* $X$ 上，且 *其值在 $Y$ 里*。 
+
+鉴于 Godement 也有一本 *代数学教程*，我们可以在稍后的代数学部分也看看，他是怎样在代数学中定义函数的。
+
+#### 小结
+
+看完这里这些微积分、数学分析中对函数的定义，我们可以看到，它们主要持两种态度。第一种是国内教材所普遍使用的，比较精细的划分：映射是从集合到集合上的一种对应关系，而函数则是要把映射的或陪域，或定义域与陪域一起限定在某个数域上（实数或者复数）。可惜的是，国内教材大多都没有提及 “陪域” 这个词，反倒是国外的一些教材有提及这个在箭头右侧的集合的名称。而第二种态度，恰恰是国外教材普遍采用的，不那么精细的说法：函数就是映射，映射也就是函数。函数甚至可以是别的很多（更多）的东西：态射、变换、算符、泛函等等。不过在定义的细节上，几本教材似乎有所分歧：有的就和国内教材的差不多，比如 Zorich 和 Baby Rudin；Terence Tao 使用了关系-函数，而 Godement 最独特，使用了图像-函数的定义方法。
+
+然而不可否认的是，这两种定义都首先表示：函数一定是从集合到集合的一种对应关系。而如果您了解过代数学，特别是抽象代数，就一定明白，代数学一大特点就在于研究数学对象之间的关系。而函数，或者说，这种集合到集合之间的关系，也不可避免地成为代数学的基础研究对象之一。接下来，我们就看看代数学中都是怎么介绍函数的吧。
 
 ## 代数学中的函数
 
+由于代数学一般都从抽象代数/近世代数这些数学专业修习的专业课开始，我们就不需要再看普通理工科学生需要学习的内容了。这里我们选择的教材依旧从国内选择几本，再从国外选择若干本，尽可能涵盖较多的国家，领略一下各个国家的风格。这里我们选择这些书：
+
+- 丘维声 - 高等代数
+- 姚慕生，吴泉水，谢启鸿 - 高等代数学
+- Serge Lang - Undergraduate Algebra
+- Paolo Aluffi - Algebra: Chapter 0
+- Michael Artin - Algebra
 
 
 
