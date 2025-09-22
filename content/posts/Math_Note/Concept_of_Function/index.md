@@ -617,11 +617,143 @@ preceding condition; no longer is there a "formula".
 
 由于代数学一般都从抽象代数/近世代数这些数学专业修习的专业课开始，我们就不需要再看普通理工科学生需要学习的内容了。这里我们选择的教材依旧从国内选择几本，再从国外选择若干本，尽可能涵盖较多的国家，领略一下各个国家的风格。这里我们选择这些书：
 
-- 丘维声 - 高等代数
-- 姚慕生，吴泉水，谢启鸿 - 高等代数学
-- Serge Lang - Undergraduate Algebra
-- Paolo Aluffi - Algebra: Chapter 0
-- Michael Artin - Algebra
+- *丘维声 - 高等代数*
+- *姚慕生，吴泉水，谢启鸿 - 高等代数学*
+- *Roger Godement - Algebra*
+- *Paolo Aluffi - Algebra: Chapter 0*
+- *Serge Lang - Undergraduate Algebra*
+- *Thomas W. Hungerford - Algebra*
+- *A. I. Kostrikin - Introduction to Algebra*
+- *A. L. Grodentsev - Algebra I*
+
+我们选了这几本书，不过这里主要选择的是外国教材，国内只选择了使用者广泛的复旦大学丘维声老师的高等代数，以及同样受欢迎的姚慕生，谢启鸿老师的高等代数学。而国外教材中，我们先看看我们已经见过的法国数学家 Godement 在他的代数学中会写一些什么，随后会看看三位美国数学家们的著作，他们分别是 Paolo Aluffi 所写的 *Algebra: Chapter 0*（著名的 *Chapter 0*，一本很不错的书）, Serge Lang（塞尔日·兰，法裔美籍数学家，著有著名的 *GTM 211*）写的 *Undergraduate Algebra*，以及鼎鼎大名的 *GTM 73*：由 Thomas Hungerford 所写的 *Algebra*。最后我们来领略一下两位俄国数学家的著作，他们分别是 Kostrikin（柯斯特利金，其著作有中译本，但翻译一般所以这里选择英译本）的 *代数学引论*，以及 Grodentsev 所著的 *Algebra I*，一本观点较高较新的书。
+
+说实在的，我想我们已经多很多概念比较熟悉了。因此这里我摘抄定义时，只摘抄逻辑关联性较强的部分内容，而当一些概念，比如 “像”，“原像” 等，如果和前后文联系不够紧密（不在同一段）的话，我们就不摘抄在这里了。最后我想说，这些代数教材我是推荐读一读这些定义的上下文环境的，有一些内容，由于我选择性的摘抄，它们会变得有些不知所以。因此，我强烈推荐还是看看它们的原文，至少这些定义部分的上下文是可以看一看的。
+
+### 国内
+
+#### 丘维声
+
+> [!DEF]{函数（丘维声）}
+>
+> 设 $A$ 和 $B$ 是两个非空集合，如果集合 $A$ 到集合 $B$ 有一个对应法则 $f$，使得 $A$ 中每一个元素 $a$，都有 $B$ 中唯一确定的元素 $b$ 与它对应，那么称 $f$ 是集合 $A$ 到 $B$ 的一个 映射，记作
+>
+> $$\begin{align*} f\colon &A\to B\\& a\mapsto b, \end{align*}$$
+>
+> 其中 $b$ 成为 $a$ 在 $f$ 下的 **像**，$a$ 称为 $b$ 在 $f$ 下的一个 **原像**，$a$ 在 $f$ 下的像用符号 $f(a)$ 表示，于是映射 $f$ 也可以记成
+>
+> $$f(a) = b\ \ \text{或}\ \ b = f(a),\ \ \ a\in A$$
+>
+> 事先给了两个集合 $A$ 和 $B$，才能谈论 $A$ 到 $B$ 的映射。设 $f$ 是集合 $A$ 到集合 $B$ 的一个 映射，则把 $A$ 叫做 $f$ 的 **定义域**，把 $B$ 叫做 $f$ 的 **陪域**，一个映射 $f \colon\ A \to B$ 由定义域、陪域和 对应法则组成。 因此，如果映射 $f$ 与映射 $g$ 的定义域相等，陪域也相等，并且对应法则相同，那么称 $f$ 与 $g$ 相等，记作 $f = g$。所谓 $f$ 与 $g$ 的对应法则相同，是指对于定义域中的每一个 元素 $a$，都有 $f(a) = g(a)$。
+
+#### 谢启鸿
+
+> [!REM]{函数（谢启鸿）}
+>
+> 读者已经学过映射的概念，我们现在来复习一下。所谓映射，是指从一个集合 $A$ 到另一个集合 $B$ 的对应 $\varphi\colon\ A\to B$。对 $A$ 中任一元素 $a$，均有唯一的元素 $b\in B$ 与之对应，记之为 $b = \varphi(a)$。元素 $b$ 称为 $a$ 在 $\varphi$ 下的像， $a$ 称为元素 $b$ 的原像或者逆像。$A$ 中元素在 $\varphi$ 下的像全体构成 $B$ 的一个子集，记之为 $\varphi(A)$ 或 $\operatorname{Im}\varphi$。 如果 $\operatorname{Im}\varphi = B$，即 $B$ 中任一元素 $b$ 均在 $A$ 中有元素 $a$，使 $b = \varphi(a)$,则称 $\varphi$ 是满映射或称 $\varphi$ 是映上的映射。如果映射 $\varphi$ 适合以下条件：若 $a\neq a'$，则 $\varphi(a)\neq\varphi(a')$，那么就称 $\varphi$ 是单映射。单映射的另外一个等价说法是从 $\varphi(a) = \varphi(a')$ 可推出 $a = a'$。如果 $\varphi$ 既是单映射又是满映射，则称 $\varphi$ 是双射。这时不仅对 $A$ 中的任一元素，有且仅有 $B$ 中的一个元素与之对应；而且对 $B$ 中的任一元素，有且仅有 $A$ 中的一个元素与之对应。因此，双射又称为一一对应。
+
+### 法国
+
+#### Godement
+
+> [!REM]{Graphs and functions}
+>
+> Let $X$, $Y$ be two sets. A function on the set $X$, with values in the set $Y$, is any operation which makes correspond to each element $x \in X$ an element $y$ of $Y$ depending on $x$ in accordance with some well-defined law: for example, the function $y = \sin x$, when $X=Y=\mathbb{R}$.
+> 
+> This "definition" unfortunately contains several words which have not been mathematically defined. For example, what does the expression "make correspond" mean? Taken at its face value, this definition is just another piece of word-juggling.
+
+> [!DEF]{Function (Godement)}
+>
+> A *function* is an ordered triple
+>
+> $$f = (G,X,Y)$$
+>
+> where $G$, $X$, $Y$ are sets satisfying the following conditions:
+>
+> (F 1): $G\subset X \times Y$;
+> (F 2): for each $x\in X$ therre is exactly one $y\in Y$ such that $(x,y)\in G$.
+>
+> Consider (F 1) means that $G$ is a graph (section 1), called the **graph of the function** $f$. By (F 2), for each $x\in X$ there exists $z\in G$ such that $x = \operatorname{pr}_1(z)$, and therefore
+>
+> $$\operatorname{pr}_1(G) = X,\ \ \ \ \ \operatorname{pr}_2(G) = Y.$$
+>
+> Let $x$ be an element of $X$; then the unique element $y\in Y$ such that $(x,y) \in G$ is called **the value of the function $f$ at $x$**, and is denoted by
+>
+> $$y = f(x).$$
+>
+> Clearly the graph $G$ of $f$ is the set of all ordered pairs of the form $(x,f(x))$, in accordance with the intuitive idea of a function.
+>
+> If $f = (G,X,Y)$ is a function, $X$ is called the **domain** or **source** of $f$ and $Y$ the **target** of $f$.
+
+> [!REM]{Mapping of X into Y}
+>
+> If $X$, $Y$ are two sets, a **mapping of $X$ into $Y$** is a function with $X$ as source and $Y$ as target. The words "function" and "mapping" are thus synonyms, but in practice it is often more convenient to say "let $X$ be a mapping of $X$ into $Y$" rather than "let $f$ be a function defined on $X$ with values in $Y$".
+
+
+### 美国
+
+#### Chapter 0
+
+> [!DEF]{Function (Chapter 0)}
+>
+> Similarly to the business with relations, it is straightforward to formalize this notion in ways that do not need to invoke any deep ‘meaning’ of any given $f$: everything that can be known about a function $f$ is captured by the information of *which element $b$ of $B$ is the image of any given element a of $A$*. This information is nothing but a subset of $A × B$:
+>
+> $$ \Gamma_f \coloneqq \left\{ (a,b)\in A\times B\ \vert\ b = f(a) \right\} \subseteq A\times B. $$
+>
+> This set $\Gamma_f$ is the *graph* of $f$; officially, a function really 'is' its graph.
+>
+> Not all subsets $\Gamma\subseteq A\times B$ correspond to ('are') functions: we need to put one requirement on the graphs of *functions*, which can be expressed as follows:
+>
+> $$(\forall a \in A)(\exist !b\in B)\ \ \ (a,b) \in \Gamma_f,$$
+>
+> or ('in functional notation')
+>
+> $$(\forall a \in A)(\exist !b\in B)\ \ \ f(a) = b.$$
+>
+> That is, a function must send each element $a$ of $A$ to exactly one element of $B$, depending on $a$. ‘Multivalued functions’ such as $\pm \sqrt{x}$ (which are very important in, e.g., the study of Riemann surfaces) are *not* functions in this sense.
+
+
+#### Serge Lang
+
+> [!DEF]{Mappings (Serge Lang)}
+>
+> Let $S$, $S'$ be sets. A **mapping** (or **map**) **from** $S$ **to** $S'$ is an association which to every element of $S$ associates an element of $S'$. Instead of saying that $f$ is a mapping of $S$ into $S'$, we shall often write the symbols $f \colon\ S \to S'$.
+> 
+> If $f \colon\  S \to S'$ is a mapping, and $x$ is an element of S, then we denote by $f(x)$ the element of $S'$ associated to $x$ by $f$. We call $f(x)$ the value of $f$ at $X$, or also the **image** of $f$ under $f$. The set of all elements $f(x)$, for all $x\in S$, is called the **image** of $f$. If $T$ is a subset of $S$, then the set of elements $f(x)$ for all $x\in T$ is called the **image** of $T$, and denoted by $f(T)$.
+> 
+> If $f$ is as above, we often write $x\mapsto f(x)$ to denote the image of $x$ under $f$. Note that we distinguish two types of arrows, namely
+>
+> $$\to\ \ \ \text{and}\ \ \ \mapsto.$$
+
+
+#### GTM 73
+
+> [!DEF]{Functions (GTM 73)}
+>
+> Given classes $A$ and $B$, a function (or map or mapping) $f$ from $A$ to $B$ (written $f\colon\ A \to B$) assigns to each $a \in A$ exactly one element $b \in B$; $b$ is called the value of the function at $a$ or the image of $a$ and is usually written $f(a)$. $A$ is the domain of the function (sometimes written $\operatorname{Dom} f$) and $B$ is the **range** or **codomain**. Sometimes it is convenient to denote the effect of the functionfon an element of $A$ by $a\mapsto f(a)$. Two functions are **equal** if they have the same domain and range and have the same value for each element of their common domain.
+
+### 俄国
+
+#### Kostrikin
+
+> [!DEF]{Mappings (Kostrikin)}
+>
+> The notation of a *function* or *mapping* (also: "map") plays a central role in mathematics. Given two sets $X$ and $Y$, a mapping f with *domain of definition* $X$ and *range of values* $Y$ associates to every element $x\in X$ an element $f(x)\in Y$, which can also be denoted $fx$. In the case $Y=X$ we also call $f$ a *transformation* of the set $X$ to itself. A mapping is written symbolically in the form $f\ \colon X\to Y$ or  $X\xRightarrow{f}Y$. The *image* of a mapping $f$ is the set of all elements of the form $f(x)$:
+>
+> $$\operatorname{Im} f = \left\{ f(x)\ \vert\ x\in X \right\} = f(x) \subset Y.$$
+
+
+
+#### Gorodentsev
+
+> [!DEF]{}
+>
+> A *map* (or *function*) $f\ \colon X\to Y$ from a set $X$ to a set $Y$ is an assignment $x\mapsto f(x)$ that relates each point $x\in X$ with some point $y = f(x)\in Y$ called the *image* of $x$ under $f$ or the *value* of $f$ at $x$. Note that $y$ must be uniquely determined by $x$ and $f$. Two maps $f\ \colon X \to Y$ and $g\ \colon X\to Y$ are said to be *equal* if $f(x) = g(x)$ for all $x\in X$. We write $\operatorname{Hom}(X,Y)$ for the set of all maps $X\to Y$.
+
+
+
+
+
 
 
 

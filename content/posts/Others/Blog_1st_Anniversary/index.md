@@ -15,7 +15,6 @@ image: bouquet.png
 imagePosition: top
 math: true
 comments: true
-weight: 2
 ---
 
 *头图取自 [アシマ](https://www.pixiv.net/users/2642047) 所绘的 [bouquet](https://www.pixiv.net/artworks/68232005)，选曲为某游戏插曲 **玉響時間**， 总之就是非常好听，能让整个人身体都松下来的一首，非常好，希望你也喜欢。*
