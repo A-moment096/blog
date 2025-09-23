@@ -34,7 +34,7 @@ weight: 2
 
 ### 初中：一些奇怪的公式以及图像
 
-没记错的话初中的时候，教科书上就会讲述所谓的一元函数了：长成 $y = kx+b$ 这样儿的东西，就是一次函数；而压轴题里的，长成 $y = a x^2 + b x + c$ 样子的东西就是二次函数。哦对了，第二个式子里的 $a$ 还不能是 $0$，不然会退化成一次函数。这还是个考点。那是的我天真地认为，函数就是这些东西，哦，还有一个三角函数，不过太高深了，我听不懂。总之，初中时的函数非常地简单：就是一条或者直或者弯的线条嘛，然后有个公式可以算来算去，还和方程有那么一点关系，考试就是算个交点，仅此而已了。
+没记错的话初中的时候，教科书上就会讲述所谓的一元函数了：长成 $y = kx+b$ 这样儿的东西，就是一次函数；而压轴题里的，长成 $y = a x^2 + b x + c$ 样子的东西就是二次函数。哦对了，第二个式子里的 $a$ 还不能是 $0$，不然会退化成一次函数。这还是个考点。那时的我天真地认为，函数就是这些东西，哦，还有一个三角函数，不过太高深了，我听不懂。总之，初中时的函数非常地简单：就是一条或者直或者弯的线条嘛，然后有个公式可以算来算去，还和方程有那么一点关系，考试就是算个交点，仅此而已了。
 
 ### 高中：集合上的对应法则
 
@@ -607,7 +607,7 @@ preceding condition; no longer is there a "formula".
 
 鉴于 Godement 也有一本 *代数学教程*，我们可以在稍后的代数学部分也看看，他是怎样在代数学中定义函数的。
 
-#### 小结
+### 小结
 
 看完这里这些微积分、数学分析中对函数的定义，我们可以看到，它们主要持两种态度。第一种是国内教材所普遍使用的，比较精细的划分：映射是从集合到集合上的一种对应关系，而函数则是要把映射的或陪域，或定义域与陪域一起限定在某个数域上（实数或者复数）。可惜的是，国内教材大多都没有提及 “陪域” 这个词，反倒是国外的一些教材有提及这个在箭头右侧的集合的名称。而第二种态度，恰恰是国外教材普遍采用的，不那么精细的说法：函数就是映射，映射也就是函数。函数甚至可以是别的很多（更多）的东西：态射、变换、算符、泛函等等。不过在定义的细节上，几本教材似乎有所分歧：有的就和国内教材的差不多，比如 Zorich 和 Baby Rudin；Terence Tao 使用了关系-函数，而 Godement 最独特，使用了图像-函数的定义方法。
 
@@ -684,11 +684,19 @@ preceding condition; no longer is there a "formula".
 
 #### Godement
 
+我们先回忆上面 Godement 是怎么介绍函数的。他说，函数一开始是某种公式，工程师们可能认为是某种图像，后来说这种公式的定义遇到了困难：狄利克雷发明了独特的狄利克雷函数，导致函数的定义被迫要有了更进一步的发展。最后他以笛卡尔积开始，考虑函数图像是这个笛卡尔积上的，一个特殊的子集，最后把函数规定为有这么个图像的东西。实在是很有趣的方法，那么这里他还是用的类似的方法吗？
+
+我这里人为地将他的叙述分为了注解和定义几部分，我们先看他的第一小段：
+
 > [!REM]{Graphs and functions}
 >
 > Let $X$, $Y$ be two sets. A function on the set $X$, with values in the set $Y$, is any operation which makes correspond to each element $x \in X$ an element $y$ of $Y$ depending on $x$ in accordance with some well-defined law: for example, the function $y = \sin x$, when $X=Y=\mathbb{R}$.
 > 
 > This "definition" unfortunately contains several words which have not been mathematically defined. For example, what does the expression "make correspond" mean? Taken at its face value, this definition is just another piece of word-juggling.
+
+他首先给出了我们常见的那个定义：俩集合，有个良定的规则，皆大欢喜。然而这个定义是有问题的：什么叫 *对应*？这个词语有合适的，好的数学定义吗？貌似没有，这似乎又是一种文字游戏，让人产生理解的感受，而不是真正的从逻辑上获得某个定义。
+
+那么我们要怎么搞呢？
 
 > [!DEF]{Function (Godement)}
 >
@@ -703,7 +711,7 @@ preceding condition; no longer is there a "formula".
 >
 > Consider (F 1) means that $G$ is a graph (section 1), called the **graph of the function** $f$. By (F 2), for each $x\in X$ there exists $z\in G$ such that $x = \operatorname{pr}_1(z)$, and therefore
 >
-> $$\operatorname{pr}_1(G) = X,\ \ \ \ \ \operatorname{pr}_2(G) = Y.$$
+> $$\operatorname{pr}_1(G) = X,\ \ \ \ \ \operatorname{pr}_2(G) \subset Y.$$
 >
 > Let $x$ be an element of $X$; then the unique element $y\in Y$ such that $(x,y) \in G$ is called **the value of the function $f$ at $x$**, and is denoted by
 >
@@ -713,23 +721,50 @@ preceding condition; no longer is there a "formula".
 >
 > If $f = (G,X,Y)$ is a function, $X$ is called the **domain** or **source** of $f$ and $Y$ the **target** of $f$.
 
+相对来说，这个定义其实是发展了上面他在数学分析教材中的定义的。函数现在有了非常明确的 *数据*，或者说 *信息*，它是一个有序三元组 $(G,X,Y)$，其第一个分量是后两者的笛卡尔积的一个子集，且这个子集不是任意选取的，而是 $X$ 中的每一个元素都唯一有一个 $y \in Y$ 来让 $(x,y)$ 是一个 $G$ 中的元素。我们这里看到提到了图的定义，在这章的第一部分有涉及，顺势就定义为了函数的图像；后面有 $\operatorname{pr}_n$ 的出现，这个在书中稍前一些的部分介绍了这个记号，意为投影（Projection），是说 “取有序对的第 $n$ 个分量”。
+
+我们关注一个细节：这里我们不是用 $x$ 构造出的 $z$，否则有循环定义的嫌疑；我们是说，对每一个 $x$ 都存在一个 $z$，而这个 $z$ 的第一个投影正巧是 $x$。又正因如此，我们自然地得到函数图像 $G$ 的第一个投影自然是 $X$ 集合，而第二个投影，我们则只能说是 $Y$ 的一个子集。另外我们熟知的记号，$y = f(x)$，在这里就不再有那些多重的含义了：$y = f(x)$ 是一个记号，表达了 $y$ 是唯一一个可以从 $x$ 获得的 $Y$ 中的元素，来让 $(x,y)$ 称为 $G$ 中元素的意思。那么很自然（且明显）地，函数 $f$ 的图像 $G$ 就是所有有着 $(x,f(x))$ 形式的有序对的集合，和我们已有的直观理解是相符的。
+
+这里的最后，指明了函数这个有序三元组中的 $X$ 是 $f$ 的定义域或者叫 *源集*，而 $Y$ 则是 *目标集*。也是给出了这两个重要的集合的名字。
+
+再次回顾这个定义，依旧是非常巧妙的：从图像这样一个由笛卡尔积的子集发展来的定义，添加上一些数理逻辑上的谓词，即可反过来地定义函数。这里的 $G$ 还是一个不依赖于 $X$ 和 $Y$ 的东西，只要求是它的子集：这一点十分宽松，也给足了函数定义为有序 *三* 元组的必要性，因为第三个元素是没法从图像 $G$ 和 $X$ 中直接得到的。
+
+然而这还没有结束。因为在这本书中作者更经常使用 *mapping* 这个更简单的词汇，而非 *function* 这个说起来麻烦的词汇，即便作者在这里将二者处理为近义词。为什么？
+
 > [!REM]{Mapping of X into Y}
 >
 > If $X$, $Y$ are two sets, a **mapping of $X$ into $Y$** is a function with $X$ as source and $Y$ as target. The words "function" and "mapping" are thus synonyms, but in practice it is often more convenient to say "let $X$ be a mapping of $X$ into $Y$" rather than "let $f$ be a function defined on $X$ with values in $Y$".
 
+原来，如果是说 *mapping* 映射，我们可以说是从 $X$ 到 $Y$ 的映射；而如果说 *function* 函数，严谨地讲，我们得说是 *定义在 $X$ 上而取值在 $Y$ 中的函数*。
+
+感受完法国数学的洗礼，我们来看看美国的教材吧：
 
 ### 美国
 
+出于或私心或者是定义的相似，我们先来介绍 *Chapter 0* 的定义。随后我们会介绍大名鼎鼎的 Serge Lang 和 Hungerford。
+
 #### Chapter 0
+
+这本书是由意大利裔美籍数学家 Paolo Aluffi 所著，语言幽默生动而又现代，大胆的直接从范畴论引入抽象代数，将整个抽象代数都构建在更加抽象的架构上，得以从更高的观点俯瞰整个代数学，特别是能将不同的代数结构自然地联系起来。说了这么多，我们还是看看作为本书的基石的函数，是怎么定义出来的吧。
 
 > [!DEF]{Function (Chapter 0)}
 >
-> Similarly to the business with relations, it is straightforward to formalize this notion in ways that do not need to invoke any deep ‘meaning’ of any given $f$: everything that can be known about a function $f$ is captured by the information of *which element $b$ of $B$ is the image of any given element a of $A$*. This information is nothing but a subset of $A × B$:
+> Sets interact with each other through *functions*. It is tempting to think of a function $f$ from a set $A$ to a set $B$ in ‘dynamic’ terms, as a way to ‘go from $A$ to $B$’. Similarly to the business with relations, it is straightforward to formalize this notion in ways that do not need to invoke any deep ‘meaning’ of any given $f$: everything that can be known about a function $f$ is captured by the information of *which element $b$ of $B$ is the image of any given element a of $A$*. This information is nothing but a subset of $A × B$:
 >
 > $$ \Gamma_f \coloneqq \left\{ (a,b)\in A\times B\ \vert\ b = f(a) \right\} \subseteq A\times B. $$
 >
 > This set $\Gamma_f$ is the *graph* of $f$; officially, a function really 'is' its graph.
+
+可以看到，首先介绍的是函数这一概念的意义：集合通过函数来联系（这里直译是互动，不过有点怪）。而我们要 定义函数时我们只捕捉这个概念最关键的，最必要的信息：*哪个 $B$ 中的元素 $b$ 是 $A$ 中给定元素 $a$ 的像？*而这个信息，正巧就被 $A\times B$ 的子集完美表示出来了。我们来看这个集合，与上面使用的 $G$ 不同，这里使用了 $\Gamma_f$ （伽马-f）来表示这个集合，它的元素是在 $A$ 与 $B$ 的笛卡尔积的，且 $a$ 和 $b$ 之间满足 $b = f(a)$ 的这个条件，而这样一来，这个集合就成为了 $A\times B$ 的子集了。旋即他就指出，这个集合就是函数 $f$ 的图像，而更正式地，进一步地说，这个函数就是它的图像。这里有一个注脚：
+
+> [!REM]{Function and Graph}
 >
+> To be precise, it is the graph $\Gamma_f$ *together with* the information of the source $A$ and the target $B$ of $f$. These are part of the data of the function.
+
+这不就是上面 Godement 给的定义了吗？函数就是它的图、源和目标三者的集合体。不过，这个笛卡尔积的子集，我们还能对它说些别的什么吗？或者说，函数图像一定是什么样的，或一定不会是什么样的？我们来看：
+
+> [!REM]
+> 
 > Not all subsets $\Gamma\subseteq A\times B$ correspond to ('are') functions: we need to put one requirement on the graphs of *functions*, which can be expressed as follows:
 >
 > $$(\forall a \in A)(\exist !b\in B)\ \ \ (a,b) \in \Gamma_f,$$
@@ -740,8 +775,17 @@ preceding condition; no longer is there a "formula".
 >
 > That is, a function must send each element $a$ of $A$ to exactly one element of $B$, depending on $a$. ‘Multivalued functions’ such as $\pm \sqrt{x}$ (which are very important in, e.g., the study of Riemann surfaces) are *not* functions in this sense.
 
+所以说，并不是随便的什么子集就能是一个函数的图像了。它得让任意的 $a\in A$ 都得有，且有唯一一个 $b\in B$ 来满足 $(a,b)\in \Gamma_f$ 的条件，或者用函数一些的写法，就是满足 $f(a) = b$ 的条件。在这样的意义下，$\pm \sqrt{x}$ 就不是一个函数图像了：它的一个 $x$ 是有目标集的元素能和 $x$ 一起满足这个条件，但是太多了，它有俩元素能和 $x$ 一起满足这个条件，一个是大于0 的，一个是小于 0 的。那这种情况下，这个集合它就不是函数图像了，自然出这个集合的表达式那也就不是函数了。另外，Aluffi 还指出这一点在复几何中的黎曼面里特别重要，因为复变函数就是很容易出多个值，这时候要想有个真正的 *函数*，就得只取其中一支。
+
+总的来说，这个定义和我们上面看过的 Godement 不谋而合。说不定，欧洲那片儿的代数教学里，函数都是这么从图像定义的？哈哈。我们转向下一个吧，同样名气很足的 Serge Lang。
 
 #### Serge Lang
+
+其实这个名字的中文翻译（从 Wikipedia 上）应该是塞尔日·兰的，法语发音真是神奇呀。然而我总是读错……对不起。Lang 他最出名的著作当属大名鼎鼎的 GTM 211: Algebra，其中 GTM 是 Springer 出品的 *Graduate Mathematical Textbook* 系列。这个系列里有许多经典书目，比如 52（代数几何），73（下面会提到的 Hungerford），96（泛函分析教程），Lang 的 211，218（著名的流形导论），249 和 250（经典和现代傅里叶分析）等等。
+
+然而，这里选择的并不是他最著名的 211：211 根本没介绍函数/映射是啥，毕竟是 GTM。然而 Lang 还有一本 UTM，从名字也能看出，是给本科生写的，也就是这一本 *Undergraduate Algebra*。怎么翻译好？大学代数？明明是抽代……
+
+闲言少叙，我们快来看看 Lang 有没有给函数或者映射的定义带来一些新东西：
 
 > [!DEF]{Mappings (Serge Lang)}
 >
@@ -753,61 +797,87 @@ preceding condition; no longer is there a "formula".
 >
 > $$\to\ \ \ \text{and}\ \ \ \mapsto.$$
 
+好吧，其实没有什么特别新的东西。它采用的应该是我们最最熟悉的那个定义。不过，他连着写了三个 *image*，这三个 image 的用法均有不同：可以是元素 $x$ 在 $f$ 下的像；可以是 $f$ 这个函数的像，也可以是 $f$ 下一个定义域的子集的像。这一点还挺有用的，因为人们确实总是会混用这三个概念，把它们都叫做像。而最后还强调了这两个箭头的不同：$\to$ 是表达了集合间的关系，而 $\mapsto$ 则是标记了  $x$ 在 $f$ 下的像是什么。其实这一点，敲这篇博客的我最清楚了，因为 $\to$ 的 $\LaTeX$ 代码是 `\to`，而 $\mapsto$ 的则是 `\mapsto`。
+
+其实我觉得我们也许没必要对 GTM 73 抱太大期望：它可能也就是简单说两句，但是我们还是看一看吧。
 
 #### GTM 73
 
+在 73 中函数的引入还挺快的。然而它的定义也是一段话就讲完了：
+
 > [!DEF]{Functions (GTM 73)}
 >
-> Given classes $A$ and $B$, a function (or map or mapping) $f$ from $A$ to $B$ (written $f\colon\ A \to B$) assigns to each $a \in A$ exactly one element $b \in B$; $b$ is called the value of the function at $a$ or the image of $a$ and is usually written $f(a)$. $A$ is the domain of the function (sometimes written $\operatorname{Dom} f$) and $B$ is the **range** or **codomain**. Sometimes it is convenient to denote the effect of the functionfon an element of $A$ by $a\mapsto f(a)$. Two functions are **equal** if they have the same domain and range and have the same value for each element of their common domain.
+> Given classes $A$ and $B$, a function (or map or mapping) $f$ from $A$ to $B$ (written $f\colon\ A \to B$) assigns to each $a \,\varepsilon A$ exactly one element $b \,\varepsilon B$; $b$ is called the value of the function at $a$ or the image of $a$ and is usually written $f(a)$. $A$ is the domain of the function (sometimes written $\operatorname{Dom} f$) and $B$ is the **range** or **codomain**. Sometimes it is convenient to denote the effect of the functionfon an element of $A$ by $a\mapsto f(a)$. Two functions are **equal** if they have the same domain and range and have the same value for each element of their common domain.
+
+等一下，什么是 *classes*？是这样的：73 其实对集合论的讨论是比较深入的，它不是单纯的给一个集合定义之后就给一点集合的运算，然后就定义函数了；它从数理逻辑的命题逻辑引入，将 *集合*（*set*）与 *类*（*class*）严格区分，采用的是 G\"odel-Bernays（书中如此，目前 Wikipedia 上给出的是 NBG，加上了冯·诺依曼的名字）形式的公理化集合论。我们不讨论这么深入，只指出：类是集合这一概念的拓展，我们分出一些小类叫他们集合，让剩下的特别大的类成为所谓真类。这样的区分主要是为了避免（绕开）朴素集合论中的著名问题（悖论）：理发师悖论（即罗素悖论）。感兴趣可以了解一下这些公理化集合论，有很多种公理化集合论的形式，比如这里的 NBG，还有著名的，很多人使用的 ZF 公理化集合论等，看看它们都是怎么绕开可怕的罗素悖论的。
+
+OK，那么也就是说，定义在类上的函数是更加广泛的，比定义在集合上的函数的适用范围更广。不考虑公理化集合论的问题的话，我们干脆就把它当作是定义在集合上好了，问题不大。解决了这个疑问，我们继续。
+
+不对，再等一下，$\varepsilon$ 是啥？是 $\in$ 吗？没错，这本书（在我看来）最有趣的一点在于，它使用 $\varepsilon$ 作为 $\in$ 的符号。也许是因为 $\in$ 这个符号在那时候还没有这么容易就能打出来吧，这本书成书于 1974 年，年龄真的很大了。
+
+其实这个定义中，值得关注的地方只有几个点：首先选择将函数和映射（两个形式哦，*map* 和 *mapping*）作为同义词；其次给出 $A$ 的名称为 *domain*，而将 $B$ 直接叫做 *range* 或者 *codomain* 了；最后给出了两个函数相等的判断方法，不过是用纯文本描述的，只要两个函数有一样的定义域，一样的陪域，以及在它们的定义域上每个元素都有一样的值，两个函数就相等啦。
+
+总的来说，这个定义其实内容比较平淡，最引人注目的当属使用公理化集合论中的类，而非我们用惯了的集合。然而吧，也因为使用了公理化集合论，这本书从一开始就透露着强烈的严谨的气息。在这本书第一章的后面，你会遇到序结构，选择公理以及 Zorn's Lemma，数学归纳法的证明等相当吓人的内容，而这才只是第一章。GTM 是这样的。
 
 ### 俄国
 
+俄国数学以计算量大闻名世界，著名的微积分习题册：*吉米多维奇* 也是许多人刷题的回忆，同时俄罗斯也是知名的数学强国，也是我国许多老一辈数学家留学的地方。如果有一些老教材你读着特别拗口，那很有可能是因为他们的翻译残留着俄罗斯的气息，哈哈哈（开个玩笑）。
+
+我们先来看看一本非常知名的，被称为 *伪装成抽象代数的线性代数* 的代数学教材：Kostrikin（柯斯特利金）的代数学引论吧。我们这里放出它中英文的对照版本，以供参考。
+
 #### Kostrikin
+
+我们为什么贴上中英对照版？因为……没什么特别的理由。我一开始找到的是中文版（毕竟很多人都用这版），但是在网上查找资料时发现，它的中文翻译好像比较拉……所以我又找到了其英文翻译，没想到英文翻译更是神秘：它是用打字机打的。
 
 > [!DEF]{Mappings (Kostrikin)}
 >
-> The notation of a *function* or *mapping* (also: "map") plays a central role in mathematics. Given two sets $X$ and $Y$, a mapping f with *domain of definition* $X$ and *range of values* $Y$ associates to every element $x\in X$ an element $f(x)\in Y$, which can also be denoted $fx$. In the case $Y=X$ we also call $f$ a *transformation* of the set $X$ to itself. A mapping is written symbolically in the form $f\ \colon X\to Y$ or  $X\xRightarrow{f}Y$. The *image* of a mapping $f$ is the set of all elements of the form $f(x)$:
+> The notation of a *function* or *mapping* (also: "map") plays a central role in mathematics. Given two sets $X$ and $Y$, a mapping f with *domain of definition* $X$ and *range of values* $Y$ associates to every element $x\in X$ an element $f(x)\in Y$, which can also be denoted $fx$. In the case $Y=X$ we also call $f$ a *transformation* of the set $X$ to itself. A mapping is written symbolically in the form $f\ \colon X\to Y$ or  $X\xrightarrow{f}Y$. 
+
+> [!DEF]{映射（柯斯特利金）}
 >
-> $$\operatorname{Im} f = \left\{ f(x)\ \vert\ x\in X \right\} = f(x) \subset Y.$$
+> **映射** 或 **函数** 的概念在数学中扮演者中心的角色。给定两个集合 $X$ 和 $Y$，以 $X$ 为 **定义域**， $Y$ 为 **值域** 的映射 $f$ 将每个元素 $x\in X$ 都对应于一个元素 $f(x)\in Y$，$f(x)$ 亦可记作 $fx$ 或 $f_x$。当 $X=Y$ 时，$f$ 也叫做集合 $X$ 到自身的一个 **变换**。用符号表示映射时写作 $f\ \colon X\to Y$ 或  $X \xrightarrow{f} Y$.
 
-
+我们看到，它的定义也是比较朴实无华的那种，但是有趣的地方在于，它有神奇的元素的函数值的记号：$fx$ 和 $f_x$（在英文版中只有 $fx$）。这个的原因主要在于，$fx$ 这样的记法是非常方便线性代数的讨论的。线性映射和向量之间相乘，其实就是 $fx$ 的记法。不愧是伪装成抽代的线代。还是来看看我们的最后一本书，Gorrodentsev 的 *Algebra I* 吧。
 
 #### Gorodentsev
 
-> [!DEF]{}
+这本书相对较新，从属 Springer 的一个新系列：*Textbook for Students of Mathematics*。从它简短的前言可以看到，这本书是为了让数学专业的学生在两年内学会代数而写的，基于他们的课程讲义。它最出名的地方应该是有出色的习题，不过说实在的我也没看过。不多说了，我们看看它的函数的定义是什么样的吧：
+
+> [!DEF]{Map (Gorodentsev)}
 >
 > A *map* (or *function*) $f\ \colon X\to Y$ from a set $X$ to a set $Y$ is an assignment $x\mapsto f(x)$ that relates each point $x\in X$ with some point $y = f(x)\in Y$ called the *image* of $x$ under $f$ or the *value* of $f$ at $x$. Note that $y$ must be uniquely determined by $x$ and $f$. Two maps $f\ \colon X \to Y$ and $g\ \colon X\to Y$ are said to be *equal* if $f(x) = g(x)$ for all $x\in X$. We write $\operatorname{Hom}(X,Y)$ for the set of all maps $X\to Y$.
 
+可以看到，它的定义也是最朴素的那个，而它最有趣的地方则是最后一部分。$\operatorname{Hom}$ 是什么东西？其实如果你有看一些上面提过的 *Algebra: Chapter 0* 的后续内容的话，很快就会发现，这个符号是 *范畴论* 中常用的符号，表示了所有从 $X$ 到 $Y$ 的 *态射*。态射又是什么？在范畴论中，态射是特殊的映射，它除了要满足最基础的映射关系以外，还得满足 *保持对象之间的结构* 的要求。好消息是，对于集合而言，态射和函数是一样的：集合就是最朴实无华的那个数学对象。因此这里说 $\operatorname{Hom}(X,Y)$ 是所有从 $X\to Y$ 映射的集合，也没什么问题。
 
+### 小结
 
+代数教材中似乎普遍都将函数和映射作为同义词了，即便有的作者认为在这个对象叫做函数时和叫做映射时想强调的点是不一样的，对它的叫法也是不一样的，但是依旧还是作为同义词出现了，这一点与我们在分析学中遇到的情况非常不同。不过用法的不同也体现了我们对数学对象的态度：有时候我们需要的是定义在某个集合上的一个数学对象，而又有一些时候我们需要的是两个集合之间的一种关系，一个桥梁。*Function* 和 *mapping* 正是很好地捕捉了这个特点。至于为什么一边说着 *映射*，一边又用着 $f$ 来作为映射的记号，而不是用 $m$ 这样的记号呢？我个人倾向于认为，映射这个概念其实可能出现地比函数要晚一些，是从函数的概念上抽象出来的一个概念。而我们已经习惯了使用 $f$ 来代表许多 “关联” 或者 “变换” 的关系了，因此大家选择使用 $f$ 表示映射，且在代数领域将两个概念统一，是有历史原因的造成的。
 
+另外，代数学这里的定义里，有两本教材是从函数的图像来反过来定义函数的，这样能非常代数化地，形式化地定义函数为一个明确的数学对象，而非是某种虚无缥缈的规则：这个规则已经凝结在那个函数图像里面了。再者，代数学中对那个 “箭头右边的幽灵” 赋予了很明确的名称，基本都没有避讳这个问题。不过有趣的是，很多地方都用的我们在分析学中使用的 *值域* 的名字，即 *range*，但这里我认为这是没有歧义的：在代数学中，那个分析学里用的 “值域” 会被换成映射的 *像*，即 *image*，它直接会被记为 $f(A)$（如果定义在 A 上），或者 $\operatorname{Im}f$，又或者 $\operatorname{im}f$ 等等。这样一来即便我们使用 *range* 代表映射的陪域，我们依然能有一个合理的符号/概念来表达值域/像。至于为什么像会如此重要，因为……这里不展开了，但是它的确是重要的从函数中能提出来的代数对象，它会被用来做一些商，出一些更奇怪的代数对象，所以有必要给一个特殊的符号。感兴趣的话可以参考我之前写的[一篇大长篇](/posts/snake_lemma)，写了一些如何证明蛇引理的内容。
 
+## 所以，函数是？
 
+转了一圈，是时候解答这个最初的问题了：函数，它到底是个啥？对应关系？数学对象？其实就是映射？必须从数域到数域？到数域就已经够了？态射？变换？怎么这么多名字？
 
+我对这些问题的解答是，函数是一系列数学概念的原型。我相信这个词汇的出现应该是比映射要出现地更早的，大家也许一开始也不怎么考虑这个东西的严格定义。后来有了奇怪的函数（是你，狄利克雷函数）之后，我们不得不面对没有严格定义的函数的问题。而又是在这样的背景下，出现了一系列的定义，它们大多在一开始给了两个集合，让一个集合中的每个元素在另一个集合中都得有，且又只能有一个元素能与之对应，最后称这种对应规则为所谓的 *函数*。
 
+然而也许是由于数学发展的需要，函数这么个词汇已经有点贫乏了，它看似就是一个依存于定义域和陪域的对象（可能还有认为不依存于陪域的），而 *map* 这样一个动词（或者名词）又能很好地描绘两个数学对象之间的关系，就让函数与映射之间划上了等号。这样的情况也许在分析学那里发生了进一步分化，让映射代表所有的集合之间的这层关系，让让函数成为那个最特殊的关系：从集合到数域，又或者必须二者都是数域。
 
+我相信映射这个说法的出现，也许就已经标示着范畴论等学科的发展了，进而出现了 *态射*， *变换* 之类复杂而又新奇的名词。我们说态射需要保持对象的数学结构，变换则专职于从对象到它本身的映射，泛函又是从函数空间到数域的映射，诸如此类，而有时候大家又还会说 “xxx 是一个从 X 到 Y 的函数，然后 xxx” 的说法，不将它们与映射做区分，就造成了今天混乱的局面。
 
+但是吧，这样其实问题也不算大。毕竟上面列举的这些教材其实都是对函数和映射做出了自己的定义的，而在使用过程中也都严格遵循了自己一开始设下的规矩，谁用做什么，而谁又用做什么。而如果一本书没有谈及映射的概念，这很有可能是它们已经是默认大家掌握了一定的代数基础，能明白书中说的那个 “函数” 究竟是什么意思，又或者后面不会再用 “函数” 这样一个没被赋予啥特殊结构的词汇，转而会大量使用诸如 *线性变换*，*群同态*，*线性算子*，*微分算符* 等更具有明确意义，赋予了复杂结构的 “映射”。
 
-
-
-
-
-
+就是这样。函数其实又单纯又复杂，想要明白每个领域中用到的那个 *function* 究竟是啥几乎是不现实的。在这里我还是持实用主义：听我说话的人能听得懂就行，看我写字的人看得懂就行，如果听不懂，看不懂，那就再多掰扯掰扯这些定义好了。说到底，函数不就是一个吃完了才吐的奇怪机器嘛。
 
 ## 后记
 
-（你其实是想写解析哦，不是写教材定义比较哦）
+这篇文章又比我想象的要长得多。我一开始其实只是想大概比较一下各个教材对函数定义的异同，然后写一点和函数/映射相关的一些高阶的数学概念，比如什么算子，算符，泛函，变换这些乱七八糟的东西，瞅瞅它们衍生出来的奇怪的概念们（单、满、忠实、全等奇怪的描述词），看看它们都会被用在哪里，聊聊它们的作用都有什么。结果，写着写着发现，函数这个概念真的很大，而每个教材的定义也都多多少少有一点新鲜的东西在里面。写到后面就干脆往教材定义比较的内容去写了，毕竟如果读者真愿意读，那肯定还是能从这些教材的描述中感受到这些乱七八糟的定义都代表什么的，心里面也肯定会有一个自己的判断。
 
-（你删了菲砖哦）
+另外我想提到的是，我删掉了很多本来打算放在这里的教材。分析学中我删掉了我一开始计划参考的 *菲砖*，即菲赫金哥尔茨所著的 *微积分学教程*。这本书虽说是微积分，却实打实地教的的数学分析的内容，只不过确实，学了这些会让你很会微积分，成为微积分领域大神。没有选择这本的主要原因在于它对函数的定义有点 “慢”，它用了很多的笔墨来刻画函数是什么，我感觉不太适合放在这里。另外我还删掉了一些教材，比如说像 Artin 的代数，那本 GTM 211，甚至是我特别想放在这儿的李文威老师的 *代数学方法* 我都没能放在这里，因为它们都没有提及函数/映射的定义，毕竟多少这个概念还是有点太基础了。
 
+写这篇文章我也收获颇多：我本来是支持 *函数必须从集合到数域，而映射没有这种要求* 的，但看了这么多教材对函数和映射的定义之后，我发觉其实定义这个东西，自洽，好用就是最好的。我们没必要非得追求一个非常 fancy 的定义，即便那样做真的有很大的好处（对象的代数化，极强的描述性），也没必要追求一个适用于所有教材的定义，当我们需要它是什么的时候，它就是什么，然后在这个语境下此后不再改变，就已经是好的定义了。
 
-
-
-
-
-
-
-
+最后，感谢您看到这里。希望这篇文章能带给你一些启发。那么，一如既往地，祝您身体健康，天天开心~
 
 [^1]: 这也是一个很大的坑，学习数理逻辑一定绕不过公理化集合论。我们在这里首先采用传统的朴素集合论，随后在需要的时候不加提示地直接转变为 ZFC 公理化的集合论。这一点请注意。（总之就是我们不深入研究集合，它很好很对就OK）
 
