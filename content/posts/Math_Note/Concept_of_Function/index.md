@@ -18,8 +18,6 @@ math: true
 license: 
 hidden: false
 comments: true
-draft: true
-weight: 2
 ---
 
 *我们平时经常会遇到所谓的 **函数**，不管是数学、物理，甚至是程序里，都能看到它的身影。然而，它到底是啥呢？你也许自己心里有一个答案。这里我也斗胆对比一下各个教材中对函数的定义，聊一聊这个我们或许很熟悉的概念。*
@@ -76,6 +74,7 @@ weight: 2
 
 <details>
 <summary>我很难不吐槽新版高中数雪教材</summary>
+
 我们来看一看，新的人教版高中数学教材是怎么介绍函数的吧。要看一本书，肯定是首先看它的目录：
 
 ![第一章内容](img/renjiao-toc1.png)
@@ -316,7 +315,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 #### 竟然还有日本的高中教材
 
-没错，我莫名收藏了几本翻译的日本高中数学教材，原作者是著名日本数学家小平邦彦，采用的版本是 *数学I 小平邦彦编 吉林人民出版社*。我们也来看看是怎么写的吧：
+没错，我莫名收藏了几本翻译的日本高中数学教材，原作者是著名日本数学家小平邦彦，采用的版本是 *数学I 小平邦彦编 吉林人民出版社*。至于它为什么出现在高等数学这门大学课程的教材集合里，我想也许你可以问问美国的微积分教材（）我们也来看看是怎么写的吧：
 
 > [!DEF]{函数（日本高中教材）}
 >
@@ -335,6 +334,8 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 > 一般地，$y = f(x)$ 则说 $y$ 是 $x$ 的函数。 $x$ 叫 **自变数**，$y$ 叫做 **因变数**。
 
 也许是由于年代的原因，一些翻译，比如因变量，自变量，采用了不怎么寻常的翻译方式。另外这本书是直接跳过了映射，指明了函数是从数集到数集的一种对应，也不失为一种好的处理方法。最后，日本原来在高中第一本书就会学函数吗（）
+
+### 小结
 
 相信看了这么多的高等数学教材中的函数定义，你一定累坏了：这些定义没有一个非常好地说明我们提出的所有问题，必须把它们组合起来，才能回答：
 
@@ -360,7 +361,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 - *Analysis - Terence Tao*
 - *Roger Godement - Analysis I Convergence, Elementary functions*
 
-其中，前四本书是国内广泛使用的教材；第五本其实算是讲义，但写的很全，我们也来参考；后几本则是国外的数学分析教材：大名鼎鼎的卓里奇，鲁丁，陶哲轩，戈德门特，分别代表俄、美、奥、法四个国家的数学教材。由于这些书名都太像了，全都是什么什么分析，且其作者都十分有名（几乎就是书的代名词），所以我们在书没有别名的情况下采用老师的姓名；有别名的情况下则使用更轻松幽默的别名。最后要提到的是，由于函数和映射的关联性，我们把映射也一并加入考察的对象。
+其中，前四本书是国内广泛使用的教材；第五本其实算是讲义，但写的很全，我们也来参考；后几本则是国外的数学分析教材：大名鼎鼎的卓里奇，鲁丁，陶哲轩，戈德门特，分别代表俄、美、澳、法四个国家的数学教材。由于这些书名都太像了，全都是什么什么分析，且其作者都十分有名（几乎就是书的代名词），所以我们在书没有别名的情况下采用老师的姓名；有别名的情况下则使用更轻松幽默的别名。最后要提到的是，由于函数和映射的关联性，我们把映射也一并加入考察的对象。
 
 ### 国内教材中的定义
 
@@ -831,7 +832,7 @@ OK，那么也就是说，定义在类上的函数是更加广泛的，比定义
 
 > [!DEF]{Mappings (Kostrikin)}
 >
-> The notation of a *function* or *mapping* (also: "map") plays a central role in mathematics. Given two sets $X$ and $Y$, a mapping f with *domain of definition* $X$ and *range of values* $Y$ associates to every element $x\in X$ an element $f(x)\in Y$, which can also be denoted $fx$. In the case $Y=X$ we also call $f$ a *transformation* of the set $X$ to itself. A mapping is written symbolically in the form $f\ \colon X\to Y$ or  $X\xrightarrow{f}Y$. 
+> The notation of a <u>function</u> or <u>mapping</u> (also: "map") plays a central role in mathematics. Given two sets $X$ and $Y$, a mapping f with <u>domain of definition</u> $X$ and <u>range of values</u> $Y$ associates to every element $x\in X$ an element $f(x)\in Y$, which can also be denoted $fx$. In the case $Y=X$ we also call $f$ a <u>transformation</u> of the set $X$ to itself. A mapping is written symbolically in the form $f\ \colon X\to Y$ or  $X\xrightarrow{f}Y$. 
 
 > [!DEF]{映射（柯斯特利金）}
 >
@@ -877,7 +878,11 @@ OK，那么也就是说，定义在类上的函数是更加广泛的，比定义
 
 写这篇文章我也收获颇多：我本来是支持 *函数必须从集合到数域，而映射没有这种要求* 的，但看了这么多教材对函数和映射的定义之后，我发觉其实定义这个东西，自洽，好用就是最好的。我们没必要非得追求一个非常 fancy 的定义，即便那样做真的有很大的好处（对象的代数化，极强的描述性），也没必要追求一个适用于所有教材的定义，当我们需要它是什么的时候，它就是什么，然后在这个语境下此后不再改变，就已经是好的定义了。
 
-最后，感谢您看到这里。希望这篇文章能带给你一些启发。那么，一如既往地，祝您身体健康，天天开心~
+如果你注意到这些摘抄的内容的排版有的采用粗体做强调，有的采用斜体做强调，而又有一些使用楷书做强调，没有统一的格式的话，这是因为每本教材采用的方式不太一样。另外排版过程中，有一些东西我是删掉了的，比如公式的序号，又或者是一些注脚的标记。注脚的部分（在 *Chapter 0* 那里有）我改写成了 *Remark*。希望这能解答你对搬运内容的不一致性的困惑。
+
+我还要吐槽，怎么会有人在定义函数/映射的时候就喜欢用 $\varphi$ 的，这个太难打了：`\varphi` 真的比 `f` 要难打好多。唉，难受。
+
+最后，感谢您看到这里，希望这篇文章能带给你一些启发。那么，这里是与废话函数 $F()$ 同构的 $\text{AMoment}$，一如既往地，祝您身体健康，天天开心~
 
 [^1]: 这也是一个很大的坑，学习数理逻辑一定绕不过公理化集合论。我们在这里首先采用传统的朴素集合论，随后在需要的时候不加提示地直接转变为 ZFC 公理化的集合论。这一点请注意。（总之就是我们不深入研究集合，它很好很对就OK）
 

@@ -112,6 +112,11 @@
   }
 
   // violet
+  @if $color ==#0d9488 {
+    @return "invert(57%) sepia(45%) saturate(1352%) hue-rotate(149deg) brightness(91%) contrast(98%)";
+  }
+
+  // teal
   @return "invert(50%)"; // fallback
 }
 
@@ -232,8 +237,8 @@
     }
 
     &.math-remark {
-      @include alert-style(#9333ea, #9333ea, #9333ea, #c084fc, #c084fc);
-      @include math-env-icon('remark', #9333ea);
+      @include alert-style(#0d9488, #0d9488, #0d9488, #2dd4bf, #2dd4bf);
+      @include math-env-icon('remark', #0d9488);
     }
   }
 
@@ -295,7 +300,6 @@
     // 内容区域样式
     .details-content,
     >*:not(summary) {
-      padding: 24px;
       line-height: 1.6;
       border-top: 1px solid var(--card-border);
 
