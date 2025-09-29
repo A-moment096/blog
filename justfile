@@ -37,3 +37,7 @@ update:
 commit message:
     git add .
     git commit -m "{{message}}"
+
+status:
+    git status
+    git log --all --oneline --graph -3
