@@ -146,6 +146,15 @@ $\acute{a}, \grave{b}, \breve{c}, \widehat{abc}, \widetilde{abc}$
 绝对值：$|x|$，$\left|\frac{a}{b}\right|$
 范数：$\|x\|$，$\left\|\frac{a}{b}\right\|$
 
+### 空格
+
+$A\,B$: `$A\,B$`    3mu  
+$A\:B$: `$A\:B$`    4mu   
+$A\;B$: `$A\;B$`    5mu   
+$A\ B$: `$A\ B$`   normal space      
+$A\quad{B}$: `$A\quad{B}$`  18mu    
+$A\qquad{B}$:  `$A\qquad{B}$`   36mu   
+
 ## 字体样式
 
 ### 数学字体

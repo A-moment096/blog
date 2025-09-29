@@ -531,7 +531,7 @@ Zorich 在介绍完集合后，函数部分直接给出的是 *The concpet of a 
 
 > [!DEF]{Function (Baby Rudin)}
 >
-> Consider two sets $A$ and $B$, whose elements may be any objects whatsoever, and suppose that with each elen1ent $x$ of $A$ there is associated, in some manner, an element of $B$, which we denote by $f(x)$. Then $f$ is said to be a *function* from $A$ to $B$ (or a *mapping* of $A$ into $B$). The set $A$ is called the *domain* of $f$ (we also say $f$ is defined on $A$), and the elements $f(x)$ are called the values of $f$. The set of all values off is called the *range* of $f$.
+> Consider two sets $A$ and $B$, whose elements may be any objects whatsoever, and suppose that with each element $x$ of $A$ there is associated, in some manner, an element of $B$, which we denote by $f(x)$. Then $f$ is said to be a *function* from $A$ to $B$ (or a *mapping* of $A$ into $B$). The set $A$ is called the *domain* of $f$ (we also say $f$ is defined on $A$), and the elements $f(x)$ are called the values of $f$. The set of all values off is called the *range* of $f$.
 
 它貌似和 Zorich 一样，采用了 *function = mapping* 的说法，且这本书并没有用形式化的语言来叙述这个定义，也许这就是美式教材的魅力吧。同样令人失望的是，它没有说明 $B$ 是什么。怎么说呢，多少还是有点点失望的。不过没有关系，我们继续前进，看看另一本著名分析教材：Terence Tao（陶哲轩）的教材怎么定义的函数。
 
