@@ -3,54 +3,54 @@
 // Third-party Artitalk Component Styling
 // =============================================================================
 
-#artitalk_main {
-  #artitalk_part1 {
-    #shuoshuo_content {
-      #ccontent {
-        .cbp_tmtimeline {
-          flex-wrap: wrap;
-          justify-content: space-between; // Adjust spacing between columns
+// #artitalk_main {
+//   #artitalk_part1 {
+//     #shuoshuo_content {
+//       #ccontent {
+//         .cbp_tmtimeline {
+//           flex-wrap: wrap;
+//           justify-content: space-between; // Adjust spacing between columns
 
-          li {
-            margin-bottom: 20px; // Space between rows
+//           li {
+//             margin-bottom: 20px; // Space between rows
 
-            .cbp_tmlabel {
-              flex: 1;
-              display: block;
-              position: relative;
-              padding: 15px;
-              margin: 10px;
-              background-color: #f5f5f5; // Adjust color as needed
+//             .cbp_tmlabel {
+//               flex: 1;
+//               display: block;
+//               position: relative;
+//               padding: 15px;
+//               margin: 10px;
+//               background-color: #f5f5f5; // Adjust color as needed
 
-              .shuoshuo_author_img {
-                display: inline-block; // Keeps the icon inline within the content box
-                width: 40px; // Adjust size as needed
-                height: 40px;
-                margin-right: 10px; // Adds spacing between icon and content
-                vertical-align: top; // Aligns the icon with the content text
-              }
+//               .shuoshuo_author_img {
+//                 display: inline-block; // Keeps the icon inline within the content box
+//                 width: 40px; // Adjust size as needed
+//                 height: 40px;
+//                 margin-right: 10px; // Adds spacing between icon and content
+//                 vertical-align: top; // Aligns the icon with the content text
+//               }
 
-              [id^="forEdit"] {
-                margin: 10px;
-                margin-left: 15px;
-              }
+//               [id^="forEdit"] {
+//                 margin: 10px;
+//                 margin-left: 15px;
+//               }
 
-              .shuoshuo_time {
-                margin-left: 15px;
-              }
+//               .shuoshuo_time {
+//                 margin-left: 15px;
+//               }
 
-              .delete_right {
-                margin: 15px;
-              }
+//               .delete_right {
+//                 margin: 15px;
+//               }
 
-              &::after {
-                display: none; // Hides the black triangle
-              }
-            }
-          }
+//               &::after {
+//                 display: none; // Hides the black triangle
+//               }
+//             }
+//           }
 
-        }
-      }
-    }
-  }
-}
+//         }
+//       }
+//     }
+//   }
+// }
