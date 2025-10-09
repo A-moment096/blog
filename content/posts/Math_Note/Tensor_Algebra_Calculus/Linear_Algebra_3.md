@@ -79,15 +79,17 @@ $$\dim V\times W = \dim V + \dim W$$
 >
 > 则该线性空间中的元素为双线性映射。取 $\varphi\in V^*$ 和 $\psi\in W^*$，则可以定义两个元素 $v\in V$ 和 $w\in W$ 之间的张量积为：
 >
-> $$\begin{align*}v\otimes w \vcentcolon & V\times W \to \field{F}\\ &(\varphi,\psi)\mapsto \varphi(v)\psi(w) \end{align*} $$
+> $$\begin{align*}v\otimes w \vcentcolon & V\times W \to \field{F}\\ &(\varphi,\psi)\mapsto \varphi(v)\psi(w) \end{align*},$$
+>
+> 其中，$(\varphi,\psi)$ 为 $V^*\times W^*$ 中的元素。
 
-对于这样的一个向量空间的张量积，它有以下性质
+通过上面的定义，我们在不依赖 $V$ 和 $W$ 的基的选取的情况下，定义了两个空间的张量积。对于这样的一个向量空间的张量积，它有以下性质
 
 > [!REM]{张量积的性质}
 >
-> - 张量积为一线性空间，其维度为 $\dim V\otimes W = \dim V\times\dim W$；
-> - 张量积的
-
+> - 张量积为一线性空间
+> - 张量积的基可以表达为两个线性空间的基之间的张量积
+> - 两向量空间的张量积的维度为 $\dim V\otimes W = \dim V\times\dim W$；
 
 ## 张量的定义
 
