@@ -242,14 +242,6 @@ $$G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}$$
 弦理论中的作用量：
 $$S = \frac{1}{4\pi\alpha'} \int d^2\sigma \sqrt{-h} h^{ab} \partial_a X^\mu \partial_b X_\mu$$
 
-## 数学字体：
-
-$$
-\bbR
-\bbC
-\bbF
-$$
-
 ---
 
 *本页面测试了 KaTeX 引擎的各种 LaTeX 功能。如果某些公式无法正确显示，请检查 KaTeX 版本和配置。*

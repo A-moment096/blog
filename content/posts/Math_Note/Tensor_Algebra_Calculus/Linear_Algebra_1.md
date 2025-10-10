@@ -15,12 +15,9 @@ math: true
 hidden: false
 comments: true
 draft: true
-weight: -100
 ---
 
 $$
-\gdef\dd{\space\mathrm{d}}
-\gdef\p{\partial}
 \gdef\Hom{\operatorname{Hom}}
 \gdef\End{\operatorname{End}}
 \gdef\Mat{\mathcal{M}}
@@ -34,8 +31,6 @@ $$
 \gdef\inv{^{-1}}
 \gdef\trans{^{\top}}
 \gdef\field#1{\mathbb{#1}}
-\gdef\pfrac#1#2{\dfrac{\p #1}{\p #2}}
-\gdef\ddfrac#1#2{\dfrac{\mathrm{d} #1}{\mathrm{d} #2}}
 \gdef\tensor#1{\boldsymbol{#1}}
 \gdef\zero{\mathbf{0}}
 \gdef\one{\mathbf{1}}
