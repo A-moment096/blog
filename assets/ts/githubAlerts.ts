@@ -14,9 +14,11 @@ interface AlertConfig {
  * 处理 GitHub 式引用块
  */
 export function setupGitHubAlerts(): void {
+    console.log('[GitHub Alerts] Starting setup...');
     const blockquotes = document.querySelectorAll('.article-content blockquote');
+    console.log('[GitHub Alerts] Found', blockquotes.length, 'blockquotes');
     
-    blockquotes.forEach((blockquote) => {
+    blockquotes.forEach((blockquote, index) => {
         const firstParagraph = blockquote.querySelector('p');
         if (!firstParagraph) return;
         
@@ -24,12 +26,15 @@ export function setupGitHubAlerts(): void {
         if (!text) return;
         
     // Unified regex pattern for all alert types
-    const alertPattern = /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION|THEOREM|THM|LEMMA|LEM|DEFINITION|DEF|COROLLARY|COR|PROPOSITION|PROP|PROOF|EXAMPLE|EX|REMARK|REM)\](?:\{([^}]*)\})?/i;
+    // Use greedy match .* to capture everything between { and the last }
+    const alertPattern = /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION|THEOREM|THM|LEMMA|LEM|DEFINITION|DEF|COROLLARY|COR|PROPOSITION|PROP|PROOF|EXAMPLE|EX|REMARK|REM)\](?:\{(.*)\})?/i;
     const alertMatch = alertPattern.exec(text);
     if (!alertMatch) return;
         
         const alertType = alertMatch[1].toLowerCase();
         const titleContent = alertMatch[2] || ''; // 括号中的内容，可能为空
+        
+        console.log(`[GitHub Alerts] Blockquote ${index}: type=${alertType}, titleContent="${titleContent}"`);
         
         // 映射类型到配置
         const typeMapping: { [key: string]: { className: string; title: string; icon: string } } = {
@@ -81,9 +86,14 @@ export function setupGitHubAlerts(): void {
         const isMathType = config.className.indexOf('math-') === 0;
         titleElement.className = isMathType ? 'math-title' : 'github-alert-title';
         
+        console.log(`[GitHub Alerts] Creating title for ${alertType}, displayTitle="${displayTitle}", isMathType=${isMathType}`);
+        
         if (isMathType) {
             // 数学类型：只添加文本，图标由CSS处理
-            titleElement.textContent = displayTitle;
+            titleElement.innerHTML = displayTitle;
+            console.log('[GitHub Alerts] Set innerHTML, about to render math...');
+            // 渲染标题中的 KaTeX 数学公式
+            renderMathInTitle(titleElement);
         } else {
             // GitHub alert类型：添加图标和文本
             titleElement.style.cssText = `
@@ -104,8 +114,8 @@ export function setupGitHubAlerts(): void {
         // 插入标题元素
         blockquote.insertBefore(titleElement, blockquote.firstChild);
         
-        // 清理第一个段落中的标记
-        const cleanPattern = /^\[![^\]]+\](?:\{[^}]*\})?\s*/;
+        // 清理第一个段落中的标记 - 使用贪婪匹配以处理嵌套的大括号
+        const cleanPattern = /^\[![^\]]+\](?:\{.*\})?\s*/;
         const cleanText = text.replace(cleanPattern, '').trim();
         if (cleanText) {
             firstParagraph.textContent = cleanText;
@@ -115,21 +125,35 @@ export function setupGitHubAlerts(): void {
         
         // 为数学类型添加内容包装
         if (isMathType) {
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'math-content';
-            
-            // 移动所有非标题内容到 math-content div
-            const children = blockquote.children;
-            const elementsToMove: Element[] = [];
-            for (let i = 1; i < children.length; i++) { // 跳过标题
-                elementsToMove.push(children[i]);
-            }
-            elementsToMove.forEach(element => {
-                contentDiv.appendChild(element);
-            });
-            blockquote.appendChild(contentDiv);
+            blockquote.setAttribute('data-math-env', 'true');
         }
     });
+}
+
+/**
+ * 渲染标题中的数学公式
+ */
+function renderMathInTitle(element: HTMLElement): void {
+    console.log('[KaTeX Debug] Attempting to render math in title:', element.innerHTML);
+    console.log('[KaTeX Debug] renderMathInElement available?', typeof (window as any).renderMathInElement !== 'undefined');
+    
+    if (typeof window !== 'undefined' && (window as any).renderMathInElement) {
+        try {
+            console.log('[KaTeX Debug] Before rendering:', element.innerHTML);
+            (window as any).renderMathInElement(element, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+            });
+            console.log('[KaTeX Debug] After rendering:', element.innerHTML);
+        } catch (error) {
+            console.error('[KaTeX Debug] Failed to render math in title:', error);
+        }
+    } else {
+        console.warn('[KaTeX Debug] renderMathInElement not available yet');
+    }
 }
 
 /**
@@ -138,14 +162,17 @@ export function setupGitHubAlerts(): void {
 export function initGitHubAlerts(): void {
     // DOM 内容加载完成后运行
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupGitHubAlerts);
+        document.addEventListener('DOMContentLoaded', () => {
+            // 延迟执行以确保 KaTeX 已加载
+            setTimeout(setupGitHubAlerts, 100);
+        });
     } else {
-        setupGitHubAlerts();
+        setTimeout(setupGitHubAlerts, 100);
     }
     
     // 为了兼容可能的动态内容加载，也在 window.load 事件后运行
     window.addEventListener('load', () => {
-        setTimeout(setupGitHubAlerts, 100);
+        setTimeout(setupGitHubAlerts, 200);
     });
 }
 

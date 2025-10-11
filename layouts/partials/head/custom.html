@@ -21,6 +21,11 @@
 {{- partial "helper/external" (dict "Context" . "Namespace" "KaTeX") -}}
 <script>
     window.addEventListener("DOMContentLoaded", () => {
+        // 首先运行 setupGitHubAlerts，在 KaTeX 渲染之前处理警告块
+        if (window.Stack && window.Stack.setupGitHubAlertsEarly) {
+            window.Stack.setupGitHubAlertsEarly();
+        }
+        
         const elementsToRender = [".main-article", ".widget--toc"];
 
         elementsToRender.forEach(selector => {
@@ -33,7 +38,9 @@
                         { left: "\\(", right: "\\)", display: false },
                         { left: "\\[", right: "\\]", display: true }
                     ],
-                    ignoredClasses: ["gist"]
+                    ignoredClasses: ["gist"],
+                    // 忽略包含警告标记的段落，因为它们已经被处理
+                    ignoredTags: []
                 });
             }
         });

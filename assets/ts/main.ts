@@ -27,12 +27,18 @@ let Stack = {
             new StackGallery(articleContent);
             setupSmoothAnchors();
             setupScrollspy();
-            setupGitHubAlerts();
+            // Note: setupGitHubAlerts is now called earlier via setupGitHubAlertsEarly
         }
 
         setupCopyButtons();
 
         new StackColorScheme(document.getElementById('dark-mode-toggle'));
+    },
+    
+    // 在 KaTeX 渲染之前调用此函数
+    setupGitHubAlertsEarly: () => {
+        console.log('[Stack] Running setupGitHubAlertsEarly before KaTeX');
+        setupGitHubAlerts();
     }
 }
 
