@@ -17,56 +17,37 @@ comments: true
 draft: true
 ---
 $$
+% =====  =====
+\gdef       \vect           #1{\mathbf{#1}}                             % abstract vector
+\gdef       \basis          #1#2{\mathcal{#1}_{#2}}                            % basis of vector space
+\gdef       \basev          #1#2#3{\{\vect{#1}_{#2}\}_{#2=1}^{#3}}                     % base vector collection
+\gdef       \cbasev         #1#2{\mathbf{#1}^{#2}}                      % dual basis e^i
+\gdef       \vrep           #1#2{[\vect{#1}]_{\basis{#2}{}}}                           % coordinate representation [v]_B
+\gdef       \rep            #1{[\vect{#1}]}
+\gdef       \mrep           #1#2#3{[{#1}]^{\basis{#2}{}}_{\basis{#3}{}}}                      % representation [L]_{C,B}
 % 
-% Linear algebra notations
-% 
-% ===== Scalars, Vectors, Matrices, Operators, Tensors =====
-\gdef\vect#1{\mathbf{#1}}        % abstract vector
-\gdef\mat#1{\mathbf{#1}}         % matrix (representation)
-\gdef\op#1{\mathsf{#1}}          % abstract linear operator/map
-\gdef\ten#1{\mathcal{#1}}        % higher-order tensor
-% ===== Basis and Dual Basis =====
-\gdef\basis#1#2{\mathbf{ #1 }_{ #2 }}   % basis vector e_i
-\gdef\cbasis#1#2{\mathbf{#1}^{#2}}  % dual basis e^i
-% ===== Representations =====
-\gdef\mrep#1#2#3{[{#1}]_{#3,#2}}      % representation [L]_{C,B}
-\gdef\vrep#1#2{[{#1}]_{#2}}    % coordinate representation [v]_B
-% ===== Common Linear Algebra Symbols =====
-\gdef\id{\mathbf{I}}             % identity matrix
-\gdef\iprod#1#2{\langle #1, #2 \rangle} % inner product
-\gdef\ot{\otimes}                % tensor product symbol
-% ===== Optional Pretty Aliases =====
-\gdef\R{\mathbb{R}}
-\gdef\C{\mathbb{C}}
-\gdef\field#1{\mathbb{#1}}
-% ==== ====
-\gdef\zero{\vect{0}}
-\gdef\one{\vect{1}}
-% 
-% Categorical Notations
-% 
-% --- Morphism arrows ---
-\gdef\xto#1{\xrightarrow{#1}}             % arrow with label
-\gdef\xfrom#1{\xleftarrow{#1}}            % left arrow with label
-\gdef\isoto{\xrightarrow{\sim}}           % isomorphism arrow
-\gdef\toiso{\xrightarrow{\cong}}          % congruence/isomorphism arrow
-% --- Composition & Identity ---
-\gdef\idop{\mathrm{id}}                   % identity morphism
-\gdef\comp{\circ}                         % composition symbol
-% --- Objects, Morphisms, Functors ---
-\gdef\Obj#1{\operatorname{Obj}(#1)}                 % objects of a category
-\gdef\Mor#1{\operatorname{Mor}(#1)}                 % morphisms of a category
-\gdef\HomC#1#2#3{\operatorname{Hom}_{#1}(#2,#3)}    % morphisms in a category: Hom_C(A,B)
-\gdef\Hom#1#2{\operatorname{Hom}(#1,#2)}            % morphisms between A and B
-\gdef\End#1{\operatorname{End}(#1)}
-\gdef\Aut#1{\operatorname{Aut}(#1)}
-\gdef\cat#1{\mathsf{#1}}                            % category symbol: e.g., \cat{Vect}, \cat{Set}
-\gdef\fun#1{\mathcal{#1}}                           % functor name (calligraphic)
-\gdef\nat#1{\boldsymbol{#1}}                        % natural transformation (bold Greek or Latin)
-% --- Special categories ---
-\gdef\Set{\cat{Set}}                                % category of sets
-\gdef\Vectk{\cat{Vect}_{\field{k}}}                % category of vector spaces
-\gdef\Vect{\cat{Vect}}
+\gdef       \iprod          #1#2{\langle #1, #2 \rangle}                % inner product
+\gdef       \mat            #1{\mathbf{#1}}                             % matrix (representation)
+\gdef       \field          #1{\mathbb{#1}}                             % 
+\gdef       \xto            #1{\xrightarrow{#1}}                        % arrow with label
+\gdef       \xfrom          #1{\xleftarrow{#1}}                         % left arrow with label
+\gdef       \Hom            #1#2{\operatorname{Hom}(#1,#2)}             % morphisms between A and B
+\gdef       \Iso            #1#2{\operatorname{Iso}(#1,#2)}
+\gdef       \End            #1{\operatorname{End}(#1)}                  % 
+\gdef       \Aut            #1{\operatorname{Aut}(#1)}                  % 
+\gdef       \cat            #1{\mathsf{#1}}                             % category symbol: e.g., \cat{Vect}, \cat{Set}
+\gdef       \t              {^{\mathsf{T}}}
+\gdef       \id             {\mat{I}}                                % identity matrix
+\gdef       \R              {\field{R}}                                % 
+\gdef       \C              {\field{C}}                                % 
+\gdef       \ot             {\otimes}                                   % tensor product symbol
+\gdef       \zero           {\vect{0}}                                  % 
+\gdef       \one            {\vect{1}}                                  % 
+\gdef       \idop           {\mathrm{id}}                               % identity morphism
+\gdef       \comp           {\circ}                                     % composition symbol
+\gdef       \Set            {\cat{Set}}                                 % category of sets
+\gdef       \Vectk          {\cat{Vect}_{\field{k}}}                    % category of vector spaces
+\gdef       \Vect           {\cat{Vect}}                                % 
 $$
 
 ## 前言
@@ -75,43 +56,29 @@ $$
 
 ## 记号约定
 
-既然从代数学出发，我们必须得约定一些符号。代数学的记号纷繁复杂，这里不讲清楚，后面铁定乱套。下面是一个符号表，为了简洁我们把它收起来。
-<details>
-<summary>符号表</summary>
+既然从代数学出发，我们必须得约定一些符号。
+<!-- 简洁起见，我们把它收在下面，需要的可以展开看看。 -->
 
-| 含义 | 字体/字形 | 示例 |
+<!-- <details> -->
+<!-- <summary>符号约定</summary> -->
+
+| 含义 | 字体/字形 | 使用字母 |
 |:-:|:--:|:---:|
-| 标量 | 常规拉丁/希腊字母 | $x,\lambda$ |
-| 向量空间 | 常规大写拉丁字母 | $U,V,W$ |
-| 抽象向量 | 粗体小写拉丁字母 | $\vect{v}$ |
-| 矩阵（线性算子的矩阵表示） | 粗体大写拉丁字母 | $\mat{A},\mat{B}$ |
-| 单位矩阵，零矩阵 | - | $\mat{I,O}$ |
-| 抽象线性算子/映射 | 无衬线体大写拉丁字母 | $\op{T},\op{L}$ |
-| 高阶张量 | 花体拉丁字母 | $\ten{T},\ten{Q}$ |
-| 数域 | 黑板粗体 | $\mathbb{k},\R,\C$ |
-| 特殊范畴 | 无衬线体 | $\Set,\Vect{k}$ |
-| 恒等态射 | - | $\idop_A$ |
-|||
-| 基向量 | 粗体+下（上）标 | $\basis{e}{i}$, $\cbasis{e}{i}$ |
-| 线性空间的基 | 括号+基向量代表元 | $\{\basis{e}{i}\}$ |
-| 线性算子 $\op{L}\vcentcolon B\to C$ 的矩阵表示 | 括号表示+下标 | $\mrep{\op{L}}{B}{C}$ |
-| 矩阵的分量 | 常规大写拉丁字母与上下标 | $A^i{}_j$ |
-| 向量 $\vect{v}\in B$ 的坐标表示 | 括号表示+下标 | $[\vect{v}]_B$ |
-| 向量的分量 | 常规小写字母与上下标 | $u^i, v_j$ |
-| 内积 | 角括号 | $\langle \vect{u}, \vect{v} \rangle$ |
-| 张量积 | 叉积号 | $\vect{u}\otimes \vect{v}$ |
-| 单态 | 带钩箭头 | $A \xhookrightarrow{f} B$ |
-| 满态 | 双箭头 | $A \xtwoheadrightarrow{f} B$ |
-| 同构 | 双向箭头 | $A \xleftrightarrow{f} B$ |
-| 复合 | 复合符号 | $g\comp f$ |
-| 对象集 | 正体 | $\operatorname{Obj}(\mathcal{C})$ |
-| 态射集 | 正体 | $\operatorname{Mor}(\mathcal{C})$ |
-| 在范畴 $\mathcal C$ 中的 Hom 集 | 运算符体+下标 | $\HomC{\mathcal C}{A}{B}$ |
+| 标量 | 常规字母 | $a$, $b$, $c$, $v^i$, $u_j$, $A^i{}_j$ |
+| 数域 | 黑板粗体 | $\Bbbk$, $\field{F}$, $\field{R}$, $\field{C}$ | 
+| 向量 | 粗正体字母 | $\vect{u}$, $\vect{v}$, $\vect{w}$, $\vect{x}$, $\vect{y}$, $\vect{z}$ |
+| 集合，向量空间 | 大写常规字母 | $U$, $V$, $W$|
+| 基 | - | $\basis{B}{V} = \basev{b}{i}{n}$, $\basis{C}{W} = \basev{c}{j}{m}$, $\basis{D}{}$ |
+| 向量表示 | - | $\vrep{v}{B} = (v^1,\dots,v^n)\t$, $[\vect{u}]$| 
+| 线性映射 | 常规字母 | $L$, $R$, $S$, $T$ |
+| 线性映射，同构，自同态，自同构集合 | - | $\Hom{V}{W}$, $\Iso{V}{W}$, $\End{V}$, $\Aut{V}$ |
+| 线性空间范畴 | - | $\Vectk, \Vect$ |
+| 矩阵 | - | $\mat{A}$, $\mat{B}$, $\mat{C}$, $\mat{P}$, $\mat{Q}$, $\mat{M}$   |
 
-</details>
+<!-- </details> -->
 简单来说，我们用黑体代表矩阵和向量，用普通小写字母代表标量，当普通字母带上了上下标则代表对应的矩阵/向量分量。然后，我们严格区分线性映射和矩阵。我们暂且使用这一套符号。另外，我们不使用爱因斯坦求和约定，直到我们彻底进入张量代数的内容。写清楚具体的求和过程在推导中是有帮助的。
 
-有了这些铺垫，我们就开始吧。我们先介绍一个线性空间它都有哪些基本属性，以及它上面可以定义的一个特殊的函数。
+有了这些铺垫，我们就开始吧。我们先介绍一个线性空间它都有哪些基本属性。
 
 ## 线性空间
 
@@ -123,7 +90,7 @@ $$
 >
 > $$\begin{align*}
 &+\vcentcolon V \times V \to V, \\ &(\vect{u},\vect{v})\mapsto \vect{u}+\vect{v} \ \  (\forall \vect{u},\vect{v} \in V) \\
-&\cdot\vcentcolon \field{k} \times V \to V,\\ &(\lambda,\vect{v}) \mapsto  \lambda \cdot \vect{v} = \lambda \vect{v}\ \ (\forall \lambda \in \field{k}, \vect{v} \in V)
+&\cdot\vcentcolon \field{k} \times V \to V,\\ &(a,\vect{v}) \mapsto  a \cdot \vect{v} = a \vect{v}\ \ (\forall a \in \field{k}, \vect{v} \in V)
 \end{align*}$$
 > 
 > 当 $V$ 和 $\field{k}$ 满足下面的性质时，我们就称 $V$ 是一个 $\field{k}$ 上的线性空间：
@@ -132,7 +99,7 @@ $$
 > - 任何 $V$ 中元素 $\vect{v}\in V$ 都在加法下存在一个逆元，记为 $-\vect{v}$，使得 $\vect{v} + (-\vect{v}) = (-\vect{v})+\vect{v} = \zero;$
 > - 加法满足结合律：对于任意的 $\vect{u},\vect{v},\vect{w}\in V$，有 $(\vect{u}+\vect{v})+\vect{w} = \vect{u}+(\vect{v}+\vect{w});$
 > - 加法满足交换律：对任意的 $\vect{u},\vect{v}\in V$，有 $\vect{u}+\vect{v} = \vect{v}+\vect{u};$
-> - 数乘存在单位元 $\one \in V$ 满足 $\lambda \one = \one$ 对于任意的 $\lambda \in \field{k}$ 都成立；
+> - 数乘存在单位元 $\one \in V$ 满足 $a \one = \one$ 对于任意的 $a \in \field{k}$ 都成立；
 > - 数乘在向量加法上可分配：$a\cdot(\vect{u}+\vect{v}) = a\cdot \vect{u} + a\cdot \vect{v}$ 对于任意的 $a\in \field{k}, \vect{u},\vect{v}\in V$ 都成立；
 > - 数乘在域加法上也可分配：$(a+b)\cdot \vect{u} = a\cdot \vect{u} + b\cdot \vect{u}$ 对于任意的 $a,b\in \field{k}, \vect{u}\in V$ 都成立；
 > - 数乘和域乘法次序可以交换：$a\cdot(b\cdot \vect{u}) = (a\times b)\cdot \vect{u}$ 对于任意的 $a,b\in \field{k}, \vect{u} \in V$ 都成立。
@@ -153,9 +120,9 @@ $$
 >
 > 设 $\field{k}$ 上的线性空间 $V$，由 $V$ 上的加法和数乘，我们定义 $V$ 的一个含有 $n$ 个元素（向量）的子集 $W$ 的 **线性组合** 为形如 
 >
-> $$\sum_i^n \lambda_i \vect{v}_i$$
+> $$\sum_i^n a_i \vect{v}_i$$
 >
-> 的 **有限** 和，其中 $\lambda_i\in \field{k}$ 且 $\vect{v}_i\in W\subset V$。我们称 $\field{k}$ 中的标量为线性组合的系数。
+> 的 **有限** 和，其中 $a_i\in \field{k}$ 且 $\vect{v}_i\in W\subset V$。我们称 $\field{k}$ 中的标量为线性组合的系数。
 
 有了线性组合，我们定义线性相关和线性无关。
 
@@ -167,7 +134,7 @@ $$
 >
 > 对 $\field{k}$ 上的线性空间 $V$ 的一个有 $n$ 个元素的子集 $W$，如果它们的线性组合满足条件：
 >
-> $$\sum_i^n \lambda_i \vect{v}_i = \zero \iff \lambda_i = 0 \ \ \forall \vect{v}_i \in W, 1\leq i \leq n,$$
+> $$\sum_i^n a_i \vect{v}_i = \zero \iff a_i = 0 \ \ \forall \vect{v}_i \in W, 1\leq i \leq n,$$
 >
 > 则我们称这个子集 $W$ 是线性无关的，否则称其为线性相关的。
 
@@ -192,9 +159,9 @@ $$
 
 > [!DEF]{基}
 > 
-> 如果一个 $V$ 的子集 $B$ 即能张成 $V$ 又是线性独立的，我们就称集合 $B$ 是 $V$ 的一组 **基**，$B$ 的基数（集合的大小）即为该线性空间的维数，记作 $\dim V$。
+> 如果一个 $V$ 的子集 $B$ 即能张成 $V$ 又是线性独立的，我们就称集合 $B$ 是 $V$ 的一组 **基**，记为 $\basis{B}{V}$，在线性空间已经明了的情况下我们表示为 $\basis{B}{}$，$B$ 的基数（集合的大小）即为该线性空间的维数，记作 $\dim V$。
 
-实际上线性子空间与基还有特殊的关系：如果线性空间 $V$ 有一组基 $B$，我们从中分出两份来，一份为 $B_1$，另一份为 $B_2$，然后让它们俩再进行线性张成，得到的两个线性空间都是 $V$ 的线性子空间。而更特别的是，由于这两个线性子空间作为集合来看，只在零向量 $\zero$ 处相交，所以我们可以定义所谓的 **直和**，并称 $V$ 可以分解为这两个子空间的直和。
+实际上线性子空间与基还有特殊的关系：如果线性空间 $V$ 有一组基 $\basis{B}{V}$，我们从这个集合中分出两份来，一份为 $B_1$，另一份为 $B_2$，然后让它们俩再进行线性张成，得到的两个线性空间都是 $V$ 的线性子空间。而更特别的是，由于这两个线性子空间作为集合来看，只在零向量 $\zero$ 处相交，所以我们可以定义所谓的 **直和**，并称 $V$ 可以分解为这两个子空间的直和。
 
 直和有很多有趣的性质，感兴趣可以参考我的另一篇博文，这里就不再赘述了。
 
@@ -204,10 +171,10 @@ $$
 
 ## 向量的表示
 
-我们以某种确定的顺序对这组基进行排序，记这组基为 $B = \{\basis{e}{i}\}$ ，在这一组基下我们可以将线性空间中的每一个向量 *唯一地* 表示为一个数表，这个数表有 $n$ 个数字有序地构成，我们称这些数字为向量在第 $i$ 个基（方向）上的分量。后续我们认为所有的基都是经过了排序的。我们把这 $n$ 个数字纵向依次排列，成为列向量；不致引起误会时，我们简称为向量。由此，向量有两重含义：抽象线性空间中的一个元素，或者在线性空间有一组基后的一个纵向排列的数表。我们记 $n$ 维向量空间 $V$ 中的向量 $\vect{v}\in V$ 第 $i$ 个分量为 $v^i$，则有
+我们以某种确定的顺序对 $n$ 维 线性空间 $V$ 的一组基进行排序，记这组基为 $\basis{B}{V} = \basev{b}{i}{n}$ ，在这一组基下我们可以将线性空间中的每一个向量 *唯一地* 表示为一个数表，这个数表有 $n$ 个数字有序地构成，我们称这些数字为向量在第 $i$ 个基（方向）上的分量。后续我们认为所有的基都是经过了排序的。我们把这 $n$ 个数字纵向依次排列，成为列向量；不致引起误会时，我们简称为向量。由此，向量有两重含义：抽象线性空间中的一个元素，或者在线性空间有一组基后的一个纵向排列的数表。我们记 $n$ 维向量空间 $V$ 中的向量 $\vect{v}\in V$ 第 $i$ 个分量为 $v^i$，则有
 
 $$
-\vect{v} = \sum_i^n v^i \basis{e}{i}。
+\vect{v} = \sum_i^n v^i \vect{b}_{i}。
 $$
 
 进一步地，由于这样的对应关系，我们可以考虑把 $\field{k}$ 上的 $n$ 维线性空间与一个特殊的，我们很熟悉的线性空间 $\field{k}^n$ 联系起来，在 $\field{k} = \R$ 的情况下我们得到了熟悉的 $\R^n$ 空间。这个对应方法便是把一个向量在一组基下的表示，即列向量数表，变成 $\R^n$ 的一个坐标。我们提前剧透：这个对应关系是一种同构，而所有的 $n$ 维线性空间在给自己选择一组基之后都与 $\field{k}^n$ 有一个同构。我们后面主要考虑 $\R$ 上的线性空间。
@@ -222,19 +189,19 @@ $$
 >
 > 设 $V,W$ 为同一数域 $\field{k}$ 上的线性空间。映射
 > 
-> $$\op{L}\vcentcolon V\to W$$
+> $$L\vcentcolon V\to W$$
 > 
-> 称为线性映射或线性同态，若对任意 $\vect{u},\vect{v}\in V$ 与 $\lambda\in\field{k}$，有
+> 称为线性映射或线性同态，若对任意 $\vect{u},\vect{v}\in V$ 与 $a\in\field{k}$，有
 > 
-> $$\op{L}(\vect{u}+\vect{v})=\op{L}(\vect{u})+\op{L}(\vect{v}),\qquad \op{L}(\lambda \vect{u})=\lambda \op{L}(\vect{u}).$$
+> $$L(\vect{u}+\vect{v})=L(\vect{u})+L(\vect{v}),\qquad L(a \vect{u})=a L(\vect{u}).$$
 > 
 > 等价地，对任意有限和，
 > 
-> $$\op{L}\Bigl(\sum_{i=1}^n \lambda_i v_i\Bigr)=\sum_{i=1}^n \lambda_i \op{L}(v_i).$$
+> $$L\Bigl(\sum_{i=1}^n a^i \vect{v}_i\Bigr)=\sum_{i=1}^n a^i L(\vect{v}_i).$$
 > 
-> 我们记全体线性映射为集合 $\Hom{V}{W}$。若 $\op{L}$ 为双射，则称 $\op{L}$ 为线性同构。
+> 我们记全体线性映射为集合 $\Hom{V}{W}$。若 $L$ 为双射，则称 $L$ 为线性同构。
 
-总的来讲，$V$ 到 $W$ 的线性映射 $\op{L}$ 让下面的做法是完全可行的：我们可以直接将 $\vect{v}\in V$ 映射到 $\vect{w} = \op{L}(\vect{v}) \in W$，也可以先将 $\vect{v}$ 变为几个向量 $\vect{v}_i$ 的线性组合，再把这些向量映射到 $\vect{w}_i = \op{L}(\vect{v}_i) \in W$ 中，最后再对它们进行线性组合。这两条路径将给出完全相同的结果。我们称从线性空间 $V$ 到其自身的线性映射为 *线性变换* 或者 *线性算子*，$V$ 上全体线性变换形成的集合可以记为 $\End{V}$。
+总的来讲，$V$ 到 $W$ 的线性映射 $L$ 让下面的做法是完全可行的：我们可以直接将 $\vect{v}\in V$ 映射到 $\vect{w} = L(\vect{v}) \in W$，也可以先将 $\vect{v}$ 变为几个向量 $\vect{v}_i$ 的线性组合，再把这些向量映射到 $\vect{w}_i = L(\vect{v}_i) \in W$ 中，最后再对它们进行线性组合。这两条路径将给出完全相同的结果。我们称从线性空间 $V$ 到其自身的线性映射为 *线性变换* 或者 *线性算子*，$V$ 上全体线性变换形成的集合可以记为 $\End{V}$。
 
 ## 线性空间范畴
 
@@ -243,22 +210,6 @@ $$
 我们称线性空间是这个范畴中的一个对象，而线性空间之间的线性映射则是它们之间的同态。两个对象之间可以有许多种不同的同态，我们可以将这些同态收集起来，就得到了上面的 $\Hom{V}{W}$。如果两个对象之间具有保持结构的双射及逆映射，我们就称它们二者之间有一个同构，而这两个对象也成为同构的对象。我们还可以让一个对象和它自身形成同态，得到的就是上面的 $\End{V}$；进一步地，考虑所有的该对象到自己的同构，我们得到的集合记作 $\Aut{V}$。这些集合上面都有丰富的性质，我们以后会聊到。所以其实上面的记号是借用了范畴论的一些记号得到的。
 
 我们这里介绍范畴的概念主要原因是为了方便后续使用交换图的语言来讨论一些问题，比如线性空间的对偶，双对偶，自然映射等等。关于范畴的定义，我们这里不给出，感兴趣可以参考之前的一些文章，里面有对范畴进行详细严格的定义。
-
-## 内积
-
-最后，我们给向量空间额外定义一个运算：内积。这不是线性空间天生具有的属性，但是我们会经常用到它。
-
-> [!DEF]{内积}
->
-> 内积（有时根据上下文，也称作点积）是满足下面性质的一个 $\langle\cdot,\cdot\rangle\vcentcolon V\times V\to \field{k}$ 的二元运算：
->
-> - 共轭对称：$\langle \vect{x},\vect{y}\rangle = \overline{\langle \vect{y},\vect{x}\rangle};$
-> - 对第一个元素有线性性：$\langle a\vect{x}+b\vect{y},\vect{z}\rangle = a\langle \vect{x},\vect{z}\rangle + b\langle \vect{y},\vect{z}\rangle;$
-> - 非负性：对任意的非 $0$ 元素 $\vect{x}$，$\langle \vect{x},\vect{x}\rangle > 0;$
-
-带有内积的向量空间成为内积空间。由于我们讨论的向量空间在 $\R$ 上，共轭对称退化为单纯的对称，而它也自然地成为 **双线性函数**。在内积定义后我们可以定义正交：内积为 $0$ 的两个向量是正交的。借助内积我们可以定义向量之间的 *角度* 以及向量的 *长度*。我们以我们熟悉的方式定义内积：$\langle \vect{u},\vect{v} \rangle = \vect{u}\cdot\vect{v} = \sum_i u_i{v}_i$。在这样的定义后，我们 **声明** 我们之前定义的这组基是单位正交基，即基中每个向量的长度为 $1$，且彼此正交。而在这样的定义下，$\R^n$ 由 “坐标” 形成的基自然成为一组单位正交基。
-
-定义了内积的向量空间我们会称之为内积空间。涉及 “正交” 的部分概念是需要内积的参与的，当需要用到内积时我们会提及。而双线性函数是一类非常特殊的函数，我们会在后面快要讨论张量时聊起它。
 
 ## 小结
 
@@ -271,6 +222,5 @@ $$
 - 基允许我们将一个抽象的线性空间和我们熟悉的 $\R^n$ 联系起来。
 - 线性空间之间可以通过线性映射联系起来，如果它是保持线性空间结构的双射，则我们进一步称之为线性同构
 - 线性空间和它们之间的同态的全体成为线性空间范畴，借助范畴的语言我们可以讨论更多有关线性空间之间的关系。
-- 我们在线性空间上可以定义内积，借助它可以定义正交、长度等性质。
 
 本节我们聊完了线性空间的基本情况。下一节我们将讨论线性代数中最重要的对象，矩阵，它的基本情况以及与线性空间之间的关系。
