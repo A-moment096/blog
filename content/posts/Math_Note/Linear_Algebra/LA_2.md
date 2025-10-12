@@ -19,9 +19,10 @@ draft: true
 $$
 % =====  =====
 \gdef       \vect           #1{\mathbf{#1}}                             % abstract vector
+\gdef       \cvect          #1{\boldsymbol{#1}}
 \gdef       \basis          #1#2{\mathcal{#1}_{#2}}                            % basis of vector space
 \gdef       \basev          #1#2#3{\{\vect{#1}_{#2}\}_{#2=1}^{#3}}                     % base vector collection
-\gdef       \cbasev         #1#2{\mathbf{#1}^{#2}}                      % dual basis e^i
+\gdef       \cbasev         #1#2#3{\{\cvect{#1}^{#2}\}_{#2=1}^{#3}}                      % dual basis e^i
 \gdef       \vrep           #1#2{[\vect{#1}]_{#2}}                           % coordinate representation [v]_B
 \gdef       \rep            #1{[\vect{#1}]}
 \gdef       \mrep           #1#2#3{[{#1}]_{#2}^{#3}}                      % representation [L]_{C,B}
@@ -116,7 +117,7 @@ $$w^i = \sum_j^n A^i{}_jv^j$$
 
 > [!REM]{矩阵的线性映射意义}
 >
-> 设有 $n$ 维线性空间 $V$ 和 $m$ 维线性空间 $W$，二者之间的线性映射 $L\vcentcolon V\to W$ 可以在 $V$ 的一组基 $\basis{B}{V}$ 和 $W$ 的一组基 $\basis{C}{W}$ 下表达为一个矩阵，我们将它记作 $\mat{A} = \mrep{L}{\BaseBV}{\BaseCW} = \mrep{L}{\BaseB}{\BaseC}$，这个矩阵有 $m$ 行 $n$ 列，即 $\mat{A}\in\Mat{m,n}$。
+> 设有 $n$ 维线性空间 $V$ 和 $m$ 维线性空间 $W$，二者之间的线性映射 $L\vcentcolon V\to W$ 可以在 $V$ 的一组基 $\basis{B}{V}$ 和 $W$ 的一组基 $\basis{C}{W}$ 下表达为一个矩阵，我们将它记作 $\mat{A} = \mrep{L}{\BaseBV}{\BaseCW} = \mrep{L}{\BaseB}{\BaseC}$，这个矩阵有 $m$ 行 $n$ 列，即 $\mat{A}\in\Mat{m,n}$。该矩阵第 $(i,j)$ 个元素 $A^i{}_j$ 的含义是 $V$ 中第 $j$ 个基向量在经过线性映射 $L$ 后，它在 $W$ 的第 $i$ 个基向量上的分量。
 
 有了这样的表达方式后，我们能做一些什么呢？我们可以尝试计算两个线性映射的复合的矩阵表达。我们知道，线性映射的复合一定还是线性映射，而它也一定可以表达为一个矩阵。既然如此，我们就可以把两个矩阵的元素拿出来经过某种运算，得到新的矩阵，用来表达两个映射的复合。我们来看看这个过程。
 
@@ -194,13 +195,13 @@ $$C^i{}_j = \sum_k^n B^i{}_k A^k{}_j.$$
 
 我们要怎么确认这个事呢？我们先来看两个特殊的例子：$\Hom{\R,V}$ 和 $\Hom{V,\R}$。
 
-## \$\operatorname{Hom}(\R,V)\$ 与矩阵
+## \$\operatorname{Hom}(\R,V)\$ 与 \$V\$
 
 我们考虑 $\Hom{\R,V}$ 中的一个线性映射 $L$，根据线性映射和矩阵的关系，它在 $\R$ 和 $V$ 的基下的表示矩阵为 $\mat{A} = \mrep{L}{\BaseE}{\BaseBV}$。根据我们上面的记号，我们知道这个线性映射的矩阵表示就有 $n$ 行，但是它只有 $1$ 列。
 
 我们先来看看 $\R$，从上一章的讨论中我们已经知道它自身就是一个线性空间，它的典范基就是 $1$。再考虑这个线性映射 $L$，它 *把一个向量唯一确定地映射到另一个空间中的一个向量*，且保持线性。也就是说，这个线性映射把 $\R$ 中的 $0$ 映射到 $V$ 中的 $\zero$ 上，且每个数字都对应一个 $V$ 中的向量。
 
-由于我们给它们两个线性空间都选择了基，由上一章的内容，我们可以考虑它们作为自由线性空间：$\{f\ \vert\ f\vcentcolon\{1\}\to\R\}$ 和 $\{g\vert\ g\vcentcolon\BaseBV\to \R\}$，即它们俩都唯一地由它们的基 $\BaseE = \{1\}$ 和 $\BaseBV$ 确定，而这两个线性空间之间的映射，就可以看成是这样的过程：从 $V$ 里选择一个向量，让它对应到 $\R$ 上的基 $\{1\}$ 上，原因无他：线性映射就是在给定义域的基找到陪域上的对应。
+由于我们给它们两个线性空间都选择了基，由上一章的内容，我们可以考虑它们作为自由线性空间：$\{f\ \vert\ f\vcentcolon\{1\}\to\R\}$ 和 $\{g\vert\ g\vcentcolon\BaseBV\to \R\}$，即它们俩都唯一地由它们的基 $\BaseE = \{1\}$ 和 $\BaseBV$ 确定，而这两个线性空间之间的映射，就可以看成是这样的过程：从 $V$ 里选择一个向量，让它对应到 $\R$ 上的基 $\{1\}$ 上，这一点也能从它表示出来的矩阵的第 $(i,1)$ 个矩阵元的含义看出：它代表了从线性空间 $\R$ 的基 $1$ 映射到 $V$ 之后，在 $V$ 的第 $i$ 个基上的分量。
 
 发现了吗？一个这样的线性映射，实际上就唯一地对应了一个 $V$ 上的向量。那么？所有这样的线性映射的集合呢？没错，就是 $V$ 本身了。这意味着，一个从 $\R$ 到 $n$ 维线性空间 $V$ 的线性映射，实际上 *就是 $V$ 中的一个向量*！这也不难理解，为什么我们使用所谓的 *列向量*，或者一些地方所说的，*列矩阵*，来表示一个向量了。
 
@@ -229,40 +230,98 @@ $$ \phi\vcentcolon V\to\Hom{\R,V},\quad (\phi(\vect{v}))(r) = r\cdot\vect{v}\ \ 
 
 而这，也完美地保证了我们完全可以把向量在线性映射下的像的计算过程，化作矩阵与列向量之间的乘法运算，只需要运用矩阵乘法就可以了。一个运算，两种含义，针不戳！
 
+## 对偶空间 \$V^*\$
 
-## 行向量与 \$V\to \R\$
-
-我们自然地想到一个问题：按照我们上面的线性映射与矩阵表达的关系，一个 $V$ 到 $\R$ 的线性映射 $T$ 就可以在给两边各选择一组基之后表达为一个 $1\times n$ 的矩阵，即所谓的 **行矩阵** 或者 **行向量** 了。它又是什么东西呢？它应该和 $V$ 有一些关系吧。我们尝试用之前的过程研究这个类似的问题。
-
-我们首先还是让它们有各自的基：$\BaseBV$ 和 $\BaseE$，它们之间的线性映射 $T\vcentcolon V\to \R$ 可以表达为 $\mat{B} = \mrep{T}{\BaseBV}{\BaseE}$，这个矩阵它有 $1$ 行 $n$ 列。照我们之前的做法，两个空间在选择好基之后即唯一确定了，那么它们两之间的映射就可以规约到 $\BaseBV$ 到 $\{1\}$ 的映射。然后我们就可以……
-
-等一下，从任意集合 $S$ 到 单点集 $\{\bullet\}$ 的映射有且只能有一个，就是恒等映射呀！？那怎么办，之前的办法用不了了…… 
-
-不过我们似乎还有别的方案，即先证明 $\Hom{V,\R}$ 是一个线性空间，然后它和 $V$ 是同构的，最后这个同构是自然的，这样就完成了我们的证明了。那么首先， $\Hom{V,\R}$ 它是一个线性空间吗？
-
-## \$\operatorname{Hom}(V,\R)\$ 作为线性空间
-
-为了让它成为线性空间，我们需要给它定义加法和数乘。我们甚至可以故伎重施，使用逐点定义的方法，定义加法和数乘：
-
-$$
-\begin{align*} 
-+&\vcentcolon \Hom{V,\R}\times \Hom{V,\R}\to \Hom{V,\R}\\ 
-&\quad(\varphi+\psi)(\vect{v}) = \varphi(\vect{v})+\psi(\vect{v})\ \  \forall \varphi,\psi\in \Hom{V,\R},\vect{v}\in V;
-\\[1.5ex] 
-\cdot&\vcentcolon \R\times\Hom{V,\R}\to\Hom{V,\R}\\ 
-&\quad(r\cdot\varphi)(\vect{v}) = r\cdot \varphi(\vect{v}) = \varphi(r\cdot\vect{v})\ \  \forall r\in \R, \varphi\in \Hom{V,\R},\vect{v}\in V.
-\end{align*}
-$$
-
-很好，我们成功地证明它是一个线性空间（也很累）。那它和 $V$ 之间是同构的吗？
-
-## 对偶空间与同构
-
-前面的记号 $\Hom{V,\R}$ 太麻烦了。好在，我们有 **对偶空间** 的概念，它不是别的，就是这个线性空间。
+我们再来考察 $\Hom{V,\R}$，在这之前，由于 $\Hom{V,\R}$ 有特殊的含义，它被定义为 $V$ 的所谓 **对偶空间**：
 
 > [!DEF]{对偶空间}
 >
 > 一个线性空间 $V$ 的对偶空间记作 $V^*$，它是通过在集合 $\Hom{V,\R}$ 上定义加法和数乘得到的，其加法和数乘分别定义为：
-> $$\begin{align*} +&\vcentcolon  V^*\times  V^*\to  V^*\\ &\quad(\varphi+\psi)(\vect{v}) = \varphi(\vect{v})+\psi(\vect{v})\ \  \forall \varphi,\psi\in  V^*,\vect{v}\in V;\\[1.5ex] \cdot&\vcentcolon \R\times V^*\to V^*\\ &\quad(r\cdot\varphi)(\vect{v}) = r\cdot \varphi(\vect{v}) = \varphi(r\cdot\vect{v})\ \  \forall r\in \R, \varphi\in  V^*,\vect{v}\in V.\end{align*}$$
+> 
+> $$\begin{align*} +&\vcentcolon  V^*\times  V^*\to  V^*\\ &\quad(\cvect{\varphi}+\cvect{\psi})(\vect{v}) = \cvect{\varphi}(\vect{v})+\cvect{\psi}(\vect{v})\ \  \forall \cvect{\varphi},\cvect{\psi}\in  V^*,\vect{v}\in V;\\[1.5ex] \cdot&\vcentcolon \R\times V^*\to V^*\\ &\quad(r\cdot\cvect{\varphi})(\vect{v}) = r\cdot \cvect{\varphi}(\vect{v}) = \cvect{\varphi}(r\cdot\vect{v})\ \  \forall r\in \R, \cvect{\varphi}\in  V^*,\vect{v}\in V.\end{align*}$$
+>
+> 我们称原空间 $V$ 中的元素为 *向量*，称 $V^*$ 中的元素为 **余向量**。
 
-可以看到，$V^*$ 中的向量，每一个都是从 $V$ 到 $\R$ 的线性映射。从上面证明它是线性空间的过程也可以看到，想要研究 $V^*$ 的向量 $\varphi$，一个好办法是取 $V$ 中的一个向量 $\vect{v}$ 来喂给 $\varphi$。
+可以看到，$V^*$ 中的余向量，每一个都是从 $V$ 到 $\R$ 的线性映射，在给定一个 $V$ 中的向量后它都给出一个实数。有了这样的定义之后，我们继续研究之前的问题：怎么把 $\Hom{V,\R}$，即 $V^*$，和 $V$ 以及矩阵表示三者联系起来。
+
+## 线性空间与对偶空间
+
+我们还是给先给 $V$ 和 $\R$ 两边选定它们的基，分别为 $\BaseBV$ 和 $\BaseE$，则线性映射 $T\in V^*$ 可以表达为 $\mat{B} = \mrep{T}{\BaseBV}{\BaseE}$，这个矩阵它有 $1$ 行 $n$ 列，即所谓的 **行矩阵** 或者 **行向量** 了。
+
+下面我们尝试用之前 *自由线性空间* 的概念来研究它和 $V$ 之间的关系。照我们之前的做法，两个空间在选择好基之后即唯一确定了，那么它们两之间的映射就可以规约到 $\BaseBV$ 到 $\{1\}$ 的映射。然后我们就可以……
+
+等一下，从任意集合 $S$ 到 单点集 $\{\bullet\}$ 的映射有且只能有一个，就是恒等映射呀！？自由线性空间的路数看来是不大行了。那么，我们应该怎么考虑它和线性空间 $V$ 之间的关系？
+
+好在我们还有 $\cvect{\varphi}\in V^* = \Hom{V,\R}$ 的矩阵表示。$\cvect{\varphi}\in V^*$ 在表示为一个 $1\times n$ 型矩阵后，它的第 $(1,j)$ 个矩阵元的含义就是 $V$ 中的第 $j$ 个基向量经过线性映射后在 $\R$ 中的基 $\{1\}$ 的分量，或者说就是第 $j$ 个基向量在经过映射后的值。这说明，这个矩阵的 $n$ 个值对应了 $\cvect{\varphi}$ 在 $\BaseBV$ 上的值。
+
+于是我们得到了一个三角形的关系：一个对偶空间中的余向量，在作为 $V\to \R$ 的线性映射时能唯一确定一个 $1\times n$ 型矩阵，而这个矩阵中的 $n$ 个矩阵元分别代表了 $V$ 中的基向量在余向量映射下的值。这也就意味着，如果我们能确定 $V$ 中基向量在余向量下的值，我们就能唯一确定一个余向量了。 
+
+然而，把向量表达为基向量的线性组合的时，也有这样的对应关系：在给线性空间选定一组基之后，只需要一组线性表出系数就可以唯一地确定一个向量了。这暗示着我们完全可以就将 $V$ 中的那些基向量在余向量下的值作为这个余向量的线性表出系数。那么问题来了，我们这次竟然是先有了余向量线性表出系数，那这组线性表出系数应该配以什么样的基来表达一个余向量呢？
+
+我们需要找到 $V^*$ 它的基。
+
+## 对偶空间的基
+
+我们就取一个余向量 $\cvect{\varphi} \in V^*$，它有线性表出系数 $\varphi_1,\varphi_2,\dots,\varphi_n$，我们虽然不知道 $V^*$ 的基具体是什么样的，那么我们就假设这组基为：$\cbasev{\\beta}{i}{n}$，于是 $\cvect{\varphi}$ 就可以表达为线性组合：
+
+$$\cvect{\varphi} = \sum_i^n \varphi_i\cvect{\beta}^i,$$
+
+我们的当务之急是找到 $\cvect{\beta}^i$ 的表达式，它也是 $V^*$ 中的一个余向量，即一个从 $V$ 到 $\R$ 的线性映射。要确定一个映射，最好的方法就是给它喂一个定义域上的值，看看它的结果是什么样的。毫无悬念地，如果我们给它 $\vect{v}\in V$，得到的结果是：
+
+$$\cvect{\varphi}(\vect{v}) = \sum_i^n \varphi_i\cvect{\beta}^i(\vect{v}),$$
+
+然而 $\vect{v}$ 也是可以表达为 $V$ 的基 $\basev{b}{j}{n}$ 的线性组合的，我们带入就有：
+
+$$\cvect{\varphi}(\vect{v}) = \sum_i^n \varphi_i \cvect{\beta}^i(\sum_j^n v^j\vect{b}_j) = \sum_i^n\sum_j^n\varphi_i v^j\cvect{\beta}^i(\vect{b}_j),$$
+
+此时我们回忆这些 “线性表出系数” 的原本意义：$V$ 中的基向量被 $\cvect{\varphi}$ 映射后的值，即
+
+$$\cvect{\varphi}(\vect{v}) = \sum_i^n\sum_j^n v^j\cvect{\beta}^i(\vect{b}_j)\cvect{\varphi}(\vect{b}_i),$$
+
+我们的 $\cvect{\varphi}$ 又一次出现了！更重要的是，$v^i$，$\cvect{\beta}^i(\vect{b}_j)$ 都是 $\R$ 中的实数，因此根据线性映射的性质，我们有
+
+$$\cvect{\varphi}(\vect{v}) = \cvect{\varphi}(\sum_j^n v^j \sum_i^n \cvect{\beta}^i(\vect{b}_j)\vect{b}_i),$$
+
+又因为 $\vect{v} = \sum_j^n v^j \vect{b}_j$，经过 *比较*，我们得到了：
+
+$$\sum_i^n \cvect{\beta}^i(\vect{b}_j)\vect{b}_i = \vect{b}_j,$$
+
+说明 $\vect{b}_j$ 是基向量的线性组合。可是它本身就已经是基向量了，如果表示成线性组合，就只能是让对应的第 $j$ 个位置的系数为 $1$，其余全部为 $0$。也就是说：
+
+$$\cvect{\beta}^i(\vect{b}_j) = \begin{cases}
+  1 &\text{if }\ i=j\\
+  0 &\text{if }\ i\neq j\\
+\end{cases}$$
+
+我们构造出了一组 $V^*$ 的基！吗？
+
+## \$\\{\boldsymbol{\beta}^i\\}_{i=1}^n\$ 是基的证明
+
+我们上面的构造有一个巨大的漏洞：$f(a) = f(b)$ 从来都不能说明 $a = b$，必须证明 $f$ 是单射才能有这样的结论。然而，我们没有证明上面的余向量 $\cvect{\varphi}$ 是单的。
+
+其实是能够证明所有 $V^*$ 中的余向量都是单的，可是坏消息是，这在我们现有的工具条件下是没法方便地证明的。难道我们的努力全都木大了吗？也不是。至少，结论是对的，它距离我们可以放心使用，差的其实不是严丝合缝地把它构造出来，而是证明它的确是一组基就行。那么，我们就来尝试证明下面这个命题（定理）吧。
+
+> [!THM]{对偶空间的基}
+>
+> 设向量空间 $V$ 有一组基 $\BaseBV = \basev{b}{i}{n}$，则其对偶空间 $V^*$ 有一组基 $\cbasev{\beta}{i}{n}$，定义为 
+> 
+> $$\cvect{\beta}^i(\vect{b}_j) = \delta^i{}_j,$$
+>
+> 其中 $\delta^i{}_j$ 称为 **Kronecker delta（克罗内克 delta）**，定义为
+>
+> $$\delta^i{}_j = \begin{cases} 1 &\text{if }\ i=j\\ 0 &\text{if }\ i\neq j\\\end{cases}.$$
+
+我们接下来证明这个命题。这里值得注意的是这个 Kronecker delta 符号：
+
+> [!REM]{Kronecker delta 的含义}
+>
+> 这个符号之所以是被称为 “符号”，是因为它的功能太简单，却又可以拥有多种解释。这个符号实际上代表了一个函数，它比较两个正整数值，如果它们相等则输出 $1$，如果不相等则输出 $0$。因此，我们可以说它是一个这样的函数：
+> 
+> $$ \delta \vcentcolon \field{N}\times\field{N}\to \R,$$
+>
+> 然后用 $\delta^i{}_j$ 来记录它取 $(i,j)$ 时候的值。然而这样做又有两个小问题：
+> - 首先是，它的值域是否合适。倘若采用 $\R$，可能又显得太大了；倘若采用 $\{0,1\}$，那它就丢失了和别的数相乘相加等算术运算。为了在我们这里能与乘法相容，我们还是采用了 $\R$ 的定义；
+> - 另外就是它的定义域是否合适。这个问题主要源于这个符号实在是太简单了：判断两个东西是否相等。如果相等，那就输出 $1$，否则就输出 $0$。我们完全没必要限制在 $\field{N}$ 上，而是可以扩充到 $\field{Z}$，甚至更一般的任意集合上。不过我们这里还是不这么做了：限定在我们需要的指标集 $I = \field{N}$ 上就可以了。
+>
+> 另外我们注意，在引入 *爱因斯坦求和约定* 以前，我们完全将 $\delta^i{}_j$ 看作一个实数。即便它可以被解释为单位矩阵，它也是矩阵中的元素，而非真的是一个矩阵。
+
