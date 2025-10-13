@@ -262,7 +262,7 @@ $$ \phi\vcentcolon V\to\Hom{\R,V},\quad (\phi(\vect{v}))(r) = r\cdot\vect{v}\ \ 
 
 ## 对偶空间的基
 
-我们就取一个余向量 $\cvect{\varphi} \in V^*$，它有线性表出系数 $\varphi_1,\varphi_2,\dots,\varphi_n$，我们虽然不知道 $V^*$ 的基具体是什么样的，那么我们就假设这组基为：$\cbasev{\\beta}{i}{n}$，于是 $\cvect{\varphi}$ 就可以表达为线性组合：
+我们就取一个余向量 $\cvect{\varphi} \in V^*$，它有线性表出系数 $\varphi_1,\varphi_2,\dots,\varphi_n$，我们虽然不知道 $V^*$ 的基具体是什么样的，那么我们就假设这组基为：$\BaseB^* = \cbasev{\beta}{i}{n}$，于是 $\cvect{\varphi}$ 就可以表达为线性组合：
 
 $$\cvect{\varphi} = \sum_i^n \varphi_i\cvect{\beta}^i,$$
 
@@ -270,7 +270,7 @@ $$\cvect{\varphi} = \sum_i^n \varphi_i\cvect{\beta}^i,$$
 
 $$\cvect{\varphi}(\vect{v}) = \sum_i^n \varphi_i\cvect{\beta}^i(\vect{v}),$$
 
-然而 $\vect{v}$ 也是可以表达为 $V$ 的基 $\basev{b}{j}{n}$ 的线性组合的，我们带入就有：
+然而 $\vect{v}$ 也是可以表达为 $V$ 的基 $\BaseB^*$ 的线性组合的，我们带入就有：
 
 $$\cvect{\varphi}(\vect{v}) = \sum_i^n \varphi_i \cvect{\beta}^i(\sum_j^n v^j\vect{b}_j) = \sum_i^n\sum_j^n\varphi_i v^j\cvect{\beta}^i(\vect{b}_j),$$
 
@@ -295,7 +295,7 @@ $$\cvect{\beta}^i(\vect{b}_j) = \begin{cases}
 
 我们构造出了一组 $V^*$ 的基！吗？
 
-## \$\\{\boldsymbol{\beta}^i\\}_{i=1}^n\$ 是基的证明
+## \$\mathcal{B}^*\$ 是基的证明
 
 我们上面的构造有一个巨大的漏洞：$f(a) = f(b)$ 从来都不能说明 $a = b$，必须证明 $f$ 是单射才能有这样的结论。然而，我们没有证明上面的余向量 $\cvect{\varphi}$ 是单的。
 
@@ -311,7 +311,7 @@ $$\cvect{\beta}^i(\vect{b}_j) = \begin{cases}
 >
 > $$\delta^i{}_j = \begin{cases} 1 &\text{if }\ i=j\\ 0 &\text{if }\ i\neq j\\\end{cases}.$$
 
-我们接下来证明这个命题。这里值得注意的是这个 Kronecker delta 符号：
+这里值得注意的是这个 Kronecker delta 符号：
 
 > [!REM]{Kronecker delta 的含义}
 >
@@ -325,3 +325,18 @@ $$\cvect{\beta}^i(\vect{b}_j) = \begin{cases}
 >
 > 另外我们注意，在引入 *爱因斯坦求和约定* 以前，我们完全将 $\delta^i{}_j$ 看作一个实数。即便它可以被解释为单位矩阵，它也是矩阵中的元素，而非真的是一个矩阵。
 
+我们接下来证明这个命题。
+
+> [!PROOF]{对偶空间的基}
+>
+> 为证明向量组 $\BaseB^* = \cbasev{\beta}{i}{n}$ 是线性空间 $V^*$ 的一组基，我们需要证明它是线性无关向量组，以及它可以张成线性空间 $V^*$。
+>
+> - 线性无关的证明
+>   
+>   我们取任意一个向量 $\vect{v}\in V$，以及做 $\BaseB^*$ 的线性组合：$$\cvect{\varphi}= \sum_i^n \varphi_i\cvect{\beta}^i,$$ 令其等于 $\zero_{V^*}$，则有 $$\begin{align*}\cvect{\varphi}(\vect{v}) &= \sum_i^n\varphi_i \cvect{\beta}^i(\vect{v}) \\ &= \sum_i^n\varphi_i\sum_j^nv^j\cvect{\beta}^i(\vect{b}_j) = \sum_i^n\sum_j^n\varphi_iv^j\delta^i{}_j \\ & =\zero_{V^*}(\vect{v}) = 0_\R \end{align*}.$$ 由 Kronecker delta 的定义，有 $$\begin{align*}\sum_i^n\sum_j^n\varphi_iv^j\delta^i{}_j &= \sum_i^n\varphi_i(\sum_j^n v^j \delta^i{}_j) \\ &= \sum_i^n\varphi_i (v^1\delta^i{}_1 + v^2\delta^i{}_2 + \dots + v^n\delta^i{}_n) \\  &= \sum_i^n \varphi_iv^i = 0_\R. \end{align*}$$ 由于上式对任意的向量 $\vect{v}\in V$ 都成立，必须有 $\varphi_i = 0\quad\forall 1\leq i \leq n$，即向量组 $\BaseB^*$ 的线性组合为 $\zero_{V^*}$ 时，它的线性组合系数全为 $0$。这说明 $\BaseB^*$ 是线性无关的。
+>
+> - $\BaseB^*$ 能张成 $V^*$ 的证明
+>
+>   要证明它能线性张成 $V^*$，则 $V^*$ 中的任意余向量都能被这组向量组唯一地线性表出。我们任取 $\cvect{\varphi}\in V^*$ 以及 $\vect{v}\in V$，在取 $V$ 中基 $\BaseB$，则有 $$\cvect{\varphi}(\vect{v}) = \sum_i^nv^i\cvect{\varphi}(\vect{b}_i).$$ 我们记 $\cvect{\varphi}(\vect{b}_i) = a_i$，则 $$\begin{align*} \cvect{\varphi}(\vect{v})  &= \sum_i^n v^i a_i\\ &= \sum_i^n v^i \sum_j^n a_j \delta^j{}_i = \sum_i^n v^i \sum_j^n a_j \cvect{\beta}^j(\vect{b}_i) \\ &=\sum_j^n a_j \cvect{\beta}^j (\vect{v}) = (\sum_i^n a_i \cvect{\beta}^i)(\vect{v}).\end{align*} $$ 由此我们成功证明了任意的 $\cvect{\varphi}\in V^*$，都可以在我们定义好 $\BaseB^*$ 后将它表达为一个线性组合。
+>
+> 至此，我们成功证明了 $\BaseB^*$ 是 $V^*$ 的一组基。
