@@ -14,7 +14,7 @@ image:
 math: true
 hidden: false
 comments: true
-draft: true
+draft: true # Check the summay part!
 ---
 $$
 % =====  =====
@@ -239,7 +239,7 @@ $$
 > 
 > $$+_{\R^n}\vcentcolon\R^n\times\R^n\to\R^n,\quad ((r_1,\dots,r_n),(s_1,\dots,s_n))\mapsto (r_1+s_1,\dots,r_n+s_n) \ \ \forall (s_1,\dots,s_n),(r_1,\dots,r_n) \in \R^n$$
 >
-> 即让每个分量都以 $\R$ 上的加法相加。我们很容易验证，这个集合确实在加法和数乘下成为一个向量空间。它自然有一组基，我们特别地标记为 $\BaseE = \basev{e}{i}{n}$，其中 $\vect{e}_i$ 代表坐标 $(0,\dots,1,\dots,0)$，即在第 $i$ 个位置取 $1$ 其余全部取 $0$。我们称这组基为 $\R^n$ 的 **典范基**。
+> 即让每个分量都以 $\R$ 上的加法相加。我们很容易验证，这个集合确实在加法和数乘下成为一个向量空间。它自然有一组基，我们特别地标记为 $\BaseE = \basev{e}{i}{n}$，其中 $\vect{e}_i$ 代表坐标 $(0,\dots,1,\dots,0)$，即在第 $i$ 个位置取 $1$ 其余全部取 $0$。我们称这组基为 $\R^n$ 的 **典范基** 或者 **标准基**。
 
 为什么我们特别要讨论这个向量空间呢？它有很多有趣的地方。首先我们很熟悉它，这一点自不必多说。其次，我们可以借助它来研究一些有趣的观点。
 
