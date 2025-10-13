@@ -38,6 +38,10 @@ commit message:
     git add .
     git commit -m "{{message}}"
 
+upload message: 
+    just commit "{{message}}"
+    just update
+
 status:
     git status
     git log --all --oneline --graph -3
