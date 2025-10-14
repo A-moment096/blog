@@ -32,10 +32,10 @@ $$
 \gdef       \field          #1{\mathbb{#1}}                             % 
 \gdef       \xto            #1{\xrightarrow{#1}}                        % arrow with label
 \gdef       \xfrom          #1{\xleftarrow{#1}}                         % left arrow with label
-\gdef       \Hom            #1{\operatorname{Hom}(#1)}             % morphisms between A and B
-\gdef       \Iso            #1{\operatorname{Iso}(#1)}
-\gdef       \End            #1{\operatorname{End}(#1)}                  % 
-\gdef       \Aut            #1{\operatorname{Aut}(#1)}                  % 
+\gdef       \Hom            {\operatorname{Hom}}             % morphisms between A and B
+\gdef       \Iso            {\operatorname{Iso}}
+\gdef       \End            {\operatorname{End}}                  % 
+\gdef       \Aut            {\operatorname{Aut}}                  % 
 \gdef       \cat            #1{\mathsf{#1}}                             % category symbol: e.g., \cat{Vect}, \cat{Set}
 \gdef       \Mat            #1{\mathcal{M}(#1)}
 \gdef       \t              {^{\mathsf{T}}}
@@ -155,17 +155,17 @@ $$C^i{}_j = \sum_k^n B^i{}_k A^k{}_j.$$
 
 ## 线性空间 \$\operatorname{Hom}(V,W)\$
 
-上面我们给矩阵赋予了线性映射的意义。只要在给线性空间选定基之后，它们之间的所有线性映射都是可以唯一地表达为一个矩阵的。然而我们已经知道了，矩阵空间 $\Mat{m,n}$ 是一个线性空间，那么它能对应的 $n$ 维线性空间 $V$ 到 $m$ 维线性空间 $W$ 之间的线性映射全体 $\Hom{V,W}$，是否也是一个线性空间呢？
+上面我们给矩阵赋予了线性映射的意义。只要在给线性空间选定基之后，它们之间的所有线性映射都是可以唯一地表达为一个矩阵的。然而我们已经知道了，矩阵空间 $\Mat{m,n}$ 是一个线性空间，那么它能对应的 $n$ 维线性空间 $V$ 到 $m$ 维线性空间 $W$ 之间的线性映射全体 $\Hom(V,W)$，是否也是一个线性空间呢？
 
 没错，它也是能在合理的加法和数乘下成为线性空间的：
 
 > [!THM]{$ 线性空间 \operatorname{Hom}(V,W)$ }
 >
-> 集合 $\Hom{V,W}$ 上可以定义加法与数乘运算如下：
+> 集合 $\Hom(V,W)$ 上可以定义加法与数乘运算如下：
 >
-> $$\begin{align*} +&\vcentcolon \Hom{V,W}\times \Hom{V,W}\to \Hom{V,W}\\ &\quad (R+S)(\vect{v}) = R(\vect{v}) + S(\vect{v})\ \  \forall R, S\in \Hom{V,W},\vect{v}\in V; \\[1.5ex] \cdot&\vcentcolon \R\times\Hom{V,W}\to\Hom{V,W}\\ &\quad (r\cdot L)(\vect{v}) = r\cdot L(\vect{v})= L(r\cdot \vect{v}) \  \forall r\in \R, L\in \Hom{V,W},\vect{v}\in V. \end{align*} $$
+> $$\begin{align*} +&\vcentcolon \Hom(V,W)\times \Hom(V,W)\to \Hom(V,W)\\ &\quad (R+S)(\vect{v}) = R(\vect{v}) + S(\vect{v})\ \  \forall R, S\in \Hom(V,W),\vect{v}\in V; \\[1.5ex] \cdot&\vcentcolon \R\times\Hom(V,W)\to\Hom(V,W)\\ &\quad (r\cdot L)(\vect{v}) = r\cdot L(\vect{v})= L(r\cdot \vect{v}) \  \forall r\in \R, L\in \Hom(V,W),\vect{v}\in V. \end{align*} $$
 >
-> 在定义这两个运算后，$\Hom{V,W}$ 成为线性空间。
+> 在定义这两个运算后，$\Hom(V,W)$ 成为线性空间。
 
 我们可以看到，上面的加法定义和数乘定义都是非常自然的：两个映射相加等于把它们每个点上的值都加起来作为这个点上的新值；映射与数的点乘就是把每个点的值都做个数乘。这个操作能实现也依赖了 $W$，映射的陪域，也是个线性空间的缘故。我们称这样定义运算的方法为所谓的 **逐点定义**。
 
@@ -176,28 +176,28 @@ $$C^i{}_j = \sum_k^n B^i{}_k A^k{}_j.$$
 >
 > 要证明它是线性空间，我们需要验证它满足线性空间的八条公理。
 >
-> - 存在加法单位元 $O$，将任何实数都恒等映射到 $\zero_W$ 上：$O(\vect{v}) = \zero_W$ 对于任意的 $\vect{v}\in V$ 都成立。如此，有 $$\begin{align*}(O+L)(\vect{v}) &= O(\vect{v}) + L(\vect{v}) \\ &= L(\vect{v}) = L(\vect{v}) + O(\vect{v})\\ &= (L+O)(\vect{v})\end{align*}$$ 对于任意的 $\vect{v}\in V$ 和 $L\in\Hom{V,W}$ 都成立；
-> - 任意元素都有逆元。对任意的 $S\in \Hom{V,W}$ ，定义线性映射 $T\in\Hom{V,W}$，对任意 $\vect{v}\in V$ 都有 $T(\vect{v}) = S(-\vect{v})$。由线性映射的性质，$T(\vect{v}) = -S(\vect{v})$，则对任意 $\vect{v}\in V$，都有 $$\begin{align*}(T+S)(\vect{v}) &= T(\vect{v}) + S(\vect{v})\\ &= -S(\vect{v})+S(\vect{v}) = \zero_W = S(\vect{v}) + T(\vect{v})\\ &=(S+T)(\vect{v})\end{align*}$$ 成立。则 $T$ 确为 $S$ 的逆元；
+> - 存在加法单位元 $O$，将任何实数都恒等映射到 $\zero_W$ 上：$O(\vect{v}) = \zero_W$ 对于任意的 $\vect{v}\in V$ 都成立。如此，有 $$\begin{align*}(O+L)(\vect{v}) &= O(\vect{v}) + L(\vect{v}) \\ &= L(\vect{v}) = L(\vect{v}) + O(\vect{v})\\ &= (L+O)(\vect{v})\end{align*}$$ 对于任意的 $\vect{v}\in V$ 和 $L\in\Hom(V,W)$ 都成立；
+> - 任意元素都有逆元。对任意的 $S\in \Hom(V,W)$ ，定义线性映射 $T\in\Hom(V,W)$，对任意 $\vect{v}\in V$ 都有 $T(\vect{v}) = S(-\vect{v})$。由线性映射的性质，$T(\vect{v}) = -S(\vect{v})$，则对任意 $\vect{v}\in V$，都有 $$\begin{align*}(T+S)(\vect{v}) &= T(\vect{v}) + S(\vect{v})\\ &= -S(\vect{v})+S(\vect{v}) = \zero_W = S(\vect{v}) + T(\vect{v})\\ &=(S+T)(\vect{v})\end{align*}$$ 成立。则 $T$ 确为 $S$ 的逆元；
 > 
-> - 加法有结合律和交换律。对任意 $R,S,T\in\Hom{V,W}$，任取 $\vect{v}\in V$，则有 $$\begin{align*}(R+(S+T))(\vect{v}) &= R(\vect{v})+(S+T)(\vect{v})\\ & = R(\vect{v})+S(\vect{v})+T(\vect{v})= (R+S)(\vect{v})+T(\vect{v}) \\ &= ((R+S)+T)(\vect{v}) \\ &= S(\vect{v})+T(\vect{v})+R(\vect{v})\\ & = ((S+T)+R)(\vect{v})\end{align*}$$ 始终成立；
+> - 加法有结合律和交换律。对任意 $R,S,T\in\Hom(V,W)$，任取 $\vect{v}\in V$，则有 $$\begin{align*}(R+(S+T))(\vect{v}) &= R(\vect{v})+(S+T)(\vect{v})\\ & = R(\vect{v})+S(\vect{v})+T(\vect{v})= (R+S)(\vect{v})+T(\vect{v}) \\ &= ((R+S)+T)(\vect{v}) \\ &= S(\vect{v})+T(\vect{v})+R(\vect{v})\\ & = ((S+T)+R)(\vect{v})\end{align*}$$ 始终成立；
 > 
-> - 取 $\R$ 中单位元 $1$，有 $$(1\cdot L)(\vect{v}) = 1\cdot_W L(\vect{v}) =L(1\cdot_V\vect{v})= L(\vect{v})$$ 对任何 $L\in\Hom{V,W},\vect{v}\in V$都成立，则数乘确有单位元；
+> - 取 $\R$ 中单位元 $1$，有 $$(1\cdot L)(\vect{v}) = 1\cdot_W L(\vect{v}) =L(1\cdot_V\vect{v})= L(\vect{v})$$ 对任何 $L\in\Hom(V,W),\vect{v}\in V$都成立，则数乘确有单位元；
 > 
-> - 数乘对向量加法有分配率：对任意 $r\in\R, S, T\in\Hom{V,W}$ 和 $\vect{v}\in V$，下式始终成立：$$\begin{align*}(r\cdot( S+ T))(\vect{v}) &= ( S+ T)(r\cdot\vect{v})=  S(r\cdot\vect{v})+ T(r\cdot\vect{v}) \\ &= r\cdot S(\vect{v})+r\cdot T(\vect{v}) = (r\cdot S)(\vect{v})+(r\cdot T)(\vect{v})\\ &= (r\cdot( S+ T))(\vect{v});\end{align*}$$
-> - 数量加法对数乘有分配率：对任意 $r,s\in\R, S\in\Hom{V,W}$ 和 $\vect{v}\in V$，下式始终成立：$$\begin{align*}((r+s)\cdot S)(\vect{v}) &=  S((r+s)\cdot\vect{v})=  S(r\cdot\vect{v}+s\cdot\vect{v}) \\ &= r\cdot S(\vect{v})+s\cdot T(\vect{v}) = (r\cdot S)(\vect{v})+(s\cdot S)(\vect{v})\\ &= (r\cdot S+s\cdot S)(\vect{v});\end{align*}$$
-> - 数量乘法有交换律：对任意 $r,s\in\R, S\in\Hom{V,W}$ 和 $\vect{v}\in V$，下式始终成立：$$((rs)\cdot S)(\vect{v}) =  S((rs)\cdot\vect{v}) =  S((sr)\cdot\vect{v}) = ((sr)\cdot S)(\vect{v}).$$
+> - 数乘对向量加法有分配率：对任意 $r\in\R, S, T\in\Hom(V,W)$ 和 $\vect{v}\in V$，下式始终成立：$$\begin{align*}(r\cdot( S+ T))(\vect{v}) &= ( S+ T)(r\cdot\vect{v})=  S(r\cdot\vect{v})+ T(r\cdot\vect{v}) \\ &= r\cdot S(\vect{v})+r\cdot T(\vect{v}) = (r\cdot S)(\vect{v})+(r\cdot T)(\vect{v})\\ &= (r\cdot( S+ T))(\vect{v});\end{align*}$$
+> - 数量加法对数乘有分配率：对任意 $r,s\in\R, S\in\Hom(V,W)$ 和 $\vect{v}\in V$，下式始终成立：$$\begin{align*}((r+s)\cdot S)(\vect{v}) &=  S((r+s)\cdot\vect{v})=  S(r\cdot\vect{v}+s\cdot\vect{v}) \\ &= r\cdot S(\vect{v})+s\cdot T(\vect{v}) = (r\cdot S)(\vect{v})+(s\cdot S)(\vect{v})\\ &= (r\cdot S+s\cdot S)(\vect{v});\end{align*}$$
+> - 数量乘法有交换律：对任意 $r,s\in\R, S\in\Hom(V,W)$ 和 $\vect{v}\in V$，下式始终成立：$$((rs)\cdot S)(\vect{v}) =  S((rs)\cdot\vect{v}) =  S((sr)\cdot\vect{v}) = ((sr)\cdot S)(\vect{v}).$$
 >
-> 至此，我们验证完毕，$\Hom{V,W}$ 的确在上述加法和数乘下成为一个向量空间。
+> 至此，我们验证完毕，$\Hom(V,W)$ 的确在上述加法和数乘下成为一个向量空间。
 
 这个证明真是好长，但是实际上却又真的只是把所有的公理都按照定义和线性映射的性质验证一遍，唉，真是好累呀。后面再不证明这么繁琐的东西了，除非是一个很特殊的线性空间，它不那么显然地满足公理。
 
-那么现在，我们知道 $\Mat{m,n}$，所有 $m\times n$ 型矩阵，它是一个 $mn$ 维线性空间; $\Hom{V,W}$，所有从线性空间 $V$ 到 $W$ 的线性映射，也是一个线性空间。而一个 $m\times n$ 型矩阵可以被解释为一个 $n$ 维线性空间到 $m$ 维线性空间的一个线性映射（在给两边选定基后）。它们之间一定有某种特殊的联系！说不定，如果 $\dim V = n, \dim V = m$ 的话，$\Mat{m,n}$ 和 $\Hom{V,W}$ 是同构的！
+那么现在，我们知道 $\Mat{m,n}$，所有 $m\times n$ 型矩阵，它是一个 $mn$ 维线性空间; $\Hom(V,W)$，所有从线性空间 $V$ 到 $W$ 的线性映射，也是一个线性空间。而一个 $m\times n$ 型矩阵可以被解释为一个 $n$ 维线性空间到 $m$ 维线性空间的一个线性映射（在给两边选定基后）。它们之间一定有某种特殊的联系！说不定，如果 $\dim V = n, \dim V = m$ 的话，$\Mat{m,n}$ 和 $\Hom(V,W)$ 是同构的！
 
-我们要怎么确认这个事呢？我们先来看两个特殊的例子：$\Hom{\R,V}$ 和 $\Hom{V,\R}$。
+我们要怎么确认这个事呢？我们先来看两个特殊的例子：$\Hom(\R,V)$ 和 $\Hom(V,\R)$。
 
 ## \$\operatorname{Hom}(\R,V)\$ 与 \$V\$
 
-我们考虑 $\Hom{\R,V}$ 中的一个线性映射 $L$，根据线性映射和矩阵的关系，它在 $\R$ 和 $V$ 的基下的表示矩阵为 $\mat{A} = \mrep{L}{\BaseE}{\BaseBV}$。根据我们上面的记号，我们知道这个线性映射的矩阵表示就有 $n$ 行，但是它只有 $1$ 列。
+我们考虑 $\Hom(\R,V)$ 中的一个线性映射 $L$，根据线性映射和矩阵的关系，它在 $\R$ 和 $V$ 的基下的表示矩阵为 $\mat{A} = \mrep{L}{\BaseE}{\BaseBV}$。根据我们上面的记号，我们知道这个线性映射的矩阵表示就有 $n$ 行，但是它只有 $1$ 列。
 
 我们先来看看 $\R$，从上一章的讨论中我们已经知道它自身就是一个线性空间，它的典范基就是 $1$。再考虑这个线性映射 $L$，它 *把一个向量唯一确定地映射到另一个空间中的一个向量*，且保持线性。也就是说，这个线性映射把 $\R$ 中的 $0$ 映射到 $V$ 中的 $\zero$ 上，且每个数字都对应一个 $V$ 中的向量。
 
@@ -207,20 +207,20 @@ $$C^i{}_j = \sum_k^n B^i{}_k A^k{}_j.$$
 
 ## 列向量 与 \$\R\to V\$ ：自然同构
 
-事实上，我们可以给 $\Hom{\R,V}$ 和 $V$ 之间定义一个 **自然同构**：
+事实上，我们可以给 $\Hom(\R,V)$ 和 $V$ 之间定义一个 **自然同构**：
 
-$$ \eta\vcentcolon\Hom{\R,V}\to V,\quad  f \mapsto f(1)\ \ \forall f\in\Hom{\R,V},$$
+$$ \eta\vcentcolon\Hom(\R,V)\to V,\quad  f \mapsto f(1)\ \ \forall f\in\Hom(\R,V),$$
 
-其中 $1$ 就是我们熟悉的那个数字 $1$。也就是说，只需要我们让 $\Hom{\R,V}$ 中的每个映射都取到 $1$，我们就能得到 $V$ 上对应的向量。这个同构之所以是同构，是因为我们可以立刻定义它的逆映射：
+其中 $1$ 就是我们熟悉的那个数字 $1$。也就是说，只需要我们让 $\Hom(\R,V)$ 中的每个映射都取到 $1$，我们就能得到 $V$ 上对应的向量。这个同构之所以是同构，是因为我们可以立刻定义它的逆映射：
 
-$$ \phi\vcentcolon V\to\Hom{\R,V},\quad (\phi(\vect{v}))(r) = r\cdot\vect{v}\ \ \forall\vect{v}\in V, r\in\R, $$
+$$ \phi\vcentcolon V\to\Hom(\R,V),\quad (\phi(\vect{v}))(r) = r\cdot\vect{v}\ \ \forall\vect{v}\in V, r\in\R, $$
 
 即我们把一个向量映射到一个从 $\R$ 到 $V$ 的线性映射上。这个线性映射取 $\R$ 中的一个数字后就把它数乘到这个向量上。可以证明这个东西是同构：
 
 > [!PROOF]{映射 $\eta$ 是线性空间同构}
 > 
-> 由于 $\eta$ 两边都是线性空间，且我们已经构造了它的可能逆映射 $\phi$。要验证同构，我们可以证明 $\phi$ 确实是它的逆映射，即 $\phi\comp\eta = \idop_{\Hom{\R,V}}$ 和 $\eta\comp\phi = \idop_{V}$ 都是单位变换:
-> - 对于任意 $f\in \Hom{\R,V}$，对于任意的 $r\in\R$ 我们都能让 $f$ 转一圈回到自己，就能证明第一部分了，而我们有：$$ (\phi\comp\eta)(f(r)) = (\phi\comp\eta(f))(r) = \phi(f(1))(r) = r\cdot f(1) = f(r);$$
+> 由于 $\eta$ 两边都是线性空间，且我们已经构造了它的可能逆映射 $\phi$。要验证同构，我们可以证明 $\phi$ 确实是它的逆映射，即 $\phi\comp\eta = \idop_{\Hom(\R,V)}$ 和 $\eta\comp\phi = \idop_{V}$ 都是单位变换:
+> - 对于任意 $f\in \Hom(\R,V)$，对于任意的 $r\in\R$ 我们都能让 $f$ 转一圈回到自己，就能证明第一部分了，而我们有：$$ (\phi\comp\eta)(f(r)) = (\phi\comp\eta(f))(r) = \phi(f(1))(r) = r\cdot f(1) = f(r);$$
 > - 对于任意的 $\vect{v}\in V$，我们有 $$\eta\comp\phi(\vect{v}) = \eta(\phi(\vect{v})) = \phi(\vect{v})(1) = 1\cdot \vect{v} = \vect{v}.$$
 > 两个式子的最后一个等号都用了线性映射和线性空间的性质，它们之前的等号则都是映射的复合。由此，我们得到它是一个同构。
 
@@ -232,17 +232,17 @@ $$ \phi\vcentcolon V\to\Hom{\R,V},\quad (\phi(\vect{v}))(r) = r\cdot\vect{v}\ \ 
 
 ## 对偶空间 \$V^*\$
 
-我们再来考察 $\Hom{V,\R}$，在这之前，由于 $\Hom{V,\R}$ 有特殊的含义，它被定义为 $V$ 的所谓 **对偶空间**：
+我们再来考察 $\Hom(V,\R)$，在这之前，由于 $\Hom(V,\R)$ 有特殊的含义，它被定义为 $V$ 的所谓 **对偶空间**：
 
 > [!DEF]{对偶空间}
 >
-> 一个线性空间 $V$ 的对偶空间记作 $V^*$，它是通过在集合 $\Hom{V,\R}$ 上定义加法和数乘得到的，其加法和数乘分别定义为：
+> 一个线性空间 $V$ 的对偶空间记作 $V^*$，它是通过在集合 $\Hom(V,\R)$ 上定义加法和数乘得到的，其加法和数乘分别定义为：
 > 
 > $$\begin{align*} +&\vcentcolon  V^*\times  V^*\to  V^*\\ &\quad(\cvect{\varphi}+\cvect{\psi})(\vect{v}) = \cvect{\varphi}(\vect{v})+\cvect{\psi}(\vect{v})\ \  \forall \cvect{\varphi},\cvect{\psi}\in  V^*,\vect{v}\in V;\\[1.5ex] \cdot&\vcentcolon \R\times V^*\to V^*\\ &\quad(r\cdot\cvect{\varphi})(\vect{v}) = r\cdot \cvect{\varphi}(\vect{v}) = \cvect{\varphi}(r\cdot\vect{v})\ \  \forall r\in \R, \cvect{\varphi}\in  V^*,\vect{v}\in V.\end{align*}$$
 >
 > 我们称原空间 $V$ 中的元素为 *向量*，称 $V^*$ 中的元素为 **余向量**。
 
-可以看到，$V^*$ 中的余向量，每一个都是从 $V$ 到 $\R$ 的线性映射，在给定一个 $V$ 中的向量后它都给出一个实数。有了这样的定义之后，我们继续研究之前的问题：怎么把 $\Hom{V,\R}$，即 $V^*$，和 $V$ 以及矩阵表示三者联系起来。
+可以看到，$V^*$ 中的余向量，每一个都是从 $V$ 到 $\R$ 的线性映射，在给定一个 $V$ 中的向量后它都给出一个实数。有了这样的定义之后，我们继续研究之前的问题：怎么把 $\Hom(V,\R)$，即 $V^*$，和 $V$ 以及矩阵表示三者联系起来。
 
 ## 线性空间与对偶空间
 
@@ -252,7 +252,7 @@ $$ \phi\vcentcolon V\to\Hom{\R,V},\quad (\phi(\vect{v}))(r) = r\cdot\vect{v}\ \ 
 
 等一下，从任意集合 $S$ 到 单点集 $\{\bullet\}$ 的映射有且只能有一个，就是恒等映射呀！？自由线性空间的路数看来是不大行了。那么，我们应该怎么考虑它和线性空间 $V$ 之间的关系？
 
-好在我们还有 $\cvect{\varphi}\in V^* = \Hom{V,\R}$ 的矩阵表示。$\cvect{\varphi}\in V^*$ 在表示为一个 $1\times n$ 型矩阵后，它的第 $(1,j)$ 个矩阵元的含义就是 $V$ 中的第 $j$ 个基向量经过线性映射后在 $\R$ 中的基 $\{1\}$ 的分量，或者说就是第 $j$ 个基向量在经过映射后的值。这说明，这个矩阵的 $n$ 个值对应了 $\cvect{\varphi}$ 在 $\BaseBV$ 上的值。
+好在我们还有 $\cvect{\varphi}\in V^* = \Hom(V,\R)$ 的矩阵表示。$\cvect{\varphi}\in V^*$ 在表示为一个 $1\times n$ 型矩阵后，它的第 $(1,j)$ 个矩阵元的含义就是 $V$ 中的第 $j$ 个基向量经过线性映射后在 $\R$ 中的基 $\{1\}$ 的分量，或者说就是第 $j$ 个基向量在经过映射后的值。这说明，这个矩阵的 $n$ 个值对应了 $\cvect{\varphi}$ 在 $\BaseBV$ 上的值。
 
 于是我们得到了一个三角形的关系：一个对偶空间中的余向量，在作为 $V\to \R$ 的线性映射时能唯一确定一个 $1\times n$ 型矩阵，而这个矩阵中的 $n$ 个矩阵元分别代表了 $V$ 中的基向量在余向量映射下的值。这也就意味着，如果我们能确定 $V$ 中基向量在余向量下的值，我们就能唯一确定一个余向量了。 
 
@@ -347,9 +347,9 @@ $$\cvect{\beta}^i(\vect{b}_j) = \begin{cases}
 
 我们在第一章的末尾部分提过，一个 $\R$ 上的 $n$ 维线性空间在选择一组基之后总能构建一个到 $\R^n$ 的同构，这个同构把该线性空间的基映射到 $\R^n$ 的标准基上。从上一节的内容也能得到 $V^*$ 和 $V$ 的基里面的基向量数量相同（毕竟 $\BaseB^*$ 的每个向量都是由 $\BaseB$ 中的向量一个个定义出来的），根据维数的定义，它们具有相同的维数，故它们的确是有一个同构。而直接从对偶基的构造过程也能看到它们之间的同构。
 
-然而，这个同构，我们指出，并不是前面我们提出的 *自然同构*。它并不满足 *自然* 的要求，即这个同构不依赖与任何除了线性空间八大公理以外的任何特点，因为我们要是想描述这个同构，就必须得找到 $V$ 中的基向量，然后才能说明 $V^*$ 的情况。即便任意选择 $V$ 中的基都可以得到同一个 $V^*$，但是总归我们是依赖了基的选择的。因此，我们常将 $V$ 和 $V^*$ 看作关系密切但并不相同的两个线性空间，不像我们前面那样，直接把 $V$ 和 $\Hom{\R,V}$ 看作一个空间。
+然而，这个同构，我们指出，并不是前面我们提出的 *自然同构*。它并不满足 *自然* 的要求，即这个同构不依赖与任何除了线性空间八大公理以外的任何特点，因为我们要是想描述这个同构，就必须得找到 $V$ 中的基向量，然后才能说明 $V^*$ 的情况。即便任意选择 $V$ 中的基都可以得到同一个 $V^*$，但是总归我们是依赖了基的选择的。因此，我们常将 $V$ 和 $V^*$ 看作关系密切但并不相同的两个线性空间，不像我们前面那样，直接把 $V$ 和 $\Hom(\R,V)$ 看作一个空间。
 
-但是当我们将给线性空间 $V$ 选择基并表达为 $\Hom{\R,V}$ 时，我们可以看到由于我们选择了 $V$ 的基，我们立刻就获得了 $V^*$ 的基了。而根据 $\Hom{V,\R}$ 的矩阵表示是一个行向量，我们得到行向量的每个矩阵元都是 $\Hom{V,\R}$ 的线性组合系数。
+但是当我们将给线性空间 $V$ 选择基并表达为 $\Hom(\R,V)$ 时，我们可以看到由于我们选择了 $V$ 的基，我们立刻就获得了 $V^*$ 的基了。而根据 $\Hom(V,\R)$ 的矩阵表示是一个行向量，我们得到行向量的每个矩阵元都是 $\Hom(V,\R)$ 的线性组合系数。
 
 考虑两个向量 $\vect{u},\vect{v}\in V$，我们给 $V$ 找好一组基 $\BaseB$ 之后，两个向量就可以表达为列向量了。现在我们做这样一件事：把列向量 $\vrep{v}{\BaseB}$ 变成行向量，结果记作 $[\vect{v}^*]_{\BaseB^*}$。具体做法是，把里面每个数字拿出来，然后把对应的基全都变成对偶基，最后再按原样做线性组合，变化后的矩阵表示只改变了数字的排列方向，从原来的纵向变成了横向排列。而根据余向量的含义，它是一个 $V\to \R$ 的线性映射，我们就来计算一下 $\vect{v}^*(\vect{u})$ 的结果。
 
@@ -367,9 +367,9 @@ $$\cvect{\beta}^i(\vect{b}_j) = \begin{cases}
 
 > [!DEF]{双对偶空间}
 >
-> 我们称线性空间 $V$ 对偶空间 $V^* = \Hom{V,\R}$ 的对偶空间 $V^{**} = \Hom{V^*,\R}$ 为 $V$ 的双对偶空间，记为 $V^{**}$。即：
+> 我们称线性空间 $V$ 对偶空间 $V^* = \Hom(V,\R)$ 的对偶空间 $V^{**} = \Hom(V^*,\R)$ 为 $V$ 的双对偶空间，记为 $V^{**}$。即：
 >
-> $$\Hom{V^*,\R} = \Hom{\Hom{V,\R},\R}.$$
+> $$\Hom(V^*,\R) = \Hom(\Hom{V,\R),\R}.$$
 
 我们立刻会想到一个问题：双对偶空间中的向量是什么样的？从这个空间的定义来看，从 $V^*$ 到 $\R$ 上的一个线性映射，或者说给每个余向量都赋予一个实数。可是这样也没法给我们提供从 $V^{**}$ 到 $V$ 之间的关系的线索。不过既然 *对偶* 这个概念几乎离不开基向量的选择，我们就来看看 $V^{**}$ 的基是什么样的。
 
@@ -404,7 +404,7 @@ $$\begin{align*}
 
 我们看这个求和，它是什么？有 $V$ 中的基，有 $V^{**}$ 中的线性组合系数，而这个系数作为实数又完美地可以与基进行组合。所以，最后，一行的结果是什么意思？$\cvect{\varphi}^*$ 在把 $\cvect{\xi}$ 线性地映射到实数，就像是用 $\cvect{\xi}$ 把一个向量 $\vect{v}\in V$ 映射到实数上，而它在 $V$ 的基 $\BaseB = \basev{b}{i}{n}$ 下的表示的系数是 $v^i = \varphi^{*i}$ ！？
 
-线性空间和它的双对偶之间，绝对有深厚的关系。似乎我们不管在 $V^{**}$ 选什么基，一个 $\cvect{\varphi^*}\in V^{**}$ 不论在这个基下表示成什么，我们都能在 $V$ 中 *对应的基* 下得到一模一样的表示。它们之间可以有 $\Hom{\R,V}$ 与 $V$ 之间那样的 *自然同构* 吗？
+线性空间和它的双对偶之间，绝对有深厚的关系。似乎我们不管在 $V^{**}$ 选什么基，一个 $\cvect{\varphi^*}\in V^{**}$ 不论在这个基下表示成什么，我们都能在 $V$ 中 *对应的基* 下得到一模一样的表示。它们之间可以有 $\Hom(\R,V)$ 与 $V$ 之间那样的 *自然同构* 吗？
 
 ## 双对偶与是自然同构
 
@@ -474,5 +474,5 @@ $$\begin{align*}
 - 我们定义了双对偶 $V^{**}$ ，并给出所谓的自然同构（求值映射）$\iota:V\to V^{**}$，以此我们可以把 $V$ 和 $V^{**}$ 看成一个空间；
 - 从范畴论的视角，说明了为什么单次对偶是不自然的，而双对偶是自然的；
 
-单是线性映射本身就已经有非常丰富的性质了。我们这里只研究了 $\Hom{V,W}$ 的两个特例而已，而它又带来了更多的问题：为什么矩阵有这么多的含义，而矩阵乘法我们经常就只定义这一种？对偶和矩阵转置之间究竟有什么关系？那些特别的线性映射又会带来什么样的新东西？我们留到下一章再讨论吧。
+单是线性映射本身就已经有非常丰富的性质了。我们这里只研究了 $\Hom(V,W)$ 的两个特例而已，而它又带来了更多的问题：为什么矩阵有这么多的含义，而矩阵乘法我们经常就只定义这一种？对偶和矩阵转置之间究竟有什么关系？那些特别的线性映射又会带来什么样的新东西？我们留到下一章再讨论吧。
 
