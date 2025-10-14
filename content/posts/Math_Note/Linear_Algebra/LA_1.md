@@ -19,6 +19,7 @@ draft: true # Check the summay part!
 $$
 % =====  =====
 \gdef       \vect           #1{\mathbf{#1}}                             % abstract vector
+\gdef       \cvect          #1{\boldsymbol{#1}}
 \gdef       \basis          #1#2{\mathcal{#1}_{#2}}                            % basis of vector space
 \gdef       \basev          #1#2#3{\{\vect{#1}_{#2}\}_{#2=1}^{#3}}                     % base vector collection
 \gdef       \cbasev         #1#2{\mathbf{#1}^{#2}}                      % dual basis e^i
@@ -70,14 +71,15 @@ $$
 
 | 含义 | 字体/字形 | 使用字母 |
 |:-:|:--:|:---:|
-| 标量 | 常规字母 | $a$, $b$, $c$, $v^i$, $u_j$, $A^i{}_j$ |
+| 标量 | 常规字母 | $a$, $b$, $c$, $v^i$, $\varphi_j$, $A^i{}_j$ |
 | 数域 | 黑板粗体 | $\Bbbk$, $\field{R}$, $\field{C}$ | 
 | 向量 | 粗正体字母 | $\vect{u}$, $\vect{v}$, $\vect{w}$, $\vect{x}$, $\vect{y}$, $\vect{z}$ |
+| 余向量 | 粗体希腊字母 | $\cvect{\beta}$，$\cvect{\varphi}$，$\cvect{\psi}$，$\cvect{\xi}$ |
 | 集合，向量空间 | 大写常规字母 | $U$, $V$, $W$|
 | 基 | - | $\basis{B}{V} = \basev{b}{i}{n}$, $\basis{C}{W} = \basev{c}{j}{m}$, $\basis{D}{}$ |
 | 向量表示 | - | $\vrep{v}{B} = (v^1,\dots,v^n)\t$, $[\vect{u}]$| 
 | 线性映射 | 常规字母 | $L$, $R$, $S$, $T$ |
-| 线性映射，同构，自同态，自同构集合 | - | $\Hom(V,W)$, $\Iso{V,W}$, $\End{V}$, $\Aut{V}$ |
+| 线性映射，同构，自同态，自同构集合 | - | $\Hom(V,W)$, $\Iso(V,W)$, $\End(V)$, $\Aut(V)$ |
 | 线性空间范畴 | - | $\Vectk, \Vect$ |
 | 矩阵 | - | $\mat{A}$, $\mat{B}$, $\mat{C}$, $\mat{P}$, $\mat{Q}$, $\mat{M}$   |
 
@@ -97,7 +99,7 @@ $$
 > $$\begin{align*}
 &+\vcentcolon V \times V \to V, \\ &(\vect{u},\vect{v})\mapsto \vect{u}+\vect{v} \ \  (\forall \vect{u},\vect{v} \in V) \\
 &\cdot\vcentcolon \field{k} \times V \to V,\\ &(a,\vect{v}) \mapsto  a \cdot \vect{v} = a \vect{v}\ \ (\forall a \in \field{k}, \vect{v} \in V)
-\end{align*}$$
+\End(align*)$$
 > 
 > 当 $V$ 和 $\field{k}$ 满足下面的性质时，我们就称 $V$ 是一个 $\field{k}$ 上的线性空间：
 > 
@@ -215,7 +217,7 @@ $$
 > 
 > 我们记全体线性映射为集合 $\Hom(V,W)$。若 $L$ 为双射，则称 $L$ 为线性同构。
 
-总的来讲，$V$ 到 $W$ 的线性映射 $L$ 让下面的做法是完全可行的：我们可以直接将 $\vect{v}\in V$ 映射到 $\vect{w} = L(\vect{v}) \in W$，也可以先将 $\vect{v}$ 变为几个向量 $\vect{v}_i$ 的线性组合，再把这些向量映射到 $\vect{w}_i = L(\vect{v}_i) \in W$ 中，最后再对它们进行线性组合。这两条路径将给出完全相同的结果。我们称从线性空间 $V$ 到其自身的线性映射为 *线性变换* 或者 *线性算子*，$V$ 上全体线性变换形成的集合可以记为 $\End{V}$。
+总的来讲，$V$ 到 $W$ 的线性映射 $L$ 让下面的做法是完全可行的：我们可以直接将 $\vect{v}\in V$ 映射到 $\vect{w} = L(\vect{v}) \in W$，也可以先将 $\vect{v}$ 变为几个向量 $\vect{v}_i$ 的线性组合，再把这些向量映射到 $\vect{w}_i = L(\vect{v}_i) \in W$ 中，最后再对它们进行线性组合。这两条路径将给出完全相同的结果。我们称从线性空间 $V$ 到其自身的线性映射为 *线性变换* 或者 *线性算子*，$V$ 上全体线性变换形成的集合可以记为 $\End(V)$。
 
 ## 线性空间范畴
 
