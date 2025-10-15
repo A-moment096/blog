@@ -14,7 +14,7 @@ image:
 math: true
 hidden: false
 comments: true
-draft: true # Check the summay part!
+draft: true
 ---
 $$
 % =====  =====
@@ -96,10 +96,7 @@ $$
 >
 > 给定一个数域 $\field{k}$ 和一个集合 $V$，我们给集合 $V$ 定义两个运算，（向量）加法以及数乘（标量乘法）：
 >
-> $$\begin{align*}
-&+\vcentcolon V \times V \to V, \\ &(\vect{u},\vect{v})\mapsto \vect{u}+\vect{v} \ \  (\forall \vect{u},\vect{v} \in V) \\
-&\cdot\vcentcolon \field{k} \times V \to V,\\ &(a,\vect{v}) \mapsto  a \cdot \vect{v} = a \vect{v}\ \ (\forall a \in \field{k}, \vect{v} \in V)
-\End(align*)$$
+> $$\begin{align*} &+\vcentcolon V \times V \to V, \\ &(\vect{u},\vect{v})\mapsto \vect{u}+\vect{v} \ \  (\forall \vect{u},\vect{v} \in V) \\ &  \cdot\vcentcolon \field{k} \times V \to V,\\ &(a,\vect{v}) \mapsto  a \cdot \vect{v} = a \vect{v}\ \ (\forall a \in \field{k}, \vect{v} \in V) \end{align*}$$
 > 
 > 当 $V$ 和 $\field{k}$ 满足下面的性质时，我们就称 $V$ 是一个 $\field{k}$ 上的线性空间：
 > 
