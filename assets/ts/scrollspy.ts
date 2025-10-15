@@ -89,8 +89,7 @@ function setupScrollspy() {
     const checkTocReady = () => {
         const tocContainer = document.querySelector(tocQuery);
         if (!tocContainer) {
-            console.warn("TOC container not found, retrying...");
-            setTimeout(checkTocReady, 50);
+            console.warn("TOC container not found");
             return;
         }
         
