@@ -46,5 +46,11 @@
     "website": "https://ex-tasty.com",
     "image": "/chisato.webp",
     "description": "邪惡與極限伴您一生……🥰"
+  },
+  {
+    "title": "lhz07's Blog",
+    "avatar": "https://lhz07.com/static/img/avatar.webp",
+    "website": "https://lhz07.com",
+    "description": "Explicit is better than implicit, but readability also counts."
   }
 ]
