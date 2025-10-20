@@ -9,13 +9,22 @@ tags:
 - Note
 title: 线性代数笔记 I
 description: 记号约定，线性空间及其基本性质
-date: 2025-10-10T09:03:01+08:00
-image: 
+date: 2025-10-20T09:00:01+08:00
+image: /posts/Math_Note/Linear_Algebra/Alice.jpg
+imageObjectPosition: "center 15%"
 math: true
 hidden: false
 comments: true
-draft: true
 ---
+
+*一直感觉没有学透线性代数，尤其是学过一些抽象代数之后，更觉得线性代数并不是简单的矩阵运算了。借着需要学连续介质力学的机会，就整理一下自己知道的东西，斗胆谈谈自己对这门学科的理解吧~*
+
+*选曲是由 [**鹿乃**](https://space.bilibili.com/316381099) 翻唱，收录在专辑 [**one**](https://music.163.com/#/album?id=37542486) 的歌曲 **Calc.**，原曲是我特别喜欢的一首上古 V 曲，由 [**ジミーサムP**](https://lit.link/en/jimmythumb) 制作并发布在 *ニコニコ動画* 上，链接：[Hatsune Miku Original Song「Calc.」](https://www.nicovideo.jp/watch/sm12050471)。其实应该算是情歌？但是 Calc. 也很有计算的感觉（）*
+
+*选图为从 [**Neve_AI**](https://x.com/Neve_AI) 绘制的 AI 图，说是爱丽丝来着？反正挺好看的（逃）*
+
+{{<music auto="https://music.163.com/#/song?id=537854740" loop="none">}}
+
 $$
 % =====  =====
 \gdef       \vect           #1{\mathbf{#1}}                             % abstract vector

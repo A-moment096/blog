@@ -9,13 +9,20 @@ tags:
 - Note
 title: 线性代数笔记 II
 description: 线性映射，矩阵和对偶
-date: 2025-10-11T09:03:01+08:00
-image: 
+date: 2025-10-20T09:03:01+08:00
+image: /posts/Math_Note/Linear_Algebra/Alice.jpg
+imageObjectPosition: "center 15%"
 math: true
 hidden: false
 comments: true
-draft: true
 ---
+
+*书接上回，在搞清楚线性空间大概是个什么情况之后，我们来看看线性空间之间都有什么样子的联系吧~！*
+
+*头图信息请参考上一节，谢谢~ 选曲为 [**茶太**](https://chata.moo.jp/index.html) 和 [**nayuta**](https://www.7uta.com/) 合唱的 **お茶ガール**，青春阳光有活力，陪伴了我大二啃线性代数的时光……*
+
+{{<music auto="https://music.163.com/#/song?id=529668393" loop="none">}}
+
 $$
 % =====  =====
 \gdef       \vect           #1{\mathbf{#1}}                             % abstract vector

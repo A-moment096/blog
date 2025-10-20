@@ -22,9 +22,9 @@ mermaid: true
 
 *最后一节，聊聊如何在 GitHub 上进行多人协作吧~*
 
-*头图信息请参考第一节内容，谢谢~*
+*头图信息请参考第一节内容，谢谢~ 选曲依然选到了小伞的个人曲，希望你喜欢！*
 
-{{<music auto="https://music.163.com/#/song?id=455026" loop="never">}}
+{{<music auto="https://music.163.com/#/song?id=455026" loop="none">}}
 
 ## 所以，Git 的远程到底是什么东西？
 

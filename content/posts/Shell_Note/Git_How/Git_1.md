@@ -25,7 +25,7 @@ mermaid: true
 
 *头图出自 [夏空](https://www.pixiv.net/en/users/75383094) 太太所画的 [多多良 小伞](https://www.pixiv.net/en/artworks/116876998)，可爱捏~ 那就来一曲小伞的个人曲吧*
 
-{{<music auto= "https://music.163.com/#/song?id=22636608" loop="never">}}
+{{<music auto= "https://music.163.com/#/song?id=22636608" loop="none">}}
 
 ## Git，熟悉又陌生的名字 ……
 

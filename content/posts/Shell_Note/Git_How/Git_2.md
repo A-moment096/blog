@@ -22,9 +22,9 @@ mermaid: true
 
 *上一节已经介绍了平时会怎么用 Git 进行单分支仓库的管理，这一节就来讲讲 Git 要怎么进行多分支协作吧！*
 
-*头图信息请参考上一节内容，谢谢~*
+*头图信息请参考上一节内容，谢谢~ 选曲选到了知名社团 [Foxtail-Grass-Studio](https://f-g-s.net/) 对小伞个人曲的翻调，请欣赏~*
 
-{{<music auto="https://music.163.com/#/song?id=785695" loop="never">}}
+{{<music auto="https://music.163.com/#/song?id=785695" loop="none">}}
 
 ## 分支，是那个分支吗？
 

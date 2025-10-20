@@ -23,7 +23,7 @@ comments: true
 
 *~~图源找不到诶……从朋友那里薅过来的图，很漂亮就放在这里了~~ 小爷我找到啦！是出自 [fasnakegod](https://www.pixiv.net/en/users/8605991) 大大的 [贝加尔湖畔](https://www.pixiv.net/en/artworks/125739568)。既然如此就分享一首钢琴曲吧。一首 **騎士王の誇り** (骑士王的荣耀) 送给大家。（好像毫无关联诶 kora!）*
 
-{{< music auto="https://music.163.com/#/song?id=448119" loop="never">}}
+{{< music auto="https://music.163.com/#/song?id=448119" loop="none">}}
 
 ## 为什么要选择 `rsync` 呢？
 
