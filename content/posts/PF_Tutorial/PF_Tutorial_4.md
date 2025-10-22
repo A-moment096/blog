@@ -32,7 +32,7 @@ links:
 
 首先值得明确的是，调幅分解是一类相变过程，且这类过程非常适合使用相场法来计算其演化过程。作为相变，我们自然关心其相图和自由能曲线的情况。下面是一副调幅分解的示意图：
 
-![调幅分解的相图与自由能曲线](energy_pd.jpg)
+![调幅分解的相图与自由能曲线](/posts/PF_Tutorial/img/energy_pd.jpg)
 
 从图上可以看到，调幅分解下的自由能曲线十分特殊，呈现一种*双势阱*的形貌。再观察这里的相图和自由能曲线，可以看到虚线部分对应于自由能曲线中比较平坦的区域。没错，这个点即为所谓的拐点（Spinodal Point），这也是调幅分解的英文 Spinodal Decomposition 中 “Spinodal” 的来由。由于调幅分解自由能曲线的特殊性，当自由能对成分的二阶偏导小于 0 时，如果成分正好出于混溶间隙里调幅线内，那么任何一点微小的成分扰动都会导致整个体系的稳定性被破坏，产生的自由能差（即所谓的相变驱动力）将增大并将体系演化至自由能曲线中“谷底”的位置，并形成所谓调幅分解的形貌。
 
@@ -52,7 +52,7 @@ f_{int}\left(\nabla c \right) &= \kappa \left|\nabla c \right| ^2. \\
 $$
 其中，$F$ 即为体系的总能量，由两部分的能量密度积分构成，第一部分为体自由能 $f_{bulk}$，其图像为一个双势阱：
 
-![体自由能密度函数图像，其中模型参数选择 A = 1](AB_free_energy.png)
+![体自由能密度函数图像，其中模型参数选择 A = 1](/posts/PF_Tutorial/img/AB_free_energy.png)
 
 而第二部分则为界面能密度部分，这里采用界面能梯度内积的值。这个能量构造保证了体系有演化的趋势（由体自由能密度驱动），又保证了体系中存在稳定的相界面（由界面能提供，在存在界面区域（梯度不为 0 ）时提高能量从而迫使物质不倾向于汇集在界面处）。这样的总能 $F$ 构造是一类非常经典的构造方法，而能量密度的具体表达式则需要根据体系做更改。
 
@@ -268,9 +268,9 @@ int main() {
 输出的 `vtk` 文件需要使用 *Paraview* 进行可视化。如果程序无误，那么执行程序后输出的结果将会保存在程序所在文件夹下新创建的子文件夹 `result` 中，里面应该是若干个 `vtk` 文件。使用 Paraview 打开这些文件之后，则能看到整个体系的演化。这里贴出一些截图。
 | | |
 |:-:|:-:|
-|![alt text](Spinodal_5.png) |![alt text](Spinodal_25.png) 
+|![alt text](/posts/PF_Tutorial/img/Spinodal_5.png) |![alt text](/posts/PF_Tutorial/img/Spinodal_25.png) 
 |第5步|第25步|
-|![alt text](Spinodal_75.png)| ![alt text](Spinodal_150.png)
+|![alt text](/posts/PF_Tutorial/img/Spinodal_75.png)| ![alt text](/posts/PF_Tutorial/img/Spinodal_150.png)
 |第75步|第150步|
 
 ## 总结

@@ -424,7 +424,7 @@ int main() {
 
 这里用到了一些技巧，在边界判断处使用下标运算是否越界来判断是否处于边界处，以及使用了 `<chrono>` 库来监测程序运行时间。在成功运行并且用输出的 `csv` 文件绘制曲线图后结果大致如下：
 
-![传热方程求解结果](heat_transfer_result.png)
+![传热方程求解结果](/posts/PF_Tutorial/img/heat_transfer_result.png)
 
 可以看到这个结果还是比较符合预期的。
 
