@@ -3,7 +3,6 @@ categories:
 - Phase Field
 - Mathematics
 tags:
-- Phase Field
 - PF Model
 - Note
 title: "多相场模型与巨势方程"

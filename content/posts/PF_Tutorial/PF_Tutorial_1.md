@@ -5,7 +5,6 @@ categories:
 - Programming
 tags:
 - Tutorial
-- Phase Field
 - Numerical Analysis
 title: "Phase Field: 相场模拟学习笔记 I"
 description: 记录相场方法的学习内容

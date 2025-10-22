@@ -3,7 +3,6 @@ categories:
 - Phase Field
 - Programming
 tags:
-- Phase Field
 - Software Engineering
 title: "关于相场模拟软件的设想"
 description: 一点“闭门造车”前的设想

@@ -37,6 +37,7 @@ toc: false
 - [Comment Block Generator](https://blocks.jkniest.dev/): 生成注释块，格式化注释很漂亮
 - [Mermaid Chart](https://www.mermaidchart.com/play): Mermaid Playground，可以用来画图/预览图
 - [IT-TOOLS](https://it-tools.tech/): 非常好工具站，使我大脑旋转
+- [Image to LaTeX](https://www.img2latex.xyz/)：公式图转 LaTeX，相见恨晚（啥时候能转 TikZ-cd 呀（））
 
 ## Blog 装修
 

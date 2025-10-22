@@ -5,7 +5,6 @@ categories:
 - Programming
 tags:
 - Tutorial
-- Phase Field
 - Numerical Analysis
 - C++
 title: "Phase Field: 相场模拟学习笔记 III"
