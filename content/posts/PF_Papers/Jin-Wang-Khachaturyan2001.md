@@ -43,12 +43,12 @@ comments: true
 
 $$
 \begin{align*}
-\sigma_{ij}(\mathbf{r}) &= C_{ijkl}\Bigg[\int\frac{d^{3}k}{(2\pi)^{3}}\,n_{k}\,\Omega_{lm}(\mathbf{n})\,\tilde\sigma^{o}_{mn}(\mathbf{k})\,n_{n}\,e^{i\mathbf{k}\cdot\mathbf{r}}
+\sigma_{ij}(\mathbf{r}) &= C_{ijkl}\Bigg[\tilde\int\frac{d^{3}k}{(2\pi)^{3}}\,n_{k}\,\Omega_{lm}(\mathbf{n})\,\tilde\sigma^{o}_{mn}(\mathbf{k})\,n_{n}\,e^{i\mathbf{k}\cdot\mathbf{r}}
 -\bar\epsilon^{o}_{kl}(\mathbf{r})\Bigg]+ \sigma^{\mathrm{appl}}_{ij}
 \end{align*}
 $$
 
-这个公式相当吓人，符号很多…… 其中的积分号带了一个小斜杠，表示这是在倒空间 (Reciprocal Space) 里的积分（也就是对原本的空间进行一次傅立叶变换），积分区域为无穷区域挖掉 $\mathbf{k} = 0$ 处的一个 $(2\pi)^3/V$ 的体积的区域，$\mathbf{n} = \mathbf{k}/k$ 应该是倒空间中的法向量，$\Omega_{ij}(\mathbf{n})$ 是所谓的格林方程张量，是 $\Omega^{-1}_{ij}(\mathbf{n}) = C_{ijkl}n_kn_l$ 的逆张量，里面的 $C_{ijkl}$ 是弹性模量，$\tilde{\sigma}_{ij}^{o}(\mathbf{k}) = C_{ijkl}\,\tilde{\epsilon}_{kl}^{o}(\mathbf{k})$ ，公式中的上标 $*$ 代表的是取复共轭，最后有
+这个公式相当吓人，符号很多…… 其中的积分号带了一个小波浪线在上面，表示这是在倒空间 (Reciprocal Space) 里的积分（也就是对原本的空间进行一次傅立叶变换），积分区域为无穷区域挖掉 $\mathbf{k} = 0$ 处的一个 $(2\pi)^3/V$ 的体积的区域，$\mathbf{n} = \mathbf{k}/k$ 应该是倒空间中的法向量，$\Omega_{ij}(\mathbf{n})$ 是所谓的格林方程张量，是 $\Omega^{-1}_{ij}(\mathbf{n}) = C_{ijkl}n_kn_l$ 的逆张量，里面的 $C_{ijkl}$ 是弹性模量，$\tilde{\sigma}_{ij}^{o}(\mathbf{k}) = C_{ijkl}\,\tilde{\epsilon}_{kl}^{o}(\mathbf{k})$ ，公式中的上标 $*$ 代表的是取复共轭，最后有
 $$
 \begin{align*}
 \tilde{\epsilon}_{ij}^{0}(\mathbf{k}) &= \int_{V} \epsilon_{ij}^{0}(\mathbf{r})\, e^{-i\mathbf{k}\cdot\mathbf{r}}\, d^{3}r\\ 
@@ -83,7 +83,7 @@ $$
 又因为本征应变只能在错配（畸变）区域内不为0，所以自然上面那个特殊的能量也满足这个条件。比较上面两个公式，就可以发现在错配区域内部应力场的值应该都是 0 才对。因此我们带回那个很麻烦的方程，就有了：
 
 $$
-C_{ijkl}\Bigg[ \int\frac{d^3k}{(2\pi)^3}\, n_k\,\Omega_{lm}( \mathbf{n})\,\tilde{\sigma}^{oo}_{mn}(\mathbf{k})\,n_n\,e^{i\mathbf{k}\cdot\mathbf{r}_d}- \epsilon^{oo}_{kl}(\mathbf{r}_d) + \bar{\epsilon}^{oo}_{kl}\Bigg] + \sigma^{\mathrm{appl}}_{ij} = 0
+C_{ijkl}\Bigg[ \tilde\int\frac{d^3k}{(2\pi)^3}\, n_k\,\Omega_{lm}( \mathbf{n})\,\tilde{\sigma}^{oo}_{mn}(\mathbf{k})\,n_n\,e^{i\mathbf{k}\cdot\mathbf{r}_d}- \epsilon^{oo}_{kl}(\mathbf{r}_d) + \bar{\epsilon}^{oo}_{kl}\Bigg] + \sigma^{\mathrm{appl}}_{ij} = 0
 $$
 
 这就是通过能量最小得到的条件了。
