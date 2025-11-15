@@ -15,7 +15,6 @@ image: posts/PF_Papers/Nev_Alice-2.jpg
 math: true
 hidden: false
 comments: true
-draft: true
 ---
 
 *这篇文章算是他们三个人的工作的总结，发在了 J. Appl. Phys. 上，我其实很早就看过这篇，但是当时看得匆忙，一知半解，这次仔细看看*
@@ -287,101 +286,21 @@ $$
 
 ## 总结
 
-这篇文章也是拖了一段时间，有很多原因……其中一点是我查了一下这系列文章中的 “KS 理论” 和 “本征应变” 的内容，结论上讲，多多少少是有一些结论的，了解到了一些很有趣的东西。这里大概写两笔吧。
+这篇文章也是拖了一段时间，有很多原因……其中一点是我查了一下这系列文章中的 “KS 理论” 和 “本征应变” 的内容，结论上讲，多多少少是有一些结论的，了解到了一些很有趣的东西。~~在这里写一下吧~~（本来是想写在这里的，结果实在是太长了，现在看来还是算了吧（））
 
-这些内容我主要是从 **Toshio Mura** 所著的 *Micromechanics of defects in solids* 这本书中得到的。感谢 AI 为我找到这本资料，第一章很快地解决了我遇到的问题。
+依旧包含了许多哈人的方程与哈人的能量构造，感觉和他们 01 年写的文章路数如出一辙，只不过这篇文章的理论推导部分更多更详细一些，给人一种 “我看懂了” 的错觉……不过我有预感，很快就可以彻底理解这个部分了，只需要再多一点符号，多一点推导，少一点脑细胞……
 
-首先，自然是认为总应变可以拆分为弹性应变以及本征应变的简单和，另外总应变完全由位移场决定，而弹性部分遵循传统的胡克定律。进一步地，我们考虑应力平衡条件，即应力场对三个方向求偏导后加和为0，在没有外力作用时，边界上法向无应力分量，写成公式就是：
+这篇文章的收获主要有：
 
-$$
-\begin{align*}
-&\sigma_{ij,j} = 0\\ 
-&\sigma_{ij}n_j = 0 
-\end{align*}
-$$
+- 推导了结构-弹性非均匀系统的能量泛函构造方式
+- 感谢三位，得到了求解本征应变需要的相场演化方程
+- 我逐渐理解一切（指这部分的推导）
+- 再次体会到了大佬的强大（）
 
-其中的逗号表示求偏导，$n_j$ 是边界上 $j$ 方向的单位法向。由此，我们可以得到位移场和本征应变之间的关系：
+还可以深入了解的点有：
 
-$$
-\begin{align*}
-C_{ijkl}\,u_{k,lj} &= C_{ijkl}\,\epsilon^*_{kl,j}\\
-C_{ijkl}\,u_{k,l}\,n_j &= C_{ijkl}\,\epsilon^*_{kl}\,n_j
-\end{align*}
-$$
+- KS 理论，必须直面它了。不理解这个核心理论，感觉这些内容就都是空中楼阁。
+- 自己写一写这个力学求解器，自己不写怎么知道它怎么起效果的呢？（虽然肉眼可见地难）
+- 依旧，学习如何像大佬一样玩弄公式
 
-那么由上面的第一个式子，我们假设本征应变有这样的形式：
-
-$$
-\begin{align*}
-\epsilon_{ij}^*(x) &= \bar{\epsilon}_{ij}^*(\xi)\exp\big(i\,\xi\cdot x\big),
-\end{align*}
-$$
-
-其中非下标的 $i$ 代表虚数单位。那么位移场也一定有这样的形式：
-
-$$
-\begin{align*}
-u_{i}^*(x) &= \bar{u}_{i}(\xi)\exp\big(i\,\xi\cdot x\big),
-\end{align*}
-$$
-
-我们带入上面的结论，得到：
-
-$$
-\begin{align*}
-C_{ijkl}\,\bar{u}_k\,{\xi}_l\,\xi_j &= -\,i\,C_{ijkl}\bar{\epsilon}_{kl}^*\xi_j
-\end{align*}
-$$
-
-这里使用了求导 $(i\xi\cdot x)_{,l} = i\xi_l$。这个式子说明需要三个方程来确定位移场的三个分量。假如我们用 $K_{ik}(\xi) = C_{ijkl}\xi_j \xi_l$ 以及 $X_i = -i C_{ijkl}\bar{\epsilon}^*_{kl} \xi_j$ 这样的简记，那么上面的式子就可以改写为一个方程组：
-$$
-\begin{align*}
-K_{11}\bar{u}_1 + K_{12}\bar{u}_2 + K_{13}\bar{u}_3 &= X_1,\\
-K_{21}\bar{u}_1 + K_{22}\bar{u}_2 + K_{23}\bar{u}_3 &= X_2,\\
-K_{31}\bar{u}_1 + K_{32}\bar{u}_2 + K_{33}\bar{u}_3 &= X_3.
-\end{align*}
-$$
-
-就可以解得向量 $\bar u _i$：
-
-$$
-\bar{u}_i(\xi) = X_j N_{ij}(\xi)/D(\xi),
-$$
-
-其中 $N_{ij}$ 是矩阵 $K$ 的代数余子式，$D(\xi)$ 是它的行列式。这两个式子可以由 $C_{ijkl}$ 的对称性得到这样的形式：
-
-
-$$
-\begin{align*}
-D(\xi)&=\epsilon_{mnl}K_{m1}K_{n2}K_{l3},\\
-N_{ij}(\xi)&=\tfrac{1}{2}\epsilon_{ikl}\epsilon_{jmn}K_{km}K_{ln}\\
-&=K_{im}K_{mj}-K_{mm}K_{ij}+\big(\epsilon_{mn1}K_{m2}K_{n3}+\epsilon_{mn2}K_{m3}K_{n1}+\epsilon_{mn3}K_{m1}K_{n2}\big)\delta_{ij},
-\end{align*}
-$$
-
-注意这里三个下标的 $\epsilon_{ijk}$ 是 Levi-Civita 张量。
-
-最后，我们把解得的 $\bar{u}_{i}$ 带入前面位移场的形式，得到：
-
-$$
-\begin{align*}
-u_l(x) &= -\,i\,C_{jlmn}\,\epsilon_{mn}^*(\xi)\,\xi_lN_{ij}(\xi)\,D^{-1}(\xi)\,\exp\big(i\,\xi\!\cdot\!x\big).
-\end{align*}
-$$
-
-根据应变场和位移场的关系，得到应变场：
-
-$$
-\begin{align*}
-\epsilon_{ij}(\boldsymbol{x}) &= \tfrac{1}{2} C_{klmn}\,\epsilon^*_{mn}(\boldsymbol{\xi})\,\xi_l\big\{\xi_j N_{ik}(\boldsymbol{\xi})+\xi_i N_{jk}(\boldsymbol{\xi})\big\}\,D^{-1}(\boldsymbol{\xi})\,\exp\big(i\boldsymbol{\xi}\cdot\boldsymbol{x}\big)
-\end{align*}
-$$
-
-以及应力的表达式：
-
-$$
-\begin{align*}
-\sigma_{ij}(\boldsymbol{x})&=C_{ijkl}\big\{C_{pqmn}\,\bar{\epsilon}^*_{mn}(\boldsymbol{\xi})\,\xi_q\xi_s\,N_{kp}(\boldsymbol{\xi})\,D^{-1}(\boldsymbol{\xi})\,\exp(i\,\boldsymbol{\xi}\cdot\boldsymbol{ x})-\epsilon^*_{kl}(\boldsymbol{x})\big\},
-\end{align*}
-$$
-
+论文阅读环节也许会暂时到此为止，因为下一篇大概是读书笔记（ Toshio Mura 所著的 *Micromechanics of Defects in Solids*）。我大概也许能从中刨出所谓的 KS 理论的真身（又或许需要再搭配几篇文章）。然后可能我会考虑用亲爱的 Python 来实现这个算法。
