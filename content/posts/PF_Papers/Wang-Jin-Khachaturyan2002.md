@@ -127,7 +127,7 @@ $$
 \begin{align*}
 C^{0}_{ijkl}\,\frac{\partial^{2} v_{k}(\mathbf r)}{\partial r_{j}\partial r_{l}}
 &= \frac{\partial}{\partial r_{j}}\big\{C^{0}_{ijkl}\,\varepsilon^{*}_{kl}(\mathbf r)\big\}
-+ \Delta C_{ijkl}(\mathbf r)\big[\varepsilon_{kl}(\mathbf r)-\varepsilon^{*}_{kl}(\mathbf r)\big].
++\Delta C_{ijkl}(\mathbf r)\big[\varepsilon_{kl}(\mathbf r)-\varepsilon^{*}_{kl}(\mathbf r)\big].
 \end{align*}
 $$
 
