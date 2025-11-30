@@ -129,6 +129,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+git clone https://github.com/conda-incubator/conda-zsh-completion ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/conda-zsh-completion
 ```
 
 接着把之前我一直在用的 `.zshrc` 文件复制到 Ubuntu WSL 里：
@@ -139,25 +140,34 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
+# Use zsh-completions plugin
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit && compinit
+
 # Update when available
 zstyle ':omz:update' mode reminder 
 
 plugins=(
 	git
 	colored-man-pages
+    zsh-vi-mode
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+    conda-zsh-completion
 )
-
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-autoload -U compinit && compinit
 
 source "$ZSH/oh-my-zsh.sh"
 
-ZSH_CUSTOM_FUNCTIONS=$ZSH_CUSTOM/functions
-[[ -d $ZSH_CUSTOM_FUNCTIONS ]] && for f in $ZSH_CUSTOM_FUNCTIONS/*; do
-	source $f
-done
+# Source everything in the custom env folder
+if [ -d $ZSH_CUSTOM/env ]; then
+    for f in $ZSH_CUSTOM/env/*; do
+        source $f
+    done
+fi
 
-. "$HOME/.local/bin/env"
+# Set ~win as the windows user home folder
+hash -d win=/mnt/c/Users/AMoment
+# Disable pipe override (>)
+set -o noclobber
+
 ```     
