@@ -116,7 +116,15 @@ wsl --shutdown
 - `git`
 - `gdb`
 
-然后给 ZSH 装一些插件，插件管理选择了经典的 `oh-my-zsh`。我们给出用到的命令：
+然后给 ZSH 装一些插件，插件管理选择了经典的 `oh-my-zsh`，一款基于 `git clone` 仓库到对应文件夹下的插件管理器（）安装的插件有：
+
+- `zsh-autosuggestions`: 让你的 ZSH 拥有 FISH 那样的补全（既然如此，为什么不直接用 FISH 呢？别问……）；
+- `zsh-syntax-highlighting`: 给正确/错误/特殊命令以多样的颜色，很方便，就像 FISH 那样（既然如此……）；
+- `zsh-completions`: 让你的 ZSH 补全更聪明；
+- `conda-zsh-completion`: 给你的 ZSH 加上 conda 命令的补全
+- `zsh-vi-mode`: 按下 ESC，使用 vi mode 来编辑你的命令行！偶尔会用到，但是要注意光标形状……
+
+我们给出用到的命令：
 
 ```bash
 # Upgrade the source first
@@ -130,6 +138,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
 git clone https://github.com/conda-incubator/conda-zsh-completion ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/conda-zsh-completion
+git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 ```
 
 接着把之前我一直在用的 `.zshrc` 文件复制到 Ubuntu WSL 里：
@@ -170,4 +179,6 @@ hash -d win=/mnt/c/Users/AMoment
 # Disable pipe override (>)
 set -o noclobber
 
-```     
+```
+
+这里的 `.zshrc` 文件是删掉了很多没用到的注释的。这些注释实际上是 `oh-my-zsh` 自动提供的，为的是方便用户自己调整，如果你有需要的话请只修改和添加上面的内容到特定的行就可以了。注意要保持顺序，特别是 `zsh-completion` 是特别要求要保持顺序的。
