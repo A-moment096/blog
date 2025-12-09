@@ -10,15 +10,23 @@ tags:
 - Linux
 - Shell
 - Python
-title: 工作用 Ubuntu WSL 配置记录
-description: 怎么快速配置一个能用的 WSL Ubuntu（以及几个包）
+title: 机器学习用 Ubuntu WSL 配置记录
+description: 怎么快速配置一个能用的 Ubuntu WSL（以及几个包）
 date: 2025-11-29T14:28:17+08:00
-image: 
+image: ピンクの夢.png
 math: true
 hidden: false
 comments: true
-draft: true
 ---
+
+*某人需要配置环境时做机器学习，这是他配置环境后电脑发生的变化……*
+
+*头图选择了可爱的小羊，来自 [Ruziかねつカーぺット](https://www.pixiv.net/users/3402557) 太太的 [ピンクの夢](https://www.pixiv.net/artworks/112910033#1)，粉粉的，可爱捏*
+
+*选曲为 [STUDY WITH MIKU -part2-](https://www.bilibili.com/video/BV1924y1T7mV/ "B 站链接") 改编的 [さよならプリンセス](https://www.bilibili.com/video/BV1j3411L76S/ "原曲 B 站链接") (再见公主)，原作是 P 主 [Kai](https://twitter.com/kaivcl)，由初音演唱。俏皮的音乐，好听……*
+
+{{<music auto="https://music.163.com/#/song?id=2053344485" loop="none">}}
+
 
 ## 前情提要
 
@@ -43,6 +51,7 @@ draft: true
 | Terminal |   Windows Terminal   |
 |  Shell   |     Powershell 7     |
 |   WSL    | Arch Linux（不使用） |
+|   IDE    |  Microsoft VS Code[^1]   |
 |   硬盘   |       只有C盘        |
 
 即便微软罪大恶极，经过一些调教之后，Win11 还是变得能用了起来；Windows Terminal 真的很好用，推荐每个人玩了命地用（）；很难想象不用美丽优雅 **兼容部分 GNU/Linux 命令** 的 Powershell 7（`pwsh`）的样子；我们默认打开科学上网且开启虚拟网卡模式，免得 Shell 笨笨地不走代理。
@@ -211,7 +220,7 @@ alias bat="batcat"
 
 ![安装好的 WSL](wt-ubuntu-24.04.png)
 
-可能你的 Windows Terminal 里有很多别的选项，或者默认的 Shell 等不是 PowerShell，没关系，我们可以进入设置修改。比如让 PowerShell 成为默认 profile[^1]，把常用的 profile 顺序提前等等。
+可能你的 Windows Terminal 里有很多别的选项，或者默认的 Shell 等不是 PowerShell，没关系，我们可以进入设置修改。比如让 PowerShell 成为默认 profile[^2]，把常用的 profile 顺序提前等等。
 
 这里主要想聊一下下面这些设置，请注意要记得保存，用的 GUI 的话右下角有保存按钮，使用 JSON 文件的话要保存文件：
 - 调整 profile 顺序: 实际上 Windows Terminal 会把所有的 Profile 信息都存在一个 JSON 文件里，可以从设置页面的左下角打开，我们手动改一下需要的 Profile 顺序就可以了；
@@ -302,7 +311,7 @@ vim $ZSH_CUSTOM/env/conda_env.zsh
 
 然后把刚刚的内容贴进去，然后重启 Shell，就好啦。你应该能看到 Shell 的显示中，左侧有一个 `(base)` 的字样，这样就说明我们已经成功启动 `conda` 的 `base` 环境了。
 
-![Base Environment](base_env.png)
+![Base Environment](base-env.png)
 
 --- 
 
@@ -310,12 +319,166 @@ vim $ZSH_CUSTOM/env/conda_env.zsh
 
 ## CUDA
 
+我刚刚收到了一个坏消息：在我刚写好 CUDA 安装部分的瞬间，鬼使神差地，我看到了 CUDA 官网文档上关于 "conda" 的部分：[Conda Installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#conda-installation)
+
+![Conda Installation](image.png)
+
+何意味…… 在 `conda activate pytorch-test`（我的环境名叫 `pytorch-test`）之后使用 `where nvcc`，得到了这样的结果：
+
+```zsh
+/home/amoment/.conda/envs/pytorch/bin/nvcc
+/usr/local/cuda-13.0/bin/nvcc
+```
+
+![难道说！？](难道说.jpg)
+
+算了，写都写了，我们还是介绍一下怎么安装，以及*怎么卸载*吧……
+
+### CUDA 的简单介绍
+
 CUDA 是 Nvidia 推出的 GPU 计算框架，是 Compute Unified Device Architecture 的缩写，即 *计算统一设备架构* （神秘机翻）。这里的 Device 主要指的就是 Nvidia 家的各系显卡了。由于进行机器学习需要对大量（存疑）的数据进行计算，而计算需求也没有特别复杂（相较于 CPU 更适合执行复杂计算任务），使用显卡这样处理图像的设备进行加速计算几乎成了刚需。
 
 虽然说 Nvidia 家的显卡对 Linux 的支持也许没有 Windows 端那么好（F**k you Nvidia！），但是毕竟做计算这行 Linux 还是主力，微软与 Nvidia 也很识相的给普通开发者一个很不错的选项：使用 WSL 来借助 Windows 的显卡驱动进行 CUDA 开发，且有专门适配 WSL 的包与文档供下载使用，所以我们干脆就这么做，使用支持情况最好的 Ubuntu 来进行相应的开发。
 
 ### 安装 CUDA
 
-在开始之前，我们最好先确认我们的设备可以使用 CUDA。
+在开始之前，我们最好先确认我们的设备可以使用 CUDA。首先我们使用 `nvidia-smi` 命令，它会显示设备上的 Nvidia 显卡的信息：
 
-[^1]: 实在是不知道怎么翻译这个词比较好…… 
+![nvidia-smi](nvidia-smi.png)
+
+可以看到有一大堆的信息在这里，包括我这台设备的显卡，以及对应的 CUDA 版本。如果是比较老的显卡，需要去 [CUDA GPU Compute Capability](https://developer.nvidia.com/cuda-gpus) 这里查一下显卡的 Compute Capability，大于等于 3.0 的就是可以正常使用 CUDA 的了。一般来讲只要不是上古显卡都应该是没问题的吧（逃）
+
+接下来就是正式安装，根据 [官方文档](https://docs.nvidia.com/cuda/wsl-user-guide/index.html#cuda-support-for-wsl-2) 的描述，第一步应该删掉老旧的 GPG 密钥：
+
+```zsh
+sudo apt-key del 7fa2af80
+```
+
+接下来我们就可以直接下载 CUDA Toolkit 了。目前最新版本的 Toolkit 是 13.1 版本，下载页面实际上提供的是一串脚本：
+
+```zsh
+wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
+sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/13.1.0/local_installers/cuda-repo-wsl-ubuntu-13-1-local_13.1.0-1_amd64.deb
+sudo dpkg -i cuda-repo-wsl-ubuntu-13-1-local_13.1.0-1_amd64.deb
+sudo cp /var/cuda-repo-wsl-ubuntu-13-1-local/cuda-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get update
+sudo apt-get -y install cuda-toolkit-13-1
+```
+
+从上面的脚本中可以看到，实际上是首先用 `wget` 下载好 `cuda-wsl-ubuntu.pin` 文件并挪到对应位置用来设置待会儿下载好的 CUDA-Toolkit 的优先级，然后下载 `.deb` 包并安装，再把密钥复制一份进系统的钥匙环之后更新 `apt` 源，最后安装 CUDA-Toolkit。
+
+在安装好之后，我们需要把 `/usr/local/cuda-13.0/bin` 加入环境变量 `$PATH` 中。我们可以在 `.zshrc`，或者 `$ZSH_CUSTOM/env/cuda_env.zsh` 中写上：
+
+```zsh
+export PATH=/usr/local/cuda-13.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-13.0/lib64:$LD_LIBRARY_PATH
+```
+
+这样我们再刷新 Shell，就可以直接在命令行中使用 `nvcc` 了。
+
+### 卸载 CUDA
+
+唉，刚刚安装好，就要说再见，我们卸载它也很简单，因为 `apt-get` 的包管理也很方便：
+
+```zsh
+sudo apt-get purge "cuda-*"
+sudo apt-get autoremove
+sudo apt-get autoclean
+```
+
+这三行分别是让 `apt-get` 删掉以 `cuda-` 开头的所有包以及相关的配置文件，自动清理不需要的软件包依赖，自动清理本地的 `.deb` 包。
+
+然后把我们刚刚加进来的环境变量删掉，就算是彻底删除了。欢乐的时光总是短暂，再见，所有的 Global Installation。
+
+## 配置开发环境
+
+最后一步其实相对是简单很多的。我们只需要用几行命令创建一个虚拟环境，安装需要的包，然后等待漫长的时间之后，就可以在 VS Code 里跑一段代码来看看结果了。
+
+我们先来创建虚拟环境。
+
+### 创建虚拟环境
+
+一行命令就可以创建好基础环境了：
+
+```zsh
+conda create -n pytorch-test python=3.12
+```
+
+这里 `-n` 代表的是我们要给这个环境起的名字；`python=3.12` 是我们让 `conda` 安装的第一个东西：`python` 解释器，并且要求它的版本是 3.12。为什么不用较新的 3.13 甚至 $\pi$thon（3.14） 呢？主要是因为 PyTorch 对较新版本的支持没有那么好。创建好环境之后应该能看到提示如何启用这个环境：
+
+```zsh
+conda activate pytorch-test
+```
+
+我们进去之后就可以试试 `python --version` 了，结果大概是这样：
+
+```zsh
+Python 3.12.12
+```
+
+然后我们继续用 `conda` 安装别的需要的库。我们主要需要的库就是 `torch` 了。我们需要它的基础款以及 GPU 款，在 `conda` 里分别叫 `pytorch` 和 `pytorch-gpu`：
+
+```zsh 
+conda install pytorch pytorch-gpu -c anaconda -c nvidia
+```
+
+这行命令里的 `-c` 即 `--channel`，意为指定下载安装渠道，我们要求首先搜索 `anaconda` 这个频道，然后搜索 `nvidia` 频道，最后保底还有 `default` 这个默认的频道。运行这个命令之后应该会看到这些频道会被列出来，并让你按回车确定。随后就是漫长的等待，而在等待过程中，我们还可以做点别的事：配置一个待会儿用来跑测试代码的 VS Code 环境。
+
+由于创建环境时就可以安装需要的包，我们实际上可以
+
+```zsh
+conda create -n pytorch-test python=3.12 pytorch pytorch-gpu -c anaconda -c nvidia
+```
+
+然后在创建好之后 `conda activate pytorch-test` 就可以了。要检查有哪些环境可用，可以 `conda env list` 来列出所有的环境。而要删除环境，可以使用 `conda env remove -n pytorch-test` 或者 `conda remove -n pytorch-test --all`。
+
+### 配置 VS Code 环境
+
+首先第一步便是进入 WSL 里启动 `code` 了。我们既可以在 Windows 下启动 VS Code 然后点左下角的按钮来连接到需要的 WSL 上，也可以在 WSL 的 Shell 中输入 `code` 来直接在 WSL 里启动 code。关键是插件的下载。
+
+这里我们推荐下载安装这些插件：
+
+- `Jupyter`: 这是一个扩展包，里面包含了 Jupyter 需要的所有插件；
+- `Python`: 虽然这是一个单独的包，但是安装它也会自动安装上一系列的扩展，包括环境管理、代码调试、语法检查等；
+- `Black Formatter`: 一个代码格式化工具，好用，不过有时候很倔……
+- `autoDocstring`：自动帮你生成 Docstring 来说明你的函数在干嘛
+- `Even Better TOML`: 由于 Python 使用 `pyproject.toml` 文件作为项目描述文件，而 VS Code 并没有 TOML 的官方支持，所以如果你要用/写 Python 为主的项目的话，你可能需要它
+
+安装也不是很麻烦，点点点就是了。如果你比较懒，还可以使用 VS Code 比较新的 Profile（怎么又是这个词）功能。我们电极左下角那个很像设置的按钮，里面就有 `Profile (Default)`，我们选择里面的 `Profiles` 进入 Profile 设置页面，我们伟大的 Python 是有 Profile 模板的。我们可以直接应用这个模板。简单方便，基本就是上面我说的这些个插件。
+
+### 经过漫长的等待……
+
+你应该就下载好环境中需要的所有库了。此时我们打开刚刚配好的 VS Code，进入一个空的文件夹，`Ctrl+Shift+P` 调出 VS Code 命令界面，搜索 `Jupyter`，就会出现创建新 Notebook 的选项。点它，就会打开一个 Jupyter Notebook 的界面，我们可以在右上角选择要用的 Kernel，它会自动检测我们 WSL 里都有哪些虚拟环境，选择我们刚刚花大功夫配好的 `pytorch-test`，随后在代码块里测试一下环境配置情况：
+
+```python
+import torch
+
+print(f'PyTorch version: {torch.__version__}')
+print("CUDA available:", torch.cuda.is_available())
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+    print("CUDA version:", torch.version.cuda) # type: ignore
+```
+
+如果成功运行，这几行代码会一五一十地告诉你当前使用的 PyTorch 版本，CUDA 状态，使用的 GPU 等。至此，大功告成。
+
+如果你收到了这样一个神秘的错误：
+
+```
+libtorch_cpu.so: undefined symbol: iJIT_NotifyEvent
+```
+
+不要惊慌：大概率是因为 `mkl` 这个库的版本太新以至于你用的 PyTorch 版本没匹配上对应的版本。可以用 `conda search mkl` 来查看有哪些 `mkl` 库可以安装，选择一个老一点的就行了。网上搜到的大多是叫安装 `mkl=2024.0` 这个版本，然而可能是 `conda` 版本问题，又可能是频道没选对，我搜索到的结果只有 `mkl=2023.1` 的版本，因此我安装的是这个版本，结果没啥问题，能正常使用。
+
+## 后记
+
+这篇文章从开写到现在已经过了两周了。磨磨蹭蹭，最后还是写出来了，即便中间走了一些弯路就是了。从结果上来看，`conda` 是相当不错的一个包管理器：它可以直接用自己带的 `cuda-toolkit`，不用让用户自己配置 CUDA 环境。大胆一些，我们甚至可以让 `conda` 来管理 C/C++ 环境，因为我搜到 `conda` 是可以安装 `g++` 的，搭配 安装 `pytorch-gpu` 所提供的 `nvcc`，也许真的能实现用一个包管理器来管理需要的开发环境。
+
+然而安装过程还是挺慢的，最大的问题在于下载时间。`libtorch` 相当大，没记错的话有 1.x GB，有需要的话可以给 `conda` 配置国内的镜像源，比如阿里源、清华源等。这里就不多提了。
+
+那么，感谢您看我啰嗦到这里，一如既往地，祝您身心健康，happy coding~
+
+
+[^1]: 我知道它不是 IDE，只是编辑器，但是配置一下之后真的就相当于 IDE 了，原谅我吧（）
+[^2]: 实在是不知道怎么翻译这个词比较好…… 
