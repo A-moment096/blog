@@ -14,6 +14,7 @@ title: 机器学习用 Ubuntu WSL 配置记录
 description: 怎么快速配置一个能用的 Ubuntu WSL（以及几个包）
 date: 2025-11-29T14:28:17+08:00
 image: ピンクの夢.png
+imagePosition: top
 math: true
 hidden: false
 comments: true
