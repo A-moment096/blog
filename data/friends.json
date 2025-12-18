@@ -76,5 +76,11 @@
     "website": "https://neojulietblog.netlify.app",
     "image": "https://neojulietblog.netlify.app/images/avatar.JPG",
     "description": ""
+  },
+  {
+    "title": "Joseph's Blog",
+    "website": "https://josephcz.xyz/",
+    "description": "生如逆旅 · 一苇以航",
+    "image":""
   }
 ]
