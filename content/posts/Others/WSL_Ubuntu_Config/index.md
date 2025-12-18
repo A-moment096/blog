@@ -14,6 +14,7 @@ title: 机器学习用 Ubuntu WSL 配置记录
 description: 怎么快速配置一个能用的 Ubuntu WSL（以及几个包）
 date: 2025-11-29T14:28:17+08:00
 image: ピンクの夢.png
+imagePosition: top
 math: true
 hidden: false
 comments: true
@@ -321,7 +322,7 @@ vim $ZSH_CUSTOM/env/conda_env.zsh
 
 我刚刚收到了一个坏消息：在我刚写好 CUDA 安装部分的瞬间，鬼使神差地，我看到了 CUDA 官网文档上关于 "conda" 的部分：[Conda Installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#conda-installation)
 
-![Conda Installation](image.png)
+![Conda Installation](conda-installation.png)
 
 何意味…… 在 `conda activate pytorch-test`（我的环境名叫 `pytorch-test`）之后使用 `where nvcc`，得到了这样的结果：
 
