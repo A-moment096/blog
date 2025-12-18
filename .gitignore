@@ -14,3 +14,4 @@ Thumbs.db
 # Local environment files
 .env
 .env.local
+.vscode
