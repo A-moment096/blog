@@ -3,6 +3,14 @@
 // Include Fonts from Outside
 // =============================================================================
 
+@font-face {
+    font-family: 'LXGW Bright Medium';
+    src: url('/fonts/lxgw-bright/LXGW-Bright-Medium.woff2') format('woff2'),
+        url('/fonts/lxgw-bright/LXGW-Bright-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: swap;
+}
+
 :root {
     --article-font-family: "Noto Serif SC", "Roboto", var(--base-font-family);
 }
