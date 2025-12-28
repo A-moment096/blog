@@ -15,7 +15,6 @@ imageObjectPosition: "center 15%"
 math: true
 hidden: false
 comments: true
-draft: true
 ---
 
 *书接上回，在搞清楚线性空间大概是个什么情况之后，我们来看看线性空间之间都有什么样子的联系吧~！*
