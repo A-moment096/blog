@@ -49,6 +49,7 @@ toc: false
 - [Utterances评论参考:](https://roife.github.io/posts/use-utterances-for-blog-comment/): 非常好评论系统
 - [友链实现方案](https://thirdshire.com/hugo-stack-renovation-part-two/): Friend is GOOOOOOOD
 - [TABLER ICONS](https://tabler.io/icons): 博客中的图标来源
+- [Transfonter](https://transfonter.org/): 把字体转换为 `woff` 字体方便使用
 
 ## 折腾 Arch / Linux 
 
@@ -77,6 +78,7 @@ toc: false
 - [给傻子的 Git 教程](https://www.bilibili.com/video/BV1Hkr7YYEh8): 非常好的教程，使我大脑旋转
 - [Learn Git Branching](https://learngitbranching.js.org/): 很不错的 Git 分支操作游戏，在实际操作中了解如何管理 Git 分支。我玩了一下午通关了，很好玩。
 - [Git 的故事：這一次沒這麼好玩](https://blog.brachiosoft.com/posts/git/): 一篇非常好的介绍 Git 历史的文章。好看，爱看。
+- [Recover from losing uncommitted changes by "git reset --hard"](https://stackoverflow.com/questions/5788037/recover-from-losing-uncommitted-changes-by-git-reset-hard): 拯救 `git reset` 删掉的文件，感动，没有这个帖子我要爆炸了……
 
 ## 数学笔记
 
