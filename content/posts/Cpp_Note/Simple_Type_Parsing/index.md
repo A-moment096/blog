@@ -16,7 +16,6 @@ image: Science.png
 math: true
 hidden: false
 comments: true
-draft: true
 ---
 
 *从可爱群友 [@0xa7973908](https://mahiro.ink/)的[博客](https://mahiro.ink/archives/homework)里了解到了数组指针和指针数组的类型区别，但是这种单纯的记号真的很难背，背后的逻辑究竟是什么样的呢？探究一下吧~*
