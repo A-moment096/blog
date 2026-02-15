@@ -11,7 +11,7 @@ tags:
 title: 文献阅读 - Wang-Jin-Khachaturyan2002
 description: Phase field microelasticity theory and modeling of elastically and structurally inhomogeneous solid
 date: 2025-11-15T23:25:19+08:00
-image: posts/PF_Papers/Nev_Alice-2.jpg
+image: /posts/PF_Papers/Nev_Alice-2.jpg
 math: true
 hidden: false
 comments: true

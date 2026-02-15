@@ -11,7 +11,7 @@ tags:
 title: 文献阅读 - Nestler1999
 description: A multiphase field model：sharp interface asymptotics and numerical simulations of moving phase boundaries and multijunctions
 date: 2025-10-22T18:25:19+08:00
-image: posts/PF_Papers/Nev_Alice.jpg
+image: /posts/PF_Papers/Nev_Alice.jpg
 math: true
 hidden: false
 comments: true

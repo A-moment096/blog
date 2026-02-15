@@ -199,7 +199,7 @@ $$C^i{}_j = \sum_k^n B^i{}_k A^k{}_j.$$
 > - 取 $\R$ 中单位元 $1$，有 $$(1\cdot L)(\vect{v}) = 1\cdot_W L(\vect{v}) =L(1\cdot_V\vect{v})= L(\vect{v})$$ 对任何 $L\in\Hom(V,W),\vect{v}\in V$都成立，则数乘确有单位元；
 > 
 > - 数乘对向量加法有分配率：对任意 $r\in\R, S, T\in\Hom(V,W)$ 和 $\vect{v}\in V$，下式始终成立：$$\begin{align*}(r\cdot( S+ T))(\vect{v}) &= ( S+ T)(r\cdot\vect{v})=  S(r\cdot\vect{v})+ T(r\cdot\vect{v}) \\ &= r\cdot S(\vect{v})+r\cdot T(\vect{v}) = (r\cdot S)(\vect{v})+(r\cdot T)(\vect{v})\\ &= (r\cdot( S+ T))(\vect{v});\end{align*}$$
-> - 数量加法对数乘有分配率：对任意 $r,s\in\R, S\in\Hom(V,W)$ 和 $\vect{v}\in V$，下式始终成立：$$\begin{align*}((r+s)\cdot S)(\vect{v}) &=  S((r+s)\cdot\vect{v})=  S(r\cdot\vect{v}+s\cdot\vect{v}) \\ &= r\cdot S(\vect{v})+s\cdot T(\vect{v}) = (r\cdot S)(\vect{v})+(s\cdot S)(\vect{v})\\ &= (r\cdot S+s\cdot S)(\vect{v});\end{align*}$$
+> - 数量加法对数乘有分配率：对任意 $r,s\in\R, S\in\Hom(V,W)$ 和 $\vect{v}\in V$，下式始终成立：$$\begin{align*}((r+s)\cdot S)(\vect{v}) &=  S((r+s)\cdot\vect{v})=  S(r\cdot\vect{v}+s\cdot\vect{v}) \\ &= r\cdot S(\vect{v})+s\cdot S(\vect{v}) = (r\cdot S)(\vect{v})+(s\cdot S)(\vect{v})\\ &= (r\cdot S+s\cdot S)(\vect{v});\end{align*}$$
 > - 数量乘法有交换律：对任意 $r,s\in\R, S\in\Hom(V,W)$ 和 $\vect{v}\in V$，下式始终成立：$$((rs)\cdot S)(\vect{v}) =  S((rs)\cdot\vect{v}) =  S((sr)\cdot\vect{v}) = ((sr)\cdot S)(\vect{v}).$$
 >
 > 至此，我们验证完毕，$\Hom(V,W)$ 的确在上述加法和数乘下成为一个向量空间。

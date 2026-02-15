@@ -11,7 +11,7 @@ tags:
 title: 文献阅读 - Jin-Wang-Khachaturyan2001
 description: Three-dimensional phase field microelasticity theory and modeling of multiple cracks and voids
 date: 2025-10-23T23:25:19+08:00
-image: posts/PF_Papers/Nev_Alice.jpg
+image: /posts/PF_Papers/Nev_Alice.jpg
 math: true
 hidden: false
 comments: true
