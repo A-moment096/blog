@@ -285,7 +285,7 @@ $$\cvect{\varphi} = \sum_i^n \varphi_i\cvect{\beta}^i,$$
 
 $$\cvect{\varphi}(\vect{v}) = \sum_i^n \varphi_i\cvect{\beta}^i(\vect{v}),$$
 
-然而 $\vect{v}$ 也是可以表达为 $V$ 的基 $\BaseB^*$ 的线性组合的，我们带入就有：
+然而 $\vect{v}$ 也是可以表达为 $V$ 的基 $\BaseB$ 的线性组合的，我们带入就有：
 
 $$\cvect{\varphi}(\vect{v}) = \sum_i^n \varphi_i \cvect{\beta}^i(\sum_j^n v^j\vect{b}_j) = \sum_i^n\sum_j^n\varphi_i v^j\cvect{\beta}^i(\vect{b}_j),$$
 
@@ -348,7 +348,7 @@ $$\cvect{\beta}^i(\vect{b}_j) = \begin{cases}
 >
 > - 线性无关的证明
 >   
->   我们取任意一个向量 $\vect{v}\in V$，以及做 $\BaseB^*$ 的线性组合：$$\cvect{\varphi}= \sum_i^n \varphi_i\cvect{\beta}^i,$$ 令其等于 $\zero_{V^*}$，则有 $$\begin{align*}\cvect{\varphi}(\vect{v}) &= \sum_i^n\varphi_i \cvect{\beta}^i(\vect{v}) \\ &= \sum_i^n\varphi_i\sum_j^nv^j\cvect{\beta}^i(\vect{b}_j) = \sum_i^n\sum_j^n\varphi_iv^j\delta^i{}_j \\ & =\zero_{V^*}(\vect{v}) = 0_\R \end{align*}.$$ 由 Kronecker delta 的定义，有 $$\begin{align*}\sum_i^n\sum_j^n\varphi_iv^j\delta^i{}_j &= \sum_i^n\varphi_i(\sum_j^n v^j \delta^i{}_j) \\ &= \sum_i^n\varphi_i (v^1\delta^i{}_1 + v^2\delta^i{}_2 + \dots + v^n\delta^i{}_n) \\  &= \sum_i^n \varphi_iv^i = 0_\R. \end{align*}$$ 由于上式对任意的向量 $\vect{v}\in V$ 都成立，必须有 $\varphi_i = 0\quad\forall 1\leq i \leq n$，即向量组 $\BaseB^*$ 的线性组合为 $\zero_{V^*}$ 时，它的线性组合系数全为 $0$。这说明 $\BaseB^*$ 是线性无关的。
+>   我们取任意一个向量 $\vect{v}\in V$，以及做 $\BaseB^*$ 的线性组合：$$\cvect{\varphi}= \sum_i^n \varphi_i\cvect{\beta}^i,$$ 令其等于 $\zero_{V^*}$，则有 $$\begin{align*}\cvect{\varphi}(\vect{v}) &= \sum_i^n\varphi_i \cvect{\beta}^i(\vect{v}) \\ &= \sum_i^n\varphi_i\sum_j^nv^j\cvect{\beta}^i(\vect{b}_j) = \sum_i^n\sum_j^n\varphi_iv^j\delta^i{}_j \\ & =\zero_{V^*}(\vect{v}) = 0_\R. \end{align*}$$ 由 Kronecker delta 的定义，有 $$\begin{align*}\sum_i^n\sum_j^n\varphi_iv^j\delta^i{}_j &= \sum_i^n\varphi_i(\sum_j^n v^j \delta^i{}_j) \\ &= \sum_i^n\varphi_i (v^1\delta^i{}_1 + v^2\delta^i{}_2 + \dots + v^n\delta^i{}_n) \\  &= \sum_i^n \varphi_iv^i = 0_\R. \end{align*}$$ 由于上式对任意的向量 $\vect{v}\in V$ 都成立，必须有 $\varphi_i = 0\quad\forall 1\leq i \leq n$，即向量组 $\BaseB^*$ 的线性组合为 $\zero_{V^*}$ 时，它的线性组合系数全为 $0$。这说明 $\BaseB^*$ 是线性无关的。
 >
 > - $\BaseB^*$ 能张成 $V^*$ 的证明
 >
@@ -372,7 +372,7 @@ $$\cvect{\beta}^i(\vect{b}_j) = \begin{cases}
 
 我们观察这个过程，可以得到这样的结论：我们可以在给线性空间选定一组基之后，在它的上面定义这样的一个运算，取两个向量之后，让其中一个向量变成对偶向量，然后作用到另一个向量上，给出一个实数。实际上，这定义了所谓的 **内积**，将两个向量映射到一个实数上，而它是一个双线性映射，对参与运算的两个位置都满足线性性。下一章我们会谈到这个所谓的内积。
 
-我们还指出，在选定线性空间的基之后，向量和它的对偶之间的变化在矩阵表示下完全就是更改矩阵元的排列方式。这一点我们后面专门讨论矩阵时会指出，这其实就是所谓的 **矩阵转置**，而且转置、对偶、线性映射之间又有一些丰富的关系。
+我们还指出，在选定线性空间的基之后，向量和它的对偶之间的区别在矩阵表示下完全就只是更改了矩阵元的排列方式。这一点我们后面专门讨论矩阵时会指出，这其实就是所谓的 **矩阵转置**，而且转置、对偶、线性映射之间又有一些丰富的关系。
 
 ## 不止对偶
 
