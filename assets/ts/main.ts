@@ -37,7 +37,6 @@ let Stack = {
     
     // 在 KaTeX 渲染之前调用此函数
     setupGitHubAlertsEarly: () => {
-        console.log('[Stack] Running setupGitHubAlertsEarly before KaTeX');
         setupGitHubAlerts();
     }
 }

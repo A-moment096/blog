@@ -35,7 +35,7 @@ comments: true
 
 |均匀 Homogeneous|非均匀 Heterogeneous|
 |:-:|:-:|
-|![](posts/PF_Papers/Homogeneous-strain-JWK2001.png)|![](posts/PF_Papers/Heterogeneous-strain-JWK2001.png)|
+|![](/posts/PF_Papers/Homogeneous-strain-JWK2001.png)|![](/posts/PF_Papers/Heterogeneous-strain-JWK2001.png)|
 
 ### 吓人公式
 

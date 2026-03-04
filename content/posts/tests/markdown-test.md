@@ -156,7 +156,7 @@ P.S. 可以用 `_` 代替
 ## 代码块 Code Blocks
 
 ### 行内代码
-使用 `console.log()` 输出信息。
+使用 `print()` 输出信息。
 
 ### 行间代码
 - 可以使用 `linenostart=<num>` 来指定第一行的行号是多少
