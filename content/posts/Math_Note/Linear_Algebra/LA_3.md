@@ -63,7 +63,7 @@ $$
 
 *书接上回，在对 $\Hom(\R,V)$ 以及 $\Hom(V,\R)$ 有了一定认识，且有了 **对偶** 这样特殊的对象后，我们终于可以出发研究线性映射空间 $\Hom(V,W)$ 了。而矩阵空间 $\Mat(m,n)$ 与线性映射空间之间又有什么样的联系呢？让我们就在这一章里探索一番吧！*
 
-*头图信息参考第一章，感谢~！本次选曲为 [**椎乃味醂**](https://weibo.com/sheeno3rin) 调教，初音未来与重音 Teto演唱，在 2025 VCCL 上拿到第 7 名好成绩的 [まだ知らない君がいる！/存在着我还不曾知晓的你！](https://www.bilibili.com/video/BV1dGhqzZEkz/)（B站链接）。非常强而有力的一首歌。本曲在网易云音乐需要会员，感兴趣可以至 B 站收听并观看精美 MV。原投稿链接（Niconico）：[まだ知らない君がいる！ - 初音ミク･重音テト](https://www.nicovideo.jp/watch/sm45324905)*
+*头图信息参考第一章，感谢~！本次选曲为 [**椎乃味醂**](https://weibo.com/sheeno3rin) 调教，初音未来与重音 Teto演唱，在 [VCCL 2025 夏] 上拿到第 7 名好成绩的 [まだ知らない君がいる！/存在着我还不曾知晓的你！](https://www.bilibili.com/video/BV1dGhqzZEkz/)（B站链接）。非常强而有力的一首歌。本曲在网易云音乐需要会员，感兴趣可以至 B 站收听并观看精美 MV。原投稿链接（Niconico）：[まだ知らない君がいる！ - 初音ミク･重音テト](https://www.nicovideo.jp/watch/sm45324905)*
 
 {{<music auto="https://music.163.com/#/song?id=3317461399" loop="none">}}
 
