@@ -99,7 +99,7 @@ enabled = true
 ## Comments
 [comments]
 enabled = true
-provider = "utterances"
+provider = "giscus"
 
 [comments.disqusjs]
 shortname = ""
@@ -150,16 +150,19 @@ serverName = "cactus.chat"
 siteName = ""
 
 [comments.giscus]
-repo = ""
-repoID = ""
-category = ""
-categoryID = ""
-mapping = ""
-lightTheme = ""
-darkTheme = ""
+repo = "A-moment096/A-moment096.github.io"
+repoID = "R_kgDONI9zaw"
+category = "Announcements"
+categoryID = "DIC_kwDONI9za84C5O4G"
+mapping = "title"
+strict = 0
 reactionsEnabled = 1
 emitMetadata = 0
-
+inputPosition = "top"
+lightTheme = "light_protanopia" 
+darkTheme = ""
+lang = "zh-CN"
+loading = "lazy"
 [comments.gitalk]
 owner = "A-moment096"
 admin = "A-moment096"
