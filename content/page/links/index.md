@@ -50,6 +50,7 @@ toc: false
 - [友链实现方案](https://thirdshire.com/hugo-stack-renovation-part-two/): Friend is GOOOOOOOD
 - [TABLER ICONS](https://tabler.io/icons): 博客中的图标来源
 - [Transfonter](https://transfonter.org/): 把字体转换为 `woff` 字体方便使用
+- [使用 giscus 并从 utterance 迁移](https://oxidane-uni.github.io/p/%E5%B0%86%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E7%94%B1-utterance-%E8%BF%81%E7%A7%BB%E8%87%B3-giscus/): 参考了这篇博客，写的挺详细的。可惜博主已经不再更新了。
 
 ## 折腾 Arch / Linux 
 
