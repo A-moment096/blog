@@ -9,7 +9,7 @@ title: "相场模拟，但是用很多语言 I"
 description: 除了 C++，还有什么能跑相场？
 image: /posts/PF_Note/Impl_Spinodal/Alice-2.png
 imageObjectPosition: center 20%
-date: 2026-03-21
+date: 2026-03-24
 math: true
 ---
 
