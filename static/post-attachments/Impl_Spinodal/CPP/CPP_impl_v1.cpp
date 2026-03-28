@@ -36,7 +36,7 @@ void write_vtk(vector<vector<float>> mesh, string file_path, int time_step, floa
     }
 
     ofs << "POINT_DATA " << Nx * Ny * 1 << endl;
-    ofs << "SCALARS " << "CON " << "float 1\n";
+    ofs << "SCALARS " << "CON " << "float \n";
     ofs << "LOOKUP_TABLE default\n";
     for (int j = 0; j < Ny; j++) {
         for (int i = 0; i < Nx; i++) {

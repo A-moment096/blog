@@ -234,7 +234,7 @@ public:
         }
         ofs << "POINT_DATA " << Nx * Ny * 1 << endl;
 
-        ofs << "SCALARS " << "CON " << "float 1\n";
+        ofs << "SCALARS " << "CON " << "float\n";
         ofs << "LOOKUP_TABLE default\n";
         for (size_t j = 0; j < Ny; j++) {
             for (size_t i = 0; i < Nx; i++) {
