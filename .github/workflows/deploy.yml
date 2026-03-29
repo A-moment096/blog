@@ -34,7 +34,6 @@ jobs:
       uses: actions/setup-node@v6
       with:
         node-version: 24.x
-        cache: "pnpm"
 
     - name: "📦 Run pnpm"
       working-directory: ./_frontend
