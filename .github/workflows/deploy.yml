@@ -24,6 +24,21 @@ jobs:
         submodules: true
         fetch-depth: 0  # Need full history for submodules
 
+    - uses: pnpm/action-setup@v4.4.0
+      name: Install pnpm
+      with:
+        run_install: false
+
+    - name: "🔧 Setup Node.js 24.x"
+      uses: actions/setup-node@v6
+      with:
+        node-version: 24.x
+        cache: "pnpm"
+
+    - name: "📦 Run pnpm"
+      working-directory: ./_frontend
+      run: pnpm i && pnpm build
+      
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v3
       with:
