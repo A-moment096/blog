@@ -659,4 +659,4 @@ int main(int, char **) {
 那么，感谢您能看到这里，祝您生活愉快，happy coding!
 
 <!-- 插入 React 相場 Demo -->
-  {{< react component="Impl_Spinodal/simulation" >}}
+  <!-- {{< react component="Impl_Spinodal/simulation" >}} -->
