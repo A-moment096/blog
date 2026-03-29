@@ -96,8 +96,90 @@ $$
 
 我们计划在这里使用三种方式来模拟上期中出现的调幅分解。首先我们尝试只是用原生 Python 和其标准库，来看看它的模拟效果如何。第二种方式则是借助一些外部库如 *Numpy*，观察计算效率有没有变化，并将二者与上期的结果进行比较。最后我们会尝试一些别的算法来计算这个案例，也许会有一些新的发现。
 
-本文中使用的 Python 版本为 3.12.12 (MSC v.1944 64 bit (AMD64) on win 32)，由于 Python 解释器的实现在各个平台都是差不多的，我们就不在别的平台试了。
+本文中使用的 Python 版本为 3.13.12 (MSC v.1944 64 bit (AMD64) on win 32)，由于 Python 解释器的实现在各个平台都是差不多的，我们就不在别的平台试了。
 
 ### 原生 Python
 
-第一版的代码其实说白了就是对之前的 [CPP_impl_v1.cpp](/post-attachments/Impl_Spinodal/CPP/CPP_impl_v1.cpp) 直接使用 Pythohn 改写罢了。
+第一版的代码其实说白了就是对之前的 [CPP_impl_v1.cpp](/post-attachments/Impl_Spinodal/CPP/CPP_impl_v1.cpp) 直接使用 Pythohn 改写罢了。不过即便如此，这个改写过程也颇为有趣。
+
+首先我们能发现，在 Python 的代码中，在仅依赖标准库的情况下实现我们在 C++ 版本中的功能只很少需要的库，分别是：
+
+- 提供文件夹创建的 `os` 库；
+- 提供随机数的 `random` 库；
+- 提供计时器的 `time` 库，
+
+而其余的所有包括数据类型，函数对象等等都是自带的，不需要额外引入库。
+
+接下来我们考察 `write_vtk` 函数。
+```python
+def write_vtk(mesh, folder_path, time_step, Nx, Ny, dx):
+    os.makedirs(folder_path, exist_ok=True)
+    file_name = folder_path + "/step_" + str(time_step) + ".vtk"
+    with open(file_name, "w") as f:
+        f.write(
+            f"""# vtk DataFile Version 3.0
+{file_name}
+ASCII
+DATASET STRUCTURED_GRID
+DIMENSIONS {Nx} {Ny} 1
+POINTS {Nx*Ny*1} float
+"""
+        )
+        for j in range(Ny):
+            for i in range(Nx):
+                f.write(f"{float(i*dx)} {float(j*dx)} {1}\n")
+
+        f.write(
+            f"""POINT_DATA {Nx*Ny*1}
+SCALARS CON float
+LOOKUP_TABLE default
+"""
+        )
+        for j in range(Ny):
+            for i in range(Nx):
+                f.write(f"{mesh[j][i]}\n")
+
+        f.close()
+
+```
+
+Python 的函数定义只需要 `def` 关键字和参数列表即可，不需要指明函数的参数类型和返回结果，返回值类型也不需要注明。这正是所谓的自动推导类型系统和鸭子类型的强大所在：用户不需要关心那些可以被推导出的类型，也不需要指明某个参数是什么类型。只要符合在函数体内对这个类型所做出的操作，就可以不考虑其具体是什么。
+
+另外可以观察到，Python 在写文件时使用的是 `open` 函数，以后面的字符串代表打开文件的类型（是读还是写），最后 `with open() as f` 来给打开的内容以名称。这样的写法非常贴合英语的阅读语序，这也是 Python 受大家喜欢的一个原因。另外，这样的做法也保证了只有在文件对象 `f` 被打开时执行内部操作，而当文件关闭时则立刻停止执行。而写入的内容中，出现了这样的内容：
+
+```python 
+f"""# vtk DataFile Version 3.0
+{file_name}
+ASCII
+DATASET STRUCTURED_GRID
+DIMENSIONS {Nx} {Ny} 1
+POINTS {Nx*Ny*1} float
+"""
+```
+
+这是所谓的格式化字符串 *f-string* 以及 *docstring* 的结合产物，它可以在 `"""` 内按字面意思存储字符串的格式信息，在这种情况下颇为好用，避免了我们在 C++ 实现中用流式输出一点点将变量和字符串混输的丑态。
+
+在这个函数中，还有个有趣的点在于 Python 的循环。在 Python 中，所有的 `for` 循环都通过迭代产生，因此当我们使用 `for` 循环时，必须有一个可供迭代的容器式的对象，而为了从 `0` 循环到 `N-1`，Python 提供了 `range()` 对象来解决这个问题。当使用 `range(N)` 时，它就自动创建了一个可遍历的迭代对象，依次从中取出 `0`，`1`，一直到 `N-1`。某种程度上，这种做法更加明确地区分了 `for` 循环和 `while`/`do while` 循环，让 `for` 循环看上去不再只是 `while` 循环的简写。
+
+接下来的 `mesh_periodic` 函数再次体现了 Python 鸭子类型的优势：
+
+```python
+def mesh_periodic(mesh, Nx, Ny, dx, ker_func):
+    new_mesh = [[0.0] * Nx for _ in range(Ny)]
+    # new_mesh = [[0.0] * Nx] * Ny
+    for j in range(Ny):
+        for i in range(Nx):
+            v_c = mesh[j][i]
+            v_l = mesh[j][i - 1] if i != 0 else mesh[j][-1]
+            v_r = mesh[j][i + 1] if i != Nx - 1 else mesh[j][0]
+            v_d = mesh[j - 1][i] if j != 0 else mesh[-1][i]
+            v_u = mesh[j + 1][i] if j != Ny - 1 else mesh[0][i]
+            new_mesh[j][i] = ker_func(v_c, v_l, v_r, v_u, v_d, dx)
+
+    return new_mesh
+```
+
+这里我们的函数参数不需要将类型明确写出，从而省去了用又臭又长的类型说明 `ker_func` 是某个明确的函数对象。
+
+
+这一版的代码可以点击 [这个链接](/post-attachments/Impl_Spinodal/Python/PY_impl_v1.py) 来浏览和下载。
