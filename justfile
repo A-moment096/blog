@@ -2,6 +2,7 @@
 set positional-arguments
 
 full-test:
+    cd ./_frontend && pnpm i && pnpm build && cd ..
     hugo server -D -F -E --disableFastRender -O
 
 rm:
@@ -10,6 +11,7 @@ rm:
 rebuild: rm full-test
 
 pre-test:
+    cd ./_frontend && pnpm i && pnpm build && cd ..
     hugo server --minify -O
     
 publish:

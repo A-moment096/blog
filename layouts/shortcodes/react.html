@@ -1,0 +1,12 @@
+<!-- layouts/shortcodes/react.html -->
+<!-- 這是用來在 MD 中載入 React 的掛載點，請在 MD 中用 shortcode 的方法引入 -->
+<div class="react-island" data-component="{{ .Get "component" }}" data-props="{{ .Params | jsonify }}">
+  <div class="w-full p-4 border text-center border-dashed animate-pulse">
+    <div
+      class="border-blue-800 dark:border-amber-300 border-t-transparent! inline-block size-6 animate-spin rounded-full border-3"
+      role="status" aria-label="loading">
+      <span class="sr-only">Loading...</span>
+    </div>
+    Loading React component...
+  </div>
+</div>
