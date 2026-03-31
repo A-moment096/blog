@@ -94,7 +94,7 @@ $$
 
 ## Python 的实现
 
-我们计划在这里使用三种方式来模拟上期中出现的调幅分解。首先我们尝试只是用原生 Python 和其标准库，来看看它的模拟效果如何。第二种方式则是借助一些外部库如 *Numpy*，观察计算效率有没有变化，并将二者与上期的结果进行比较。最后我们会尝试一些别的算法来计算这个案例，也许会有一些新的发现。
+我们计划在这里使用两种方式来模拟上期中出现的调幅分解。首先我们尝试只是用原生 Python 和其标准库，来看看它的模拟效果如何。第二种方式则是借助一些外部库如 *Numpy*，观察计算效率有没有变化，并将二者与上期的结果进行比较。
 
 本文中使用的 Python 版本为 3.13.12 (MSC v.1944 64 bit (AMD64) on win 32)，由于 Python 解释器的实现在各个平台都是差不多的，我们就不在别的平台试了。
 
@@ -279,21 +279,141 @@ print(f"Elapsed: {(end-start):.3f} seconds.")
 
 这里值得注意的是 `print` 函数。在 Python 中，我们终于有了一个十分好用的 `print` 函数，配合上格式化字符串来直接将结果方便地输出到控制台，而且它还会自动换行。当然，如果我们不希望它换行，我们可以指定 `end` 参数来改变打印结束后的末尾应该打印什么。它的默认值是 `"\n"`，即换行符。
 
-至此，我们成功地使用 Python 完整实现了调幅分解。这一版的代码可以点击 [这个链接](/post-attachments/Impl_Spinodal/Python/PY_impl_v1.py) 来浏览和下载。运行结果显示，在输出结果到文件的情况下需要约 19.7 秒完成计算，而在不将结果输出到文件的情况下，完成计算也需要大约 19.3 秒。这说明这个版本的 Python 程序完全不是因为文件 IO 而效率低，单纯是因为计算太慢。对比 C++ 的结果（详见上期评论区），当我们选择输出到文件时耗时约 2.4 秒，而当不需要输出到文件时需要耗时 0.29 秒。
+至此，我们成功地使用 Python 完整实现了调幅分解。这一版的代码可以点击 [这个链接](/post-attachments/Impl_Spinodal/Python/PY_impl_v1.py) 来浏览和下载。运行结果显示，在输出结果到文件的情况下需要约 19.7 秒完成计算，而在不将结果输出到文件的情况下，完成计算也需要大约 19.3 秒。这说明这个版本的 Python 程序完全不是因为文件 IO 而效率低，单纯是因为计算太慢。对比 C++ 的结果（详见上期评论区），当我们选择输出到文件时 5000 步耗时约 2.4 秒（10 000 步消耗约为 4.9 秒），而当不需要输出到文件时 5000 步需要耗时 0.29 秒（10 000 步消耗约为 0.5 秒）。
 
 那么，这份代码有没有什么可以优化的呢？使用 Numpy 等经典第三方库能帮助我们更快的计算吗？
 
-### Python with Open-Libs
+### Python with Numpy
 
-我们直接上手试一试！我们选择在使用 `pip install numpy` 安装好 `numpy` 后，单纯地用 `numpy` 的 `numpy.array` 来替换我们的网格，即：
+我们直接上手试一试！笔者安装的 Numpy 版本为 2.4.4，我们选择在使用 `pip install numpy` 安装好 `numpy` 后，单纯地用 `numpy` 的 `numpy.array` 来替换我们的网格，即：
 
 ```python
 # new_mesh = [[0.0] * Nx for _ in range(Ny)]
 new_mesh = np.array([[0.0] * Nx for _ in range(Ny)])
 ```
 
+顺带地我们可以像矩阵数乘和矩阵加法那样直接将计算得到的 `dc` 更新到 `con_mesh` 上：
+
+```python
+con_mesh += dt * M * dc
+# for j in range(Ny):
+#     for i in range(Nx):
+#         con_mesh[j][i] = dt * M * dc[j][i]
+```
+
 结果如何呢？肉眼可见的慢！本来只需要不到 20 秒的计算，现在竟然用了 87 秒才完成…… 是哪里出问题了吗？
 
+啊，一定是因为我们没有在 `np.array` 里直接更新，而是重新创建新的变量的缘故！我们做一些修改，让 `mesh_periodic` 不再创建新的临时对象，而是直接将结果更新到参数列表中传入的变量里，然后在时间循环开始前就创建两个临时变量来承载待会儿要更新出的变量：
+
+```python
+def mesh_periodic_update(mesh, updated_mesh, Nx, Ny, dx, ker_func):
+    for j in range(Ny):
+        for i in range(Nx):
+            v_c = mesh[j][i]
+            v_l = mesh[j][i - 1] if i != 0 else mesh[j][-1]
+            v_r = mesh[j][i + 1] if i != Nx - 1 else mesh[j][0]
+            v_d = mesh[j - 1][i] if j != 0 else mesh[-1][i]
+            v_u = mesh[j + 1][i] if j != Ny - 1 else mesh[0][i]
+            updated_mesh[j][i] = ker_func(v_c, v_l, v_r, v_u, v_d, dx)
+
+# ...
+
+def main():
+    # ...
+    con_mesh = np.array([[con_init] * Nx for _ in range(Ny)])
+    df_dc = con_mesh.copy()
+    dc = con_mesh.copy()
+    # ...
+```
+
+另外我们顺带把 Lambda 表达式换成用 `def` 关键字定义的函数：
+
+```python
+def df_dc_ker(v_c, v_l, v_r, v_u, v_d, dx):
+    return df_bulk_dc(v_c, A) - kappa * laplacian(v_c, v_l, v_r, v_u, v_d, dx)
+```
+
+再试试！……不行。运行的那一瞬间就知道不对。每百步的输出一下一下地蹦出来，怎么看都不是很快的样子……还有什么，还有什么可以优化的地方？
+
+对了！要不要把 `df_dc_ker` 拆开？这样的计算核反而是没有能借助 Numpy 的批量计算功能。试试看：
+
+```python
+# mesh_periodic_update(con_mesh, df_dc, Nx, Ny, dx, df_dc_ker)
+mesh_periodic_update(con_mesh, df_dc, Nx, Ny, dx, laplacian)
+df_dc = df_bulk_dc(con_mesh, A) - kappa * df_dc
+```
+
+如何？这次会不会快很多？别急，我们想到计算除法总是比计算乘法复杂一些，而除法在我们的代码里几乎只用在 Laplacian 计算过程中。我们完全可以提前计算好 $\frac{1}{\mathrm{d} x ^2}$ 然后再在后面直接乘上去。我们记这个新算法为 `laplacian_inv_dx2`：
+
+```python
+def laplacian_inv_dx2(v_c, v_l, v_r, v_u, v_d, inv_dx2):
+    return ((v_l + v_r + v_u + v_d) - 4 * v_c) * inv_dx2
+# ...
+dx, dt = (1.0, 0.01)
+inv_dx2 = 1/(dx * dx)
+# ...
+```
+
+这次再试试。结果很棒！我们成功地降低了 10 秒！
+
+唉简直就是小丑……说好的 Numpy 很快呢？怎么用上 Numpy 之后反而变慢了！？？！不论如何，完整代码奉上：[PY_impl_v2.py](/post-attachments/Impl_Spinodal/Python/PY_impl_v2.py)，欢迎阅读/下载/嘲笑（）
+
+### Numpy 的真正实力！
+
+既然已经成了小丑，问问 AI 又能怎么样？问！
+
+这不问不知道，一问才明白，慢出来的时间主要全都消耗在 Python 和 Numpy 的 *界面* 上了。什么意思呢？本来我们如果用 Python 的原生列表，那就老老实实计算就完事儿了，速度比 C++ 慢是可以理解的，毕竟 Python 作为一门解释型语言，它的循环效率低于 C++ 也不奇怪。但是当我们把原生列表换成 Numpy 的 `np.array` 之后，事情就变了。
+
+Numpy 的 `np.array` 在创建时，实际上会创建一个类 C 语言数组那样的结构出来。而 Numpy 这个数学库高效的主要原因就在于它使用了许多前人总结的算法与好用的数据结构，就比如这里被包装起来的 `np.array`。可是坏消息是：我们并没有真正运用这个数据结构的方法，而是单纯拙劣地把它搬了出来，然后用了一下它的矩阵数乘和加法，仅此而已。而最消耗计算资源的 Laplacian 计算这里，我们依旧是用传统的手工活儿来执行。
+
+不，这甚至更糟糕：我们在对 `con_mesh` 这个 `np.array` 求 Laplacian 的时候，需要取某个位置的前后左右四个值还有中心的值。在取值的时候我们用了 `[]` 下标运算符来处理，而这反而进一步增加了计算消耗。我们用一个 Python 的写法告诉让 Numpy 让它从一个数组中的某个位置取出一个值，这个近乎翻译的过程，一次的时间消耗也许并不明显，但在进行 $64\times 64\times 5 \times 2 \times 10 000= 409 600 000$ 次调用之后，再怎么快的调用也会露出鸡脚的。另外，我们的算法完全没有发挥出 Numpy 的巨大优势：向量化。如果所有的数据组都能被批量，一次性地同时处理，而不是老老实实地一个个循环走过去，那计算效率肯定会发生质的提升！
+
+所以我们到底要怎么做，才能发挥 Numpy 的真正实力呢？鉴于我们的模拟使用的是周期性边界条件，而 Numpy 正好有个函数 `np.roll` 能够 *转动* 被操作的网格从而方便我们计算 Laplacian，我们这里就借助它的力量，定义一个新的函数 `laplacian_np`：
+
+```python
+def laplacian_np(mesh, inv_dx2):
+    return (
+        np.roll(mesh, 1, axis=1)  # left
+        + np.roll(mesh, -1, axis=1)  # right
+        + np.roll(mesh, 1, axis=0)  # down
+        + np.roll(mesh, -1, axis=0)  # up
+        - 4 * mesh
+    ) * inv_dx2
+```
+
+这个函数不是逐点计算得到每个点的 Laplacian 值的，而是一次性将整个网格的 Laplacian 计算出来，因此避免了 Python 的循环操作。我们用这个函数来实现时间循环中的计算步骤：
+
+```python
+for istep in range(Nstep + 1):
+
+    lap_c = laplacian_np(con_mesh, inv_dx2)
+    df_dc = df_bulk_dc(con_mesh, A) - kappa * lap_c
+    dc = laplacian_np(df_dc, inv_dx2)
+    con_mesh += dt * M * dc
+    # ...
+```
+
+这次需要跑多久呢？10 000 步的计算（包括文件输出）总共用时为：1.15 秒！这甚至比我们之前的 C++ 实现还要快上很多！而当我们不选择输出到文件中时，结果约为 0.52 秒，与 C++ 的结果相当。
+
+所以，为什么会快这么多？一个关键点在于：我们不再需要让数据频繁跨越 Python 与 Numpy 之间的屏障，另外就是我们不再依赖 Python 的低效循环了，而是使用 Numpy 提供的高效数据结构自身的循环。
+
+你也许会问：不过是不用 Python 自己的循环了，让 Numpy 负责结构的内部循环怎么能快这么多？其实关键点在于，CPU 执行的时候也许也不是老老实实循环了，而是采用了 *向量化* 技术，对这里的 $64\times 64$ 的数据 *直接加减乘除*，也就是说相比于老老实实循环，保守估计能快个 400 倍。实际上，向量化技术是现代 CPU 计算的重要技术，也是 HPC（高性能计算）的重点优化方向。如果一个计算过程能够被向量化，那么这个计算的速度就能得到极大的提升。
+
+另外就是内存是否能被迅速地加载进 CPU 核心中进行计算。现代计算机技术已经相当发达，加减乘除取模运算这些早就已经被优化到只需要若干时钟轮就能得到结果了，但是从内存中找到需要计算的对象却依旧相对较慢。为了解决这个问题，人们设计了 CPU 的多级缓存，如果计算数据能够被一次性加载到最快（同时也最小）的 L1d 缓存中的话，那计算速度会相当快（因为真的只需要算就好，不怎么需要寻找数据，也就是不怎么发生 *cache miss*，缓存未命中）。要是数据太多，那如果能被放在稍慢的 L2 中的话，那也不会好几次都没命中缓存；要是数据再大一些，或者计算流程设计的不好，那可能 CPU 没能把数据很好地加载到这两个位置，那计算可能就会很慢了。
+
+一般来说现代 CPU 都有 L1, L2, L3 三级缓存，其中 L1d 是给数据留下的空间，L2 和 L3 基本都归数据；想要查看自己 CPU 的各级缓存大小，Linux 用户可以使用 `lscpu` 命令，Windows 用户…… 我用 WSL（）下面是我用 WSL 中的 `lscpu` 帮我列出的我这本笔记本的 CPU 情况：
+
+```
+Caches (sum of all):
+  L1d:                    768 KiB (16 instances)
+  L1i:                    512 KiB (16 instances)
+  L2:                     16 MiB (16 instances)
+  L3:                     32 MiB (1 instance)
+```
+
+我的 L1d 缓存有足足 768 KiB！而 $64\times 64$ 的网格数据如果全都存储 `double` 类型数据，若 `double` 类型数据大小为 64 比特 8 位，那这个网格占用的内存则为 32 KiB，完全可以放的进 L1d 缓存中。这也是为什么在用上 Numpy 的数组之后 *在使用内部循环的条件下* 计算如此之快的原因了。
+
+同样地，我们把代码贴在 [这里](/post-attachments/Impl_Spinodal/Python/PY_impl_v3.py)，欢迎查阅、下载和取用~。
 
 
 
