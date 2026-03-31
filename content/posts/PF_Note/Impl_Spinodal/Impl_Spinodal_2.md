@@ -285,3 +285,15 @@ print(f"Elapsed: {(end-start):.3f} seconds.")
 
 ### Python with Open-Libs
 
+我们直接上手试一试！我们选择在使用 `pip install numpy` 安装好 `numpy` 后，单纯地用 `numpy` 的 `numpy.array` 来替换我们的网格，即：
+
+```python
+# new_mesh = [[0.0] * Nx for _ in range(Ny)]
+new_mesh = np.array([[0.0] * Nx for _ in range(Ny)])
+```
+
+结果如何呢？肉眼可见的慢！本来只需要不到 20 秒的计算，现在竟然用了 87 秒才完成…… 是哪里出问题了吗？
+
+
+
+
