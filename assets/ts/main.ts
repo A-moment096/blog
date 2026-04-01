@@ -5,7 +5,6 @@
 *   @website: https://jimmycai.com
 *   @link: https://github.com/CaiJimmy/hugo-theme-stack
 */
-import StackGallery from "ts/gallery";
 import { getColor } from 'ts/color';
 import menu from 'ts/menu';
 import createElement from 'ts/createElement';
@@ -24,7 +23,6 @@ let Stack = {
 
         const articleContent = document.querySelector('.article-content') as HTMLElement;
         if (articleContent) {
-            new StackGallery(articleContent);
             setupSmoothAnchors();
             setupScrollspy();
             // Note: setupGitHubAlerts is now called earlier via setupGitHubAlertsEarly
