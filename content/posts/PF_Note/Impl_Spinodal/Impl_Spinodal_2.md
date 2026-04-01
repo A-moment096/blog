@@ -11,7 +11,6 @@ image: /posts/PF_Note/Impl_Spinodal/Alice-2.png
 imageObjectPosition: center 20%
 date: 2026-03-30
 math: true
-draft: true
 ---
 
 *上一节我们尝试了使用 C++ 来跑相场模拟。除了 C++ 之外，科学计算的另一大热门则是 Python 这门非常火爆的语言。Python 能带给这个模拟什么有趣的特点呢？它的实现可以怎么做呢？一起来看看吧~*
