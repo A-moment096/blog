@@ -24,7 +24,7 @@ math: true
 
 这次我们把目光放在 JavaScript 和 TypeScript 这两门语言上，因为基础的调幅分解的模拟相信在前两期中已经聊得很多了。而要讲 JavaScript 和 TypeScript，就不得不提我们早已熟悉的互联网入口：浏览器。
 
-## 非常好浏览器技术
+### 非常好浏览器技术
 
 我们的生活已经充满了各种各样的浏览器了。从大家了解的知名浏览器如 Google Chrome，Microsoft Edge，Mozilla Firefox，Apple Safari 和一些大家也许尝试过的 UC/QQ/360 浏览器，到藏在软件背后的浏览器，如众多的安卓软件，许多的看起来拥有现代 UI 风格的桌面端应用等等，甚至是平时吃饭点单用的小程序，它们都是各式各样的浏览器。笔者写这篇博客使用的 VS Code 就是用 *Electron* 这个桌面应用框架写成的。如果您的电脑上正好有 VS Code，您可以从 `Help->Toggle Developer Tools` 来打开一个和 Google Chrome 的开发者工具别无二致的页面。
 
@@ -61,8 +61,50 @@ math: true
 
 相信许多不了解 JavaScript 的人都或多或少地因为在某些地方听说过 *Java* 而尝试将它和 Java 联系起来或者简称 JavaScript 为 Java。然而这实在是一个非常幽默且有趣的误会。
 
-在 1993 年，网景（Netscape）公司的创立人们开发了图形用户界面的浏览器 Mosaic，这款浏览器和其后继者 Navigator 大获成功，但很快人们对浏览器的需求就不仅限于 “浏览” 了。为了能够让浏览器页面在加载完成后有一些动态相应效果，1995 年网景雇佣了 Brendan Eich，要求他在浏览器中实现 Scheme，一门脚本语言 Lisp 的方言。然而与此同时，网景又计划着与开发了 Java 的太阳微系统（Sun Microsystems，后来被甲骨文 Oracle Corporation 收购）合作，将它们的 Java 嵌入到 Navigator 中，以此来实现网页的动态功能。两方对比竞争下，网景高层最终决定还是选择使用脚本语言来实现，但需要有与 Java 相似的语法，且轻量，易用。Eich 在 1995 年 5 月花了 *十天* 时间完成了原型设计，并给了它 Mocha 这个名字。随后，网景的市场部门将名字改成了 LiveScript，在当年的十一月正式随 Navigator 推出，但在十二月时又改名为了 JavaScript，蹭上了当时如日中天的 Java 的名头[^1]。 
+在 1993 年，网景（Netscape）公司的创立人们开发了图形用户界面的浏览器 Mosaic，这款浏览器和其后继者 Navigator 大获成功，但很快人们对浏览器的需求就不仅限于 “浏览” 了。为了能够让浏览器页面在加载完成后有一些动态相应效果，1995 年网景雇佣了 Brendan Eich，要求他在浏览器中实现 Scheme，一门脚本语言 Lisp 的方言。然而与此同时，网景又计划着与开发了 Java 的太阳微系统（Sun Microsystems，后来被甲骨文 Oracle Corporation 收购）合作，将它们的 Java 嵌入到 Navigator 中，以此来实现网页的动态功能。两方对比竞争下，网景高层最终决定还是选择使用脚本语言来实现，让这门语言扮演 “胶水” 的功能，但需要有与 Java 相似的语法，且轻量，易用。Eich 在 1995 年 5 月花了 *十天* 时间完成了原型设计，并给了它 Mocha 这个名字。随后，网景的市场部门将名字改成了 LiveScript，在当年的十一月正式随 Navigator 推出，但在十二月时又改名为了 JavaScript，蹭上了当时如日中天的 Java 的名头[^1]，从此就用着这个名字直到今天。
 
-开发了一款能够嵌入页面内的轻量脚本语言以及对应的解释器。
+所以，很难说 JavaScript 和 Java 一点关系都没有，但是这层关系大概也只到了 JavaScript 曾经参考过 Java，而且为了能够更好地实现商业化，JavaScript 有意地选择了这个名字吧。但是，目前为止似乎 JavaScript 是专供 Navigator 浏览器使用的脚本语言，但现在什么浏览器都在用这个语言，这中间又发生了什么？其实，有关 JavaScript 名字的故事依旧没有结束。
 
-[^1]: 来源自 [Speaking JavaScript, Chapter 4. How JavaScript Was Created](exploringjs.com/es5/ch04.html)
+也许你在某些地方看到过 ECMAScript 的名字，或者在 Windows 系统里看到过一个丑丑的图标。实际上，在 JavaScript 随着 Navigator 浏览器迅速风靡全球之后，在 1996 年 11 月网景公司便与欧洲计算机制造联合会（European Computer Manufactures Association, ECMA）举行了会议，着手对这个语言进行标准化，且被定义在标准文件 [ECMA-262](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/) 中。随后该标准也通过 ISO 标准，成为 ISO-16262 [^2]。
+
+作为一份标准，ECMAScript 标准只要求了如何实现这类脚本，因此应该说，如果要实现自己的符合 ECMAScript 标准的脚本引擎（比如 Firefox 的 SpiderMonkey 或者 Chrome 的 V8 引擎）时，我们才需要参考这份标准，而我们常用的 JavaScript 是 ECMAScript 的原型也是一种实现。而其他的实现中，微软实现的那一份叫做 JScript，就是那个丑丑的图标的文件；也有一些别的，比如 Adobe 手上的 ActionScript 等。不过总的来说，应用最广泛的还是 JavaScript，当大家提到 JS 的时候大概率也是提的那位老资历，JavaScript 了。
+
+### TypeScript: JavaScript，但是静态类型
+
+事实上，在人们发现什么地方都能塞个浏览器的时候，JavaScript 就已经自然地流行起来了。谁不想要美丽的 GUI 界面和炫酷的交互逻辑呢？这实在是太酷了！符合我对 21 世纪美丽互联网的想象。但是这带来了一个问题：想要写出一个灵活，好用，功能强大的基于 JavaScript 桌面程序，其代码量是可想而知的庞大的。但是我们亲爱的 JavaScript 是一门动态，弱类型的语言。我们看看这个著名的地狱绘图：
+
+![地狱绘图之 JavaScript 双等号](JS_compare.png)
+
+很可怕吗？是的很可怕…… JavaScript 会贴心地帮你做很多的类型转换，同时贴心地告诉你某两个写法完全一样的东西其实是不一样的。非常地伟大。
+
+But, Y？JavaScript 为何？因为 JavaScript 本身就是一个轻量的快捷语言。这样等于或不等于的背后，其实是类型转换系统在发力。但是即便 JavaScript 背后真的有一套类型系统，在这样的神秘转换下，人们也很容易认为这门语言根本没有什么类型可言。这样的小缺点在处理简单逻辑和小型应用时还算 Okay，但要是考虑使用 JavaScript 去写什么特别复杂的应用逻辑，那我相信没有类型提示的结果就是 Bug 四面开花，神秘报错以及崩溃的秃头程序……
+
+但是我们可以想办法让它有类型呀！没错，微软就是这么想的。2012 年的 10 月 1 日，TypeScript 横空出世。它的目标很简单：让 JavaScript 拥有类型标注。它的做法很简单：写的 TypeScript 脚本将会被静态类型检查器会保证代码没有类型问题，随后就会被 *编译* 为对应的 JavaScript 代码，通过把所有的类型标注删掉。但是它的结果很强大：它解放了 JavaScript 缺乏静态检查的桎梏，让前端技术能够进一步应用在更大体量的程序中。
+
+### Node.js，`pnpm` 与 React
+
+太棒了。那么我怎么才能够运行 JavaScript 和 TypeScript 代码呢？既然它和浏览器有千丝万缕的联系，是不是我可以在浏览器里直接运行 JavaScript？没错，是这样的，但也不完全是。在浏览器中运行 JavaScript 代码的方式是在网页中插入 `<script></script>` 这样的标签，然后在里面运行。但这样的方式多少是有点别扭了。也可以通过开发者工具的 Debug Console 来写两句，但这应该更别扭了……有没有什么可以像 Python 解释器那样的工具来在电脑上不依赖浏览器地运行 JavaScript 代码呢？
+
+有的，兄弟！有的！向您介绍 **Node.js**，一款免费开源跨平台的 JavaScript 运行时环境。Node.js 让 JavaScript 得以独立于浏览器运行，赋予了 JavaScript 作为后端开发语言的能力。要用 Node.js 运行 JavaScript 代码，只需要 `node hello_world.js` 即可！就像 `python hello_world.py` 那样，甚至少写两个字母！
+
+此外，Node.js 还拥有现代包管理系统，`npm`，来为 Node.js 或者任何 JavaScript 项目提供包管理支持。`npm` 提供了现代的 file locking 机制，用以确定项目的依赖版本并允许通过 `npm install` 来自动识别并安装项目依赖。更重要的是，`npm` 是默认将依赖安装在项目文件夹而非全局的。这自动地提供了环境分隔，避免了依赖冲突，与必须手动创建虚拟环境的 Python 相比 Node.js 的做法更显优雅。
+
+不过，我们并不打算使用最传统的 `npm`，而是使用更先进的包管理器 `pnpm`，它提供了更优秀的包管理和依赖解析，让依赖的安装速度更快且支持通过符号链接节省包占据的空间。另外就是我因为某些我也忘了的原因安装了 `pnpm`，而 `npm` 则只装了一个 `pnpm`，那我们干脆就让他依旧单纯下去吧~
+
+而要运行 TypeScript 代码，我们采用 `pnpm` 来安装 `typescript` 包并安装 `tsx` 这个工具。`tsx` 可以直接运行 TypeScript 代码，不需要先 “编译” 为对应的 JavaScript 代码。最后，为了在本地能够打开临时端口观察渲染情况，我们再安装 `vite` 这个工具。
+
+我们前面聊了这么多前端与 JavaScript，那么用 JavaScript 跑出来的模拟结果肯定应该用漂亮的前端漂亮地展现出来漂亮的结果吧！就这么干！我们介绍 **React**，一款 JavaScript 前端组件库，用来搭建美丽的用户界面。React 允许用户使用可复用的组件来设计用户界面，并提供了多种钩子（Hook）来管理控件状态与副作用等。虽然笔者不会 React，但是笔者会让 AI 写 React 呀！再加上美丽群友 [開源 lib](https://ex-tasty.com/) 已有的 React 实例代码，我的评价是：
+
+> 前端，易如反掌口牙！！！
+
+行了，别废话了，赶快进入今天的正题吧！
+
+## JavaScript 的实现
+
+
+
+
+
+
+[^1]: 来源自 [Speaking JavaScript, Chapter 4. How JavaScript Was Created](https://exploringjs.com/es5/ch04.html)
+[^2]: 来源自 [JavaScript and the ECMAScript specification](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction#javascript_and_the_ecmascript_specification)
