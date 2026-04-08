@@ -95,6 +95,8 @@ toc: false
 
 - [CppReference Vector](https://en.cppreference.com/w/cpp/language/Zero-overhead_principle): `std::vector` 的文档
 - [StackOverFlow: Why Are Arrays of References Illegal](https://stackoverflow.com/questions/1164266/why-are-arrays-of-references-illegal): 所以指针真不是数组，数组也真的不是指针（）
+- [A Brief History of JavaScript](https://brendaneich.com/wp-content/uploads/2017/12/dotJS-2017.pdf): 由 JavaScript 的发明者 Brendan Eich 讲述的 JavaScript 简史，是一个幻灯片，但是内容并没有很多
+- [Speaking JavaScript Chapter 4](https://exploringjs.com/es5/ch04.html) 介绍了 JavaScript 的诞生与历史
 
 ## 软件相关
 
