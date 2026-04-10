@@ -333,7 +333,7 @@ int main(int, char**){
 
 #### 完整代码
 
-最后，在补好所有的头文件并合理使用一些 `std` 命名空间内的名称后，我们得到了一个能够被三大主流编译器（GCC，Clang/LLVM，MSVC）编译运行的一份相场代码。它的运行结果和 [相场模拟学习笔记 IV](/posts/PF_Tutorial_4) 的结果大同小异，这里就不贴出来了。你可以点击 [这个链接](/post-attachments/Impl_Spinodal/CPP/CPP_impl_v1.cpp) 来浏览这个文件。
+最后，在补好所有的头文件并合理使用一些 `std` 命名空间内的名称后，我们得到了一个能够被三大主流编译器（GCC，Clang/LLVM，MSVC）编译运行的一份相场代码。它的运行结果和 [相场模拟学习笔记 IV](/posts/PF_Tutorial_4) 的结果大同小异，这里就不贴出来了。你可以点击 [这个链接](/attachments/Impl_Spinodal/CPP/CPP_impl_v1.cpp) 来浏览这个文件。
 
 ### C++ 的另一个版本
 
@@ -646,7 +646,7 @@ int main(int, char **) {
 
 可以看到这份代码结构更加清晰，`main()` 函数内完全被划分为三大块：*模拟准备*，*时间循环* 和 *后处理*。而且整体逻辑更清晰一些，完全围绕 `con_mesh` 以及其衍生网格结构发展，得到的结果也可以快速迭代回自身。借助 `Mesh.update()` 函数，我们可以让添加噪音的过程变成一次数值更新赋予网格中的每个点。而时间循环中真正实现了三步走：计算两个依赖网格的量，然后将结果迭代回原网格。
 
-这份代码同样上传到了这个博客里，你可以通过点击 [这里](/post-attachments/Impl_Spinodal/CPP/CPP_impl_v2.cpp) 来浏览并下载这份源代码。
+这份代码同样上传到了这个博客里，你可以通过点击 [这里](/attachments/Impl_Spinodal/CPP/CPP_impl_v2.cpp) 来浏览并下载这份源代码。
 
 ## 总结与后记
 

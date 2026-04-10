@@ -34,7 +34,7 @@ comments: true
 $$
 \begin{align*}
 \mathcal{F} &= \int_V \mathcal{L}(\mathbf{\phi},\mathbf{\nabla}\mathbf{\phi})\,\mathrm{d}V \\
-&= \int_V \sum_{\beta=1}^N \sum_{\alpha=1}^\beta [ \varepsilon_{\alpha\beta}\,{\gamma'}_{\alpha\beta}^2(\mathbf{r}_{\alpha\beta})+ \frac{1}{4 \varepsilon_{\alpha\beta}} \, g_{\alpha\beta}(\mathbf{\phi})] \\
+&= \int_V \sum_{\beta=1}^N \sum_{\alpha=1}^\beta [ 36 \varepsilon_{\alpha\beta}\,{\gamma}_{\alpha\beta}^2(\mathbf{r}_{\alpha\beta})+ \frac{1}{4 \varepsilon_{\alpha\beta}} \, g_{\alpha\beta}(\mathbf{\phi})] \\
 &\qquad\qquad + \sum_{\alpha=1}^N h_{\alpha}(\mathbf{\phi},T)\,\mathrm{d}V ,
 \end{align*}
 $$

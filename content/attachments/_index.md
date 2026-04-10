@@ -1,4 +1,0 @@
----
-title: "Attachments"
-layout: "attachments"
----

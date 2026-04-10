@@ -51,6 +51,7 @@ toc: false
 - [TABLER ICONS](https://tabler.io/icons): 博客中的图标来源
 - [Transfonter](https://transfonter.org/): 把字体转换为 `woff` 字体方便使用
 - [使用 giscus 并从 utterance 迁移](https://oxidane-uni.github.io/p/%E5%B0%86%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E7%94%B1-utterance-%E8%BF%81%E7%A7%BB%E8%87%B3-giscus/): 参考了这篇博客，写的挺详细的。可惜博主已经不再更新了。
+- [SauceNAO](https://saucenao.com/): 搜图网站，非常好用。二次元这块狠狠拿捏（适合搜 pixiv 上发布的作品）
 
 ## 折腾 Arch / Linux 
 

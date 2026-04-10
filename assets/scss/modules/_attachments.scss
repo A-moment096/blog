@@ -1,0 +1,25 @@
+// =============================================================================
+// ATTACHMENTS MODULE
+// Minimal styling for attachment folder/file list
+// =============================================================================
+
+.template-attachments {
+    .attachments-tree {
+        margin: 0.5em 0 0.75em;
+        padding-left: 1.5em;
+        list-style: disc;
+    }
+
+    .attachments-folder-name {
+        font-weight: 600;
+    }
+
+    .attachments-file a {
+        word-break: break-word;
+    }
+
+    .attachments-empty {
+        margin: 0.4em 0;
+        opacity: 0.7;
+    }
+}

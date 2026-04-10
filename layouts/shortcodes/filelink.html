@@ -1,0 +1,10 @@
+{{- $path := .Get "path" | default (.Get 0) -}}
+{{- $text := .Get "text" | default (.Get 1) -}}
+{{- if not $path -}}
+    {{- errorf "filelink shortcode requires a path" -}}
+{{- end -}}
+{{- if not $text -}}
+    {{- $text = path.Base $path -}}
+{{- end -}}
+{{- $href := printf "/attachments/%s" $path | relURL -}}
+<a target="_blank" href="{{ $href }}">{{ $text }}</a>
