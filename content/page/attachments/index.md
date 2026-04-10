@@ -60,5 +60,4 @@ toc: false
 - {{< filelink path="Impl_Spinodal/JS/JS_impl_v2.js">}} : 使用面向对象与 Stride 重写求解逻辑
 - {{< filelink path="Impl_Spinodal/JS/JS_impl_v3.7z">}} : 分文件实现并允许使用输入文件，是 7z 压缩包
 - {{< filelink path="Impl_Spinodal/TS/TS_impl_v1.ts">}} : 使用 TypeScript 实现了 JS_impl_v3 的代码
-- {{< filelink path="Impl_Spinodal/TS/TS_impl_v2.ts">}} : 进一步使用 React 图形库实现浏览器端的可视化
-
+- {{< filelink path="Impl_Spinodal/TS/TS_impl_v2.7z">}} : 进一步使用 React 图形库实现浏览器端的可视化，是一份小压缩包。

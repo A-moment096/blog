@@ -5,6 +5,7 @@ categories:
 tags:
 - Python
 - Numerical Analysis
+- Spinodal Decomposition
 title: "相场模拟，但是用很多语言 II"
 description: 试试 Python！
 image: /posts/PF_Note/Impl_Spinodal/Alice-2.png
@@ -426,7 +427,7 @@ Caches (sum of all):
 
 在定义好这两个类之后，我们要做的就很简单了：直接创建好网格，然后初始化求解器，最后求解，启动！就可以得到结果了。因为我们的案例实际上网格很小，完全可以被塞进内存里，因此我们可以在跑完所有结果之后根据需要来输出到文本中，或者借助 matplotlib + PyQt6 的力量，直接打开一个图形化窗口来观察结果：
 
-![matplotlib + PyQt6 的力量！](/posts/PF_Note/Impl_Spinodal/matplotlib+pyqt6.png)
+![matplotlib + PyQt6 的力量！](matplotlib+pyqt6.png)
 
 这份代码实际上还有很多可以优化之处，比如 “求解器” 究竟应不应该在内部定义主循环？如果要耦合多种能量的话，是不是最好把能量贡献放进一个 List 中然后遍历调用？是否应该将一些自由能的偏导形式内置在 Cahn-Hilliard 求解器的内部？
 

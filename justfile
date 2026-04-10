@@ -1,8 +1,7 @@
 # https://just.systems
 set positional-arguments
 
-full-test:
-    cd ./_frontend && pnpm i && pnpm build && cd ..
+full-test: pnpm-build
     hugo server -D -F -E --disableFastRender -O
 
 pnpm-build:
@@ -13,8 +12,7 @@ rm:
 
 rebuild: rm full-test
 
-pre-test:
-    pnpm-build
+pre-test: pnpm-build
     hugo server --minify -O
     
 publish:

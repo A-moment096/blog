@@ -5,6 +5,7 @@ categories:
 tags:
 - C++
 - Numerical Analysis
+- Spinodal Decomposition
 title: "相场模拟，但是用很多语言 I"
 description: 除了 C++，还有什么能跑相场？
 image: /posts/PF_Note/Impl_Spinodal/Alice-2.png
