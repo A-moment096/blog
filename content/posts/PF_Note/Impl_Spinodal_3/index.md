@@ -10,7 +10,7 @@ title: "相场模拟，但是用很多语言 III"
 description: 让浏览器跑相场！
 image: /posts/PF_Note/Impl_Spinodal/Alice-2.png
 imageObjectPosition: center 20%
-date: 2026-04-09
+date: 2026-04-10
 math: true
 mermaid: true
 ---
@@ -520,7 +520,11 @@ type DBulkDC = (centerVal: number) => number;
 
 结果，我们写了这么多版本的代码，竟然没有任何一个是在浏览器上运行的，都是在 Node.js 上跑的……这实在是和这些前端技术的应用场景不符呀。那么最后，我们就借助 Vite 的力量以及伟大群友 [開源 lib](https://ex-tasty.com/) 在我博客内嵌入的神秘力量，来实现它在浏览器的运行吧！
 
-我们选择的库是 React，它的优点我们之前也已经介绍过了。为了让 Vite 能够直接运行，我们让 AI 搓了一个 HTML 文件，在里面使用 `<script type="module" src="./TS_impl_v2.ts"></script>` 的方式来将我们的代码结果放在浏览器上。TypeScript 代码和 HTML 代码放在了
+我们选择的库是 React，它的优点我们之前也已经介绍过了。为了让 Vite 能够直接运行，我们让 AI 搓了一个 HTML 文件，在里面使用 `<script type="module" src="./TS_impl_v2.ts"></script>` 的方式来将我们的代码结果放在浏览器上。TypeScript 代码和对应的文件放在了 [这个地方](/attachments/Impl_Spinodal/TS/TS_impl_v2.7z)。要运行这里的代码，请在解压后使用 `pnpm vite --open TS_impl_v2.html` 来打开一个端口，点击终端显示的 localhost 链接就可以进入浏览器页面，看到代码的运行结果了！在浏览器中按下 `F12` 可以打开开发者工具来查看控制台输出，可以看到计算是实时进行的。
+
+当然，在神秘力量的加持下，您可以在下面查看运行结果：
+
+{{< react component="Impl_Spinodal/TS_impl_v2" >}}
 
 
 

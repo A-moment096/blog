@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { createRoot } from "react-dom/client";
+import simuConfig from "./simu_config.json";
 
 type BoundaryPosition = "north" | "south" | "east" | "west";
 type BoundaryType = "periodic" | "fixed";
@@ -45,10 +45,15 @@ type SimulationConfig = {
 
 type ParsedSimulationFile = {
     meshes: Array<{
+        name: string;
         type: string;
-        size: [number, number];
-        spacing: [number, number];
-        boundary_conditions: BoundaryConfig[];
+        size: number[];
+        spacing: number[];
+        boundary_conditions: Array<{
+            position: string;
+            type: string;
+            value?: number;
+        }>;
         initial_geometry: {
             type: string;
             parameters: {
@@ -304,13 +309,7 @@ class CHSolver {
     }
 }
 
-async function loadSimulationConfig(path: string): Promise<SimulationConfig> {
-    const response = await fetch(path);
-    if (!response.ok) {
-        throw new Error(`Failed to load ${path}: ${response.status}`);
-    }
-
-    const parsed = (await response.json()) as ParsedSimulationFile;
+async function loadSimulationConfig(parsed: ParsedSimulationFile): Promise<SimulationConfig> {
     const mesh = parsed.meshes.find((m) => m.type === "Cahn-Hilliard") ?? parsed.meshes[0];
     if (!mesh) {
         throw new Error("No mesh configuration found.");
@@ -334,7 +333,11 @@ async function loadSimulationConfig(path: string): Promise<SimulationConfig> {
             dy: mesh.spacing[1],
             minVal: mesh.initial_geometry.parameters.min_val,
             maxVal: mesh.initial_geometry.parameters.max_val,
-            boundaryConditions: mesh.boundary_conditions,
+            boundaryConditions: mesh.boundary_conditions.map((bc) => ({
+                position: bc.position as BoundaryPosition,
+                type: bc.type as BoundaryType,
+                value: bc.value,
+            })),
         },
         energy: {
             A: parsed.energy.bulk_energy.parameters.A,
@@ -377,7 +380,7 @@ function coolwarmMap(t: number): [number, number, number] {
     return [r, g, b];
 }
 
-function App(): React.ReactElement {
+export default function App(): React.ReactElement {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const configRef = useRef<SimulationConfig | null>(null);
     const framesRef = useRef<FrameSnapshot[]>([]);
@@ -391,7 +394,7 @@ function App(): React.ReactElement {
 
         const runSim = async () => {
             try {
-                const config = await loadSimulationConfig("simu_config.json");
+                const config = await loadSimulationConfig(simuConfig);
                 if (cancelled) {
                     return;
                 }
@@ -514,8 +517,7 @@ function App(): React.ReactElement {
 
     return React.createElement(
         "div",
-        { className: "panel" },
-        React.createElement("h2", null, title),
+        { className: "text-skin-base p-3 font-mono" },
         React.createElement(
             "div",
             { className: "meta" },
@@ -523,27 +525,26 @@ function App(): React.ReactElement {
             React.createElement("div", null, `Frame: ${selectedFrame}/${frames.length - 1}`),
             React.createElement("div", null, `Step: ${currentStep}`),
         ),
-        React.createElement("canvas", { ref: canvasRef }),
+        React.createElement("canvas", {
+            ref: canvasRef,
+            width: configRef?.current?.mesh.Nx,
+            height: configRef?.current?.mesh.Ny,
+            className: "mx-auto mb-4 block h-128 w-lg border border-[#ccc] [image-rendering:pixelated]"
+        }),
+
         frames.length > 0 &&
         React.createElement(
             "div",
-            { style: { marginTop: "16px" } },
-            React.createElement("label", null, "Frame: "),
+            { className: "mt-4 mx-auto w-lg" },
             React.createElement("input", {
                 type: "range",
                 min: 0,
                 max: Math.max(0, frames.length - 1),
                 value: selectedFrame,
                 onChange: (e) => setSelectedFrame(parseInt(e.currentTarget.value, 10)),
-                style: { width: "100%" },
+                className: "block w-full"
             }),
         ),
     );
 }
 
-const rootElement = document.getElementById("app");
-if (!rootElement) {
-    throw new Error("Missing #app root element");
-}
-
-createRoot(rootElement).render(React.createElement(App));

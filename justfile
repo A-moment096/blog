@@ -5,13 +5,16 @@ full-test:
     cd ./_frontend && pnpm i && pnpm build && cd ..
     hugo server -D -F -E --disableFastRender -O
 
+pnpm-build:
+    cd ./_frontend && pnpm i && pnpm build && cd ..
+
 rm:
     rm -rf public resources
 
 rebuild: rm full-test
 
 pre-test:
-    cd ./_frontend && pnpm i && pnpm build && cd ..
+    pnpm-build
     hugo server --minify -O
     
 publish:

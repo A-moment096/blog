@@ -1,0 +1,48 @@
+{
+  "meshes": [
+    {
+      "name": "Concentration",
+      "type": "Cahn-Hilliard",
+      "size": [64, 64],
+      "spacing": [1.0, 1.0],
+      "boundary_conditions": [
+        { "position": "north", "type": "periodic" },
+        { "position": "south", "type": "periodic" },
+        { "position": "east",  "type": "periodic" },
+        { "position": "west",  "type": "periodic" }
+      ],
+      "initial_geometry": {
+        "type": "random",
+        "parameters": {
+          "min_val": 0.395,
+          "max_val": 0.405
+        }
+      }
+    }
+  ],
+  "energy": {
+    "bulk_energy": {
+      "type": "double_well",
+      "parameters": {
+        "A": 1.0
+      }
+    },
+    "interfacial_energy": {
+      "type": "gradient",
+      "parameters": {
+        "kappa": 1.0
+      }
+    }
+  },
+  "solvers": {
+    "solver": [{ "type": "Cahn-Hilliard", "M": 1.0 }],
+    "Nstep": 10000,
+    "dt": 0.01
+  },
+  "output": {
+    "folder": "output",
+    "writeEvery": 100,
+    "logEvery": 500,
+    "nanCheckEvery": false
+  }
+}
