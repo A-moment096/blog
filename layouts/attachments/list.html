@@ -1,0 +1,13 @@
+<h1>{{ .Title }}</h1>
+
+<ul>
+  {{ $files := readDir "attachments" }}
+  {{ range $files }}
+    <li>
+      <a href="{{ "/attachments/" | relURL }}{{ .Name }}" target="_blank">
+        {{ .Name }}
+      </a>
+      ({{ .Size }} bytes)
+    </li>
+  {{ end }}
+</ul>
