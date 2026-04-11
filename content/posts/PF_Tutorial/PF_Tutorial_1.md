@@ -65,7 +65,7 @@ $$
 对于如下的常微分方程初值问题:
 $$ \dfrac{\mathrm{d}\,y}{\mathrm{d}\,x}  = f(x,y);$$
 $$ y(x_0) = y(a) = y_0, $$
-其中 $x \in \left[ a,b \right] \subseteq \mathbb{R} $, $y(x) \in \mathbb{R} \to \mathbb{R}$
+其中 $x \in \left[ a,b \right] \subseteq \mathbb{R} $, $y : {\mathbb{R} \to \mathbb{R}}$
 由此可以选定一大整数 $ N $, 记 $h = \dfrac{b-a}{N}$, $ x_0 = a, x_i = x_0 + ih, x_N = b, y_i = y(x_i).$ 
 则由有限差分, 该初值问题方程可以改写为:
 $$ \dfrac{y_i - y_{i-1}}{h} = f(x_{i-1},y_{i-1}); \tag{显式欧拉法}$$
