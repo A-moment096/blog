@@ -5,7 +5,6 @@
     "jsx": "react-jsx",
     "moduleResolution": "Bundler",
     "strict": true,
-    "baseUrl": "."
   },
   "include": ["./**/*"]
 }
