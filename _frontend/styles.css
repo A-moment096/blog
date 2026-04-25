@@ -12,3 +12,19 @@
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
 }
+
+@import "mafs/core.css";
+
+.MafsView.MafsView {
+    --mafs-bg: white;
+    --mafs-fg: #334155;
+    --mafs-line-color: #e2e8f0;
+    --grid-line-subdivision-color: #cbd5e1;
+}
+
+[data-scheme=dark] .MafsView.MafsView {
+    --mafs-bg: black;
+    --mafs-fg: white;
+    --mafs-line-color: #555;
+    --grid-line-subdivision-color: #222;
+}

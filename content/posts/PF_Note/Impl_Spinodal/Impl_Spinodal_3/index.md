@@ -525,7 +525,7 @@ type DBulkDC = (centerVal: number) => number;
 
 当然，在神秘力量的加持下，您可以在下面查看运行结果（请左右拖动滑块哦）：
 
-{{< react component="Impl_Spinodal/TS_impl_v2" >}}
+{{< react component="Impl_Spinodal_3/TS_impl_v2" >}}
 
 针不戳！从我自己的浏览器上跑出来的结果大概就是 0.85 秒左右的时间，我很满意。不过这里要说明的是，为了在浏览器上渲染，我们没有将结果输出到文件，而是直接存在数组中，在渲染时将数组中的结果按时间帧渲染出来，所以计时没有考虑文件 IO 的问题。然而即便如此，我依然觉得这实在是太酷……
 

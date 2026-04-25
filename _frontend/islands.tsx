@@ -1,7 +1,13 @@
 import "./styles.css";
 import { createRoot } from "react-dom/client";
+import type { ComponentType } from "react";
 
-const modules = import.meta.glob("./components/**/*.tsx");
+type IslandProps = Record<string, unknown>;
+type IslandModule = {
+  default?: ComponentType<IslandProps>;
+} & Record<string, unknown>;
+
+const modules = import.meta.glob<IslandModule>("./components/**/*.tsx");
 
 async function hydrateIsland(el: Element) {
   console.log("Hydrating island:", el);
@@ -17,7 +23,8 @@ async function hydrateIsland(el: Element) {
   }
 
   const mod = await loader();
-  const Component = mod.default || Object.values(mod)[0];
+  const Component =
+    mod.default || (Object.values(mod)[0] as ComponentType<IslandProps>);
 
   createRoot(el).render(<Component {...props} />);
 }

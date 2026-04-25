@@ -517,7 +517,7 @@ export default function App(): React.ReactElement {
 
     return React.createElement(
         "div",
-        { className: "text-skin-base p-3 font-mono" },
+        { className: "text-skin-base p-3 font-serif" },
         React.createElement(
             "div",
             { className: "meta" },
