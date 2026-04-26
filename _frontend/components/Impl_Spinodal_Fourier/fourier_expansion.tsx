@@ -177,7 +177,7 @@ export default function FourierSeriesPlot() {
                 <div className="ml-1 flex flex-col gap-2">
 
                     <Mafs
-                        viewBox={{ x: [-0.5, order + 0.5], y: [0, maxAmplitude * 1.2] }}
+                        viewBox={{ x: [-0.5, order + 2], y: [0, maxAmplitude * 1.2] }}
                         preserveAspectRatio={false}
                         height={360}
                     >
