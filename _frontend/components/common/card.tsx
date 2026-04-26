@@ -1,14 +1,15 @@
 type CardProps = {
     children: React.ReactNode;
     className?: string;
+    wide?: boolean;
 }
 
-export default function Card({ children, className = "" }: CardProps) {
+export default function Card({ children, className = "", wide = false }: CardProps) {
     return (
-        <div className="
+        <div className={`
         mx-auto 
         w-full 
-        max-w-5xl 
+        ${wide ? "max-w-80%" : "max-w-5xl"}
         rounded-xl 
         border
         shadow-sm
@@ -17,7 +18,8 @@ export default function Card({ children, className = "" }: CardProps) {
         text-zinc-900
         dark:bg-zinc-900
         dark:text-zinc-100
-        dark:border-zinc-700">
+        dark:border-zinc-700
+        ${className}`}>
             {children}
         </div>
     )

@@ -16,6 +16,7 @@ function integrate(
     }
     return (sum * h) / 3;
 }
+
 function fourierCoefficients(
     f: (x: number) => number,
     a: number,
@@ -64,7 +65,7 @@ function fourierSeries(
 type FunctionConfig = {
     label: string;
     f: (x: number) => number;
-    range: [number, number];  // replaces L
+    range: [number, number];
     viewBox: { x: [number, number]; y: [number, number] };
     xAxis?: { lines?: number; labels?: (n: number) => string };
     yAxis?: { lines?: number; labels?: (n: number) => string };
@@ -99,7 +100,7 @@ const FUNCTIONS: Record<string, FunctionConfig> = {
         label: "y = ln(x+1) [-0.9,4]",
         f: (x) => Math.log(x + 1),
         range: [-0.9, 4],
-        viewBox: { x: [-0.5, 5], y: [-1, 3] },
+        viewBox: { x: [-1.5, 5], y: [-3, 2.5] },
         xAxis: { lines: 1, labels: (n) => n === 0 ? "" : String(n) },
         yAxis: { lines: 1, labels: (n) => n === 0 ? "" : String(n) },
     }
@@ -110,11 +111,9 @@ const ORDER_COLORS = [
     Theme.blue, Theme.violet, Theme.pink, Theme.indigo,
 ];
 
-
 export default function FourierSeriesPlot() {
     const [order, setOrder] = useState(1);
     const [selectedKey, setSelectedKey] = useState("x");
-    const [view, setView] = useState<"real" | "frequency">("real");
 
     const fn = FUNCTIONS[selectedKey];
     const { a, b } = fourierCoefficients(fn.f, fn.range[0], fn.range[1], order);
@@ -126,9 +125,11 @@ export default function FourierSeriesPlot() {
     );
     const maxAmplitude = Math.max(...amplitudes, 1);
 
+    const seriesColor = ORDER_COLORS[order % ORDER_COLORS.length];
 
     return (
-        <Card>
+        <Card wide={true}>
+            {/* Function selector */}
             <div className="mb-4 flex flex-wrap gap-3">
                 {Object.entries(FUNCTIONS).map(([key, config]) => (
                     <button
@@ -144,74 +145,71 @@ export default function FourierSeriesPlot() {
                 ))}
             </div>
 
-            {view === "real" ? (
-                <Mafs
-                    zoom={{ min: 0.5, max: 5 }}
-                    viewBox={fn.viewBox}
-                    preserveAspectRatio={false}
-                    height={400}>
-                    <Coordinates.Cartesian xAxis={fn.xAxis} yAxis={fn.yAxis} />
-                    <Plot.OfX y={fn.f} color={Theme.indigo} style="dashed" />
-                    <Plot.OfX
-                        y={(x) => fourierSeries(x, fn.range[0], fn.range[1], a, b, order)}
-                        color={ORDER_COLORS[order % ORDER_COLORS.length]}
-                    />
-                </Mafs>
-            ) : (
-                <Mafs
-                    // zoom={{ min: 0.5, max: 5 }}
-                    viewBox={{ x: [-0.5, order + 0.5], y: [0, maxAmplitude * 1.2] }}
-                    preserveAspectRatio={false}
-                    height={400}
-                >
-                    <Coordinates.Cartesian
-                        xAxis={{
-                            lines: 1,
-                            labels: (n) => Number.isInteger(n) && n >= 0 ? String(n) : "",
-                        }}
-                        yAxis={{
-                            lines: maxAmplitude / 4,
-                            labels: (n) => n === 0 ? "" : n.toFixed(1),
-                        }}
-                    />
-                    {amplitudes.map((amp, n) => (
-                        <g key={n}>
-                            <Line.Segment
-                                point1={[n, 0]}
-                                point2={[n, amp]}
-                                color={ORDER_COLORS[n % ORDER_COLORS.length]}
-                            />
-                            <Point
-                                x={n}
-                                y={amp}
-                                color={ORDER_COLORS[n % ORDER_COLORS.length]}
-                            />
-                        </g>
-                    ))}
-                </Mafs>
-            )}
-            <div className="mb-4 flex justify-end">
-                <button
-                    onClick={() => setView(v => v === "real" ? "frequency" : "real")}
-                    className="rounded-lg px-4 py-1.5 font-serif text-2xl font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300"
-                >
-                    {view === "real" ? "Switch to Frequency Space" : "Switch to Real Space"}
-                </button>
+            <div className="grid grid-cols-2 gap-4 mb-2">
+                <div className="ml-1 text-xl font-serif font-semibold text-slate-600 dark:text-slate-400">
+                    Real Space
+                </div>
+                <div className="ml-1 text-xl font-serif font-semibold text-slate-600 dark:text-slate-400">
+                    Frequency Space
+                </div>
             </div>
-            {view === "frequency" ? (
-                <div className="mt-4 text-2xl font-serif text-slate-600 dark:text-slate-400">
-                    Showing amplitude spectrum √(aₙ² + bₙ²) for n = 0 to {order}
+            {/* Side-by-side plots */}
+            <div className="grid grid-cols-2 gap-4">
+                {/* Real (time) space */}
+                <div className="ml-1 flex flex-col gap-2">
+
+                    <Mafs
+                        zoom={{ min: 0.5, max: 5 }}
+                        viewBox={fn.viewBox}
+                        preserveAspectRatio={false}
+                        height={360}
+                    >
+                        <Coordinates.Cartesian xAxis={fn.xAxis} yAxis={fn.yAxis} />
+                        <Plot.OfX y={fn.f} color={Theme.indigo} style="dashed" />
+                        <Plot.OfX
+                            y={(x) => fourierSeries(x, fn.range[0], fn.range[1], a, b, order)}
+                            color={seriesColor}
+                        />
+                    </Mafs>
                 </div>
-            ) : (
-                <div className="mt-4 flex items-center gap-3 text-2xl">
-                    <span className="inline-block h-2.5 w-6 rounded-full"
-                        style={{ backgroundColor: Theme.indigo }} />
-                    <span className="font-serif">{fn.label} (exact)</span>
-                    <span className="inline-block h-2.5 w-6 rounded-full ml-4"
-                        style={{ backgroundColor: ORDER_COLORS[order % ORDER_COLORS.length] }} />
-                    <span className="font-serif">Fourier order {order}</span>
+
+                {/* Frequency space */}
+                <div className="ml-1 flex flex-col gap-2">
+
+                    <Mafs
+                        viewBox={{ x: [-0.5, order + 0.5], y: [0, maxAmplitude * 1.2] }}
+                        preserveAspectRatio={false}
+                        height={360}
+                    >
+                        <Coordinates.Cartesian
+                            xAxis={{
+                                lines: 1,
+                                labels: (n) => Number.isInteger(n) && n >= 0 ? String(n) : "",
+                            }}
+                            yAxis={{
+                                lines: maxAmplitude / 4,
+                                labels: (n) => n === 0 ? "" : n.toFixed(1),
+                            }}
+                        />
+                        {amplitudes.map((amp, n) => (
+                            <g key={n}>
+                                <Line.Segment
+                                    point1={[n, 0]}
+                                    point2={[n, amp]}
+                                    color={ORDER_COLORS[n % ORDER_COLORS.length]}
+                                />
+                                <Point
+                                    x={n}
+                                    y={amp}
+                                    color={ORDER_COLORS[n % ORDER_COLORS.length]}
+                                />
+                            </g>
+                        ))}
+                    </Mafs>
                 </div>
-            )}
+            </div>
+
+            {/* Order slider */}
             <div className="mt-5 flex flex-wrap items-center gap-4">
                 <label className="text-2xl font-medium">
                     Order: <span className="font-serif">{order}</span>
