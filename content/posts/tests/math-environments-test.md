@@ -1,6 +1,5 @@
 ---
-title: "数学环境完整展示"
-description: "展示博客中所有数学环境的使用方法和 LaTeX 公式渲染效果"
+title: "数学环境测试"
 date: 2025-09-18T15:00:00+08:00
 categories:
 - Testing
