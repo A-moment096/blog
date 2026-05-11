@@ -11,6 +11,7 @@ rightSingleQuote = "'"
 
 [goldmark.parser.attribute]
 block = true
+title = true
 
 # LaTeX math support
 # https://gohugo.io/content-management/mathematics/

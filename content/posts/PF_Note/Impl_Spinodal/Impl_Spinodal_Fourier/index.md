@@ -297,18 +297,205 @@ $$
 >
 > $$ \{F_k\} = \frac{\langle\{f_n\}, \{\boldsymbol{\phi}_k\} \rangle}{\langle \{\boldsymbol{\phi}_k\} ,\{\boldsymbol{\phi}_k\} \rangle} = \frac{1}{N} \langle\{f_n\}, \{\boldsymbol{\phi}_k\} \rangle$$
 
-没错，只需要将函数内积替换为序列内积，我们就自然得到了离散傅里叶变换的结果。至此，我们就能够用我们的离散傅里叶变换来处理数值问题中被我们离散化的点，从而得到它们在谱空间中的结果。
+没错，只需要将函数内积替换为序列内积，我们就自然得到了离散傅里叶变换的结果。而如果需要逆变换，则直接将 $\phi_k$ 替换为它的共轭，然后做一下归一化就可以了。至此，我们就能够用我们的离散傅里叶变换来处理数值问题中被我们离散化的点，从而得到它们在谱空间中的结果。
 
 也许你会有疑问：离散傅里叶变换真的是傅里叶变换的离散形式吗？或者说，当我们使用离散傅里叶变换时，它还拥有我们之前聊到的那些连续傅里叶变换中拥有的优良性质吗？答案是肯定的：可以证明，在满足一定条件下，函数的序列在经过离散傅里叶变换后的结果，就是该函数连续傅里叶变换后按相同方式取点得到的点列。至于这里的条件，笔者没有深入探究，总体上说是要求所有点都必须均匀分布且完整覆盖函数的整个周期。否则会出现一些失真（英文是 *Aliasing*），比如函数的频谱中会有高频成分叠加到低频上。但好消息是，我们考虑的一开始就是模拟问题，而不是数字信号处理问题，所以在建模和求解时不需要过于关注这些问题。
 
-但是，即便是有了离散傅里叶变换，我们也还是停留在数学模型上。要怎么才能实现离散傅里叶变换的算法呢？最先想到的算法当然是老老实实按照定义计算了，但是这样的算法复杂度是 $O(N^2)$，是一个问题规模稍微大一些就很难以接受的算法复杂度。而且如果您真的用这个方法去实现该算法，很快就会发现中间有很多对称的计算，也有一些重复计算的部分。如果把那些重复计算的过程想办法去掉，并充分利用对称性，那整个计算过程一定会更快一些。这，就是我们接下来要介绍的：快速傅里叶变换 (FFT)。
+但是，即便是有了离散傅里叶变换，我们也还是停留在数学模型上。要怎么才能实现离散傅里叶变换的算法呢？最先想到的算法当然是老老实实按照定义计算了，但是这样的算法复杂度是 $O(N^2)$，是一个问题规模稍微大一些就很难以接受的算法复杂度。好在这样的算法依然有改进的空间，这也就是我们下面要介绍的 *快速傅里叶变换 (FFT)*。
 
 ## 快速傅里叶变换
 
+或许您早已听说过这个名字，不过这不妨碍我们再次在这里重新介绍这款算法。快速傅立叶变换（Fast Fourier Transform, FFT）并不是某个独立的数学变换，它只是一种计算（离散）傅里叶变换的快速算法而已。但是这个算法太出名了，以至于很多人也许会先听到 FFT，然后才了解到什么是傅里叶变换。那么这个著名的算法，它 *快速* 在哪呢？
 
-### 从 \$O(N^2)\$ 到 \$O(N\log(N))\$
+### 从 \$O(N^2)\$ 到 \$O(N\log N)\$
+
+前面我们提到，老老实实按照定义计算得到的算法复杂度是 $O(N^2)$。我们看看这个算法是怎么工作的，或许能从中得到一些提示。不过在那之前，我们发扬 *一切数据结构自己动手* 的优良品质，简单实现一个和 `fftw_complex` 兼容的复数类型，就不用 `<complex.h>` 提供的复数类型了：
+
+```c
+#include <math.h>
+#include <string.h>
+typedef double my_complex[2];
+
+/* Allocate and zero-initialise N complex numbers. */
+static inline my_complex *alloc_complex(size_t N) {
+    my_complex *p = calloc(N, sizeof(my_complex));
+    if (!p) {
+        fprintf(stderr, "calloc failed\n");
+        exit(EXIT_FAILURE);
+    }
+    return p;
+}
+
+/* Deep-copy dest ← src (N elements). */
+static inline void copy_complex(my_complex *dest, my_complex *src, size_t N) {
+    memcpy(dest, src, sizeof(my_complex) * N);
+}
+
+static inline void cassign(my_complex dest, my_complex src) {
+    dest[0] = src[0];
+    dest[1] = src[1];
+}
+
+static inline void cadd(my_complex a, my_complex b, my_complex out) {
+    out[0] = a[0] + b[0];
+    out[1] = a[1] + b[1];
+}
+
+static inline void csub(my_complex a, my_complex b, my_complex out) {
+    out[0] = a[0] - b[0];
+    out[1] = a[1] - b[1];
+}
+
+static inline void cmul(my_complex a, my_complex b, my_complex out) {
+    my_complex res;
+    res[0] = a[0] * b[0] - a[1] * b[1];
+    res[1] = a[0] * b[1] + a[1] * b[0];
+    cassign(out, res);
+}
+
+static inline void c_exp_pure_image(double theta, my_complex out) {
+    out[0] = cos(theta);
+    out[1] = sin(theta);
+}
+```
+
+可以看到我们的复数其实就是一个长度为 $2$ 的数组，第一个位置存储实部，第二个存储虚部，这和 `fftw` 的实现应该是完全一致的。计算方面我们主要要实现的是赋值、加法、减法和乘法，以及一个需要用到的指数 $\mathrm{e}^{\mathbf{i}\theta}$。这里顺带写了两个工具函数，方便创建复数数组以及对数组深拷贝，或者叫批量赋值。
+
+这里其实有个值得注意的点：乘法的实现需要先将结果储存在临时变量中，最后统一赋值。不直接将 `out` 的值改为计算得到的结果的原因是这里没法保证 `in` 和 `out` 不是同一个变量，如果是同一个变量的话，直接向 `out` 中写入的操作会导致虚部计算出错。鄙人在这里栽过跟头，这里给大家也是给自己提个醒。
+
+#### 老实的 \$O(N^2)\$ 算法
+
+其实说实话，按照定义实现的算法很简单，只需要这么几行就可以了：
+
+```c
+void my_fourier_transform(
+    my_complex *in,
+    my_complex *out,
+    size_t N,
+    int sign) {
+
+    my_complex *phi_k = alloc_complex(N);
+    for (size_t k = 0; k < N; k++) {
+        for (size_t n = 0; n < N; n++) {
+            double theta = (double)sign * 2.0 * M_PI * n * k / (double)N;
+            c_exp_pure_image(theta, phi_k[n]);
+            my_complex f_n_phi_n;
+            cmul(phi_k[n], in[n], f_n_phi_n);
+            cadd(out[k], f_n_phi_n, out[k]);
+        }
+    }
+    free(phi_k);
+}
+```
+
+简单来说，我们只需要创建两个循环，第一个循环用来遍历每个输出的位置，第二个循环内执行我们需要的内积（逐点相乘后累加），就完成了这个算法了。这里我们没有进行逆变换的归一化，为的是和 `fftw` 的结果保持一致。然而，明晃晃的二重 $N$ 次循环意味着这个算法是赤裸裸的 $O(N^2)$ 算法，一旦 $N$ 稍微大一些就会很慢。要从哪里优化这个算法呢？
+
+#### 取巧的 \$O(N\log N)\$ 算法
+
+也许您已经从 `theta` 的计算过程看到了一些端倪：$n$ 和 $k$ 在遍历 $N$ 次的情况下只有 $N^2/2$个独立的值，也就是说有一半的计算是没必要的。这虽然不会立刻降低它 $O(N^2)$ 的复杂度，但能提醒我们傅里叶变换的结果是具有极强对称性的。在维基百科上搜索 [Fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform) 词条，你会在 *Algorithm* 部分看到所谓的 *Cooley-Tukey algorithm*，且它拥有一个独立的词条页面。没错，实际上我们常说的 FFT 指的正是这个 Cooley-Tukey 算法。
+
+这个算法是怎么工作的呢？其实它利用了离散傅里叶变换的数学对称性。这里我们大致概括这个算法的思想，如果想要详细了解这个算法，您可以参考 [Cooley-Tukey algorithm - Wikipedia](https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm#The_radix-2_DIT_case)。 
+
+设我们要做变换的序列为 $x_n$，经过傅里叶变换后的结果为 
+
+$$
+X_k = \sum_{n=0}^{N-1}x_n \mathrm{e}^{-\mathbf{i} k n 2\pi / N},
+$$
+
+我们可以将右边这个求和分成奇数项与偶数项，再利用一点 $\mathrm{e}^{2n\pi\mathbf{i}}$ 的性质，我们可以发现，序列 $X_k$ 可以被分成前后两半，每一部分都可以用奇数项和偶数项的傅里叶变换独立地表示出来：
+
+$$\begin{align*}
+     X_k = E_k + W_k O_k,\\
+     X_{k+N/2} = E_k - W_k O_k,\\
+\end{align*}$$
+
+其中
+
+$$
+\begin{align*}
+    W_k &= \mathrm{e}^{-\mathbf{i} k 2\pi / N};\\
+    E_k &= \sum_{m=0}^{N/2 -1} x_{2m}\mathrm{e}^{-\mathbf{i} k m 2\pi / N};\\
+    O_k &= \sum_{m=0}^{N/2 -1} x_{2m+1}\mathrm{e}^{-\mathbf{i} k m 2\pi / N}.\\
+\end{align*}
+$$
+
+就这样，我们只需要得到 $E_k$ 和 $O_k$ 两个 $N/2$ 长度的数列后，我们就能组合出原来的 $X_k$，从而成功地去掉一半的冗余计算。但是与此同时，可以看到 $E_k$ 和 $O_k$ 二者本身也是长度为 $N/2$ 的序列的傅里叶变换，因此它们也可以进行这样的拆分计算。我们总共可以进行 $\log_2 N$（下面简记为 $\log N$）次拆分，第 $k$ 次拆分会得到 $2^k$ 个序列，每个序列长度为 $N/(2^k)$。在每一次拆分的结果中我们都需要分出来 $E_k$ 和 $O_k$，并对它们进行乘法和加法。乘法次数为 $2^k/2 * N/(2^k) = N/2$ 次，这里序列个数除以 $2$ 是因为只需要对 $O_k$ 进行乘法；加法次数为 $2^k/2 * N/(2^k) * 2 = N$ 次，这里序列个数除以 $2$ 是因为加法/减法是成对计算的（对应的 $E_k$ 和 $O_k$），而最后乘以 $2$ 则是因为要计算两半（加法给出前半，减法给出后半）。因此，每次拆分得到的结果都需要 $3N / 2$ 次计算，总共进行 $\log N$ 次拆分，就需要 $3N/2 \log N$ 次计算，时间复杂度则为 $O(N \log N)$ 了。这也是我们得到它的算法复杂度的一种方法。
+
+那么，怎么实现这个 Cooley-Tukey 算法呢？从上面的分析过程不难发现，我们需要反复将序列的傅里叶变换进行拆分，再从拆分得到的结果来自下而上地计算每一层的 $O_k$ 和 $E_k$。因此，这个任务是天然适合使用递归算法的。下面是它的实现：
+
+```c
+void my_fft_1d_v1(
+    my_complex *in,
+    my_complex *out,
+    size_t N,
+    int sign) {
+    // N is assumed power of 2
+    if (N == 1) {
+        cassign(out[0], in[0]);
+        return;
+    }
+    my_complex *Ek = (my_complex *)malloc(sizeof(my_complex) * N / 2);
+    my_complex *Ek_out = (my_complex *)malloc(sizeof(my_complex) * N / 2);
+    my_complex *Ok = (my_complex *)malloc(sizeof(my_complex) * N / 2);
+    my_complex *Ok_out = (my_complex *)malloc(sizeof(my_complex) * N / 2);
+    if (!Ek || !Ek_out || !Ok || !Ok_out) {
+        free(Ek);
+        free(Ek_out);
+        free(Ok);
+        free(Ok_out);
+        fprintf(stderr, "%s", "Allocation Failed!");
+        return;
+    }
+
+    for (size_t i = 0; i < N / 2; ++i) {
+        cassign(Ek[i], in[2 * i]);
+        cassign(Ok[i], in[2 * i + 1]);
+    }
+    my_fft_1d_v1(Ek, Ek_out, N / 2, sign);
+    my_fft_1d_v1(Ok, Ok_out, N / 2, sign);
+    double theta = (double)sign * 2.0 * M_PI / (double)N;
+    for (size_t i = 0; i < N / 2; i++) {
+        my_complex Wk;
+        c_exp_pure_image((double)i * theta, Wk);
+        my_complex WOk_k;
+        cmul(Wk, Ok_out[i], WOk_k);
+        cadd(Ek_out[i], WOk_k, out[i]);
+        csub(Ek_out[i], WOk_k, out[i + N / 2]);
+    }
+    free(Ek);
+    free(Ek_out);
+    free(Ok);
+    free(Ok_out);
+    return;
+}
+```
+
+这里没有使用方便的 `complex_alloc` 而是用传统的 `malloc` 进行操作，所以代码显得更长了一些，不过核心算法很简单。首先当处理的序列长度为 $1$ 的时候递归达到终点，直接将拆分得到的部分返回给结果部分就好。当序列长度不为 $1$ 时，我们先区分出奇偶序列，然后将奇偶序列分别都进行傅里叶变换（送入递归逻辑）。在奇偶序列的傅里叶变换计算完成后，先计算要用的 $W_k$，然后分别计算 $E_k + W_k O_k$ 和 $E_k - W_k O_k$，最后将结果传到 `out` 中，就完成了递归逻辑的设计。
+
+我相信这套逻辑还是比较清晰的，因为它真的就像是把原本的算法翻译成公式。然而，递归在应用过程中总不算是一个特别好的方法，因为它需要重复调用函数，直到函数达到递归返回的位置时才能逐次完成函数调用，导致会有大量的函数停留在调用栈内等待调用完成。对于小规模的问题而言，递归也还够用，但是对大规模的问题来讲，递归会很容易造成栈溢出（Stack Overflow，也就是爆栈）。因此，很有必要想办法把递归算法优化成为迭代算法。
 
 ### 从递归到迭代
+
+从理论上，递归算法总能改写成迭代算法。对于 FFT 这个算法而言，我们将它从递归改写成迭代的思路其实很清晰：将本循环中某些序列的元素乘以需要的 $W_k$ 之后，再和对应的序列加起来，就得到了下一个循环要用的序列。但是问题是，哪些是 *某些*，哪些又是 *对应的* 序列。我们从一个 $N=8$ 的例子来看看，需要怎么实现这个算法。
+
+![FFT 的过程](FFT.png)
+
+上面这张简图中，左侧是重排的过程，因为每次计算傅里叶变换时都需要先区分下标的奇偶性，因此最后排出来的结果是 `0, 4, 2, 6, 1, 5, 3, 7`。右侧的上标是为了区分第几个子序列，而下标则是子序列中的元素下标。左侧在将元素成功排列之后，就自然得到了右侧最下方一层的，奇偶交替的 $8$ 个长为 $1$ 的子序列。此时，由于我们已经排列好了所有的元素，我们只需要将相邻的两个子列（左侧为偶子列，右侧为奇子序列）做计算，就可以得到下一层的子列。其中加法得到新子列的前半部分，减法得到后半部分。我们这里举一个具体的例子，让 $x_n$ 就是从 $0$ 到 $7$ 的整数：
+
+![FFT 简单示例](FFT_example.png)
+
+上面的例子中，小数被约去了一些，它们应该是 $4\mathbf{i}$ 与 $4\sqrt{2}\mathbf{i}$ 的加或减的结果。
+
+从上面的例子可以看到，要解决的问题有：如何生成这样的排列，以及怎么使用循环来动态处理当前的序列长度与序列个数。
+
+#### 比特反转
+
+首先我们来看第一个问题，其实这个的答案很有趣：如果将数字表示为二进制数位，那初始排列和排列好的结果的关系正好是二进制位的镜像结果，又称比特反转/数位反转的结果：
+
+![数位反转](Bit_Reverse.png)
+{width="800"}
+
+
 
 ### FFTW
 
