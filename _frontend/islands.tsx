@@ -10,7 +10,7 @@ type IslandModule = {
 const modules = import.meta.glob<IslandModule>("./components/**/*.tsx");
 
 async function hydrateIsland(el: Element) {
-  console.log("Hydrating island:", el);
+  // console.log("Hydrating island:", el);
   const component = el.getAttribute("data-component");
   if (!component) return;
 

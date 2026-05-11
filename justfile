@@ -4,6 +4,12 @@ set positional-arguments
 full-test: pnpm-build
     hugo server -D -F -E --disableFastRender -O
 
+server: pnpm-build
+    hugo server -D -F -E --disableFastRender
+
+pnpm-test:
+    cd ./_frontend && pnpm i && pnpm dev && cd ..
+
 pnpm-build:
     cd ./_frontend && pnpm i && pnpm build && cd ..
 

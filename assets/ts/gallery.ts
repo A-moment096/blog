@@ -12,7 +12,40 @@ const wrap = (figures: HTMLElement[]) => {
     }
 }
 
+const parseInlineAttributes = (container: HTMLElement): Map<HTMLImageElement, Record<string, string>> => {
+    const result = new Map<HTMLImageElement, Record<string, string>>();
+    const images = container.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
+
+    for (const img of Array.from(images)) {
+        let next = img.nextSibling;
+        while (next && next.nodeType === Node.TEXT_NODE && next.textContent?.trim() === '') {
+            next = next.nextSibling;
+        }
+        if (!next || next.nodeType !== Node.TEXT_NODE) continue;
+
+        const text = next.textContent?.trim() ?? '';
+        const match = text.match(/^\{([^}]+)\}/);
+        if (!match) continue;
+
+        const normalized = match[1].replace(/[\u201C\u201D]/g, '"');
+        const attrRegex = /(\w[\w-]*)="([^"]*)"/g;
+        const attrs: Record<string, string> = {};
+        let m: RegExpExecArray | null;
+        while ((m = attrRegex.exec(normalized)) !== null) {
+            attrs[m[1]] = m[2];
+        }
+
+        result.set(img, attrs);
+
+        // Clean up the text node
+        next.textContent = text.replace(/^\{[^}]+\}\s*/, '');
+    }
+
+    return result;
+};
+
 export default (container: HTMLElement) => {
+    const inlineAttrs = parseInlineAttributes(container);
     /// The process of wrapping image with figure tag is done using JavaScript instead of only Hugo markdown render hook
     /// because it can not detect whether image is being wrapped by a link or not
     /// and it lead to a invalid HTML construction (<a><figure><img></figure></a>)
@@ -68,6 +101,17 @@ export default (container: HTMLElement) => {
             const figcaption = document.createElement('figcaption');
             figcaption.innerText = img.getAttribute('alt')!;
             figure.appendChild(figcaption);
+        }
+        // Apply inline attributes after data-pswp-* is already set
+        const attrs = inlineAttrs.get(img);
+        if (attrs) {
+            for (const [key, value] of Object.entries(attrs)) {
+                if (key === 'width' || key === 'height') {
+                    img.style.setProperty(key, /^\d+$/.test(value) ? `${value}px` : value);
+                } else {
+                    img.setAttribute(key, value);
+                }
+            }
         }
     }
 

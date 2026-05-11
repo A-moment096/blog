@@ -42,10 +42,10 @@
     gap: 10px;
 
     a {
-      background: rgba(0, 26, 255, 0) !important;
+      background: rgba(0, 26, 255, 0);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(14, 18, 226, 0);
-      color: black !important;
+      color:  var(--card-text-color-main);
       border-radius: var(--tag-border-radius);
       padding: 6px 16px;
       font-size: 1.3rem;

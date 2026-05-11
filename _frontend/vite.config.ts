@@ -3,16 +3,17 @@ import tailwindcss from "@tailwindcss/vite"
 
 export default defineConfig({
   plugins: [tailwindcss()],
+  base: "/react/",
   build: {
     outDir: "../static/react",
     emptyOutDir: true,
-		cssCodeSplit: false, // 🔥 important
+		cssCodeSplit: false,
     rollupOptions: {
       input: "./islands.tsx",
       output: {
         entryFileNames: "islands.js",
         chunkFileNames: "chunks/[name]-[hash].js",
-				assetFileNames: "assets/[name].[ext]" // 👈 no hash
+				assetFileNames: "assets/[name].[ext]"
       }
     }
   }

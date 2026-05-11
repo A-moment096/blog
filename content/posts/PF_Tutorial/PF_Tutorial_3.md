@@ -171,7 +171,7 @@ for (int i = 0; i < 10; i ++){
 
 这里再介绍一下所谓的 range `for` 循环。当存在一个不变长的容器式的变量时，可以通过：
 ```cpp
-for (auto rep_elem in container){
+for (auto rep_elem : container){
     /* xxx */
 }
 ```

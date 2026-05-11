@@ -160,7 +160,7 @@ reactionsEnabled = 1
 emitMetadata = 0
 inputPosition = "top"
 lightTheme = "light_protanopia" 
-darkTheme = ""
+darkTheme = "dark_dimmed"
 lang = "zh-CN"
 loading = "lazy"
 [comments.gitalk]
