@@ -30,6 +30,9 @@ readingTime = true
 enabled = true
 default = "Licensed under CC BY-NC-SA 4.0"
 
+[article.list]
+showTags = true
+
 ## Widgets
 
 [[widgets.homepage]]

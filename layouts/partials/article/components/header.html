@@ -1,13 +1,15 @@
 <header class="article-header">
-    {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources) -}}
+    {{- $IsList := .IsList -}}
+    {{- $Page := .Page -}}
+    {{- $image := partial "helper/image" (dict "Image" $Page.Params.image "Resources" $Page.Resources) -}}
     {{ if $image }}
-    <div class="article-image{{ with .Params.imagePosition }} image-position-{{ . }}{{ end }}">
-        <a href="{{ .RelPermalink }}">
+    <div class="article-image{{ with $Page.Params.imagePosition }} image-position-{{ . }}{{ end }}">
+        <a href="{{ $Page.RelPermalink }}">
             <img src="{{ $image.Permalink }}" 
                  width="{{ $image.Width }}" 
                  height="{{ $image.Height }}" loading="lazy"
-                 alt="Featured image of post {{ .Title }}" 
-                 {{ with .Params.imageObjectPosition
+                 alt="Featured image of post {{ $Page.Title }}" 
+                 {{ with $Page.Params.imageObjectPosition
                     }}style="object-position: {{ . }};"
                     {{ end }} 
                 />
@@ -15,5 +17,5 @@
     </div>
     {{ end }}
 
-    {{ partialCached "article/components/details" . .RelPermalink }}
+    {{ partial "article/components/details" (dict "Page" $Page "IsList" $IsList) }}
 </header>

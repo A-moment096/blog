@@ -7,11 +7,11 @@
 // scoped under [data-scheme="light"] .chroma { ... }.
 
 :root[data-scheme="light"] {
-  @import 'modules/code_manni';
+  @import 'modules/code/code_manni';
 }
 
 :root[data-scheme="dark"] {
-  @import 'modules/code_evergarden';
+  @import 'modules/code/code_evergarden';
 }
 
 :root[data-scheme="light"] .chroma,
