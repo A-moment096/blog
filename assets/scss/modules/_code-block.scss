@@ -1,0 +1,267 @@
+// =============================================================================
+// CODEBLOCKS MODULE
+// =============================================================================
+// Structural styles + theme-aware fade colours.
+// Token colours (syntax highlighting) stay in _code_dracula.scss.
+// Light theme token colours should be in a separate Chroma stylesheet
+// scoped under [data-scheme="light"] .chroma { ... }.
+
+:root[data-scheme="light"] {
+  @import 'modules/code_manni';
+}
+
+:root[data-scheme="dark"] {
+  @import 'modules/code_evergarden';
+}
+
+:root[data-scheme="light"] .chroma,
+:root[data-scheme="dark"] .chroma {
+  background-color: var(--code-background-color);
+}
+
+$cb-font: 'Cascadia Code', 'Fira Code', ui-monospace, monospace;
+$cb-line-height: 1.65;
+$cb-collapsed-lines: 6; // must match COLLAPSED_LINES in codeBlock.ts
+$cb-pad-v: 1rem; // pre top/bottom padding, used in collapsed height calc
+
+// Fade colours sourced directly from Chroma theme backgrounds
+$cb-fade-dark: var(--code-background-color); // matches .chroma background-color in _code_dracula.scss
+$cb-fade-light: var(--code-background-color); // matches --code-background-color in _variables.scss
+
+
+.article-content {
+
+  // ── Outer wrapper ───────────────────────────────────────────────────────────
+  .highlight {
+    max-width: 95%;
+    margin: 1.5rem auto;
+    padding: 0;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    font-family: $cb-font;
+  }
+
+  // ── Header row ─────────────────────────────────────────────────────────────
+  .code-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    min-height: 2.4rem;
+    // Slightly darker than the code body — achieved with a semi-transparent
+    // black overlay so it works for both dark and light Chroma themes.
+    background: rgba(0, 0, 0, 0.18);
+  }
+
+  // Left group (badge + line count)
+  .code-block-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  // Language badge
+  .code-block-lang {
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.22em 0.6em;
+    border-radius: 4px;
+    font-family: $cb-font;
+    line-height: 1;
+    user-select: none;
+    // Inherits foreground colour from Chroma; background is a tint of it
+    background: color-mix(in srgb, currentColor 12%, transparent);
+    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  }
+
+  // Line count label
+  .code-block-lines {
+    font-size: 0.78em;
+    font-family: $cb-font;
+    opacity: 0.65;
+    user-select: none;
+  }
+
+  // Copy button
+  .code-block-copy {
+    display: flex;
+    align-items: center;
+    gap: 0.35em;
+    font-size: 0.82em;
+    font-family: $cb-font;
+    background: transparent;
+    border-radius: 4px;
+    padding: 0.22em 0.65em;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+    border: 1px solid currentColor;
+    opacity: 0.55;
+
+    color: var(--card-text-color-main);
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.copied {
+      opacity: 1;
+    }
+  }
+
+  .code-block-toggle {
+    color: var(--card-text-color-main);
+  }
+
+  // ── Chroma / pre / code resets ──────────────────────────────────────────────
+  .highlight .chroma {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .highlight pre {
+    margin: 0;
+    padding: $cb-pad-v 0;
+    background: transparent;
+    overflow-x: auto;
+  }
+
+  .highlight code {
+    display: block;
+    padding: 0 1rem;
+    font-family: $cb-font;
+    font-size: 1em;
+    line-height: $cb-line-height;
+  }
+
+  // linenos=table layout
+  .highlight table.lntable {
+    width: 100%;
+    border-collapse: collapse;
+
+    td.lntd {
+      padding: 0;
+      vertical-align: top;
+
+      &:first-child {
+        width: 1%;
+        padding-right: 1rem;
+        user-select: none;
+        white-space: nowrap;
+        opacity: 0.4;
+      }
+
+      &:last-child {
+        overflow-x: auto;
+        width: 100%;
+      }
+    }
+  }
+
+  // ── Collapsible wrapper ─────────────────────────────────────────────────────
+  .code-block-body {
+    position: relative;
+
+    &.is-collapsed {
+      max-height: calc(#{$cb-collapsed-lines} * #{$cb-line-height} * 1em + #{$cb-pad-v} * 2);
+      overflow: hidden;
+    }
+  }
+
+  // Fade gradient — colour matches the Chroma theme background
+  .code-block-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, 10%, $cb-fade-dark);
+
+    :root[data-scheme="light"] & {
+      background: linear-gradient(to bottom, transparent, 10%, $cb-fade-light);
+    }
+  }
+
+  // ── Toggle bar ──────────────────────────────────────────────────────────────
+  .code-block-toggle-bar {
+    display: flex;
+    justify-content: center;
+    padding: 0.4rem 0 0.55rem;
+    background-color: $cb-fade-light; // matches $cb-fade-dark to blend with the fade gradient
+
+    :root[data-scheme="dark"] & {
+      background-color: $cb-fade-dark;
+    }
+  }
+
+  .code-block-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    font-size: 0.82em;
+    font-family: $cb-font;
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 20px;
+    padding: 0.25em 0.9em;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity 0.15s;
+
+    .toggle-icon {
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // ── Console block ──────────────────────────────────────────────────────────
+
+  // Prompt characters ($, %, >, PS ..>) — non-copyable, visually muted
+  .console-prompt {
+    user-select: none;
+    opacity: 0.5;
+  }
+
+  // Line number injected for console blocks without linenos enabled.
+  // Matches Chroma's own .ln metrics exactly so command and output lines
+  // share the same left-column width.
+  .console-ln {
+    display: inline-block;
+    white-space: pre;
+    user-select: none;
+    margin-right: 0.4em;
+    padding: 0 0.4em;
+    opacity: 0.4;
+    text-align: right;
+  }
+
+  // ── Mobile ──────────────────────────────────────────────────────────────────
+  @media (max-width: 600px) {
+    .highlight {
+      max-width: 100%;
+      border-radius: 0;
+    }
+
+    .highlight pre {
+      font-size: 0.98em;
+    }
+
+    .code-block-header {
+      padding: 0.4rem 0.75rem;
+    }
+  }
+}

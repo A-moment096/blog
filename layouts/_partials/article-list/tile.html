@@ -1,10 +1,10 @@
-{{ $image := partial "helper/image" (dict "Image" .context.Params.image "Resources" .context.Resources) }}
+{{ $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources) }}
 <article class="{{ if $image }}has-image{{ end }}">
-    <a href="{{ .context.RelPermalink }}">
+    <a href="{{ .RelPermalink }}">
         {{ if $image }}
         <div class="article-image">
             <img src="{{ $image.Permalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" loading="lazy"
-                alt="Featured image of post {{ .context.Title }}">
+                alt="Featured image of post {{ .Title }}">
         </div>
         {{ end }}
 
@@ -22,7 +22,7 @@
             {{- end -}}
         >
             <h2 class="article-title">
-                {{- .context.Title -}}
+                {{- .Title -}}
             </h2>
         </div>
     </a>

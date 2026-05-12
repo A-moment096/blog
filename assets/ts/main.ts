@@ -12,7 +12,7 @@ import StackColorScheme from 'ts/colorScheme';
 import { setupSmoothAnchors } from "ts/smoothAnchors";
 import { setupScrollspy } from 'ts/scrollspy'
 import { setupGitHubAlerts } from "ts/githubAlerts";
-import { setupCopyButtons } from "./codeCopyButton";
+import { setupCodeBlocks } from 'ts/code-blocks/codeBlock';
 
 let Stack = {
     init: () => {
@@ -28,11 +28,11 @@ let Stack = {
             // Note: setupGitHubAlerts is now called earlier via setupGitHubAlertsEarly
         }
 
-        setupCopyButtons();
-
-        new StackColorScheme(document.getElementById('dark-mode-toggle'));
+        setupCodeBlocks();
+        const toggle = document.getElementById('dark-mode-toggle');
+        new StackColorScheme(toggle as HTMLElement);
     },
-    
+
     // 在 KaTeX 渲染之前调用此函数
     setupGitHubAlertsEarly: () => {
         setupGitHubAlerts();
