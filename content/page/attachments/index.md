@@ -61,3 +61,10 @@ toc: false
 - {{< filelink path="Impl_Spinodal/JS/JS_impl_v3.7z">}} : 分文件实现并允许使用输入文件，是 7z 压缩包
 - {{< filelink path="Impl_Spinodal/TS/TS_impl_v1.ts">}} : 使用 TypeScript 实现了 JS_impl_v3 的代码
 - {{< filelink path="Impl_Spinodal/TS/TS_impl_v2.7z">}} : 进一步使用 React 图形库实现浏览器端的可视化，是一份小压缩包。
+
+### 相场模拟，但是用很多语言——番外
+
+- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft_complex.h">}} : 自己实现的复数库，用来为快速傅里叶算法做准备
+- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft_test_main.c">}} : 用来测试快速傅里叶算法的可执行文件，可以编译执行
+- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft.c">}} : 自己实现的快速傅里叶变换算法源文件，可以编译成静态库
+- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft.h">}} : 使用该快速傅里叶变换算法库的头文件
