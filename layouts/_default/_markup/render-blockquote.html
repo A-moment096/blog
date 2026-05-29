@@ -1,0 +1,15 @@
+{{- if eq .Type "alert" -}}
+    {{- $type := .AlertType | default "note" -}}
+    {{- $marker := printf "[!%s]" (upper $type) -}}
+    {{- with .AlertTitle -}}
+        {{- $marker = printf "%s{%s}" $marker . -}}
+    {{- end -}}
+    <blockquote>
+        <p>{{ $marker }}</p>
+        {{ .Text }}
+    </blockquote>
+{{- else -}}
+    <blockquote>
+        {{ .Text }}
+    </blockquote>
+{{- end -}}
