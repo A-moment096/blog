@@ -9,9 +9,18 @@ export default defineConfig({
     emptyOutDir: true,
 		cssCodeSplit: false,
     rollupOptions: {
-      input: "./islands.tsx",
+      input: {
+			islands: "./islands.tsx",
+			runtime: "./runtime.tsx",
+			registry: "./registry.ts",
+		},
       output: {
-        entryFileNames: "islands.js",
+			entryFileNames: (chunk) => {
+				if (chunk.name === "islands") return "islands.js"
+				if (chunk.name === "runtime") return "runtime.js"
+				if (chunk.name === "registry") return "registry.js"
+				return "entries/[name]-[hash].js"
+			},
         chunkFileNames: "chunks/[name]-[hash].js",
 				assetFileNames: "assets/[name].[ext]"
       }
