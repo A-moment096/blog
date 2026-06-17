@@ -249,7 +249,7 @@ void write_VTK(my_complex *con, size_t N0, size_t N1, const char *folder_path, s
 
 那么至此，我们设置好了两个辅助函数，接下来就是主逻辑了。
 
-#### 来吧！谱方法！
+#### 然后设置常数
 
 白天想，夜里哭，终于是到了实现这个算法的时候了。不过依旧我们设置几个常数，几个待会儿要用的东西：
 
@@ -308,7 +308,204 @@ int main(void) {
 
 在进入主循环之前，我们使用我们自己写的计时器来准备对计算过程进行计时。在这一切的繁文缛节结束后，我们终于要迎来真正的计算流程了。
 
+#### 来吧！谱方法！
 
+Talk is cheap, I'll show you the code:
+
+```C
+for (size_t istep = 0; istep <= num_total_compute; istep++) {
+        my_fft_forward_2d(con, con_trans, N, N);
+        // fill/refill mesh_df_dc
+        for (size_t i = 0; i < N_full; i++) {
+            mesh_df_dc[i][0] = df_dc(A, con[i][0]);
+        }
+
+        // get transformed mesh_df_dc
+        my_fft_forward_2d(mesh_df_dc, mesh_df_dc_trans, N, N);
+
+        for (size_t j = 0; j < N; j++) {
+            for (size_t i = 0; i < N; i++) {
+                size_t k_pos = i + j * N;
+
+                // Correct FFT frequency mapping (fftshift-equivalent)
+                double fi = (i < N / 2) ? (double)i : (double)i - (double)N;
+                double fj = (j < N / 2) ? (double)j : (double)j - (double)N;
+
+                double kx = 2.0 * M_PI * fi / ((double)N * dx);
+                double ky = 2.0 * M_PI * fj / ((double)N * dx);
+                double k2 = kx * kx + ky * ky;
+                double k4 = k2 * k2;
+
+                my_complex neg_k2_df_dc, kappa_neg_k4_c;
+
+                neg_k2_df_dc[0] = -1.0 * k2 * mesh_df_dc_trans[k_pos][0];
+                neg_k2_df_dc[1] = -1.0 * k2 * mesh_df_dc_trans[k_pos][1];
+
+                kappa_neg_k4_c[0] = -1.0 * kappa * k4 * con_trans[k_pos][0];
+                kappa_neg_k4_c[1] = -1.0 * kappa * k4 * con_trans[k_pos][1];
+
+                // con_trans += dt * (k2_term + k4_term)
+                con_trans[k_pos][0] += dt * M * (neg_k2_df_dc[0] + kappa_neg_k4_c[0]);
+                con_trans[k_pos][1] += dt * M * (neg_k2_df_dc[1] + kappa_neg_k4_c[1]);
+            }
+        }
+
+        my_fft_backward_2d(con_trans, con, N, N);
+
+        if (istep % output_every == 0 || istep == num_total_compute) {
+            printf("output steps: %zu\n", istep);
+#ifdef OUTPUT_VTK
+            write_VTK(con, N, N, output_directory_path, istep, dx);
+#endif
+        }
+    }
+```
+
+首先可以看到主循环（时间循环）的设置和之前有所不同。之前我们的终止条件都使用了 `istep < num_total_compute + 1`，用来将最后一步也输出出来，这次我们使用更合适的 `istep <= num_total_compute`，一样的效果，但是语义上更明确。
+
+进入时间循环内，第一步便是用我们包装好的函数来计算傅里叶变换了：
+
+```C
+    for (size_t istep = 0; istep <= num_total_compute; istep++) {
+        my_fft_forward_2d(con, con_trans, N, N);
+        // fill/refill mesh_df_dc
+        for (size_t i = 0; i < N_full; i++) {
+            mesh_df_dc[i][0] = df_dc(A, con[i][0]);
+        }
+
+        // get transformed mesh_df_dc
+        my_fft_forward_2d(mesh_df_dc, mesh_df_dc_trans, N, N);
+
+        for (size_t j = 0; j < N; j++) {
+            /* ... */
+        }
+        /* ... */
+    }
+```
+
+然而，如果您使用了 IDE 来打开这份 C 源码的话，您可能会发现这里我们使用的 `my_fft_forward_2d` 并没有被染成函数的颜色，而是 *宏* 的颜色。这是为什么呢？因为我们使用了宏来包装我们实际上写的函数。还记得最开始的那行 `#define MY_FFT_USE_RECURSIVE` 吗？这行宏让头文件 `C_my_fft.h` 中的函数调用都使用 `_v1` 后缀的函数，也就是使用递归算法来计算傅里叶变换。这样做的另一个“好处”是，我们可以隐藏起来函数的参数表（这是哪门子好处……）。
+
+另外值得注意的是，我们这次使用的是 `my_fft_forward_2d`，而不是 `my_fft_forward` 两次。其实也差不多是做两次一维变换，但一次是在 $x$ 方向进行变换，另一次则是在 $y$ 方向进行变换。
+
+可是，我们的 `my_fft_forward` 只能在矩阵的一个方向上进行变换。因此，在进行第二次变换的时候，我们需要对矩阵做一下转置：
+
+```C
+/* From C_my_fft.c */
+void my_fft_2d_v1(
+    my_complex *in,
+    my_complex *out,
+    size_t N0,
+    size_t N1,
+    int sign) {
+
+    // N0 and N1 must be power of 2
+    // row major: [i,j] = j+i*N0
+    size_t N_full = N0 * N1;
+
+    // transform row first
+    my_complex *row_transformed_in = (my_complex *)malloc(sizeof(my_complex) * N_full);
+    if (!row_transformed_in) {
+        free(row_transformed_in);
+        return;
+    }
+    for (size_t i = 0; i < N_full; i += N0) {
+        my_fft_1d_v1(&(in[i]), &(row_transformed_in[i]), N0, sign);
+    }
+    // then transform column
+
+    // perform inplace transpose from row-major to column-major
+    my_fft_util_transpose(row_transformed_in, row_transformed_in, N0, N1);
+
+    for (size_t i = 0; i < N_full; i += N1) {
+        my_fft_1d_v1(&(row_transformed_in[i]), &(out[i]), N1, sign);
+    }
+
+    my_fft_util_transpose(out, out, N1, N0);
+
+    free(row_transformed_in);
+    return;
+}
+```
+
+这样就可以对二维数据进行傅里叶变换了，别忘了最后再转置回来就是。
+
+接下来就是逐点处理了。然而在进入每一点之后，我们的第一个操作并不是计算，而是做了些判断和赋值：
+
+```C
+        /* ... */
+        for (size_t j = 0; j < N; j++) {
+            for (size_t i = 0; i < N; i++) {
+                size_t k_pos = i + j * N;
+
+                // Correct FFT frequency mapping (fftshift-equivalent)
+                double fi = (i < N / 2) ? (double)i : (double)i - (double)N;
+                double fj = (j < N / 2) ? (double)j : (double)j - (double)N;
+
+                double kx = 2.0 * M_PI * fi / ((double)N * dx);
+                double ky = 2.0 * M_PI * fj / ((double)N * dx);
+                double k2 = kx * kx + ky * ky;
+                double k4 = k2 * k2;
+                /* ... */
+            }
+            /* ... */
+        }
+```
+
+为什么呢？这也算是使用傅里叶变换的一个小小的坑点吧。FFT 的计算结果并不是按照频率从小到大的顺序存储的，而是有一种特殊的布局：
+
+```
+[ zero frequency, possitive frequency, negative frequency ]
+```
+
+而在每一段中都是从小到大的顺序。这样的计算结果是为了方便计算而设计的（Cooley-Tukey 算法自动会形成这样的数据布局），但是却不太适合我们做数值计算，因为它的结果对应的频率需要重新进行计算。不过好在这个计算过程非常简单：只需要重新把结果的布局变为：
+
+```
+[ negative frequency, zero frequency, possitive frequency ]
+```
+
+就可以了。如果是二维结果，那就在两个方向上都做这样的变换。这也就有了我们最开始的 `fi` 和 `fj`，它们是用来计算频率而将被使用的临时频率。
+
+然后计算频率的部分，我们根据公式：
+
+$$ \mathbf{k} = \frac{2\pi \mathbf{n}}{N * \Delta x} $$
+
+就可以得到需要的频率，最后用它做点乘就得到了 $k^2$ 和 $k^4$，在代码中我们记为 `k2` 与 `k4`。需要注意的是，这里我们需要做的是点乘，而不是普通的乘法。这是因为在二维条件下，两个方向的频率是相互独立的，傅里叶变换得到的结果是一个向量而非一个普通的数。
+
+接下来只要把对应的部分组合起来就可以了：
+
+```C
+/* ... */
+my_complex neg_k2_df_dc, kappa_neg_k4_c;
+neg_k2_df_dc[0] = -1.0 * k2 * mesh_df_dc_trans[k_pos][0];
+neg_k2_df_dc[1] = -1.0 * k2 * mesh_df_dc_trans[k_pos][1];
+
+kappa_neg_k4_c[0] = -1.0 * kappa * k4 * con_trans[k_pos][0];
+kappa_neg_k4_c[1] = -1.0 * kappa * k4 * con_trans[k_pos][1];
+
+// con_trans += dt * (k2_term + k4_term)
+con_trans[k_pos][0] += dt * M * (neg_k2_df_dc[0] + kappa_neg_k4_c[0]);
+con_trans[k_pos][1] += dt * M * (neg_k2_df_dc[1] + kappa_neg_k4_c[1]);
+/* ... */
+```
+
+这里为了方便了解各部分的组成，我们使用了两个临时变量，用来保存浓度变化表达式的前半部分和后半部分。这里的计算基本就是把公式翻译成代码而已，只不过要对实部和虚部分别进行计算就是了。
+
+在遍历每个格点的计算结束后，使用二维傅里叶逆变换将结果重新变换回原空间中，就完成了一个时间步的计算了。最后再根据时间和是否输出结果进行后处理后，计算便完成了：
+
+```C
+        /* ... */
+        my_fft_backward_2d(con_trans, con, N, N);
+
+        if (istep % output_every == 0 || istep == num_total_compute) {
+            printf("output steps: %zu\n", istep);
+#ifdef OUTPUT_VTK
+            write_VTK(con, N, N, output_directory_path, istep, dx);
+#endif
+        }
+        /* ... */
+```
+
+在程序的最后，我们将计时结果打印在屏幕上，然后释放所有使用到的资源，就完成了这个程序。
 
 
 
