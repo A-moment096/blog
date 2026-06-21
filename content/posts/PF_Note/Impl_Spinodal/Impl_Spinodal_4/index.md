@@ -15,7 +15,6 @@ image: /posts/PF_Note/Impl_Spinodal/Alice-2.png
 imageObjectPosition: center 20%
 date: 2026-06-22
 math: true
-draft: true
 ---
 
 *谈到编程，稍早一些的时候大家几乎都会提到 C 语言。本期我们就来试试之前番外中使用过的 C 语言吧！用它来跑调幅分解看看~*
