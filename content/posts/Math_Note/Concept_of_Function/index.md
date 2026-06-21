@@ -38,13 +38,13 @@ comments: true
 
 进入高中之后，根据我手上这本 *数学 必修1 人民教育出版社 B版 2007年4月第3版* 的内容来看，我们在第一本书中几乎只学习什么是函数。在以非常具体的例子介绍完集合，集合的表示方法以及集合之间的关系与运算之后，我们在第二章就遇到了 **函数** 了。书上是这么开始介绍函数的，说在初中，同学们就已经学习了变量与函数的概念：
 
-> [!DEF]{函数与变量（初中）}
+> [!DEF] 函数与变量（初中）
 > 
 > 在一个变化过程中，有两个变量 $x$ 和 $y$，如果给定了一个 $x$ 值，相应地就确定唯一的一个 $y$ 值，那么我们称 $y$ 是 $x$ 的 *函数*，其中 $x$ 是 *自变量*，$y$ 是 *因变量*.
 
 随即表示，在数学发展中，函数的定义也随之发展，然后用第一章中的集合[^1]：
 
-> [!DEF]{函数、定义域与值域（高中）}
+> [!DEF] 函数、定义域与值域（高中）
 >
 > 设集合 $A$ 是一个非空的数集，对 $A$ 中的任意数 $x$，按照确定的法则 $f$，都有唯一确定的数 $y$ 与它对应，则这种对应关系叫做集合 $A$ 上的一个函数，记作
 >
@@ -117,7 +117,7 @@ WTF is that?
 
 哦天哪，我们不是在聊函数吗？怎么跳到映射了？那既然我们讲函数是映射的一种，我们就来看看映射的定义：
 
-> [!DEF]{映射（同济高数）}
+> [!DEF] 映射（同济高数）
 >
 > 设 $X,Y$ 是两个非空集合，如果存在一个法则 $f$，使得对 $X$ 中每个元素 $x$，按法则 $f$，在 $Y$ 中有唯一确定的元素 $y$ 与之对应，那么称 $f$ 为 $X$ 到 $Y$ 的映射，记作
 >
@@ -133,7 +133,7 @@ WTF is that?
 
 这个定义怎么感觉和函数很像？那函数，是什么呢？紧接着的定义就定义了函数：
 
-> [!DEF]{函数（同济高数）}
+> [!DEF] 函数（同济高数）
 >
 > 设数集 $D\subset \mathbb{R}$，则称映射 $f\colon D\to \mathbb{R}$ 为定义在 $D$ 上的函数，通常简记为
 >
@@ -157,7 +157,7 @@ WTF is that?
 
 这本书没有一上来默认一些集合的内容，而是在第一节介绍了什么是集合以及集合的表示法，随后立即介绍了 *映射*，在第二节才正式引入函数。我们来看看它上面的定义吧：
 
-> [!DEF]{映射（湖大高数）}
+> [!DEF] 映射（湖大高数）
 > 
 > 设 $A,B$ 是两个非空集合，若每一个元素 $x\in A$，按照某种确定的法则 $f$，有唯一确定的 $y\in B$ 与它相对应，则称 $f$ 为 从$A$ 到 $B$ 的一个映射（如图所示），记作
 >
@@ -177,7 +177,7 @@ WTF is that?
 
 所以？原来映射有这么多的身份？在不同的分支下，映射的含义是不一样的？我们再来看这本教材对函数的定义：
 
-> [!DEF]{函数（湖大高数）}
+> [!DEF] 函数（湖大高数）
 >
 > 若 $f$ 是数集 $A\subset \mathbb{R}$ 到 $\mathbb{R}$ 的映射，则称 $f$ 为数集 $A$ 上的 **一元（实）函数**（简称函数），通常把这个函数简记为
 >
@@ -199,7 +199,7 @@ WTF is that?
 
 总之，绕了一大弯子，还是搞到了换皮版的 *高等数学（上册） 郑洲顺主编 任叶庆副主编 高等教育出版社*。我们就当它是中南大学出版社出版的吧。废话太多了，我们直接看定义：
 
-> [!DEF]{函数（中南高数）}
+> [!DEF] 函数（中南高数）
 > 
 > 设 $D$ 为非空实数集，若存在对应法则 $f$，使得对于任意的 $x\in D$，按照对应法则 $f$，总有唯一确定的 $y\in\mathbb{R}$ 与之对应，则称 $f$ 为定义在 $D$ 上的一个 **函数**。通常简记为
 > 
@@ -225,19 +225,19 @@ Anyway, 我们来看看它怎么处理这些定义。鉴于这本书原版就是
 
 它开门见山，在几句介绍性的文字后，立刻给出了函数的……定义？
 
-> [!DEF]{Function (The Calculus Lifesaver)}
+> [!DEF] Function (The Calculus Lifesaver)
 >
 > A *function* is a rule for transforming an object into another object. The object you start ith is called the *input*, and comes from some set called the *domain*. What you get back is called the *output*; it comes from some set called the *codomain*.
 
 Emmm，怎么说呢？非常的口语化。我很难说这个是 “定义”，也许这是因为这本书本就是为了这样慢慢地读下去，用平易近人的方式来理解这些概念。不过我们依旧可以从中提取出一些不一样的东西：什么是 *codomain*？从它的说法中，好像 *codomain* 就是我们说的值域，因为给一个 $x$ 就会得到来自它的 $y$；然而，事情不是这样的，因为旋即它给出 *range* 的定义：
 
-> [!DEF]{Range (The Calculus Lifesaver)}
+> [!DEF] Range (The Calculus Lifesaver)
 >
 > The *range* is the set of all outputs that could possibly occur.
 
 紧接着有这样的描述：
 
-> [!REM]{Codomain and Range}
+> [!REM] Codomain and Range
 >
 > So why isn't the range the same thing as the codomain? Well, the range is actually a subset of the codomain. The codomain is a set of **possible** outputs, while the range is the set of actual outputs.
 
@@ -255,7 +255,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 且立刻就有了一个看起来很顺眼的定义：
 
-> [!DEF]{Function (Calculus: Single and Multivariable)}
+> [!DEF] Function (Calculus: Single and Multivariable)
 >
 > A **function** is a rule that takes certain numbers as inputs and assigns to each a deﬁnite output number. The set of all input numbers is called the **domain** of the function and the set of resulting output numbers is called the **range** of the function. 
 > 
@@ -275,7 +275,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 逼格拉满了（复数 + are + a tool 这样的单数真的没问题吗（）），那么定义是什么呢？
 
-> [!DEF]{Function (Thomas' Calculus, full version)}
+> [!DEF] Function (Thomas' Calculus, full version)
 >
 > ... the value of one variable quantity, say $y$, depends on the value of another variable quantity, which we often call $x$. We say that "$y$ is a function of $x$" and write this symbolically as
 >
@@ -303,7 +303,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 ……哦不，我只有一篇朋友给的讲义可以参考。而且，这位授课的 Theodore Voronov. 还是一位莫斯科国立毕业的俄国人…… Anyway，我们可以看看，他在讲义中怎么定义函数：
 
-> [!DEF]{Functional dependence (From Prof. Theodore Voronov.)}
+> [!DEF] Functional dependence (From Prof. Theodore Voronov.)
 >
 > In many cases application of mathematics to natural science and engineering deals with analyzing **functional dependence**. What is a functional dependence? We have one varying quantity described by a variable, say, $x$, and another quantity described by a variable, say, $y$, so that to each value of the first quantity, $x$, by a certain given law there corresponds a particular value (which should be uniquely defined) of the second quantity, $y$. We write this as
 > 
@@ -317,7 +317,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 没错，我莫名收藏了几本翻译的日本高中数学教材，原作者是著名日本数学家小平邦彦，采用的版本是 *数学I 小平邦彦编 吉林人民出版社*。至于它为什么出现在高等数学这门大学课程的教材集合里，我想也许你可以问问美国的微积分教材（）我们也来看看是怎么写的吧：
 
-> [!DEF]{函数（日本高中教材）}
+> [!DEF] 函数（日本高中教材）
 >
 > 设 $X$ 与 $Y$ 是数的集合，使 $X$ 的各个元素分别对应 $Y$ 的唯一的一个元素 $y$，这个对应叫做由 $X$ 到 $Y$ 的 **函数**。函数可用字母 $f$，$g$ 等表示。
 >
@@ -371,7 +371,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 在简单介绍集合的基本情况之后，我们首先看到的即为映射的定义：
 
-> [!DEF]{映射（陈天权）}
+> [!DEF] 映射（陈天权）
 >
 > 从集合 $A$ 到集合 $B$ 的 **映射** $\varphi$ 是指一个规则，根据它，每一个元素 $x \in A$ 有一个元素 $y \in B$ 与之对应。常用以下两个记法中的任一个表示这样一个映射（对应关系）：
 >
@@ -391,13 +391,13 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 咚咚咚：
 
-> [!REM]{第一章 引言 的引言}
+> [!REM] 第一章 引言 的引言
 >
 > 本章我们简要介绍分析学中的常用方法和常用概念。一些基本概念，比如集合与映射，大家已经在中学课程中学过，在此我们就不再详细介绍。……
 
 什……竟然，这样吗？然而好消息是，我们有梅老师的另一本书，或者说讲义：*数学分析讲义*。这本 2006 到 2010 年间编成的书中一板一眼地给出了映射的定义:
 
-> [!DEF]{映射（梅加强）}
+> [!DEF] 映射（梅加强）
 >
 > 设 $X$, $Y$ 为集合. 如果对于每一个元素 $x \in X$, 都有 $Y$ 中 惟一元素 $y$ 与之对应, 则称这种对应关系为从 $X$ 到 $Y$ 的一个映射, 记为
 >
@@ -414,7 +414,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
  
 以及一个注解：
 
-> [!REM]{映射定义后的注解}
+> [!REM] 映射定义后的注解
 >
 > 映射有时也称为 **函数**, 特别是当 $Y \subset \mathbb{R}$ 是数集时更是如此. 通常也把映射写为 $y = f(x)$ 或 $f(x)$, 这时 $x$ 也称为变量或自变量, $y$ 也称为因变量. 如果 $X, Y \subset \mathbb{R}$ 均为数集, 映射 $f \colon\ X \to Y$ 也称为一元函数或一元实值函数或一元实变函数.
 
@@ -426,7 +426,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 我必须首先提到，这本书即便有两个老师参与编著，然而大家都还是很喜欢叫这本书为史济怀。因此我们这里还是用大家更常用的叫法了。另外这本书是比较流行的一本教材，但这本书的风评又比较一般：据说有一些错漏，一些定义不够严谨。又但是，这本书的优点是习题质量很高，且史济怀老师在讲课时会提到哪些地方有错漏不严格（B站有网课）。鉴于这本书真的好多人用，我们很难不参考它对函数的定义。
 
-> [!DEF]{映射（史济怀）}
+> [!DEF] 映射（史济怀）
 >
 > 设 $A$，$B$ 是两个集合，如果 $f$ 是一种规律，使得对 $A$ 中的每一个元素 $x$，$B$ 中有唯一确定的元素——记为 $f(x)$——与 $x$ 对应，则称 $f$ 是一个从 $A$ 到 $B$ 的 **映射**，用
 >
@@ -436,7 +436,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 很可惜，它的定义显得有点苍白了。我也查看了后面的内容，依旧没有谈到陪域的事。而函数的部分呢？
 
-> [!REM]{函数}
+> [!REM] 函数
 >
 > 函数是一类特殊的映射。如果对映射 $f\colon\ X\to Y$，$X$ 与 $Y$ 都由实数组成，则称 $f$ 为一个函数。简而言之，函数是从实数到实数的映射。说得更精确一点，$f$ 是单变量函数。
 
@@ -448,7 +448,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 介绍一些集合的内容之后，立刻我们就拿到了映射与函数的定义：
 
-> [!DEF]{映射（陈纪修）}
+> [!DEF] 映射（陈纪修）
 >
 > 设 $X$，$Y$ 是两个给定的集合，若按照某种规则 $f$，使得对集合 $X$ 中的每一个元素 $x$，都可以找到集合 $Y$ 中惟一确定的元素 $y$ 与之对应，则称这个对应规则 $f$ 是集合 $X$ 到 集合 $Y$ 的一个 **映射**，记为
 >
@@ -460,7 +460,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 依旧没有提到陪域，令人失望。然而我很喜欢这里映射的记法：确定好映射的定义域与陪域之后，再确定好如何把变元 $x$ 映射到其像上。对了，其函数的定义为：
 
-> [!DEF]{一元实函数（陈纪修}
+> [!DEF] 一元实函数（陈纪修
 >
 > 若在定义 1.2.1 （映射定义）中特殊地取集合 $X\subset\mathbb{R}$，集合 $Y = \mathbb{R}$，则映射
 > 
@@ -491,7 +491,7 @@ That explains all. *Codomain* 不是值域。值域是 *range* 才对，而 *cod
 
 Zorich 在介绍完集合后，函数部分直接给出的是 *The concpet of a Function (Mapping)*，即“函数和映射的概念”。似乎，它直接把函数和映射直接联系起来了：
 
-> [!DEF]{Function (Zorich)}
+> [!DEF] Function (Zorich)
 >
 > Let $X$ and $Y$ be certain sets. We say that there is a *function* defined on $X$ with values in $Y$ if, by virtue of some rule $f$ , to each element $x \in X$ there corresponds an element $y \in Y$.
 > 
@@ -529,7 +529,7 @@ Zorich 在介绍完集合后，函数部分直接给出的是 *The concpet of a 
 
 那么它上面怎么定义的函数呢？
 
-> [!DEF]{Function (Baby Rudin)}
+> [!DEF] Function (Baby Rudin)
 >
 > Consider two sets $A$ and $B$, whose elements may be any objects whatsoever, and suppose that with each element $x$ of $A$ there is associated, in some manner, an element of $B$, which we denote by $f(x)$. Then $f$ is said to be a *function* from $A$ to $B$ (or a *mapping* of $A$ into $B$). The set $A$ is called the *domain* of $f$ (we also say $f$ is defined on $A$), and the elements $f(x)$ are called the values of $f$. The set of all values off is called the *range* of $f$.
 
@@ -539,13 +539,13 @@ Zorich 在介绍完集合后，函数部分直接给出的是 *The concpet of a 
 
 虽然没有看过这本书，但是它的目录很吸引人：第一章首先介绍的不是什么“集合”，“数系”等内容，而是一个 "Introduction"，两个小节，"What is analysis?" 与 "Why do analysis"。我感觉我有必要抽时间看这个部分，一定会很有趣。而它在第二章也没有直接开始我们观念上很分析的内容，而是先介绍了所谓的 Peano axioms（皮亚诺公理），以及加法和乘法，明摆着是打算从自然数一步步走到实数系。终于，它在第三章谈集合论，在里面谈到了函数。首先，它先从观念上谈了函数是什么东西：
 
-> [!REM]{Function}
+> [!REM] Function
 >
 > In order to do analysis, it is not particularly useful to just have the notion of a set; we also need the notion of a *function* from one set to another. Informally, a function $f \colon X \to Y$ from one set $X$ to another set $Y$ is an operation which assigns to each element (or “input”) $x$ in $X$, a single element (or “output”) $f(x)$ in $Y$; we have already used this informal concept in the previous chapter when we discussed the natural numbers. 
 
 哈，看来已经在自然数那里使用过这样不正式的定义了。不过从这儿也能看到，这本书也是走的 *function = mapping* 的路数，因为你可以看到，函数是从集合到集合的。不过下面就是正式定义了，我们来看一下：
 
-> [!DEF]{Function (Terence Tao)}
+> [!DEF] Function (Terence Tao)
 >
 > Let $X$, $Y$ be sets, and let $P(x, y)$ be a property pertaining to an object $x \in X$ and an object $y \in Y$ , such that for every $x \in X$, there is exactly one $y \in Y$ for which $P(x, y)$ is true (this is sometimes known as the *vertical line test*). Then we define the *function* $f \colon X \to Y$ defined by $P$ on the *domain $X$ and range* $Y$ to be the object which, given any input $x \in X$, assigns an output $f(x) \in Y$, defined to be the unique object $f(x)$ for which $P(x, f(x))$ is true. Thus, for any $x \in X$ and $y \in Y$,
 > 
@@ -641,7 +641,7 @@ preceding condition; no longer is there a "formula".
 
 我们先来看看丘的处理。在这本 2013 版的教材中，映射的定义直接被放在了整个教材的第一个。有趣的是，我们一般会考虑先了解集合，然而这里直接表示 “集合这个概念不能定义，只能描述”。某种角度上，如果不使用公理化的集合论的话，还真是如此。当然，代数学大概是可以不考虑这么深入的。
 
-> [!DEF]{映射（丘维声）}
+> [!DEF] 映射（丘维声）
 >
 > 设 $A$ 和 $B$ 是两个非空集合，如果集合 $A$ 到集合 $B$ 有一个对应法则 $f$，使得 $A$ 中每一个元素 $a$，都有 $B$ 中唯一确定的元素 $b$ 与它对应，那么称 $f$ 是集合 $A$ 到 $B$ 的一个 **映射**，记作
 >
@@ -661,7 +661,7 @@ preceding condition; no longer is there a "formula".
 
 可以看到，丘在这里很明确地讲出来了 $B$ 就是那个所谓的 *陪域*，同时指出了映射重要的三个要素：定义域，陪域和对应法则。当两个映射的这三要素相等时，我们就说两个函数相等。而且这里直接地指出了像集/值域是陪集的子集。在后续一大堆和映射相关的内容都叙述详尽后，补充了这样的两句：
 
-> [!REM]{变换与函数}
+> [!REM] 变换与函数
 >
 > 集合 $A$ 到自身的一个映射称为 $A$ 上的一个 **变换**
 >
@@ -673,7 +673,7 @@ preceding condition; no longer is there a "formula".
 
 这本书同样也很受欢迎，然而它对映射的引入就比较靠后了。由于它先从矩阵、行列式、线性方程组等等开始讲起，类似于介绍 “如何在新空间做加减乘除的基础运算”，因此没有需要映射/函数的迫切的需要。而又因此，映射的概念直到第四章，线性映射的部分才被提起，且是以 *复习* 的名义来引出的：
 
-> [!REM]{映射（谢启鸿）}
+> [!REM] 映射（谢启鸿）
 >
 > 读者已经学过映射的概念，我们现在来复习一下。所谓映射，是指从一个集合 $A$ 到另一个集合 $B$ 的对应 $\varphi\colon\ A\to B$。对 $A$ 中任一元素 $a$，均有唯一的元素 $b\in B$ 与之对应，记之为 $b = \varphi(a)$。元素 $b$ 称为 $a$ 在 $\varphi$ 下的像， $a$ 称为元素 $b$ 的原像或者逆像。$A$ 中元素在 $\varphi$ 下的像全体构成 $B$ 的一个子集，记之为 $\varphi(A)$ 或 $\operatorname{Im}\varphi$。 如果 $\operatorname{Im}\varphi = B$，即 $B$ 中任一元素 $b$ 均在 $A$ 中有元素 $a$，使 $b = \varphi(a)$,则称 $\varphi$ 是满映射或称 $\varphi$ 是映上的映射。如果映射 $\varphi$ 适合以下条件：若 $a\neq a'$，则 $\varphi(a)\neq\varphi(a')$，那么就称 $\varphi$ 是单映射。单映射的另外一个等价说法是从 $\varphi(a) = \varphi(a')$ 可推出 $a = a'$。如果 $\varphi$ 既是单映射又是满映射，则称 $\varphi$ 是双射。这时不仅对 $A$ 中的任一元素，有且仅有 $B$ 中的一个元素与之对应；而且对 $B$ 中的任一元素，有且仅有 $A$ 中的一个元素与之对应。因此，双射又称为一一对应。
 
@@ -689,7 +689,7 @@ preceding condition; no longer is there a "formula".
 
 我这里人为地将他的叙述分为了注解和定义几部分，我们先看他的第一小段：
 
-> [!REM]{Graphs and functions}
+> [!REM] Graphs and functions
 >
 > Let $X$, $Y$ be two sets. A function on the set $X$, with values in the set $Y$, is any operation which makes correspond to each element $x \in X$ an element $y$ of $Y$ depending on $x$ in accordance with some well-defined law: for example, the function $y = \sin x$, when $X=Y=\mathbb{R}$.
 > 
@@ -699,7 +699,7 @@ preceding condition; no longer is there a "formula".
 
 那么我们要怎么搞呢？
 
-> [!DEF]{Function (Godement)}
+> [!DEF] Function (Godement)
 >
 > A *function* is an ordered triple
 >
@@ -732,7 +732,7 @@ preceding condition; no longer is there a "formula".
 
 然而这还没有结束。因为在这本书中作者更经常使用 *mapping* 这个更简单的词汇，而非 *function* 这个说起来麻烦的词汇，即便作者在这里将二者处理为近义词。为什么？
 
-> [!REM]{Mapping of X into Y}
+> [!REM] Mapping of X into Y
 >
 > If $X$, $Y$ are two sets, a **mapping of $X$ into $Y$** is a function with $X$ as source and $Y$ as target. The words "function" and "mapping" are thus synonyms, but in practice it is often more convenient to say "let $X$ be a mapping of $X$ into $Y$" rather than "let $f$ be a function defined on $X$ with values in $Y$".
 
@@ -748,7 +748,7 @@ preceding condition; no longer is there a "formula".
 
 这本书是由意大利裔美籍数学家 Paolo Aluffi 所著，语言幽默生动而又现代，大胆的直接从范畴论引入抽象代数，将整个抽象代数都构建在更加抽象的架构上，得以从更高的观点俯瞰整个代数学，特别是能将不同的代数结构自然地联系起来。说了这么多，我们还是看看作为本书的基石的函数，是怎么定义出来的吧。
 
-> [!DEF]{Function (Chapter 0)}
+> [!DEF] Function (Chapter 0)
 >
 > Sets interact with each other through *functions*. It is tempting to think of a function $f$ from a set $A$ to a set $B$ in ‘dynamic’ terms, as a way to ‘go from $A$ to $B$’. Similarly to the business with relations, it is straightforward to formalize this notion in ways that do not need to invoke any deep ‘meaning’ of any given $f$: everything that can be known about a function $f$ is captured by the information of *which element $b$ of $B$ is the image of any given element a of $A$*. This information is nothing but a subset of $A × B$:
 >
@@ -758,7 +758,7 @@ preceding condition; no longer is there a "formula".
 
 可以看到，首先介绍的是函数这一概念的意义：集合通过函数来联系（这里直译是互动，不过有点怪）。而我们要 定义函数时我们只捕捉这个概念最关键的，最必要的信息：*哪个 $B$ 中的元素 $b$ 是 $A$ 中给定元素 $a$ 的像？*而这个信息，正巧就被 $A\times B$ 的子集完美表示出来了。我们来看这个集合，与上面使用的 $G$ 不同，这里使用了 $\Gamma_f$ （伽马-f）来表示这个集合，它的元素是在 $A$ 与 $B$ 的笛卡尔积的，且 $a$ 和 $b$ 之间满足 $b = f(a)$ 的这个条件，而这样一来，这个集合就成为了 $A\times B$ 的子集了。旋即他就指出，这个集合就是函数 $f$ 的图像，而更正式地，进一步地说，这个函数就是它的图像。这里有一个注脚：
 
-> [!REM]{Function and Graph}
+> [!REM] Function and Graph
 >
 > To be precise, it is the graph $\Gamma_f$ *together with* the information of the source $A$ and the target $B$ of $f$. These are part of the data of the function.
 
@@ -788,7 +788,7 @@ preceding condition; no longer is there a "formula".
 
 闲言少叙，我们快来看看 Lang 有没有给函数或者映射的定义带来一些新东西：
 
-> [!DEF]{Mappings (Serge Lang)}
+> [!DEF] Mappings (Serge Lang)
 >
 > Let $S$, $S'$ be sets. A **mapping** (or **map**) **from** $S$ **to** $S'$ is an association which to every element of $S$ associates an element of $S'$. Instead of saying that $f$ is a mapping of $S$ into $S'$, we shall often write the symbols $f \colon\ S \to S'$.
 > 
@@ -806,7 +806,7 @@ preceding condition; no longer is there a "formula".
 
 在 73 中函数的引入还挺快的。然而它的定义也是一段话就讲完了：
 
-> [!DEF]{Functions (GTM 73)}
+> [!DEF] Functions (GTM 73)
 >
 > Given classes $A$ and $B$, a function (or map or mapping) $f$ from $A$ to $B$ (written $f\colon\ A \to B$) assigns to each $a \,\varepsilon A$ exactly one element $b \,\varepsilon B$; $b$ is called the value of the function at $a$ or the image of $a$ and is usually written $f(a)$. $A$ is the domain of the function (sometimes written $\operatorname{Dom} f$) and $B$ is the **range** or **codomain**. Sometimes it is convenient to denote the effect of the functionfon an element of $A$ by $a\mapsto f(a)$. Two functions are **equal** if they have the same domain and range and have the same value for each element of their common domain.
 
@@ -830,11 +830,11 @@ OK，那么也就是说，定义在类上的函数是更加广泛的，比定义
 
 我们为什么贴上中英对照版？因为……没什么特别的理由。我一开始找到的是中文版（毕竟很多人都用这版），但是在网上查找资料时发现，它的中文翻译好像比较拉……所以我又找到了其英文翻译，没想到英文翻译更是神秘：它是用打字机打的。
 
-> [!DEF]{Mappings (Kostrikin)}
+> [!DEF] Mappings (Kostrikin)
 >
 > The notation of a <u>function</u> or <u>mapping</u> (also: "map") plays a central role in mathematics. Given two sets $X$ and $Y$, a mapping f with <u>domain of definition</u> $X$ and <u>range of values</u> $Y$ associates to every element $x\in X$ an element $f(x)\in Y$, which can also be denoted $fx$. In the case $Y=X$ we also call $f$ a <u>transformation</u> of the set $X$ to itself. A mapping is written symbolically in the form $f\ \colon X\to Y$ or  $X\xrightarrow{f}Y$. 
 
-> [!DEF]{映射（柯斯特利金）}
+> [!DEF] 映射（柯斯特利金）
 >
 > **映射** 或 **函数** 的概念在数学中扮演者中心的角色。给定两个集合 $X$ 和 $Y$，以 $X$ 为 **定义域**， $Y$ 为 **值域** 的映射 $f$ 将每个元素 $x\in X$ 都对应于一个元素 $f(x)\in Y$，$f(x)$ 亦可记作 $fx$ 或 $f_x$。当 $X=Y$ 时，$f$ 也叫做集合 $X$ 到自身的一个 **变换**。用符号表示映射时写作 $f\ \colon X\to Y$ 或  $X \xrightarrow{f} Y$.
 
@@ -844,7 +844,7 @@ OK，那么也就是说，定义在类上的函数是更加广泛的，比定义
 
 这本书相对较新，从属 Springer 的一个新系列：*Textbook for Students of Mathematics*。从它简短的前言可以看到，这本书是为了让数学专业的学生在两年内学会代数而写的，基于他们的课程讲义。它最出名的地方应该是有出色的习题，不过说实在的我也没看过。不多说了，我们看看它的函数的定义是什么样的吧：
 
-> [!DEF]{Map (Gorodentsev)}
+> [!DEF] Map (Gorodentsev)
 >
 > A *map* (or *function*) $f\ \colon X\to Y$ from a set $X$ to a set $Y$ is an assignment $x\mapsto f(x)$ that relates each point $x\in X$ with some point $y = f(x)\in Y$ called the *image* of $x$ under $f$ or the *value* of $f$ at $x$. Note that $y$ must be uniquely determined by $x$ and $f$. Two maps $f\ \colon X \to Y$ and $g\ \colon X\to Y$ are said to be *equal* if $f(x) = g(x)$ for all $x\in X$. We write $\operatorname{Hom}(X,Y)$ for the set of all maps $X\to Y$.
 

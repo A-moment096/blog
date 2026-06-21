@@ -25,7 +25,6 @@ let Stack = {
         if (articleContent) {
             setupSmoothAnchors();
             setupScrollspy();
-            // Note: setupGitHubAlerts is now called earlier via setupGitHubAlertsEarly
         }
 
         setupCodeBlocks();

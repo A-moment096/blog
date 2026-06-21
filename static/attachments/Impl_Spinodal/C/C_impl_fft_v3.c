@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 #define M_PI 3.14159265358979323846 /* pi */
-#define TRUNCATE_REAL 1e-6
 
 // #define OUTPUT_VTK // whether output the vtk files
 #ifdef _WIN32

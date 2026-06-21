@@ -63,6 +63,7 @@ const LANG_LABELS: Record<string, string> = {
   console:    'Console',
   text:       'Text',
   plaintext:  'Text',
+  fallback:   'Text',
 };
 
 export function getDisplayLang(raw: string): string {

@@ -141,7 +141,7 @@ $$
 
 我这里借用李文威老师的 《代数学方法》 中对范畴的定义：
 
-> [!DEF]{范畴}
+> [!DEF] 范畴
 >
 > 一个范畴 $\cat{C}$ 是指以下的资料：
 >
@@ -213,7 +213,7 @@ $$ \cdot_W\circ \mathrm{id}_\field{k}\times f = f\circ \cdot_V.$$
 
 我们使用交换图来定义范畴论的积：
 
-> [!DEF]{积}
+> [!DEF] 积
 > 
 > 在一个范畴 $\cat{C}$ 中，取其中的对象 $X_1$ 和 $X_2$，在 $\cat{C}$ 中有另一个对象 $X$ 被称为 $X_1$ 和 $X_2$ 的积，我们通常记为 $X_1\times X_2$，它是 $\cat{C}$ 中的一个对象，带有一对投影态射 $\pi_1\vcentcolon X\to X_1$ 和 $\pi_2\vcentcolon X\to X_2$，满足如下的泛性质：
 >
@@ -233,7 +233,7 @@ $$ \cdot_W\circ \mathrm{id}_\field{k}\times f = f\circ \cdot_V.$$
 
 而当我们反转上面定义中的所有箭头后，我们就得到了所谓的余积。
 
-> [!DEF]{余积}
+> [!DEF] 余积
 >
 > 在范畴 $\cat{C}$ 中，给定对象 $X_1,X_2$，若存在对象 $X$（记作 $X_1 \amalg X_2$）及插入态射 $\iota_1\vcentcolon X_1 \to X$、$\iota_2\vcentcolon X_2 \to X$，使得：
 >

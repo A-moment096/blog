@@ -19,27 +19,27 @@ weight: 1
 
 以下是所有可用的数学环境类型：
 
-> [!THEOREM]{A.1}
+> [!THEOREM] A.1
 > 
 > 定理环境 - 蓝色样式，带铅笔图标。
 
-> [!LEMMA]{A.2}
+> [!LEMMA] A.2
 > 
 > 引理环境 - 绿色样式，带链接图标。
 
-> [!DEFINITION]{A.3}
+> [!DEFINITION] A.3
 > 定义环境 - 紫色样式，带书本图标。
 
-> [!COROLLARY]{A.4}
+> [!COROLLARY] A.4
 > 推论环境 - 红色样式，带箭头图标。
 
-> [!PROPOSITION]{A.5}
+> [!PROPOSITION] A.5
 > 命题环境 - 橙色样式，带灯泡图标。
 
 > [!PROOF]
 > 证明环境 - 灰色样式，带验证图标，末尾自动添加 QED 符号。
 
-> [!EXAMPLE]{A.6}
+> [!EXAMPLE] A.6
 > 示例环境 - 青色样式，带文档图标。
 
 > [!REMARK]
@@ -58,7 +58,7 @@ weight: 1
 > 
 > Your contents
 
-> [!KEYWORD]{Optional Text} 
+> [!KEYWORD] Optional Text 
 > 
 > \[
     
@@ -82,7 +82,7 @@ weight: 1
 ### 定理 (Theorem)
 
 ``` markdown
-> [!THEOREM]{}
+> [!THEOREM] 
 >
 > The contents
 
@@ -95,21 +95,21 @@ weight: 1
 > 设 $f: [a,b] \to \mathbb{R}$ 是连续函数，则存在 $c, d \in [a,b]$ 使得：
 > $$f(c) = \min_{x \in [a,b]} f(x) \quad \text{和} \quad f(d) = \max_{x \in [a,b]} f(x)$$
 
-> [!THEOREM]{1.1 中值定理}
+> [!THEOREM] 1.1 中值定理
 > 
 > 如果 $f$ 在 $[a,b]$ 上连续且 $k$ 在 $f(a)$ 和 $f(b)$ 之间，则存在 $c \in (a,b)$ 使得 $f(c) = k$。
 
-> [!THEOREM]{微积分基本定理}
+> [!THEOREM] 微积分基本定理
 > 
 > 设 $f$ 在 $[a,b]$ 上连续，则函数 $F(x) = \int_a^x f(t) \, dt$ 在 $(a,b)$ 上可微且 $F'(x) = f(x)$。
 
 
-> [!THM]{5.1}
+> [!THM] 5.1
 > 每个有限维赋范向量空间都是完备的。
 ### 引理 (Lemma)
 
 ``` markdown
-> [!LEMMA]{}
+> [!LEMMA] 
 >
 > The contents
 
@@ -120,11 +120,11 @@ weight: 1
 > 
 > 如果 $f$ 在 $[a,b]$ 上连续且 $f(a) < 0 < f(b)$，则存在 $c \in (a,b)$ 使得 $f(c) = 0$。
 
-> [!LEMMA]{2.3}
+> [!LEMMA] 2.3
 > 
 > 在完全度量空间中，每个柯西序列都收敛。
 
-> [!LEM]{6.2}
+> [!LEM] 6.2
 > 
 > 如果 $\{x_n\}$ 是完全度量空间中的柯西序列，则它收敛。
 
@@ -132,7 +132,7 @@ weight: 1
 ### 定义 (Definition)
 
 ``` markdown
-> [!DEFINITION]{}
+> [!DEFINITION] 
 >
 > The contents
 
@@ -144,11 +144,11 @@ weight: 1
 > 函数 $f: \mathbb{R} \to \mathbb{R}$ 在点 $a$ 处连续，当且仅当对任意 $\varepsilon > 0$，存在 $\delta > 0$ 使得：
 > $$|x - a| < \delta \implies |f(x) - f(a)| < \varepsilon$$
 
-> [!DEFINITION]{向量空间}
+> [!DEFINITION] 向量空间
 > 
 > 向量空间 $V$ 是集合配备两个运算（向量加法和标量乘法），满足八个公理的代数结构。
 
-> [!DEFINITION]{3.1}
+> [!DEFINITION] 3.1
 > 
 > **度量空间**: 集合 $M$ 配备函数 $d: M \times M \to \mathbb{R}$ 满足：
 > 1. $d(x,y) \geq 0$ 且 $d(x,y) = 0 \iff x = y$
@@ -156,14 +156,14 @@ weight: 1
 > 3. $d(x,z) \leq d(x,y) + d(y,z)$（三角不等式）
 
 
-> [!DEF]{度量空间}
+> [!DEF] 度量空间
 > 
 > 度量空间是配备距离函数的集合，满足度量公理。
 
 ### 推论 (Corollary)
 
 ``` markdown
-> [!COROLLARY]{}
+> [!COROLLARY] 
 >
 > The contents
 
@@ -177,7 +177,7 @@ weight: 1
 ### 命题 (Proposition)
 
 ``` markdown
-> [!PROPOSITION]{}
+> [!PROPOSITION] 
 >
 > The contents
 
@@ -189,14 +189,14 @@ weight: 1
 > 设 $V$ 是内积空间，$u, v \in V$，则柯西-施瓦茨不等式成立：
 > $$|\langle u, v \rangle| \leq \|u\| \|v\|$$
 
-> [!PROP]{柯西-施瓦茨不等式}
+> [!PROP] 柯西-施瓦茨不等式
 > 
 > 对内积空间中的向量 $u$ 和 $v$，有 $|\langle u,v \rangle| \leq \|u\| \|v\|$。
 
 ### 证明环境
 
 ``` markdown
-> [!PROOF]{}
+> [!PROOF] 
 >
 > The contents
 ```
@@ -210,14 +210,14 @@ weight: 1
 ### 示例环境
 
 ``` markdown
-> [!EXAMPLE]{}
+> [!EXAMPLE] 
 >
 > The contents
 
 > [!EX]
 ```
 
-> [!EX]{7.1}
+> [!EX] 7.1
 > 
 > 考虑函数 $f(x) = x^2$ 在区间 $[-1,1]$ 上。该函数在 $x = 0$ 处取得最小值 $0$，在 $x = \pm 1$ 处取得最大值 $1$。
 > 
@@ -241,7 +241,7 @@ weight: 1
 
 ### 微分方程
 
-> [!THEOREM]{解的存在唯一性}
+> [!THEOREM] 解的存在唯一性
 > 
 > 考虑初值问题：
 > 
@@ -255,7 +255,7 @@ y(t_0) = y_0
 
 ### 线性代数
 
-> [!DEFINITION]{特征值和特征向量}
+> [!DEFINITION] 特征值和特征向量
 > 
 > 设 $A$ 是 $n \times n$ 矩阵。标量 $\lambda$ 称为 $A$ 的特征值，如果存在非零向量 $\mathbf{v}$ 使得：
 > $$A\mathbf{v} = \lambda\mathbf{v}$$
@@ -264,7 +264,7 @@ y(t_0) = y_0
 
 ### 复分析
 
-> [!THEOREM]{柯西积分公式}
+> [!THEOREM] 柯西积分公式
 > 
 > 设 $f$ 在简单闭曲线 $C$ 上和内部解析，$a$ 在 $C$ 内部，则：
 > $$f(a) = \frac{1}{2\pi i} \oint_C \frac{f(z)}{z-a} \, dz$$
