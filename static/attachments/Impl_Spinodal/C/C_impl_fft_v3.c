@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define M_PI 3.14159265358979323846 /* pi */
+#define TRUNCATE_REAL 1e-6
 
 // #define OUTPUT_VTK // whether output the vtk files
 #ifdef _WIN32
@@ -17,7 +18,7 @@ double df_dc(double A, double c) {
     return 2.0 * A * c * (1.0 - c) * (1.0 - 2.0 * c);
 }
 
-void write_VTK(fftw_complex *con, size_t N0, size_t N1, const char *folder_path, size_t istep, double dx) {
+void write_VTK(fftw_complex *con, size_t N0, size_t N1, char *folder_path, size_t istep, double dx) {
     size_t N_full = N0 * N1;
 
     size_t name_len = strlen(folder_path) + strlen("step_") + 6 + strlen(".vtk") + 1;
@@ -66,7 +67,7 @@ void write_VTK(fftw_complex *con, size_t N0, size_t N1, const char *folder_path,
 
 int main(void) {
 
-    const double total_time = 100., dt = 1e-1; // 100 seconds, compute per 0.11 seconds;
+    const double total_time = 1000., dt = 1e-1; // 100 seconds, compute per 0.1 seconds;
 
     const size_t num_total_output = 100,                     // need 100 results
         num_total_compute = (size_t)(total_time / dt),       // auto-compute total computation steps

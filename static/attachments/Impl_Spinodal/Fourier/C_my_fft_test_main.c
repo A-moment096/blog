@@ -22,11 +22,12 @@
 #define TOLERANCE 1e-12
 
 /* Maximum absolute error between two complex arrays. */
-static double max_error(const my_complex *a, const my_complex *b, size_t N) {
+static double max_error(my_complex *a, my_complex *b, size_t N) {
     double err = 0.0;
+    const my_complex *const_a = a, *const_b = b;
     for (size_t i = 0; i < N; i++) {
-        double dr = a[i][0] - b[i][0];
-        double di = a[i][1] - b[i][1];
+        double dr = const_a[i][0] - const_b[i][0];
+        double di = const_a[i][1] - const_b[i][1];
         double e = sqrt(dr * dr + di * di);
         if (e > err)
             err = e;

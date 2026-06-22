@@ -7,7 +7,7 @@
 #define M_PI 3.14159265358979323846 /* pi */
 #define TRUNCATE_REAL 1e-6
 
-#define OUTPUT_VTK // whether output the vtk files
+#define OUTPUT_VTK           // whether output the vtk files
 #define MY_FFT_USE_RECURSIVE // whether use the recursive version of fft
 #include "C_my_fft.h"
 // my_fft_forward_2d(in,out,N0,N1) = fftw_plan_dft_2d(N0,N1,in,out,FFTW_FORWARD,_)

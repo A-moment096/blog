@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define M_PI 3.14159265358979323846 /* pi */
+#define TRUNCATE_REAL 1e-6
 
 // #define OUTPUT_VTK // whether output the vtk files
 // #define MY_FFT_USE_RECURSIVE // whether use the recursive version of fft
@@ -65,7 +66,7 @@ void write_VTK(my_complex *con, size_t N0, size_t N1, const char *folder_path, s
 
 int main(void) {
 
-    const double total_time = 100., dt = 1e-1; // 100 seconds, compute per 0.11 seconds;
+    const double total_time = 100., dt = 1e-1; // 100 seconds, compute per 0.1 seconds;
 
     const size_t num_total_output = 100,                     // need 100 results
         num_total_compute = (size_t)(total_time / dt),       // auto-compute total computation steps
