@@ -1,11 +1,23 @@
-[zh]
+[languages.zh]
 label = "中文"
 direction = "ltr"
 title = "A Moment's Rest"
 weight = 1
+contentDir = "content/zh"
+[languages.zh.permalinks]
+[languages.zh.permalinks.page]
+path = "/:sections/:contentbasename/"
+[languages.zh.permalinks.section]
+path = "/:contentbasename/"
 
-[en]
+[languages.en]
 label = "English"
 direction = "ltr"
 title = "A Moment's Rest"
 weight = 2
+contentDir = "content/en"
+[languages.en.permalinks]
+[languages.en.permalinks.page]
+path = "/:sections/:contentbasename/"
+[languages.en.permalinks.section]
+path = "/:contentbasename/"

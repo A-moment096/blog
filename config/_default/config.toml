@@ -7,6 +7,7 @@ theme = "stack"
 # Theme i18n support
 # Available values: en, fr, id, ja, ko, pt-br, zh, zh-hant-tw, zh-hant-hk, es, de, nl, it, th, el, uk, ar
 defaultContentLanguage = "zh"
+defaultContentLanguageInSubdir = true
 
 # Set hasCJKLanguage to true if DefaultContentLanguage is in [zh ja ko]
 # This will make .Summary and .WordCount behave correctly for CJK languages.
