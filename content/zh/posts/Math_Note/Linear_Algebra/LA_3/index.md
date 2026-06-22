@@ -10,7 +10,7 @@ tags:
 title: 线性代数笔记 III
 description: 矩阵空间与线性映射空间
 date: 2026-03-06T23:45:01+08:00
-image: /posts/Math_Note/Linear_Algebra/Alice.jpg
+image: Alice.jpg
 imageObjectPosition: "center 15%"
 math: true
 hidden: false

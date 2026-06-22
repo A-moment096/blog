@@ -10,7 +10,8 @@ tags:
 title: 线性代数笔记 II
 description: 线性映射，矩阵和对偶
 date: 2025-10-20T09:03:01+08:00
-image: /posts/Math_Note/Linear_Algebra/Alice.jpg
+cascade:
+  image: Alice.jpg
 imageObjectPosition: "center 15%"
 math: true
 hidden: false

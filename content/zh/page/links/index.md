@@ -86,7 +86,7 @@ comments: true
 - [香蕉空间: 于品数学分析讲义](https://www.bananaspace.org/wiki/%E8%AE%B2%E4%B9%89:%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90): 很棒的一本讲义，相当有名且非常现代化
 - [强形式，强解的概念辩驳 之一](https://encyclopediaofmath.org/wiki/Strong_solution)，[之二](https://math.stackexchange.com/questions/162353/define-strong-solution): 数学概念/名词有时候也不是很准确
 - [Bilibili: 微分的导数](https://www.bilibili.com/video/BV1CdNDz1EcB/): 给微分再求形式上的微分，很有趣
-- [Bilibili: 蛇引理证明](https://www.bilibili.com/video/BV1FZFNezE6D): 启发我写了 [蛇年，Snake Lemma!]({{<ref "/posts/Math_Note/Snake_Lemma/index.md">}})，讲的很详细。
+- [Bilibili: 蛇引理证明](https://www.bilibili.com/video/BV1FZFNezE6D): 启发我写了 [蛇年，Snake Lemma!](/posts/Math_Note/Snake_Lemma/)，讲的很详细。
 - [知乎: 关于 Rudin 的错排与误会](https://www.zhihu.com/question/559683007/answer/3502165974): 算是一些趣闻轶事了
 - [知乎: 求2025!从右往左起第一个不为零的数字？](https://www.zhihu.com/question/666502327): 一个有趣的问题。我用 Python 写了解它的算法。很好玩。
 - [Professor Karen E. Smith - Bases for Infinite Dimensional Vector Spaces](https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/06/infinite.pdf): 介绍了无穷维线性空间的一些有趣的性质，比如它的基的情况。
