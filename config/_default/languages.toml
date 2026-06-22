@@ -1,0 +1,11 @@
+[zh]
+label = "中文"
+direction = "ltr"
+title = "A Moment's Rest"
+weight = 1
+
+[en]
+label = "English"
+direction = "ltr"
+title = "A Moment's Rest"
+weight = 2
