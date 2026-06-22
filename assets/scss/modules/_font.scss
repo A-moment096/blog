@@ -4,21 +4,6 @@
 // =============================================================================
 
 @font-face {
-    font-family: 'LXGW Bright Medium';
-    src: url('/fonts/lxgw-bright/LXGW-Bright-Medium.woff2') format('woff2');
-    font-weight: normal;
-    font-style: swap;
-}
-
-@font-face {
-    font-family: "Noto Serif SC";
-    src: url("/fonts/Noto_Serif_SC/NotoSerifSC-VariableFont_wght.woff2") format("truetype");
-    font-weight: 200 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
     font-family: "Noto Serif";
     src: url('/fonts/Noto_Serif/NotoSerif-Italic.woff2') format('woff2');
     font-weight: 400 700;
@@ -37,8 +22,15 @@
     font-display: swap;
 }
 
+// LXGW Bright Medium
+@import url('/fonts/lxgw-bright/dist/result.css');
+
+// Noto Serif SC ExtraLight
+@import url('/fonts/Noto_Serif_SC/dist/result.css');
+
+
 :root {
-    --article-font-family: "Noto Serif SC", "Roboto", var(--base-font-family);
+    --article-font-family: "Noto Serif SC ExtraLight", "Roboto", var(--base-font-family);
 }
 
 em {
