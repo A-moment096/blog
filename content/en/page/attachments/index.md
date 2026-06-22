@@ -10,61 +10,61 @@ comment: true
 toc: false
 ---
 
-*头图出自 pixiv 画师 [KANOSE](https://www.pixiv.net/users/1460159)，链接：[氷のプリンセス](https://www.pixiv.net/artworks/70462748)，非常好冰之公主！*
+*This illustration is from pixiv artist [KANOSE](https://www.pixiv.net/users/1460159), link: [氷のプリンセス](https://www.pixiv.net/artworks/70462748)，Princess of Ice!*
 
-## 简介
+## Introduction
 
-您也许会在博客中看到我放了一些文件，这里我维护了一份列表，您可以在这里下载文中提到的内容。
+You may find some files sitting in my blog posts, and here is a list of these files. You can check and download these mentioned contents here.
 
-这些文件按照在博客中出现的顺序排列，目前主要是笔者自己用到的或者自己写的一些东西。
+These files are sorted as how they appear in the posts. Currently they are mainly something used or created by the writter.
 
-直接点击链接时，如果是纯文本文件或图片，您可能需要复制粘贴该文件，而如果是其他格式（如压缩文件等），则会自动下载。
+By clicking the following link, if it's a text file or image, then you probably should copy-paste the file or image. If the file is in some other format (for example, compressed archive), it gets downloaded automatically.
 
-如果您发现文件不全或文件有任何问题，请联系我。感谢您的支持！
+If you found any file not listed here or any file has some problem, please contact me. Thanks for your support!
 
-![喜欢您来](喜欢您来.jpg)
+![Love you coming!](喜欢您来.jpg)
 
-### 文献阅读系列
+### Literature Reading 
 
 - {{< filelink path="PF_Papers/Jin-Wang-Khachaturyan2001.pdf" text="Three-dimensional phase field microelasticity theory and modeling of multiple cracks and voids">}} : 
 
-    讲了 Khachaturyan 的弹性力学理论在三维相场模拟中的应用
+    Something with application of elastic mechanical theory of Khachaturyan in 3D phase field simulation.
 
 - {{< filelink path="PF_Papers/Nestler1999.pdf" text="A multiphase field model: sharp interface asymptotics and numerical simulations of moving phase boundaries and multijunctions">}} : 
 
-    Britta Nestler 关于界面能的一些工作，基于反对称形式的界面能构造进行了一些分析。
+    Work about interfacial energy from Britta Nestler. Some analysis based on construction of anti-symmertic interfacial energy.
 
 - {{< filelink path="PF_Papers/Nestler-Wheeler1998.pdf" text="Anisotropic multi-phase-field model: Interfaces and junctions">}} : 
 
-    Britta Nestler 关于界面能的一些工作，在多相场模型与 Cahn-Hoffman $\xi$ 向量的基础上进行了扩展。
+    Work about interfacial energy from Britta Nestler. Some extension based on multiphase field model and Cahn-Hoffman $\xi$ vector.
 
 - {{< filelink path="PF_Paper/Wang-Jin-Khachaturyan2002.pdf" text="Phase field microelasticity theory and modeling of elastically and structurally inhomogeneous solid">}} : 
 
-    Khachaturyan 相场微弹性理论更详细的阐述。
+    A detailed explanation of Khachaturyan's phase field micro-elastic theory.
 
-### 相场模拟，但是用很多语言 I
+### Phase field simulation, but with many languages I
 
-- {{< filelink path="Impl_Spinodal/CPP/CPP_impl_v1.cpp">}} : 调幅分解的 C++ 基础实现
-- {{< filelink path="Impl_Spinodal/CPP/CPP_impl_v2.cpp">}} : 调幅分解的 C++ 实现，使用了更多的 C++ 特性
+- {{< filelink path="Impl_Spinodal/CPP/CPP_impl_v1.cpp">}} : Basic C++ implementation of spinodal decomposition
+- {{< filelink path="Impl_Spinodal/CPP/CPP_impl_v2.cpp">}} : C++ implementation of spinodal decomposition with more C++ features
 
-### 相场模拟，但是用很多语言 II
+### Phase field simulation, but with many languages II
 
-- {{< filelink path="Impl_Spinodal/Python/PY_impl_v1.py">}} : 调幅分解的 Python 基础实现
-- {{< filelink path="Impl_Spinodal/Python/PY_impl_v2.py">}} : 使用了 Numpy 提供的数组
-- {{< filelink path="Impl_Spinodal/Python/PY_impl_v3.py">}} : 广泛使用了 Numpy 内置的方法，提高计算效率
-- {{< filelink path="Impl_Spinodal/Python/PY_impl_v4.py">}} : 使用了 Python 的 matplotlib 库用于可视化
+- {{< filelink path="Impl_Spinodal/Python/PY_impl_v1.py">}} : Basic Python implementation of spinodal decomposition
+- {{< filelink path="Impl_Spinodal/Python/PY_impl_v2.py">}} : Use array from Numpy 
+- {{< filelink path="Impl_Spinodal/Python/PY_impl_v3.py">}} : Use more builtin Numpy methods to improve computational efficiency
+- {{< filelink path="Impl_Spinodal/Python/PY_impl_v4.py">}} : Use matplotlib for visualization
 
-### 相场模拟，但是用很多语言 III
+### Phase field simulation, but with many languages III
 
-- {{< filelink path="Impl_Spinodal/JS/JS_impl_v1.js">}} : 调幅分解的 JavaScript 基础实现
-- {{< filelink path="Impl_Spinodal/JS/JS_impl_v2.js">}} : 使用面向对象与 Stride 重写求解逻辑
-- {{< filelink path="Impl_Spinodal/JS/JS_impl_v3.7z">}} : 分文件实现并允许使用输入文件，是 7z 压缩包
-- {{< filelink path="Impl_Spinodal/TS/TS_impl_v1.ts">}} : 使用 TypeScript 实现了 JS_impl_v3 的代码
-- {{< filelink path="Impl_Spinodal/TS/TS_impl_v2.7z">}} : 进一步使用 React 图形库实现浏览器端的可视化，是一份小压缩包。
+- {{< filelink path="Impl_Spinodal/JS/JS_impl_v1.js">}} : Basic JavaScript implementation of spinodal decomposition
+- {{< filelink path="Impl_Spinodal/JS/JS_impl_v2.js">}} : Rewrite the solving logic with OOP and Stride
+- {{< filelink path="Impl_Spinodal/JS/JS_impl_v3.7z">}} : Implemnt with multiple files and allow input file reading, this is a 7z archive
+- {{< filelink path="Impl_Spinodal/TS/TS_impl_v1.ts">}} : Implemnt JS_impl_v3 with TypeScript
+- {{< filelink path="Impl_Spinodal/TS/TS_impl_v2.7z">}} : Furthermore, use React to realize visualization in browser,it's a small compressed archive。
 
-### 相场模拟，但是用很多语言——番外
+### Phase field simulation, but with many languages - Extra
 
-- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft_complex.h">}} : 自己实现的复数库，用来为快速傅里叶算法做准备
-- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft_test_main.c">}} : 用来测试快速傅里叶算法的可执行文件，可以编译执行
-- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft.c">}} : 自己实现的快速傅里叶变换算法源文件，可以编译成静态库
-- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft.h">}} : 使用该快速傅里叶变换算法库的头文件
+- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft_complex.h">}} : Self-implemented complex number library, prepared for fast Fourier transformation (FFT) algorithm.
+- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft_test_main.c">}} : Source code for testing the FFT algorithm, can be compiled and executed
+- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft.c">}} : Source code for self-implemented FFT algorithm, can be compiled into static library
+- {{< filelink path="Impl_Spinodal/Fourier/C_my_fft.h">}} : Header file for using this FFT library
