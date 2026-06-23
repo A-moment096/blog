@@ -25,7 +25,7 @@ comments: true
 
 ## 觉得特别好所以很值得一个手动置顶
 
-- [**提问的智慧**](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md)
+- [**提问的智慧**](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md) 作者：Eric Steven Raymond
 
     每当有问题/有点子，在上群组/论坛查消息/看帖子的时候，又或是看到网上的逆天提问/爷新出现的时候，我总是会想起大一网上冲浪时，某早已记不得的链接带领我点进这篇文章的下午。虽然通篇其实是面向在 “黑客” 或者极客群体论坛/群组/邮件列表提问时的注意事项（甚至有点黑客群体自白的意思？），但是我感觉内容完全不需要拘束于某几个特定领域。*提问的智慧* 这个名称恰如其分。
 
@@ -49,7 +49,7 @@ comments: true
 - [友链实现方案](https://thirdshire.com/hugo-stack-renovation-part-two/): Friend is GOOOOOOOD
 - [TABLER ICONS](https://tabler.io/icons): 博客中的图标来源
 - [Transfonter](https://transfonter.org/): 把字体转换为 `woff` 字体方便使用
-- [使用 giscus 并从 utterance 迁移](https://oxidane-uni.github.io/p/%E5%B0%86%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E7%94%B1-utterance-%E8%BF%81%E7%A7%BB%E8%87%B3-giscus/): 参考了这篇博客，写的挺详细的。可惜博主已经不再更新了。
+- [将博客评论系统由 utterance 迁移至 giscus](https://oxidane-uni.github.io/p/%E5%B0%86%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E7%94%B1-utterance-%E8%BF%81%E7%A7%BB%E8%87%B3-giscus/): 参考了这篇博客，写的挺详细的。可惜博主已经不再更新了。
 - [SauceNAO](https://saucenao.com/): 搜图网站，非常好用。二次元这块狠狠拿捏（适合搜 pixiv 上发布的作品）
 
 ## 折腾 Arch / Linux 
@@ -58,7 +58,7 @@ comments: true
 - [ArchLinux Forum](https://bbs.archlinux.org/): 基于论坛的发行版很难不看/查论坛帖子
 - [记得装 networkmanager 之一](ttps://bbs.archlinuxcn.org/viewtopic.php?id=12603)，[之二](https://www.cnblogs.com/yuxiayizhengwan/p/16576946.html): 也算是被狠狠坑过了
 - [连校园网 之一](https://www.cnblogs.com/holaworld/p/17839616.html)，[之二](https://www.bilibili.com/opus/852262124483772422): 其实如果有浏览器就好说很多了，`192.168.0.1` 一般就是网关
-- [管理电脑上的字体](https://catcat.cc/post/2021-03-07/): 解决电脑上字体渲染问题，特别是一些丑丑的日韩港澳台地区使用的繁体/旧体/变体汉字
+- [用 fontconfig 治理 Linux 中的字体](https://catcat.cc/post/2021-03-07/): 解决电脑上字体渲染问题，特别是一些丑丑的日韩港澳台地区使用的繁体/旧体/变体汉字
 - [Remap Caps Lock to Escape and Control](https://ejmastnak.com/tutorials/arch/caps2esc/): 使用 `interception-caps2esc` 来把没什么用的 **CapsLock** 映射为更常用的 **Esc**
 
 ## Linux 命令笔记
@@ -69,7 +69,7 @@ comments: true
 
 ### FRP
 
-- [Github FRP](https://github.com/fatedier/frp): Github 上的 `frp` 项目主页
+- [Github: FRP](https://github.com/fatedier/frp): Github 上的 `frp` 项目主页
 - [FRP 配置教程](https://github.com/CNFlyCat/UsefulTutorials/): 非常详细的教程，参考了很多
 
 ### Git
@@ -86,7 +86,7 @@ comments: true
 - [香蕉空间: 于品数学分析讲义](https://www.bananaspace.org/wiki/%E8%AE%B2%E4%B9%89:%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90): 很棒的一本讲义，相当有名且非常现代化
 - [强形式，强解的概念辩驳 之一](https://encyclopediaofmath.org/wiki/Strong_solution)，[之二](https://math.stackexchange.com/questions/162353/define-strong-solution): 数学概念/名词有时候也不是很准确
 - [Bilibili: 微分的导数](https://www.bilibili.com/video/BV1CdNDz1EcB/): 给微分再求形式上的微分，很有趣
-- [Bilibili: 蛇引理证明](https://www.bilibili.com/video/BV1FZFNezE6D): 启发我写了 [蛇年，Snake Lemma!](/posts/Math_Note/Snake_Lemma/)，讲的很详细。
+- [Bilibili: 蛇年接着卷！一起证明蛇引理！](https://www.bilibili.com/video/BV1FZFNezE6D): 启发我写了 [蛇年，Snake Lemma!](/posts/Math_Note/Snake_Lemma/)，讲的很详细。
 - [知乎: 关于 Rudin 的错排与误会](https://www.zhihu.com/question/559683007/answer/3502165974): 算是一些趣闻轶事了
 - [知乎: 求2025!从右往左起第一个不为零的数字？](https://www.zhihu.com/question/666502327): 一个有趣的问题。我用 Python 写了解它的算法。很好玩。
 - [Professor Karen E. Smith - Bases for Infinite Dimensional Vector Spaces](https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/06/infinite.pdf): 介绍了无穷维线性空间的一些有趣的性质，比如它的基的情况。

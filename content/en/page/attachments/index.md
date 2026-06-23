@@ -10,13 +10,13 @@ comment: true
 toc: false
 ---
 
-*This illustration is from pixiv artist [KANOSE](https://www.pixiv.net/users/1460159), link: [氷のプリンセス](https://www.pixiv.net/artworks/70462748)，Princess of Ice!*
+*This illustration is from pixiv artist [KANOSE](https://www.pixiv.net/users/1460159), link: [氷のプリンセス](https://www.pixiv.net/artworks/70462748)，Princess of Ice! Great!*
 
 ## Introduction
 
 You may find some files sitting in my blog posts, and here is a list of these files. You can check and download these mentioned contents here.
 
-These files are sorted as how they appear in the posts. Currently they are mainly something used or created by the writter.
+These files are sorted as how they appear in the posts. Currently they are mainly something used or created by myself.
 
 By clicking the following link, if it's a text file or image, then you probably should copy-paste the file or image. If the file is in some other format (for example, compressed archive), it gets downloaded automatically.
 
@@ -58,9 +58,9 @@ If you found any file not listed here or any file has some problem, please conta
 
 - {{< filelink path="Impl_Spinodal/JS/JS_impl_v1.js">}} : Basic JavaScript implementation of spinodal decomposition
 - {{< filelink path="Impl_Spinodal/JS/JS_impl_v2.js">}} : Rewrite the solving logic with OOP and Stride
-- {{< filelink path="Impl_Spinodal/JS/JS_impl_v3.7z">}} : Implemnt with multiple files and allow input file reading, this is a 7z archive
-- {{< filelink path="Impl_Spinodal/TS/TS_impl_v1.ts">}} : Implemnt JS_impl_v3 with TypeScript
-- {{< filelink path="Impl_Spinodal/TS/TS_impl_v2.7z">}} : Furthermore, use React to realize visualization in browser,it's a small compressed archive。
+- {{< filelink path="Impl_Spinodal/JS/JS_impl_v3.7z">}} : Implement with multiple files and allow input file reading, this is a 7z archive
+- {{< filelink path="Impl_Spinodal/TS/TS_impl_v1.ts">}} : Implement JS_impl_v3 with TypeScript
+- {{< filelink path="Impl_Spinodal/TS/TS_impl_v2.7z">}} : Furthermore, use React the graphical library to realize visualization in browser,it's a small compressed archive.
 
 ### Phase field simulation, but with many languages - Extra
 

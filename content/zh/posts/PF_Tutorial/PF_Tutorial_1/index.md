@@ -48,10 +48,6 @@ $$
 
 解两个方程需要的工具有: 解ODE/PDE(有限差分法, FDM), 求自由能的变分导数(欧拉-拉格朗日方程,  E-L方程), 向量微积分($\nabla$与$\nabla^2$)
 
----
-
-<center>Nov 05 更新: </center>
-
 ## 解ODE: 有限差分法
 
 数值方法解ODE有很多种不同的方法, 比如傅里叶谱 (Fourier Spectrum) 方法, 有限元法 (Finite Element Method, FEM), 以及这里讲到的有限差分法 (Finite Difference Method, FDM).
@@ -106,10 +102,6 @@ def runge_kutta(
         k_4: float = f(x[i] + h, y[i] + h * k_3)
         y.append(y[i] + h / 6 * (k_1 + 2 * k_2 + 2 * k_3 + k_4))
 ```
-
----
-
-<center>Nov 06 更新: </center>
 
 ## 自由能泛函与变分导数: Euler-Lagrange 方程
 
