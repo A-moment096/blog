@@ -11,7 +11,7 @@ tags:
 title: "搭建 FRP 服务"
 description: 简单记录一下自己搭建 FRP 服务的过程
 date: 2025-07-23T13:26:16+08:00
-image: BagPipe.jpg 
+image: /images/BagPipe.jpg 
 math: false
 mermaid: true
 license: 

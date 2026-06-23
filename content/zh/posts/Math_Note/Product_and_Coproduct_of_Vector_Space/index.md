@@ -13,7 +13,7 @@ tags:
 title: 线性空间的积与余积
 description: 深藏在集合论中的区别
 date: 2025-10-05T19:55:20+08:00
-image: Eyjafjalla.jpg
+image: /images/Eyjafjalla.jpg
 imageObjectPosition: center 20%
 math: true
 hidden: false

@@ -8,7 +8,7 @@ tags:
 title: "Installing Arch Linux from Scratch"
 description: A record of my journey learning to install Arch Linux
 date: 2024-11-10T22:34:55+08:00
-image: imgs/Reimu_Water.jpg
+image: /images/Reimu_Water.jpg
 math: 
 links: 
   - title: Arch Linux+KDE Installation Guide & Pitfall Log by Azure Zeng

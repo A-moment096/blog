@@ -8,7 +8,7 @@ tags:
 - Numerical Analysis
 title: "Phase Field: Simulation Study Notes I"
 description: Notes on learning the phase field method
-image: "/posts/PF_Tutorial/Skadi.png"
+image: /images/Skadi.png
 date: 2024-11-01
 math: true
 links:

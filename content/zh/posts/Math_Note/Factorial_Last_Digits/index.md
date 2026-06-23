@@ -12,7 +12,7 @@ tags:
 title: "2025! 非零的最后一位数字是多少？"
 description: "知乎上的神奇问题，要怎么解决呢？"
 date: 2025-08-25T18:01:23+08:00
-image: 清水吟.jpg
+image: /images/清水吟.jpg
 math: true
 license: 
 hidden: false

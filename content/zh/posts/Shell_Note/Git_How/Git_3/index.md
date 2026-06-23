@@ -13,7 +13,7 @@ tags:
 title: "（也许是）一个 Git 教程？其三"
 description: "一起写项目吧~"
 date: 2025-08-26T18:28:16+08:00
-image: /posts/Shell_Note/Git_How/Tatara Kogasa.jpg
+image: /images/Tatara-Kogasa.jpg
 math: true
 license: 
 hidden: false

@@ -9,7 +9,7 @@ tags:
 - Python
 title: "Phase Field: Simulation Study Notes II"
 description: Notes on learning the phase field method
-image: "/posts/PF_Tutorial/Skadi.png"
+image: /images/Skadi.png
 date: 2024-11-22
 math: true
 links:

@@ -12,7 +12,7 @@ tags:
 title: 如何解析 C/C++（比较）复杂的类型？
 description: 读可爱群友博客有感，然后被干碎……
 date: 2026-01-15T19:35:50+08:00
-image: Science.png
+image: /images/Science.png
 math: true
 hidden: false
 comments: true

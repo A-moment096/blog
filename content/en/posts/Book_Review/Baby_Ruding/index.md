@@ -9,7 +9,7 @@ tags:
 - Reading
 title: "Thoughts on Baby Rudin"
 description: A fluff piece — finished reading it, but understood almost nothing
-image: yoyoko.jpeg
+image: /images/yoyoko.jpeg
 date: 2024-11-01
 math: true
 ---

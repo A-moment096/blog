@@ -11,7 +11,7 @@ tags:
 title: "安装 Arch Linux，但是笔记本物理机"
 description: "放假了，折腾下自己的笔记本咯~"
 date: 2025-05-02T16:12:04+08:00
-image: imgs/Alice.png
+image: /images/Alice.png
 math: true
 license: 
 hidden: false

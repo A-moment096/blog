@@ -11,7 +11,7 @@ tags:
 title: 记拯救用 git-reset 误删的某代码仓库
 description: 不要用不了解的命令行，and RTFM
 date: 2025-12-28T00:13:03+08:00
-image: 迷迭香.png
+image: /images/迷迭香.png
 imageObjectPosition: "center 10%"
 math: true
 hidden: false

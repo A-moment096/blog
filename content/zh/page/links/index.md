@@ -1,6 +1,6 @@
 ---
 title: "Links"
-image: star river.png
+image: /images/star-river.png
 menu:
     main: 
         weight: 70

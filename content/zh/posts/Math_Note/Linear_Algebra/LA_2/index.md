@@ -11,7 +11,7 @@ title: 线性代数笔记 II
 description: 线性映射，矩阵和对偶
 date: 2025-10-20T09:03:01+08:00
 cascade:
-  image: Alice.jpg
+  image: /images/Alice.jpg
 imageObjectPosition: "center 15%"
 math: true
 hidden: false

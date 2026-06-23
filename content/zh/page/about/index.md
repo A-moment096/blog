@@ -3,7 +3,7 @@ title: "About"
 date: 2024-10-09 14:34:18
 layout: "about"
 slug: "about"
-image: Reimu.png
+image: /images/Reimu.png
 menu:
     main:
         weight: 10 

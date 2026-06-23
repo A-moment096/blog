@@ -13,7 +13,7 @@ tags:
 title: "（也许是）一个 Git 教程？其二"
 description: "看看 Git 分支（branch）吧！"
 date: 2025-08-14T16:49:16+08:00
-image: /posts/Shell_Note/Git_How/Tatara Kogasa.jpg
+image: /images/Tatara-Kogasa.jpg
 math: true
 license: 
 hidden: false

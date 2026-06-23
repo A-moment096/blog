@@ -1,6 +1,6 @@
 ---
 title: Others
-image: Cheshire.jpg
+image: /images/Cheshire.jpg
 weight: 0
 
 # Badge style

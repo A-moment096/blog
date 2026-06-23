@@ -7,7 +7,7 @@ tags:
 - Note
 title: "蛇年，Snake Lemma！"
 description: 蛇年我也试证一下蛇引理
-image: Post Shelter-Inaba Kumori.png
+image: /images/Post Shelter-Inaba Kumori.png
 date: 2025-02-27
 math: true
 draft: false

@@ -12,7 +12,7 @@ tags:
 title: "上一个命令是什么？"
 description: "在交互式 [BA,Z]SH 中使用宏获取上个命令的信息"
 date: 2025-07-26T20:09:18+08:00
-image: SEASIDE_SOLILOQUIES.png 
+image: /images/SEASIDE_SOLILOQUIES.png 
 math: true
 license: 
 comments: true

@@ -7,7 +7,7 @@ tags:
 - Note
 title: "多相场模型与巨势方程"
 description: 关于两个相场方程的笔记
-image: ShoujouRei_MikitoP.png
+image: /images/ShoujouRei_MikitoP.png
 date: 2025-01-05
 math: true
 ---

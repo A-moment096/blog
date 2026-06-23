@@ -9,7 +9,7 @@ tags:
 - Python
 title: "Phase Field: 相场模拟学习笔记 II"
 description: 记录相场方法的学习内容
-image: "/posts/PF_Tutorial/Skadi.png"
+image: /images/Skadi.png
 date: 2024-11-22
 math: true
 links:

@@ -12,7 +12,7 @@ tags:
 title: "VS Code 也许其实是 IDE"
 description: "怎么用 VS Code 当 IDE：以 C++ 为例"
 date: 2025-09-17T14:35:38+08:00
-image: 猛独が襲う.png
+image: /images/猛独が襲う.png
 imageObjectPosition: center 20%
 math: true
 hidden: false

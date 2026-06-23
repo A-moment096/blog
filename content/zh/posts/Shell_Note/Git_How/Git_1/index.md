@@ -13,7 +13,7 @@ tags:
 title: "（也许是）一个 Git 教程？其一"
 description: "简介与日常"
 date: 2025-07-28T22:49:16+08:00
-image: /posts/Shell_Note/Git_How/Tatara Kogasa.jpg
+image: /images/Tatara-Kogasa.jpg
 math: true
 license: 
 hidden: false

@@ -36,7 +36,7 @@ sync:
     git pull
 
 new name:
-    hugo new content 'content/posts/{{name}}/index.md'
+    hugo new content 'content/zh/posts/{{name}}/index.md'
 
 update:
     git checkout draft

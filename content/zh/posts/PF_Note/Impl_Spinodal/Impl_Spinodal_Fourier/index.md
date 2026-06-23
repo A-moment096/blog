@@ -11,7 +11,7 @@ tags:
 - Numerical Analysis
 title: "相场模拟，但是用很多语言——番外"
 description: 傅里叶全家桶！！
-image: /posts/PF_Note/Impl_Spinodal/Alice-2.png
+image: /images/Alice-2.png
 imageObjectPosition: center 20%
 date: 2026-05-30
 math: true

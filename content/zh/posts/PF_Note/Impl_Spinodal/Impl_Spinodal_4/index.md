@@ -11,7 +11,7 @@ tags:
 - Numerical Analysis
 title: "相场模拟，但是用很多语言 IV"
 description: 半隐式傅里叶谱方法！
-image: /posts/PF_Note/Impl_Spinodal/Alice-2.png
+image: /images/Alice-2.png
 imageObjectPosition: center 20%
 date: 2026-06-22
 math: true

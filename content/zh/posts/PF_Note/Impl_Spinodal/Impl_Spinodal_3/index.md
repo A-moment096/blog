@@ -9,7 +9,7 @@ tags:
 - Numerical Analysis
 title: "相场模拟，但是用很多语言 III"
 description: 让浏览器跑相场！
-image: /posts/PF_Note/Impl_Spinodal/Alice-2.png
+image: /images/Alice-2.png
 imageObjectPosition: center 20%
 date: 2026-04-10
 math: true

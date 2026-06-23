@@ -1,6 +1,6 @@
 ---
 title: Friends
-image: 花と水飴、最終電車.png
+image: /images/花と水飴、最終電車.png
 menu:
     main: 
         weight: 30

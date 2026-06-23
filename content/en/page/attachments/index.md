@@ -1,6 +1,6 @@
 ---
 title: "Attachments"
-image: "氷のプリンセス.jpg"
+image: /images/氷のプリンセス.jpg
 menu:
     main:
         weight: 80

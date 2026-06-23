@@ -6,7 +6,7 @@ tags:
 - Experience
 title: "First Blog: 搭建这个博客"
 description: 第一次搭建博客的经历
-image: Reimu.png
+image: /images/Reimu.png
 date: 2024-11-01
 links:
   - title: Hugo Theme Stack

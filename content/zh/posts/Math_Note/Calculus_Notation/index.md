@@ -11,7 +11,7 @@ tags:
 title: "微积分的符号"
 description: 聊聊这略显混乱的微积分符号们
 date: 2025-07-24T15:16:10+08:00
-image: Postscript.png
+image: /images/Postscript.png
 math: true
 license: 
 hidden: false

@@ -8,7 +8,7 @@ tags:
 - Tutorial
 title: "Python + VS Code 快速配置"
 description: 快速配置VS Code的Python开发环境
-image: 妹红.jpeg
+image: /images/妹红.jpeg
 date: 2024-11-01
 links:
   - title: Python With VS Code

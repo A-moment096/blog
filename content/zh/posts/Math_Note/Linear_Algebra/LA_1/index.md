@@ -10,7 +10,7 @@ tags:
 title: 线性代数笔记 I
 description: 记号约定，线性空间及其基本性质
 date: 2025-10-20T09:00:01+08:00
-image: /posts/Math_Note/Linear_Algebra/Alice.jpg
+image: /images/Alice.jpg
 imageObjectPosition: "center 15%"
 math: true
 hidden: false

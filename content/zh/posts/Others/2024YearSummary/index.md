@@ -9,7 +9,7 @@ tags:
 title: "2024 年度总结"
 description: "总结一下我的 2024 年，顺带还有我的 2025" 
 date: 2025-06-04T17:57:01+08:00
-image: snow.png 
+image: /images/snow.png 
 math: false 
 license: 
 hidden: false

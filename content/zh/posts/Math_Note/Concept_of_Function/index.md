@@ -13,7 +13,7 @@ tags:
 title: "到底啥是函数！？"
 description: "一个大家常用的概念，而各个教材则……"
 date: 2025-09-23T17:41:51+08:00
-image: 笔中的呓喃之境.jpg
+image: /images/笔中的呓喃之境.jpg
 math: true
 license: 
 hidden: false

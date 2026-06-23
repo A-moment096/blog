@@ -8,7 +8,7 @@ tags:
 - Spinodal Decomposition
 title: "相场模拟，但是用很多语言 II"
 description: 试试 Python！
-image: /posts/PF_Note/Impl_Spinodal/Alice-2.png
+image: /images/Alice-2.png
 imageObjectPosition: center 20%
 date: 2026-04-01
 math: true

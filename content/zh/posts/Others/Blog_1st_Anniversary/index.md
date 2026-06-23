@@ -11,7 +11,7 @@ tags:
 title: 博客一周年啦！
 description: 嘿嘿，博客，嘿嘿
 date: 2025-09-22T15:51:11+08:00
-image: bouquet.png
+image: /images/bouquet.png
 imagePosition: top
 math: true
 comments: true

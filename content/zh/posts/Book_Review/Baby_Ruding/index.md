@@ -9,7 +9,7 @@ tags:
 - Reading
 title: "Baby Rudin 读后感"
 description: 一篇水文，读完其实约等于没读
-image: yoyoko.jpeg
+image: /images/yoyoko.jpeg
 date: 2024-11-01
 math: true
 ---
