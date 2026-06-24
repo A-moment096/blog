@@ -24,7 +24,7 @@ comments: true
 
 *头图选择了可爱的小羊，来自 [Ruziかねつカーぺット](https://www.pixiv.net/users/3402557) 太太的 [ピンクの夢](https://www.pixiv.net/artworks/112910033#1)，粉粉的，可爱捏*
 
-*选曲为 [STUDY WITH MIKU -part2-](https://www.bilibili.com/video/BV1924y1T7mV/ "B 站链接") 改编的 [さよならプリンセス](https://www.bilibili.com/video/BV1j3411L76S/ "原曲 B 站链接") (再见公主)，原作是 P 主 [Kai](https://twitter.com/kaivcl)，由初音演唱。俏皮的音乐，好听……*
+*选曲为 [STUDY WITH MIKU -part2-](https://www.bilibili.com/video/BV1924y1T7mV/ "B 站链接") 改编的 [さよならプリンセス](https://www.bilibili.com/video/BV1j3411L76S/ "原曲 B 站链接")（再见公主），原作是 P 主 [Kai](https://twitter.com/kaivcl)，由初音演唱。俏皮的音乐，好听……*
 
 {{<music auto="https://music.163.com/#/song?id=2053344485" loop="none">}}
 
@@ -35,7 +35,7 @@ comments: true
 
 > 机器学习真是好东西！我必须立刻启动！
 
-于是他决定在自己的电脑上配置一些做机器学习要用的环境。然而他有一些洁癖…… 不希望因为工作用的环境影响自己的日常使用，于是他决定不在心爱的 Arch Linux 中安装这些环境，而是自己新安装一个 Ubuntu 的 WSL，后续的内容都在 WSL 里完成。
+于是他决定在自己的电脑上配置一些做机器学习要用的环境。然而他有一些洁癖……不希望因为工作用的环境影响自己的日常使用，于是他决定不在心爱的 Arch Linux 中安装这些环境，而是自己新安装一个 Ubuntu 的 WSL，后续的内容都在 WSL 里完成。
 
 刚刚他算是配好了，我整理了一下他安装的过程以及中间踩的坑，记录在这里，希望能帮到需要的人~
 
@@ -224,7 +224,7 @@ alias bat="batcat"
 可能你的 Windows Terminal 里有很多别的选项，或者默认的 Shell 等不是 PowerShell，没关系，我们可以进入设置修改。比如让 PowerShell 成为默认 profile[^2]，把常用的 profile 顺序提前等等。
 
 这里主要想聊一下下面这些设置，请注意要记得保存，用的 GUI 的话右下角有保存按钮，使用 JSON 文件的话要保存文件：
-- 调整 profile 顺序: 实际上 Windows Terminal 会把所有的 Profile 信息都存在一个 JSON 文件里，可以从设置页面的左下角打开，我们手动改一下需要的 Profile 顺序就可以了；
+- 调整 profile 顺序：实际上 Windows Terminal 会把所有的 Profile 信息都存在一个 JSON 文件里，可以从设置页面的左下角打开，我们手动改一下需要的 Profile 顺序就可以了；
 - 隐藏 profile: 可以直接在 GUI 中修改，有个 Hide profile from dropdown，或者在 JSON 文件中找到对应的 profile，添加 `"hidden": true` 即可；
 - 如果你不希望在运行程序时 Shell 的标签页变成在执行程序的名字，请在底下的 Terminal Emulation 中选择 Suppress title changes。这样就可以一直显示 profile 的名称。在安装了若干个同类 profile（比如两个 Ubuntu）的时候会很好用。
 
@@ -242,7 +242,7 @@ alias bat="batcat"
 
 所以，Anaconda 是什么？它是 Python 吗？Python 是什么？我已经有 Python 之后还需要装 Anaconda 吗？如果你了解这些概念，请直接跳过吧（）
 
-我们先来说说 Python 和包管理。Python 作为一门比较现代的语言，它使用解释器实现逐行的代码运行，且通过包管理器来管理代码中使用到的模块、库之类的东西。然而 Python 其本身只是一个语言，我们常说的 “下载 Python” 实际上是下载了包含 Python 的解释器、包管理器以及运行环境的一个发行版。我们从 [官网](https://www.python.org) 下载到的 Python 安装包实际上包括了使用 C 语言实现的 CPython 解释器，从 PyPI，即 Python Package Index 来下载安装对应的包的包管理器 `pip`，以及它们的运行所需的环境（如果你勾选了 IDLE 的选项，你还会安装一个小小的 Python IDE）。我们称这样下载到的是 Python 官方发行版。
+我们先来说说 Python 和包管理。Python 作为一门比较现代的语言，它使用解释器实现逐行的代码运行，且通过包管理器来管理代码中使用到的模块、库之类的东西。然而 Python 其本身只是一个语言，我们常说的“下载 Python”实际上是下载了包含 Python 的解释器、包管理器以及运行环境的一个发行版。我们从 [官网](https://www.python.org) 下载到的 Python 安装包实际上包括了使用 C 语言实现的 CPython 解释器，从 PyPI，即 Python Package Index 来下载安装对应的包的包管理器 `pip`，以及它们的运行所需的环境（如果你勾选了 IDLE 的选项，你还会安装一个小小的 Python IDE）。我们称这样下载到的是 Python 官方发行版。
 
 除了 Python 官方的发行版外，由于 CPython 采用的开源协议，它允许任何人自由地打包并发行自己基于 CPython 的 Python 发行版，实际上也确实有很多不同的基于 CPython 的发行版。其中一个非常出名的发行版即为本次的主角，Anaconda。Anaconda 的 Python 发行版包含了由自己打包的 CPython 解释器，不同于 `pip` 的另一款包管理器 `conda`，以及由 Anaconda 提供的，预包含了许多科学计算、数据统计库的运行环境。
 
@@ -324,7 +324,7 @@ vim $ZSH_CUSTOM/env/conda_env.zsh
 
 ![Conda Installation](conda-installation.png)
 
-何意味…… 在 `conda activate pytorch-test`（我的环境名叫 `pytorch-test`）之后使用 `where nvcc`，得到了这样的结果：
+何意味……在 `conda activate pytorch-test`（我的环境名叫 `pytorch-test`）之后使用 `where nvcc`，得到了这样的结果：
 
 ```zsh
 /home/amoment/.conda/envs/pytorch/bin/nvcc
@@ -337,7 +337,7 @@ vim $ZSH_CUSTOM/env/conda_env.zsh
 
 ### CUDA 的简单介绍
 
-CUDA 是 Nvidia 推出的 GPU 计算框架，是 Compute Unified Device Architecture 的缩写，即 *计算统一设备架构* （神秘机翻）。这里的 Device 主要指的就是 Nvidia 家的各系显卡了。由于进行机器学习需要对大量（存疑）的数据进行计算，而计算需求也没有特别复杂（相较于 CPU 更适合执行复杂计算任务），使用显卡这样处理图像的设备进行加速计算几乎成了刚需。
+CUDA 是 Nvidia 推出的 GPU 计算框架，是 Compute Unified Device Architecture 的缩写，即 *计算统一设备架构*（神秘机翻）。这里的 Device 主要指的就是 Nvidia 家的各系显卡了。由于进行机器学习需要对大量（存疑）的数据进行计算，而计算需求也没有特别复杂（相较于 CPU 更适合执行复杂计算任务），使用显卡这样处理图像的设备进行加速计算几乎成了刚需。
 
 虽然说 Nvidia 家的显卡对 Linux 的支持也许没有 Windows 端那么好（F**k you Nvidia！），但是毕竟做计算这行 Linux 还是主力，微软与 Nvidia 也很识相的给普通开发者一个很不错的选项：使用 WSL 来借助 Windows 的显卡驱动进行 CUDA 开发，且有专门适配 WSL 的包与文档供下载使用，所以我们干脆就这么做，使用支持情况最好的 Ubuntu 来进行相应的开发。
 
@@ -406,7 +406,7 @@ sudo apt-get autoclean
 conda create -n pytorch-test python=3.12
 ```
 
-这里 `-n` 代表的是我们要给这个环境起的名字；`python=3.12` 是我们让 `conda` 安装的第一个东西：`python` 解释器，并且要求它的版本是 3.12。为什么不用较新的 3.13 甚至 $\pi$thon（3.14） 呢？主要是因为 PyTorch 对较新版本的支持没有那么好。创建好环境之后应该能看到提示如何启用这个环境：
+这里 `-n` 代表的是我们要给这个环境起的名字；`python=3.12` 是我们让 `conda` 安装的第一个东西：`python` 解释器，并且要求它的版本是 3.12。为什么不用较新的 3.13 甚至 $\pi$thon（3.14）呢？主要是因为 PyTorch 对较新版本的支持没有那么好。创建好环境之后应该能看到提示如何启用这个环境：
 
 ```zsh
 conda activate pytorch-test

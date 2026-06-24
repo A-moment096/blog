@@ -1,8 +1,0 @@
-.\content\zh\posts\FEM_Note\index.md
-.\content\zh\posts\Others\EncryptAndSecret\index.md
-.\content\zh\posts\Math_Note\IDLA_and_Functional_Analysis\index.md
-.\content\zh\posts\Math_Note\Sieve_Method\index.md
-.\content\zh\posts\PF_Note\KS_Theory\index.md
-.\content\zh\posts\Math_Note\Tensor_Algebra_Calculus\Linear_Algebra_1\index.md
-.\content\zh\posts\Math_Note\Tensor_Algebra_Calculus\Linear_Algebra_3\index.md
-.\content\zh\posts\Math_Note\Tensor_Algebra_Calculus\Linear_Algebra_2\index.md

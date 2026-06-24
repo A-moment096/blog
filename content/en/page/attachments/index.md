@@ -10,7 +10,7 @@ comment: true
 toc: false
 ---
 
-*This illustration is from pixiv artist [KANOSE](https://www.pixiv.net/users/1460159), link: [氷のプリンセス](https://www.pixiv.net/artworks/70462748)，Princess of Ice! Great!*
+*This illustration is from pixiv artist [KANOSE](https://www.pixiv.net/users/1460159), link: [氷のプリンセス](https://www.pixiv.net/artworks/70462748), Princess of Ice! Great!*
 
 ## Introduction
 

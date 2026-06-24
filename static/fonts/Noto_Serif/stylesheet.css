@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Noto Serif';
+    src: local('Noto Serif Regular'), local('NotoSerif-Regular'),
+        url('NotoSerif-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Serif';
+    src: local('Noto Serif Italic'), local('NotoSerif-Italic'),
+        url('NotoSerif-Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Serif';
+    src: local('Noto Serif Bold'), local('NotoSerif-Bold'),
+        url('NotoSerif-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Serif';
+    src: local('Noto Serif Bold Italic'), local('NotoSerif-BoldItalic'),
+        url('NotoSerif-BoldItalic.woff2') format('woff2');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Serif Italic LatinOnly';
+    src: local('Noto Serif Italic'), local('NotoSerif-Italic'),
+        url('NotoSerif-Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    unicode-range: U+0000-024F, U+1E00-1EFF;   /* Latin only — no General Punctuation */
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Serif Italic';
+    src: local('Noto Serif Italic'), local('NotoSerif-Italic'),
+        url('NotoSerif-Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}

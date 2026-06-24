@@ -14,7 +14,7 @@ math: true
 
 *记录一下目前使用到的两个相场模型，包括它们的推导，假设和缺陷*
 
-*头图出自 [かとうれい](https://twitter.com/katorei_) 太太， 为 [Mikito P](https://space.bilibili.com/108833238) 所作的 [少女レイ](https://www.bilibili.com/list/ml1197098078?spm_id_from=333.1007.0.0&oid=27304533&bvid=BV1Rs411N7Aq) 的曲绘*
+*头图出自 [かとうれい](https://twitter.com/katorei_) 太太，为 [Mikito P](https://space.bilibili.com/108833238) 所作的 [少女レイ](https://www.bilibili.com/list/ml1197098078?spm_id_from=333.1007.0.0&oid=27304533&bvid=BV1Rs411N7Aq) 的曲绘*
 
 {{< music auto="https://music.163.com/#/song?id=1334077117" loop="none">}}
 
@@ -81,7 +81,7 @@ $$
     \end{aligned}
 $$
 
-此时我们应用所谓的 “Relaxation Ansatz”，即这个变分导数值为 $\phi_\alpha$ 的演化速率，即：
+此时我们应用所谓的“Relaxation Ansatz”，即这个变分导数值为 $\phi_\alpha$ 的演化速率，即：
 
 $$
 \begin{aligned}
@@ -96,7 +96,7 @@ $$
     \lambda = \frac{1}{N} \sum_{\alpha = 1}^{N} \frac{\delta F}{\delta \phi_\alpha}
 $$
 
-此时将 $\lambda$ 带入应用 “Relaxation Ansatz” 后的变分结果中，得到：
+此时将 $\lambda$ 带入应用“Relaxation Ansatz”后的变分结果中，得到：
 
 $$
 \begin{aligned}
@@ -117,7 +117,7 @@ $$
 
 ### 模型解释
 
-上面的推导过程，在最后一步之前都是比较合理的。然而为什么最后能把 $\tilde{L}_{\alpha\beta}$ 硬生生塞进求和里面呢？也许只能通过物理的角度去尝试解释。这个公式在考虑 “Relaxation Ansatz” 时没有引入移动性的一些参数，比如经典 Allen-Cahn 方程里的移动性矩阵，也是为了方便公式推导，否则会陷入求和地狱，得到的 $\lambda$ 的值会变成：
+上面的推导过程，在最后一步之前都是比较合理的。然而为什么最后能把 $\tilde{L}_{\alpha\beta}$ 硬生生塞进求和里面呢？也许只能通过物理的角度去尝试解释。这个公式在考虑“Relaxation Ansatz”时没有引入移动性的一些参数，比如经典 Allen-Cahn 方程里的移动性矩阵，也是为了方便公式推导，否则会陷入求和地狱，得到的 $\lambda$ 的值会变成：
 
 $$
 \lambda = \frac{\sum_\alpha\sum_\beta{}L_{\alpha\beta}\frac{\delta F}{\delta \phi_\beta}}{\sum_\alpha\sum_\beta{}L_{\alpha\beta}},
@@ -149,7 +149,7 @@ $$
 \frac{\partial \mu_i}{\partial t} = \left[\phi_\alpha \frac{\partial c_j^\alpha}{\partial \mu_i} \right]^{-1} \left( \nabla\cdot \bar{M}_{jk} \nabla\mu_k + R_j - c_j^\alpha\frac{\partial \phi_\alpha}{\partial t} \right).
 $$
 
-我需要解释一下这个方程的记号。首先，和往常相似，$c$ 代表相浓度（即一个相内部的浓度），$\phi$ 代表相。此外，这个公式中的 $\mu$ 代表化学势（严格来讲是巨势，这也是这个方程名称的由来，但为方便理解我们就称为化学势），$M$ 代表浓度的移动性参数， $R$ 代表可能存在的浓度/物质源。再者，这个方程实际上使用了爱因斯坦求和约定，即如果一个乘积中一个指标出现了两次，那么就对这个指标求和。我们举个例子，比如方程右侧圆括号中的最后一项的记号代表的是：
+我需要解释一下这个方程的记号。首先，和往常相似，$c$ 代表相浓度（即一个相内部的浓度），$\phi$ 代表相。此外，这个公式中的 $\mu$ 代表化学势（严格来讲是巨势，这也是这个方程名称的由来，但为方便理解我们就称为化学势），$M$ 代表浓度的移动性参数，$R$ 代表可能存在的浓度/物质源。再者，这个方程实际上使用了爱因斯坦求和约定，即如果一个乘积中一个指标出现了两次，那么就对这个指标求和。我们举个例子，比如方程右侧圆括号中的最后一项的记号代表的是：
 
 $$
 c_j^\alpha\frac{\partial \phi_\alpha}{\partial t} \coloneqq \sum_{\alpha}^{N}c_j^\alpha\frac{\partial \phi_\alpha}{\partial t}.

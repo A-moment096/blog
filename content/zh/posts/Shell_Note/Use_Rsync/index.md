@@ -21,7 +21,7 @@ comments: true
 
 *有点受不太了 `scp` 和 `sftp` 了，也许是食用姿势不对吧，总之我选择 `rsync`！*
 
-*~~图源找不到诶……从朋友那里薅过来的图，很漂亮就放在这里了~~ 小爷我找到啦！是出自 [fasnakegod](https://www.pixiv.net/en/users/8605991) 大大的 [贝加尔湖畔](https://www.pixiv.net/en/artworks/125739568)。既然如此就分享一首钢琴曲吧。一首 **騎士王の誇り** (骑士王的荣耀) 送给大家。（好像毫无关联诶 kora!）*
+*~~图源找不到诶……从朋友那里薅过来的图，很漂亮就放在这里了~~ 小爷我找到啦！是出自 [fasnakegod](https://www.pixiv.net/en/users/8605991) 大大的 [贝加尔湖畔](https://www.pixiv.net/en/artworks/125739568)。既然如此就分享一首钢琴曲吧。一首 **騎士王の誇り**（骑士王的荣耀）送给大家。（好像毫无关联诶 kora!）*
 
 {{< music auto="https://music.163.com/#/song?id=448119" loop="none">}}
 
@@ -59,7 +59,7 @@ rsync -r $HOME/mydocuments me@remote:/home/me
 
 这会直接把 `$HOME/mydocuments` 传到远程的 `/home/me` 文件夹下，形成 `/home/me/mydocuments` 这样的结构。
 
-那么假如你是想说，我要把 `$HOME/mydocuments` **里面的内容** 传到 `/home/me/another/position` 的话，那你就需要带上这个斜杠了，因为  `rsync` 就会聪明地帮你把文件夹里面的所有内容传到目标位置的那个文件夹里。也许也算是符合 “一切皆文件” 的思想了吧，如果你不带分隔符，就会以文件形式把这个 *文件* 传到文件夹里；而如果带上路径分隔符，则说明你要传的是文件夹的内容。
+那么假如你是想说，我要把 `$HOME/mydocuments` **里面的内容** 传到 `/home/me/another/position` 的话，那你就需要带上这个斜杠了，因为  `rsync` 就会聪明地帮你把文件夹里面的所有内容传到目标位置的那个文件夹里。也许也算是符合“一切皆文件”的思想了吧，如果你不带分隔符，就会以文件形式把这个 *文件* 传到文件夹里；而如果带上路径分隔符，则说明你要传的是文件夹的内容。
 
 ### 远程链接
 
@@ -91,7 +91,7 @@ rsync -r /home/amoment/myfiles/ amoment@localhost:/home/amoment/somefolder
 
 - `--delete`: 允许删除不同步的内容
 
-因为 `rsync` 如其名所示，是 *同步软件*，因此我们也许希望不是 “上传” 文件，而是 *把本地文件结构同步到远程*。此时，我们需要用到 `--delete` 这个参数，它给了 `rsync` 删除目标文件夹内多余文件的权利，从而保证你确实是在 *同步* 内容。
+因为 `rsync` 如其名所示，是 *同步软件*，因此我们也许希望不是“上传”文件，而是 *把本地文件结构同步到远程*。此时，我们需要用到 `--delete` 这个参数，它给了 `rsync` 删除目标文件夹内多余文件的权利，从而保证你确实是在 *同步* 内容。
 
 - `--exclude` `--include`: 按模式进行排除/包含
 
@@ -117,7 +117,7 @@ rsync -r /home/amoment/myfiles/ amoment@localhost:/home/amoment/somefolder
 
 - `-v --verbose`: 更啰嗦一些
 
-几乎所有（较复杂）的命令行程序都会内置这样一个命令，来把工作信息 “更啰嗦” 地显示出来。如果你需要额外的信息，请使用这个参数。
+几乎所有（较复杂）的命令行程序都会内置这样一个命令，来把工作信息“更啰嗦”地显示出来。如果你需要额外的信息，请使用这个参数。
 
 - `-P`: 进度条
 

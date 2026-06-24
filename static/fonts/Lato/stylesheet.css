@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Lato";
+    src: url('Lato-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: fallback;
+}
+@font-face {
+    font-family: "Lato";
+    src: url('Lato-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: light;
+    font-display: fallback;
+}
+@font-face {
+    font-family: "Lato";
+    src: url('Lato-Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: fallback;
+}

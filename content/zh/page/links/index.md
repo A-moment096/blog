@@ -11,7 +11,7 @@ comments: true
 
 *本文从理论上讲应该是不定期持续更新的。希望我能记得我这里记录了这些链接吧。*
 
-*头图出自 《BanG Dream! Ave Mujica》的 ED，图曲灵感来自 [【AI若叶睦】star river（原曲:感情の摩天楼 ～ Cosmic Mind）](https://www.bilibili.com/video/BV1DrNJe5ESg/)，一首很不错的 AI 翻调~*
+*头图出自 《BanG Dream! Ave Mujica》的 ED，图曲灵感来自 [【AI若叶睦】star river（原曲：感情の摩天楼 ～ Cosmic Mind）](https://www.bilibili.com/video/BV1DrNJe5ESg/)，一首很不错的 AI 翻调~*
 
 *原曲出自 [IOSYS](https://space.bilibili.com/10923790)，B站也有[投稿](https://www.bilibili.com/video/BV1Ns411S7Sm/)*
 
@@ -27,7 +27,7 @@ comments: true
 
 - [**提问的智慧**](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md) 作者：Eric Steven Raymond
 
-    每当有问题/有点子，在上群组/论坛查消息/看帖子的时候，又或是看到网上的逆天提问/爷新出现的时候，我总是会想起大一网上冲浪时，某早已记不得的链接带领我点进这篇文章的下午。虽然通篇其实是面向在 “黑客” 或者极客群体论坛/群组/邮件列表提问时的注意事项（甚至有点黑客群体自白的意思？），但是我感觉内容完全不需要拘束于某几个特定领域。*提问的智慧* 这个名称恰如其分。
+    每当有问题/有点子，在上群组/论坛查消息/看帖子的时候，又或是看到网上的逆天提问/爷新出现的时候，我总是会想起大一网上冲浪时，某早已记不得的链接带领我点进这篇文章的下午。虽然通篇其实是面向在“黑客”或者极客群体论坛/群组/邮件列表提问时的注意事项（甚至有点黑客群体自白的意思？），但是我感觉内容完全不需要拘束于某几个特定领域。*提问的智慧* 这个名称恰如其分。
 
     这里还是贴上本文的[英文原文](http://www.catb.org/~esr/faqs/smart-questions.html)以及本中文文档的[原繁中仓库](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)
 
@@ -45,7 +45,7 @@ comments: true
 - [Artitalk 文档](https://artitalk.js.org/doc.html#%F0%9F%8C%BC-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8): 用来承载我的牢骚（）
 - [SCSS参考的博文: QX的笔记](https://lqxhub.github.io/posts/a660c9b1/): 豪堪！
 - [加载进度条参考：平方君的后花园](http://i-square.us.kg/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/): 其实主要是借用的 SCSS 样式表啦（）
-- [Utterances评论参考:](https://roife.github.io/posts/use-utterances-for-blog-comment/): 非常好评论系统
+- [Utterances评论参考](https://roife.github.io/posts/use-utterances-for-blog-comment/): 非常好评论系统
 - [友链实现方案](https://thirdshire.com/hugo-stack-renovation-part-two/): Friend is GOOOOOOOD
 - [TABLER ICONS](https://tabler.io/icons): 博客中的图标来源
 - [Transfonter](https://transfonter.org/): 把字体转换为 `woff` 字体方便使用

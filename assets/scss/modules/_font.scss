@@ -3,38 +3,42 @@
 // Include Fonts from Outside
 // =============================================================================
 
-@font-face {
-    font-family: "Noto Serif";
-    src: url('/fonts/Noto_Serif/NotoSerif-Italic.woff2') format('woff2');
-    font-weight: 400 700;
-    font-style: italic;
-    font-stretch: 100%;
-    font-display: swap;
+// Noto Serif, Noto Serif Italic
+// Regular, Italic, Bold, Bold Italic
+@import url('/fonts/Noto_Serif/stylesheet.css');
+
+// Lato
+// Regular, Italic, Light(300)
+@import url('/fonts/Lato/stylesheet.css');
+
+// Wenya Quotes
+// Medium (500)
+// Modified from LXGW WenKai Lite Medium, swap the half-width quotes with full-width quotes.
+@import url('/fonts/WenyaQuotes-Medium/result.css');
+
+// Noto Serif SC
+// Regular, Bold
+@import url('/fonts/Noto_Serif_SC_Regular/result.css');
+@import url('/fonts/Noto_Serif_SC_Bold/result.css');
+
+:root :lang(zh)  {
+    --article-font-family: "Noto Serif SC", "Noto Serif", "Roboto", var(--base-font-family);
 }
 
-@font-face {
-    font-family: "Lato";
-    src: url('/fonts/Lato/Lato-Regular.woff2') format('woff2');
-    src: url('/fonts/Lato/Lato-Light.woff2') format('woff2');
-    src: url('/fonts/Lato/Lato-Italic.woff2') format('woff2');
-    font-weight: 300 400 700;
-    font-style: normal italic light;
-    font-display: swap;
+:root :lang(en) {
+    --article-font-family: "Noto Serif", "Roboto", "Noto Serif SC", var(--base-font-family);
 }
 
-// LXGW Bright Medium
-@import url('/fonts/lxgw-bright/dist/result.css');
-
-// Noto Serif SC ExtraLight
-@import url('/fonts/Noto_Serif_SC/dist/result.css');
-
-
-:root {
-    --article-font-family: "Noto Serif SC ExtraLight", "Roboto", var(--base-font-family);
-}
-
-em {
-    font-family: "Noto Serif", "Roboto", "LXGW Bright Medium", var(--base-font-family);
+:lang(zh) em {
+    font-family: "Noto Serif Italic LatinOnly", "Wenya Quotes", "Roboto", var(--base-font-family);
     font-style: normal;
-    font-weight: 400;
+}
+
+:lang(en) em {
+    font-family: "Noto Serif Italic", var(--base-font-family);
+    font-style: italic;
+}
+
+body {
+    font-feature-settings: "chws" 1;
 }

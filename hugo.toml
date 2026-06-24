@@ -1,0 +1,396 @@
+# ============================================
+# Hugo Configuration — A Moment's Rest
+# Single-file config, merged from:
+#   config.toml, languages.toml, markup.toml,
+#   menu.toml, params.toml, permalinks.toml, related.toml
+# ============================================
+
+# ============================================
+# 1. Global Settings
+# ============================================
+baseurl = "https://a-moment096.github.io/"
+title = "A Moment's Rest"
+theme = "stack"
+
+# Multilingual
+defaultContentLanguage = "zh"
+defaultContentLanguageInSubdir = true
+hasCJKLanguage = true
+
+# Change it to your Disqus shortname before using
+disqusShortname = "hugo-theme-stack"
+
+timeZone = "Etc/GMT-8"
+
+[pagination]
+pagerSize = 20
+
+[frontmatter]
+lastmod = ["lastmod", ":fileModTime"]
+
+# ============================================
+# 2. Permalinks (global fallback)
+#    Page/section permalinks are per-language.
+# ============================================
+[permalinks]
+posts = "/:sections/:contentbasename/"
+
+# ============================================
+# 3. Related Content
+# ============================================
+[related]
+includeNewer = true
+threshold = 60
+toLower = false
+
+[[related.indices]]
+name = "tags"
+weight = 100
+
+[[related.indices]]
+name = "categories"
+weight = 200
+
+# ============================================
+# 4. Markup (Markdown rendering)
+# ============================================
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.goldmark.extensions.passthrough]
+enable = true
+
+[markup.goldmark.parser.attribute]
+block = true
+title = true
+
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)'], ['$', '$']]
+
+[markup.tableOfContents]
+endLevel = 6
+ordered = true
+startLevel = 1
+
+[markup.highlight]
+noClasses = false
+codeFences = true
+guessSyntax = true
+lineNoStart = 1
+lineNos = true
+lineNumbersInTable = false
+tabWidth = 4
+
+# ============================================
+# 5. Languages
+# ============================================
+
+# --- Chinese (default) ---
+[languages.zh]
+label = "中文"
+direction = "ltr"
+title = "A Moment's Rest"
+weight = 1
+contentDir = "content/zh"
+
+[languages.zh.params.sidebar]
+subtitle = "AMoment 的 Blog"
+
+[languages.zh.params.comments.giscus]
+lang = "zh-CN"
+
+[languages.zh.permalinks.page]
+path = "/:sections/:contentbasename/"
+[languages.zh.permalinks.section]
+path = "/:contentbasename/"
+
+[[languages.zh.menus.main]]
+url = "/zh/"
+identifier = "home"
+name = "Home"
+weight = -10
+[languages.zh.menus.main.params]
+icon = "home"
+
+[[languages.zh.menus.social]]
+identifier = "rss"
+name = "RSS"
+url = "/zh/index.xml"
+weight = 10
+pre = "RSS"
+[languages.zh.menus.social.params]
+newtab = true
+icon = "rss"
+
+[[languages.zh.menus.social]]
+identifier = "github"
+name = "GitHub"
+url = "https://github.com/A-moment096"
+weight = 1
+[languages.zh.menus.social.params]
+icon = "brand-github"
+
+[[languages.zh.menus.social]]
+identifier = "bilibili"
+name = "Bilibili"
+url = "https://space.bilibili.com/44789578"
+weight = 5
+[languages.zh.menus.social.params]
+icon = "brand-bilibili"
+
+[[languages.zh.menus.social]]
+identifier = "mail"
+name = "Contact Me"
+url = "mailto:amoment096@gmail.com"
+weight = 9
+[languages.zh.menus.social.params]
+icon = "mail"
+
+# --- English ---
+[languages.en]
+label = "English"
+direction = "ltr"
+title = "A Moment's Rest"
+weight = 2
+contentDir = "content/en"
+
+[languages.en.params.sidebar]
+subtitle = "AMoment's Blog"
+
+[languages.en.params.comments.giscus]
+lang = "en"
+
+[languages.en.permalinks.page]
+path = "/:sections/:contentbasename/"
+[languages.en.permalinks.section]
+path = "/:contentbasename/"
+
+[[languages.en.menus.main]]
+url = "/en/"
+identifier = "home"
+name = "Home"
+weight = -10
+[languages.en.menus.main.params]
+icon = "home"
+
+[[languages.en.menus.social]]
+identifier = "rss"
+name = "RSS"
+url = "/en/index.xml"
+weight = 10
+pre = "RSS"
+[languages.en.menus.social.params]
+newtab = true
+icon = "rss"
+
+[[languages.en.menus.social]]
+identifier = "github"
+name = "GitHub"
+url = "https://github.com/A-moment096"
+weight = 1
+[languages.en.menus.social.params]
+icon = "brand-github"
+
+[[languages.en.menus.social]]
+identifier = "bilibili"
+name = "Bilibili"
+url = "https://space.bilibili.com/44789578"
+weight = 5
+[languages.en.menus.social.params]
+icon = "brand-bilibili"
+
+[[languages.en.menus.social]]
+identifier = "mail"
+name = "Contact Me"
+url = "mailto:amoment096@gmail.com"
+weight = 9
+[languages.en.menus.social.params]
+icon = "mail"
+
+# ============================================
+# 6. Theme Parameters
+# ============================================
+[params]
+mainSections = ["posts"]
+rssFullContent = false
+favicon = "/coffee.png"
+
+# Footer
+[params.footer]
+since = 2024
+customText = "<a href=\"https://icp.gov.moe/?keyword=20257072\" target=\"_blank\">萌ICP备20257072号</a>"
+
+# Date format
+[params.dateFormat]
+published = "Jan 02, 2006"
+lastUpdated = "Jan 02, 2006 15:04 MST"
+
+# Sidebar (per-language subtitle set in [languages.xx.params.sidebar])
+[params.sidebar]
+emoji = "💦"
+
+[params.sidebar.avatar]
+enabled = true
+local = true
+src = "img/avatar.jpg"
+
+# Article display
+[params.article]
+headingAnchor = false
+math = false
+readingTime = true
+
+[params.article.license]
+enabled = true
+default = "Licensed under CC BY-NC-SA 4.0"
+
+[params.article.list]
+showTags = true
+
+# --- Widgets: Homepage ---
+[[params.widgets.homepage]]
+type = "search"
+
+[[params.widgets.homepage]]
+type = "archives"
+[params.widgets.homepage.params]
+limit = 5
+
+[[params.widgets.homepage]]
+type = "categories"
+[params.widgets.homepage.params]
+limit = 10
+
+[[params.widgets.homepage]]
+type = "tag-cloud"
+[params.widgets.homepage.params]
+limit = 1000
+
+# --- Widgets: Page sidebar ---
+[[params.widgets.page]]
+type = "search"
+
+[[params.widgets.page]]
+type = "toc"
+
+[[params.widgets.page]]
+type = "archives"
+[params.widgets.page.params]
+limit = 5
+
+[[params.widgets.page]]
+type = "categories"
+[params.widgets.page.params]
+limit = 10
+
+[[params.widgets.page]]
+type = "tag-cloud"
+[params.widgets.page.params]
+limit = 1000
+
+# OpenGraph
+[params.opengraph.twitter]
+site = ""
+card = "summary_large_image"
+
+[params.defaultImage.opengraph]
+enabled = false
+local = false
+src = ""
+
+# Color scheme
+[params.colorScheme]
+toggle = true
+default = "auto"
+
+# Image processing
+[params.imageProcessing.cover]
+enabled = true
+
+[params.imageProcessing.content]
+enabled = true
+
+# ============================================
+# 7. Comments
+# ============================================
+[params.comments]
+enabled = true
+provider = "giscus"
+
+# Giscus (per-language lang set in [languages.xx.params.comments.giscus])
+[params.comments.giscus]
+repo = "A-moment096/A-moment096.github.io"
+repoID = "R_kgDONI9zaw"
+category = "Announcements"
+categoryID = "DIC_kwDONI9za84C5O4G"
+mapping = "title"
+strict = 0
+reactionsEnabled = 1
+emitMetadata = 0
+inputPosition = "top"
+lightTheme = "light_protanopia"
+darkTheme = "dark_dimmed"
+loading = "lazy"
+
+# Utterances (fallback)
+[params.comments.utterances]
+repo = "A-moment096/A-moment096.github.io"
+issueTerm = "title"
+label = "Comment"
+
+# Gitalk
+[params.comments.gitalk]
+owner = "A-moment096"
+admin = "A-moment096"
+repo = "a-moment096.github.io"
+clientID = "Ov23lityZpWp3xhsZsNy"
+clientSecret = "5e75fac81efb80c0a01921cf44706cd4dd724213"
+
+# Other comment providers (unused, kept for reference)
+[params.comments.disqusjs]
+shortname = ""
+apiUrl = ""
+apiKey = ""
+admin = ""
+adminLabel = ""
+
+[params.comments.remark42]
+host = ""
+site = ""
+locale = ""
+
+[params.comments.vssue]
+platform = ""
+owner = ""
+repo = ""
+clientId = ""
+clientSecret = ""
+autoCreateIssue = false
+
+[params.comments.waline]
+serverURL = ""
+lang = ""
+visitor = ""
+avatar = ""
+emoji = ["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"]
+requiredMeta = ["name", "email", "url"]
+placeholder = ""
+
+[params.comments.waline.locale]
+admin = "Admin"
+
+[params.comments.twikoo]
+envId = ""
+region = ""
+path = ""
+lang = ""
+
+[params.comments.cactus]
+defaultHomeserverUrl = "https://matrix.cactus.chat:8448"
+serverName = "cactus.chat"
+siteName = ""
+
+[params.comments.cusdis]
+host = ""
+id = ""

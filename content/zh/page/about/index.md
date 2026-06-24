@@ -52,14 +52,14 @@ You can also check them in my [GitHub](https://github.com/A-moment096) page.
 ## What do you like? | 兴趣爱好？
 I'm interested in mathematics, programming, Linux and anything related with computer, but feel satisfied easily. I like music (VOCALOID, Toho, Game OST) and anime (as an average fan). Maybe I also like reading, guitar, PC off-line games. I'm not very sure about myself.
 
-我对数学，程序, Linux 等和计算机相关的话题都感兴趣，不过都是浅尝辄止。我还喜欢音乐（VOCALOID(日Ｖ)，东方，游戏原声）和动漫（普通爱好者）。可能我也算喜欢读书，吉他，单机游戏之类。我自己也不怎么了解我自己。
+我对数学，程序，Linux 等和计算机相关的话题都感兴趣，不过都是浅尝辄止。我还喜欢音乐（VOCALOID（日Ｖ），东方，游戏原声）和动漫（普通爱好者）。可能我也算喜欢读书，吉他，单机游戏之类。我自己也不怎么了解我自己。
 
 ## How to contact you? | 怎么联系你？
 You can [mail me](mailto:amoment096@gmail.com) if you would like.
 
 你可以通过[邮箱](mailto:amoment096@gmail.com)联系到我。
 
-## This page is bilingual, why others not? | 为什么这个页面有中英文, 别的没有？
+## This page is bilingual, why others not? | 为什么这个页面有中英文，别的没有？
 This self-intro (might) have used up his effort. Maybe he will translate other pages into English/Chinese in the future, far or further future.
 
 他是蓝狗。

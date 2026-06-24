@@ -36,13 +36,13 @@ Feel free to suggest useful links to add here!
 - [Comment Block Generator](https://blocks.jkniest.dev/): Generates comment blocks, the formatted comments looks great.
 - [Mermaid Chart](https://www.mermaidchart.com/play): Mermaid Playground, can be utilized to draw some diagrams.
 - [IT-TOOLS](https://it-tools.tech/): Very good tool collection site, makes my head spinning.
-- [Image to LaTeX](https://www.img2latex.xyz/)：Convert images of formula to LaTeX code, regretting not having met sooner (when can it convert to TikZ-cd?()).
+- [Image to LaTeX](https://www.img2latex.xyz/): Convert images of formula to LaTeX code, regretting not having met sooner (when can it convert to TikZ-cd?()).
 
 ## Blog furnishing
 
 - [Github repo of this blog's theme](https://github.com/CaiJimmy/hugo-theme-stack): Very good theme, makes my blog spinning.
 - [Refered blog when implementing Thoughts](https://yelleis.top/p/61fdb627/): To complain.
-- [Artitalk documentation](https://artitalk.js.org/doc.html#%F0%9F%8C%BC-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8): To hold my complaints（）
+- [Artitalk documentation](https://artitalk.js.org/doc.html#%F0%9F%8C%BC-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8): To hold my complaints()
 - [Refered blog about SCSS: QX的笔记](https://lqxhub.github.io/posts/a660c9b1/): Gooood!
 - [Refered blog about loading status bar: 平方君的后花园](http://i-square.us.kg/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/): Actually I borrowed some SCSS code()
 - [Reference of Utterances chat system](https://roife.github.io/posts/use-utterances-for-blog-comment/): Very good comment system.
@@ -56,8 +56,8 @@ Feel free to suggest useful links to add here!
 
 - [ArchWiki](https://wiki.archlinux.org/title/Main_page): Hard to not search in, almost depending on.
 - [ArchLinux Forum](https://bbs.archlinux.org/): It's hard NOT to check/search posts from a forum when this distro is based on forum.
-- [Remember to install `networkmanager`, the first](ttps://bbs.archlinuxcn.org/viewtopic.php?id=12603)，[the second](https://www.cnblogs.com/yuxiayizhengwan/p/16576946.html): Got trapped once
-- [Connect to Campus Network, the first ](https://www.cnblogs.com/holaworld/p/17839616.html)，[the second](https://www.bilibili.com/opus/852262124483772422): It's easy if you have a browser, usually `192.168.0.1` is the gateway.
+- [Remember to install `networkmanager`, the first](ttps://bbs.archlinuxcn.org/viewtopic.php?id=12603), [the second](https://www.cnblogs.com/yuxiayizhengwan/p/16576946.html): Got trapped once
+- [Connect to Campus Network, the first ](https://www.cnblogs.com/holaworld/p/17839616.html), [the second](https://www.bilibili.com/opus/852262124483772422): It's easy if you have a browser, usually `192.168.0.1` is the gateway.
 - [用 fontconfig 治理 Linux 中的字体](https://catcat.cc/post/2021-03-07/): Solve font rendering problem on laptop, especially some ugly fallback CJK variants
 - [Remap Caps Lock to Escape and Control](https://ejmastnak.com/tutorials/arch/caps2esc/): Use `interception-caps2esc` to map "useless" **CapsLock** to more useful **Esc**
 
@@ -84,9 +84,9 @@ Even if it's not Linux only, it's still kind of frequently used command, so()
 ## Mathmatic Notes
 
 - [香蕉空间: 于品数学分析讲义](https://www.bananaspace.org/wiki/%E8%AE%B2%E4%B9%89:%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90): A great lecture note, really famous in a modern style.
-- [Debate about strong form, strong solution, the first](https://encyclopediaofmath.org/wiki/Strong_solution)，[the second](https://math.stackexchange.com/questions/162353/define-strong-solution): Sometimes, mathematical concepts/terms are not so rigorous.
+- [Debate about strong form, strong solution, the first](https://encyclopediaofmath.org/wiki/Strong_solution), [the second](https://math.stackexchange.com/questions/162353/define-strong-solution): Sometimes, mathematical concepts/terms are not so rigorous.
 - [YouTube: Differentiation of Differentiation](https://www.youtube.com/watch?v=eKPhMwafp0w&t=983s): Calculate formal differential for differential, very interesting.
-- [Bilibili: 蛇年接着卷！一起证明蛇引理！](https://www.bilibili.com/video/BV1FZFNezE6D): Inspired me to write [Snake year，Snake Lemma!]("/posts/Math_Note/Snake_Lemma"), talked in very detailed way.
+- [Bilibili: 蛇年接着卷！一起证明蛇引理！](https://www.bilibili.com/video/BV1FZFNezE6D): Inspired me to write [Snake year, Snake Lemma!]("/posts/Math_Note/Snake_Lemma"), talked in very detailed way.
 - [知乎: About Rudin's typo and misunderstanding](https://www.zhihu.com/question/559683007/answer/3502165974): Some interesting stories.
 - [知乎: 求2025!从右往左起第一个不为零的数字？](https://www.zhihu.com/question/666502327): An interesting question. I used Python to write the algorithm for this question, really entertaining.
 - [Professor Karen E. Smith - Bases for Infinite Dimensional Vector Spaces](https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/06/infinite.pdf): Introduced some instresting properties of infinite dimensional vector space, for example the basis of it.
