@@ -51,7 +51,12 @@ You might be thinking: good heavens, what on earth are you talking about, what i
 #### Groups, Abelian Groups
 
 Above we said that a chain complex is made up of abelian groups or modules equipped with homomorphisms. For simplicity, we won't introduce modules and will focus on abelian groups.
-<details><summary>But what is a module? I want to see!</summary>If someone talks about modules, you can think of them as a slightly deficient linear space — the only shortcoming is that the scalars are no longer elements of a number field, but rather elements of a ring, a magical algebraic structure where multiplication may lack inverses. Let me point out here: to turn a ring into a field (field, same word in English), you just need the ring to satisfy commutativity and have every nonzero element possess a multiplicative inverse.</details>
+
+<details>
+<summary>But what is a module? I want to see!</summary>
+
+If someone talks about modules, you can think of them as a slightly deficient linear space — the only shortcoming is that the scalars are no longer elements of a number field, but rather elements of a ring, a magical algebraic structure where multiplication may lack inverses. Let me point out here: to turn a ring into a field (field, same word in English), you just need the ring to satisfy commutativity and have every nonzero element possess a multiplicative inverse.
+</details>
 
 So what is an abelian group — or, starting from scratch, what is a group? Some will say: a group is symmetry! Where there's symmetry, there's a group! That's nice, but the step of symbolically encoding geometric elements like symmetry into group elements — that step took me quite a while. Let's do a speedrun, keeping things simple and trying not to lose too much rigor. A group, arguably the most fundamental algebraic structure in algebra, follows — like countless other algebraic structures — these characteristics:
 
@@ -70,7 +75,8 @@ That gives us a (very basic) algebraic structure. And our group is precisely suc
 
 Actually, the above content, with some tidying up, can be turned into a reasonably rigorous definition of a group. But rigorous definitions can be looked up by anyone, so I'll take the lazy route here~ One thing worth pointing out: the operation on a group is generally just called multiplication. Moreover, in the context of algebra, many operations are all called multiplication! So when discussing multiplication in algebraic structures, do pay attention to the context~
 
-<details><summary>So what's the deal with the symmetry meaning of groups, really?</summary>
+<details>
+<summary>So what's the deal with the symmetry meaning of groups, really?</summary>
 
 We say that the positions of elements in a set don't really matter — for example, the set $\{1,2\}$ and the set $\{2,1\}$ are exactly the same. So, the meaning of symmetry in groups lies in the fact that group elements carry a dual significance: a tiny dot inside the set, and a symbol representing how to operate on this set.
 

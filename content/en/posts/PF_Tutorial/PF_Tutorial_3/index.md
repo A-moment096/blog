@@ -76,7 +76,7 @@ After the introduction above, I trust you now have some familiarity with the too
 
 ### Comments, Headers, and `#include`
 
-Programs generally have comments. In C++, single-line comments begin with `//`, causing the compiler to ignore everything after `//` on that line. Multi-line comments (or more precisely, ranged comments) begin with `/*` and end with `*/`. Single-line comments are very handy for quick code changes, while multi-line comments are often used for large blocks of explanatory text — copyright notices in particular.
+Code generally has comments. In C++, single-line comments begin with `//`, causing the compiler to ignore everything after `//` on that line. Multi-line comments (or more precisely, ranged comments) begin with `/*` and end with `*/`. Single-line comments are very handy for quick code changes, while multi-line comments are often used for large blocks of explanatory text — copyright notices in particular.
 
 Opening a C++ file, the first thing you'll often see is a series of lines beginning with `#include`. In C++, when you need to use external content (such as functions or classes), you typically use the `#include` preprocessor directive to bring the corresponding library's header file into the current file. For instance, to use the standard library's input/output streams, you'd write `#include <iostream>` in your source file. When using self-built libraries, double quotes `""` are generally used instead of angle brackets `<>` to include the header.
 
@@ -345,7 +345,8 @@ At long last, after this lengthy and tedious syntax tour, we can finally look at
 
 The problem is as follows:
 
-> **Problem**: Suppose there is a heat source centered at x = 64, with a width of 40 and temperature 1. Let the entire simulation domain have a width of 128, with fixed boundary conditions applied at the edges; the temperature everywhere outside the heat source is 1. The heat equation is known to be:
+> [!QUESTION]
+> Suppose there is a heat source centered at $x = 64$, with a width of $40$ and temperature $1$. Let the entire simulation domain have a width of $128$, with fixed boundary conditions applied at the edges; the temperature everywhere outside the heat source is $1$. The heat equation is known to be:
 > $$ \dfrac{\partial T}{\partial t} = \mu \dfrac{\partial^2 T}{\partial x ^2},$$
 > and for this problem, take $\mu = 1$. Compute the system's evolution under the above equation.
 
@@ -353,7 +354,7 @@ The PDE here is a simplified version of the Fourier heat equation, treating the 
 
 ### Problem Decomposition
 
-Analyzing this problem, we have quite complete information. With our knowledge of the Laplacian operator and the forward Euler method, we can quickly construct the corresponding C++ code. We adopt $\Delta x = 1$ and $\Delta t = 0.2$ as the spatial and temporal step sizes for computing the spatiotemporal derivatives, then use the forward Euler method to iteratively evolve the system. At the code level, we'll use the most basic procedural approach, noting that for boundary handling, the fixed boundaries have a temperature of 0.0.
+Analyzing this problem, we have quite complete information. With our knowledge of the Laplacian operator and the forward Euler method, we can quickly construct the corresponding C++ code. We adopt $\Delta x = 1$ and $\Delta t = 0.2$ as the spatial and temporal step sizes for computing the spatiotemporal derivatives, then use the forward Euler method to iteratively evolve the system. At the code level, we'll use the most basic procedural approach, noting that for boundary handling, the fixed boundaries have a temperature of $0.0$.
 
 ### Code Implementation
 

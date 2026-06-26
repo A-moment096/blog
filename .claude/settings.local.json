@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(hugo --panicOnWarning)",
+      "PowerShell(cd c:/Github/Blog; try { hugo version } catch { try { $env:PATH -split ';' | ForEach-Object { if \\(Test-Path \"$_\\\\hugo.exe\"\\) { Write-Output \"Found at: $_\\\\hugo.exe\"; & \"$_\\\\hugo.exe\" version } } } catch { Write-Output \"Hugo not found in PATH\" } })"
+    ]
+  }
+}

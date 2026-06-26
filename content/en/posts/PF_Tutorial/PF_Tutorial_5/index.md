@@ -64,7 +64,11 @@ In this way, the representation of the steady state of the system is completely 
 
 I should finally point out that all of the above is presented from some not-very-physical, rather phenomenological angles. In reality, the Allen-Cahn equation is derived from the conclusion that the grain boundary migration rate is proportional to the driving force, and this conclusion is itself obtained from the ground state of the crystal lattice configuration.
 
-<details><summary>Some rambling about the A-C equation</summary>Additionally, this form of equation is very common -- or rather, there's a lot of depth to it. You can find this equation in almost many areas of physics, and descriptions of it vary widely. Some call it the Landau–Khalatnikov equation (describing magnetism), some call it Model A (interface dynamics, [Theory of dynamic critical phenomena](https://doi.org/10.1103/RevModPhys.49.435)), and there are other peculiar names. Yet almost none of these papers provide a detailed explanation of this equation. Perhaps these equations came from some physical intuition? Or maybe they have deeper mathematical/physical backgrounds, but I have no way of knowing either.</details>
+<details>
+<summary>Some rambling about the A-C equation</summary>
+
+Additionally, this form of equation is very common -- or rather, there's a lot of depth to it. You can find this equation in almost many areas of physics, and descriptions of it vary widely. Some call it the Landau–Khalatnikov equation (describing magnetism), some call it Model A (interface dynamics, [Theory of dynamic critical phenomena](https://doi.org/10.1103/RevModPhys.49.435)), and there are other peculiar names. Yet almost none of these papers provide a detailed explanation of this equation. Perhaps these equations came from some physical intuition? Or maybe they have deeper mathematical/physical backgrounds, but I have no way of knowing either.
+</details>
 
 ### Energy Construction
 
@@ -91,13 +95,13 @@ $$
 
 In the second equality above, since the part of the summation over $j (j\neq i)$ is independent of $i$, we can factor $\eta_i^2$ out of the double sum. Then in the third equality, we extract and combine the parts of the summation over $i$. Finally, in the fourth equality, we factor out $\eta_i^2$ and combine $\sum_{j\neq{}i}^{N} \eta_j^2$ as a coefficient with $-\dfrac{A}{2}$. Now let's focus on the polynomial in $\eta_i$ inside the summation. For simplicity, let $A = B = 1$. Below is the graph of this function when $\sum_{j\neq{}i}^{N} \eta_j^2 = 0$, i.e., the first term of equation (1) (of course, this assumption is not entirely reasonable, but we can take a look first).
 
-![Double well?](/posts/PF_Tutorial/img/double_well.png)
+![Double well?](/zh/posts/PF_Tutorial/img/double_well.png)
 
-It's the double well we're very familiar with, but there are some issues here: the order parameter actually cannot be less than 0, nor should it be greater than 1. If we only focus on values between 0 and 1, it's not hard to see that the minimum point of this energy is at $\eta = 1$. This makes sense: when all other order parameters (we'll call them all j, and the current order parameter i) are 0 -- in other words, at a point where there are no j, it's only natural that i occupies the point. Considering that all order parameters are on an equal footing, this shows that the equation satisfies the thermodynamic requirements of the bulk phase interior. Next, let's examine the case where this summation term is not 0. Let the value range of the sum over j be from 0 to 2 for now.
+It's the double well we're very familiar with, but there are some issues here: the order parameter actually cannot be less than $0$, nor should it be greater than $1$. If we only focus on values between $0$ and $1$, it's not hard to see that the minimum point of this energy is at $\eta = 1$. This makes sense: when all other order parameters (we'll call them all $j$, and the current order parameter $i$) are $0$ -- in other words, at a point where there are no $j$, it's only natural that $i$ occupies the point. Considering that all order parameters are on an equal footing, this shows that the equation satisfies the thermodynamic requirements of the bulk phase interior. Next, let's examine the case where this summation term is not $0$. Let the value range of the sum over $j$ be from $0$ to $2$ for now.
 
-![Graph when the sum of j is 0.3](/posts/PF_Tutorial/img/a03.png)
+![Graph when the sum of $j$ is 0.3](/zh/posts/PF_Tutorial/img/a03.png)
 
-As we can see, when j is not 0, the result is also reasonable -- here the value of i does not reach its minimum at 1, but instead reaches its minimum somewhere between 0 and 1. If you're interested, you can try plotting the graph yourself and adjusting these values to observe the position of the minimum of the order-parameter--energy curve. Of course, we could also use a more mathematical approach to study the minimum point here, but the graphical approach is more intuitive. Finally, let's briefly describe the physical meaning of expression (1): each order parameter is given a well-like energy, and then these energies are coupled together through the cross-interaction term of the second part. The double sum in the second term represents the influence of other order parameters on the current one.
+As we can see, when $j$ is not $0$, the result is also reasonable -- here the value of $i$ does not reach its minimum at $1$, but instead reaches its minimum somewhere between $0$ and $1$. If you're interested, you can try plotting the graph yourself and adjusting these values to observe the position of the minimum of the order-parameter-energy curve. Of course, we could also use a more mathematical approach to study the minimum point here, but the graphical approach is more intuitive. Finally, let's briefly describe the physical meaning of expression (1): each order parameter is given a well-like energy, and then these energies are coupled together through the cross-interaction term of the second part. The double sum in the second term represents the influence of other order parameters on the current one.
 
 ### Relationship Between Phase Field Evolution Equations and the Diffusion Equation
 
@@ -115,7 +119,7 @@ Does this form look familiar? If we remove the second term, this equation is jus
 
 ## Problem Analysis
 
-OK, by now we should have some understanding of the evolution equation and energy construction needed for this simulation. The problem we want to tackle this time is: suppose there are two single-crystal grains, one located at the center of the other, with the central grain shaped as a disk of radius 14 units. We need to simulate the grain growth process.
+OK, by now we should have some understanding of the evolution equation and energy construction needed for this simulation. The problem we want to tackle this time is: suppose there are two single-crystal grains, one located at the center of simulation region, shaped as a disk of radius $14$ units, and the other fills the rest of the simulation region. We need to simulate the grain growth process.
 
 It's a very simple problem -- just create two order parameter grids and then iterate over each grid. The summation part might have some issues, but some programming tricks can simplify part of the computation. Let's go straight to the code.
 

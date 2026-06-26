@@ -52,7 +52,7 @@ I'm not recommending an IDE here, because for the simple applications we're doin
 
 #### Virtual Environments, venv, and pip
 
-Let's briefly introduce virtual environments. Python's rich ecosystem means you might encounter dependency conflicts, especially in collaborative development where everyone has different environment configurations. To address this, you can use Python's `virtualenv`. A virtual environment contains its own set of packages and is independent from everything outside it. Creating a `virtualenv` in VSC is straightforward: just press ``Ctrl`+`Shift`+`P`` to open VSC's command palette, search for `Python: Create Environment`, and follow the wizard step by step.
+Let's briefly introduce virtual environments. Python's rich ecosystem means you might encounter dependency conflicts, especially in collaborative development where everyone has different environment configurations. To address this, you can use Python's `virtualenv`. A virtual environment contains its own set of packages and is independent from everything outside it. Creating a `virtualenv` in VSC is straightforward: just press `Ctrl`+`Shift`+`P` to open VSC's command palette, search for `Python: Create Environment`, and follow the wizard step by step.
 
 The created virtual environment lives in a `.venv` folder, which contains everything belonging to that environment, including all packages installed within it. If you no longer want the environment, just delete the folder. VSC automatically detects virtual environments and switches to them. If you're using a shell, you can manually run the `activate` script inside the `.venv` folder (under the `Scripts` subfolder on Windows, or `bin` on Linux) to activate the environment.
 

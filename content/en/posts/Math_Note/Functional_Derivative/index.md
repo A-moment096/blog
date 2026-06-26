@@ -167,7 +167,7 @@ $$
 \end{align}
 $$
 
-And in equation (13), the last integral can be converted, via the Green's theorem for multiple integrals, into an integral over the boundary $\partial \Omega$ of the region $\Omega$. At this point, since all functions must have equal values on the boundary, we have $\delta y = 0$, and thus the last integral term vanishes. We write it as the following result:
+And in equation (13), the last integral can be converted, via the Green's theorem for multiple integrals, into an integral over the boundary $\partial \Omega$ of the region $\Omega$. At this point, since all functions must have equal values on the boundary, we have $\delta y = 0$ on boundary $\partial \Omega$, and thus the last integral term vanishes. We write it as the following result:
 
 <span id="modify">
 

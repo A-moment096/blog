@@ -44,13 +44,13 @@ The free energy construction we use this time is as follows:
 
 $$
 \begin{align*}
-F &= \int_\Omega f_{bulk} + f_{int}\, \mathrm{d}\omega;\\
-f_{bulk}\left(c \right) &= Ac^2(1-c)^2; \\
-f_{int}\left(\nabla c \right) &= \kappa \left|\nabla c \right| ^2. \\
+F &= \int_\Omega f_\mathrm{bulk} + f_\mathrm{int}\, \mathrm{d}\omega;\\
+f_\mathrm{bulk}\left(c \right) &= Ac^2(1-c)^2; \\
+f_\mathrm{int}\left(\nabla c \right) &= \kappa \left|\nabla c \right| ^2. \\
 \end{align*}
 $$
 
-Here, $F$ is the total energy of the system, composed of the integral of two parts of energy density. The first part is the bulk free energy $f_{bulk}$, whose graph is a double well:
+Here, $F$ is the total energy of the system, composed of the integral of two parts of energy density. The first part is the bulk free energy $f_\mathrm{bulk}$, whose graph is a double well:
 
 ![Bulk free energy density function graph, with model parameter A = 1](/posts/PF_Tutorial/img/AB_free_energy.png)
 

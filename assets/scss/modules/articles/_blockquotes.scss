@@ -116,6 +116,11 @@
     @return "invert(57%) sepia(45%) saturate(1352%) hue-rotate(149deg) brightness(91%) contrast(98%)";
   }
 
+  // emerald
+  @if $color ==#10b981 {
+    @return "invert(55%) sepia(82%) saturate(420%) hue-rotate(121deg) brightness(94%) contrast(90%)";
+  }
+
   // teal
   @return "invert(50%)"; // fallback
 }
@@ -239,6 +244,11 @@
     &.math-remark {
       @include alert-style(#0d9488, #0d9488, #0d9488, #2dd4bf, #2dd4bf);
       @include math-env-icon('remark', #0d9488);
+    }
+
+    &.math-question {
+      @include alert-style(#10b981, #10b981, #10b981, #34d399, #34d399);
+      @include math-env-icon('question', #10b981);
     }
   }
 

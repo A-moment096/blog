@@ -25,7 +25,7 @@ export function setupGitHubAlerts(): void {
 
         // Unified regex pattern for all alert types
         // Use greedy match .* to capture everything between { and the last }
-        const alertPattern = /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION|THEOREM|THM|LEMMA|LEM|DEFINITION|DEF|COROLLARY|COR|PROPOSITION|PROP|PROOF|EXAMPLE|EX|REMARK|REM)\](?:\{(.*)\})?/i;
+        const alertPattern = /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION|THEOREM|THM|LEMMA|LEM|DEFINITION|DEF|COROLLARY|COR|PROPOSITION|PROP|PROOF|EXAMPLE|EX|REMARK|REM|QUESTION)\](?:\{(.*)\})?/i;
         const alertMatch = alertPattern.exec(text);
         if (!alertMatch) return;
 
@@ -54,7 +54,8 @@ export function setupGitHubAlerts(): void {
             'example': { className: 'math-example', title: 'Example', icon: 'example' },
             'ex': { className: 'math-example', title: 'Example', icon: 'example' },
             'remark': { className: 'math-remark', title: 'Remark', icon: 'remark' },
-            'rem': { className: 'math-remark', title: 'Remark', icon: 'remark' }
+            'rem': { className: 'math-remark', title: 'Remark', icon: 'remark' },
+            'question': { className: 'math-question', title: 'Question', icon: 'question' },
         };
 
         const config = typeMapping[alertType];

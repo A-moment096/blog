@@ -14,13 +14,13 @@ math: true
 
 *Recording the two phase field models currently in use, including their derivations, assumptions, and shortcomings*
 
-*The header image is by [Katorei](https://twitter.com/katorei_), an illustration for [Mikito P](https://space.bilibili.com/108833238)'s song [Shoujo Rei](https://www.bilibili.com/list/ml1197098078?spm_id_from=333.1007.0.0&oid=27304533&bvid=BV1Rs411N7Aq)*
+*The header image is by [Katorei](https://twitter.com/katorei_), an illustration for [みきとP](https://space.bilibili.com/108833238) (Mikito P)'s song [Shoujo Rei](https://www.bilibili.com/list/ml1197098078?spm_id_from=333.1007.0.0&oid=27304533&bvid=BV1Rs411N7Aq)(少女レイ)*
 
 {{< music auto="https://music.163.com/#/song?id=1334077117" loop="none">}}
 
 ## Introduction
 
-The U-Nb system discontinuous precipitation simulation I am currently working on uses these two evolution equations. I had never carefully thought about where these two evolution equations actually come from, or why they are suitable for this system, which left me with no idea where to start when I wanted to modify them somewhat. Here I will record the derivation methods, strengths and weaknesses of these two equations, as well as some of my personal thoughts.
+The discontinuous precipitation simulation I am currently working on uses these two evolution equations. I had never carefully thought about where these two evolution equations actually come from, or why they are suitable for this system, which left me with no idea where to start when I wanted to modify them somewhat. Here I will record the derivation methods, strengths and weaknesses of these two equations, as well as some of my personal thoughts.
 
 ## Multiphase Field Model
 
@@ -44,7 +44,7 @@ To be honest, the logical structure of this article is not very clear, the formu
 
 ### Model Derivation
 
-For multi-phase problems, we introduce a constraint: the sum of all order parameters at each point is a constant 1. That is:
+For multi-phase problems, we introduce a constraint: the sum of all order parameters at each point is a constant $1$. That is:
 
 $$
 \sum_{\alpha = 1}^{N} \phi_\alpha = 1,
@@ -249,13 +249,13 @@ Based on this, we can consider expressing concentration as a function of the che
 
 So, why use the grand potential equation? What advantages does it have compared to the total concentration or phase concentration approaches? Consider a multi-component, multi-phase system, where each phase contains multiple components. The concentration of these components within each phase is fixed, while the concentration of components between different phases is generally different. When a phase transformation occurs, the concentration of material within the phases may change. In this situation, if we want to evolve the concentration distribution of the entire system, we inevitably have to evolve the concentration distribution of each phase.
 
-We would first think of using the phase concentration to evolve the entire system, and then combining the phase concentration with the phase fraction to obtain the concentration distribution of the entire system. This method sounds great in theory, but in practice some numerical issues arise: at phase interfaces, especially where the phase fraction is small, one inevitably has to divide a number by a very small (close to 0) number. Since the Cahn-Hilliard equation directly evolves the total concentration, one must first separate the phase concentration from the total concentration before directly evolving the phase concentration. When back-calculating the phase concentration from the total concentration, one inevitably has to deal with the distribution of concentration at the interface, which requires some assumption to correctly allocate concentration to each phase. The commonly adopted assumption is that at each point on the interface, the chemical potential of each phase is equal. Based on this, the relationship between the total concentration and phase concentration can be expressed as:
+We would first think of using the phase concentration to evolve the entire system, and then combining the phase concentration with the phase fraction to obtain the concentration distribution of the entire system. This method sounds great in theory, but in practice some numerical issues arise: at phase interfaces, especially where the phase fraction is small, one inevitably has to divide a number by a very small (close to $0$) number. Since the Cahn-Hilliard equation directly evolves the total concentration, one must first separate the phase concentration from the total concentration before directly evolving the phase concentration. When back-calculating the phase concentration from the total concentration, one inevitably has to deal with the distribution of concentration at the interface, which requires some assumption to correctly allocate concentration to each phase. The commonly adopted assumption is that at each point on the interface, the chemical potential of each phase is equal. Based on this, the relationship between the total concentration and phase concentration can be expressed as:
 
 $$
 c^i = \sum_\alpha\phi_\alpha c_\alpha^i
 $$
 
-Here, $\phi_\alpha$, the phase fraction in front of the phase concentration, causes problems. Suppose we need to evolve a location very close to the interior of a certain phase (i.e., a region where $\phi_\alpha \approx 1$), at this point the phase fractions of many other phases will be approximately 0. To evolve their respective phase concentrations, one needs to divide by this phase fraction, which, due to computer precision issues, can easily make the result unstable.
+Here, $\phi_\alpha$, the phase fraction in front of the phase concentration, causes problems. Suppose we need to evolve a location very close to the interior of a certain phase (i.e., a region where $\phi_\alpha \approx 1$), at this point the phase fractions of many other phases will be approximately $0$. To evolve their respective phase concentrations, one needs to divide by this phase fraction, which, due to computer precision issues, can easily make the result unstable.
 
 What about directly considering the total concentration? The total concentration is essentially the most traditional Cahn-Hilliard equation, but to obtain the phase evolution rate, one still needs to somehow infer the concentration distribution within each phase. This adds excessive computational cost: the process of back-solving for the phase concentration is essentially solving a system of linear equations. In other words, using the phase concentration encounters numerical issues, and using the total concentration adds a lot of computational cost, and in the end it's just swapping the order of operations with the phase concentration method, and numerical issues may still arise when back-solving for the phase concentration.
 

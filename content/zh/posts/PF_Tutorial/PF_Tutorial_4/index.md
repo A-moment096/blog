@@ -44,12 +44,12 @@ links:
 
 $$
 \begin{align*}
-F &= \int_\Omega f_{bulk} + f_{int}\, \mathrm{d}\omega;\\
-f_{bulk}\left(c \right) &= Ac^2(1-c)^2; \\
-f_{int}\left(\nabla c \right) &= \kappa \left|\nabla c \right| ^2. \\
+F &= \int_\Omega f_\mathrm{bulk} + f_\mathrm{int}\, \mathrm{d}\omega;\\
+f_\mathrm{bulk}\left(c \right) &= Ac^2(1-c)^2; \\
+f_\mathrm{int}\left(\nabla c \right) &= \kappa \left|\nabla c \right| ^2. \\
 \end{align*}
 $$
-其中，$F$ 即为体系的总能量，由两部分的能量密度积分构成，第一部分为体自由能 $f_{bulk}$，其图像为一个双势阱：
+其中，$F$ 即为体系的总能量，由两部分的能量密度积分构成，第一部分为体自由能 $f_\mathrm{bulk}$，其图像为一个双势阱：
 
 ![体自由能密度函数图像，其中模型参数选择 A = 1](/posts/PF_Tutorial/img/AB_free_energy.png)
 
