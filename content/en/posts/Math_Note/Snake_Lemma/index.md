@@ -53,25 +53,29 @@ You might be thinking: good heavens, what on earth are you talking about, what i
 Above we said that a chain complex is made up of abelian groups or modules equipped with homomorphisms. For simplicity, we won't introduce modules and will focus on abelian groups.
 
 <details>
-<summary>But what is a module? I want to see!</summary>
+<summary>But what is a module? Let me have a look!</summary>
 
-If someone talks about modules, you can think of them as a slightly deficient linear space — the only shortcoming is that the scalars are no longer elements of a number field, but rather elements of a ring, a magical algebraic structure where multiplication may lack inverses. Let me point out here: to turn a ring into a field (field, same word in English), you just need the ring to satisfy commutativity and have every nonzero element possess a multiplicative inverse.
+If someone talks about modules, you can think of them as a slightly deficient linear space — the only shortcoming is that the scalars are no longer elements of a number field, but rather elements of a ring, a magical algebraic structure where multiplication may lack inverses. Let me point out here: to turn a ring into a field, you just need the ring to satisfy commutativity and have every nonzero element possess a multiplicative inverse.
 </details>
 
 So what is an abelian group — or, starting from scratch, what is a group? Some will say: a group is symmetry! Where there's symmetry, there's a group! That's nice, but the step of symbolically encoding geometric elements like symmetry into group elements — that step took me quite a while. Let's do a speedrun, keeping things simple and trying not to lose too much rigor. A group, arguably the most fundamental algebraic structure in algebra, follows — like countless other algebraic structures — these characteristics:
 
-1.  It comes from a set. Its "underlying" structure must be a set. This way we can talk about the elements inside this algebraic object.
-2.  It has one or more "operations" internally. We can imagine the multiplication we've long been familiar with. Since it's an operation, we have these requirements:
-    1.  First, the operation always involves two elements. You always multiply (at least) two numbers. Note they don't necessarily have to be different numbers.
-    2.  The two elements, after the operation, should yield one element. The product of two numbers gives you a number too.
-    3.  This is less obvious, but our operation should always go from this set back into this set. For instance, $1\times 1\neq\mathrm{apple}$.
+> [!NOTE] Characteristics of Algebra Structure:
+> 
+> 1.  It comes from a set. Its "underlying" structure must be a set. This way we can talk about the elements inside this algebraic object.
+> 2.  It has one or more "operations" internally. We can imagine the multiplication we've long been familiar with. Since it's an operation, we have these requirements:
+>     1.  First, the operation always involves two elements. You always multiply (at least) two numbers. Note they don't necessarily have to be different numbers.
+>     2.  The two elements, after the operation, should yield one element. The product of two numbers gives you a number too.
+>     3.  This is less obvious, but our operation should always go from this set back into this set. For instance, $1\times 1\neq\mathrm{apple}$.
 
 That gives us a (very basic) algebraic structure. And our group is precisely such an algebraic structure, but with these additional characteristics:
 
-1. The group operation must be associative. This means if $abc \neq (ab)c \neq a(bc)$, then it is not a group. (Good heavens, does such a deranged structure even exist?)
-2. The group operation does **not** need to be commutative. Actually, non-commutative things are quite common — for example, we put on socks before shoes, which is definitely different from putting socks on over bare feet already in shoes. Friends who have studied linear algebra should understand even better: matrix multiplication is not commutative.
-3. The group must have an identity element. What is an identity element? Isn't it just an element? The identity element here is tightly coupled with the operation: it means that any element of the group, when operated with this identity element, always yields itself.
-4. Every element in the group must have an inverse. Yes, the concept of an inverse here is also tied to the operation. "Inverse" means "reversing" an element back to the identity element. You can imagine the identity element as some starting position, with each element representing a way to move you somewhere. The inverse of a given element is like the way to move you back to the origin after having moved. You can go out, so you must also be able to come back. That's all.
+> [!NOTE] Characteristics of Group
+> 
+>1. The group operation must be associative. This means if $abc \neq (ab)c \neq a(bc)$, then it is not a group. (Good heavens, does such a deranged structure even exist?)
+>2. The group operation does **not** need to be commutative. Actually, non-commutative things are quite common — for example, we put on socks before shoes, which is definitely different from putting socks on over bare feet already in shoes. Friends who have studied linear algebra should understand even better: matrix multiplication is not commutative.
+>3. The group must have an identity element. What is an identity element? Isn't it just an element? The identity element here is tightly coupled with the operation: it means that any element of the group, when operated with this identity element, always yields itself.
+>4. Every element in the group must have an inverse. Yes, the concept of an inverse here is also tied to the operation. "Inverse" means "reversing" an element back to the identity element. You can imagine the identity element as some starting position, with each element representing a way to move you somewhere. The inverse of a given element is like the way to move you back to the origin after having moved. You can go out, so you must also be able to come back. That's all.
 
 Actually, the above content, with some tidying up, can be turned into a reasonably rigorous definition of a group. But rigorous definitions can be looked up by anyone, so I'll take the lazy route here~ One thing worth pointing out: the operation on a group is generally just called multiplication. Moreover, in the context of algebra, many operations are all called multiplication! So when discussing multiplication in algebraic structures, do pay attention to the context~
 
@@ -89,8 +93,6 @@ You might find this discovery rather boring, but this is exactly symmetry: retur
 The symmetry contained in a group is not about the group itself, but about the objects it can act on. Silly me took a long time to understand this truth QAQ.
 
 </details>
-
----
 
 Great! We now firmly understand what a group is! So, an abelian group? Ah! An abelian group must be one where the operation satisfies commutativity, right!
 

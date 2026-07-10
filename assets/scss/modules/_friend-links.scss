@@ -1,0 +1,66 @@
+// =============================================================================
+// FRIEND LINKS MODULE
+// 友链卡片 — 弹性高度，内容完整展示，不截断
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// 全尺寸：卡片内容包容
+// -----------------------------------------------------------------------------
+.article-list--compact.links {
+  article {
+    // 保留 overflow: hidden 用于裁剪圆角，但不截断文字
+    overflow: hidden;
+
+    // 让内部 flex 子元素可以正确参与 grid 布局（关键修复）
+    .article-details {
+      min-width: 0;
+    }
+
+    // 标题：自然换行，不截断
+    .article-title {
+      word-break: break-word;
+    }
+
+    // 描述：自然高度，完整展示
+    .article-time {
+      height: auto;
+      word-break: break-word;
+    }
+
+    // 备注：自然换行
+    .article-link {
+      word-break: break-word;
+    }
+
+    // 图片不收缩，保持尺寸
+    .article-image {
+      flex-shrink: 0;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 桌面端：CSS 多栏瀑布流布局
+// -----------------------------------------------------------------------------
+@media (min-width: 1024px) {
+  .article-list--compact.links {
+    // 覆盖父级 grid，改用 column 瀑布流
+    display: block;
+    columns: 280px;       // 每栏最小宽度，自动决定栏数
+    column-gap: 1rem;     // 栏间距
+
+    article {
+      border-radius: var(--card-border-radius);
+      break-inside: avoid; // 卡片不跨栏断裂
+      margin-bottom: 1rem; // 卡片间垂直间距（栏内）
+      display: flex;
+    }
+
+    // 让每个卡片的内部链接撑满
+    article > a {
+      display: flex;
+      align-items: flex-start; // 顶部对齐，便于多行内容
+      width: 100%;
+    }
+  }
+}

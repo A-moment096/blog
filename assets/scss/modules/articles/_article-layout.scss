@@ -90,19 +90,6 @@
         z-index: 10; // 确保悬浮时在最上层
       }
     }
-
-    // 链接三栏
-    &.links {
-      grid-template-columns: 1fr 1fr 1fr;
-
-      article {
-        border-radius: var(--card-border-radius);
-
-        &:nth-child(odd) {
-          margin-right: 8px;
-        }
-      }
-    }
   }
 }
 
