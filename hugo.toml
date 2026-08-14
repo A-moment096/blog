@@ -8,7 +8,7 @@
 # ============================================
 # 1. Global Settings
 # ============================================
-baseurl = "https://a-moment096.github.io/"
+baseurl = "https://blog.a-moment.top/"
 title = "A Moment's Rest"
 theme = "stack"
 
@@ -219,7 +219,11 @@ favicon = "/coffee.png"
 # Footer
 [params.footer]
 since = 2024
-customText = "<a href=\"https://icp.gov.moe/?keyword=20257072\" target=\"_blank\">萌ICP备20257072号</a>"
+customText = """
+<a href="https://icp.gov.moe/?keyword=20257072" target="_blank">萌ICP备20257072号</a><br>
+<a href="http://beian.miit.gov.cn/" class="imprint" rel="external nofollow" target="_blank">
+湘ICP备2026034010号-1</a>
+"""
 
 # Date format
 [params.dateFormat]
