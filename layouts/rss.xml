@@ -24,12 +24,19 @@
     {{- $pages = $pages | first $limit -}}
 {{- end -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML -}}
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
     <channel>
         <title>{{ if eq .Title .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} on {{ end }}{{ .Site.Title }}{{ end }}</title>
         <link>{{ .Permalink }}</link>
         <description>Recent content {{ if ne .Title .Site.Title }}{{ with .Title }}in {{ . }} {{ end }}{{ end }}on {{ .Site.Title }}</description>
         <generator>Hugo -- gohugo.io</generator>
+        {{- with site.Params.favicon -}}
+        <image>
+            <url>{{ . | absURL }}</url>
+            <title>{{ site.Title }}</title>
+            <link>{{ $.Permalink }}</link>
+        </image>
+        {{- end -}}
         <language>{{ site.Language.Locale }}</language>{{ with $authorEmail }}
         <managingEditor>{{.}}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>{{ end }}{{ with $authorEmail }}
         <webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>{{ end }}{{ with .Site.Copyright }}
@@ -48,6 +55,10 @@
             {{- range .Params.tags }}
             <category>{{ . }}</category>
             {{- end }}
+            {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}
+            {{- with $image -}}
+            <media:thumbnail url="{{ .Permalink | absURL }}"{{ with .Width }} width="{{ . }}"{{ end }}{{ with .Height }} height="{{ . }}"{{ end }} />
+            {{- end -}}
             <description>
                 {{- $content := .Summary -}}
                 {{- if .Site.Params.RSSFullContent -}}
@@ -63,7 +74,6 @@
                 {{- $content = $content | replaceRE `(?is)\s+aria-label="[^"]*"` "" -}}
                 {{- /* Resolve relative fragment links (e.g. footnotes) to absolute URLs */ -}}
                 {{- $content = $content | replaceRE `href="#` (printf "href=\"%s#" .Permalink) -}}
-                {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}
                 {{- if $image -}}
                     {{- $imgTag := printf "<img src=\"%s\" alt=\"Featured image of post %s\" />" ($image.Permalink | absURL) .Title -}}
                     {{- $content = printf "%s%s" $imgTag $content -}}
