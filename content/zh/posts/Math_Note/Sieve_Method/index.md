@@ -119,6 +119,7 @@ print(primes[-1])
 所以，我们没必要傻傻的检测所有小于 $n$ 的数，只需要检查小于 $\sqrt{n}$ 就可以了。代码如下：
 
 ```python
+import math
 def check_prime_2(n: int):
     for i in range(2, int(math.sqrt(n)) + 1):
         trail_num = n / i
@@ -147,6 +148,7 @@ print(primes[-1])
 其实上个算法我们还可以继续改进，因为我们很容易意识到，对一个数进行乘法分解时，分解到最后里面的所有因数都会是素数。因此，要检测某个情况未知的数是否是素数，只需要检查它有没有比它小的质数为因数就行了。这个算法实现起来也很简单：
 
 ```python
+import math
 def check_prime_3(n: int, prime_list: list):
     if n == 2:
         return True
@@ -170,7 +172,7 @@ while len(primes) < 10001:
 print(primes[-1])
 ```
 
-新的算法思想便是利用已经计算过并得到的质数表去辅助检测大质数的计算。但第一个素数从哪里来？我们只能直接告诉函数，`2` 就是素数，以此为基准。这个算法也算够快，但它不是很稳定（其实之前的算法也不算很稳定，或者，很 *鲁棒*），比如遇到非法输入时函数的行为是未定义的，另外作为一个判断是否为质数的函数，其不能做到独立判断，必须依赖外部输入的 `prime_list` 列表也存在隐式依赖：默认它的最后一位数大于输入数 $n$ 的平方根。
+新的算法思想便是利用已经计算过并得到的质数表去辅助检测大质数的计算。但第一个素数从哪里来？我们只能直接告诉函数，`2` 就是素数，以此为基准。这个算法也算够快，但它不是很稳定（其实之前的算法也不算很稳定，或者，很 *鲁棒*），比如遇到 $0.1$ 等非法输入时，函数的行为是未定义的，另外作为一个判断是否为质数的函数，其不能做到独立判断，必须依赖外部输入的 `prime_list` 列表也存在隐式依赖：默认它的最后一位数大于输入数 $n$ 的平方根。
 
 然而，我们这个线路的探索就到此为之。因为接下来我们要使用的是另一个原理相同但思路有所差异的算法：*筛法*。
 
@@ -178,7 +180,181 @@ print(primes[-1])
 
 这个算法冠以古希腊数学家埃拉托色尼的名字，是一个非常古老但实用的算法。顾名思义，筛法的核心思路就是用已有的素数做 *筛*，去筛选手上已有的自然数，从而得到新的素数，核心原理其实和上面的算法别无二致。但区别在于，上面的算法总是一个个去检查当前的素数是否是情况未知的数 $n$ 的一个因数，而筛法的思想是直接批量处理一批数字，逐次筛去素数的倍数，在最后留下的数即为新的素数了。
 
+### 100 以内的素数图示
+
+下面是这个算法的一个简单图示：
+
+![筛法算100以内的素数](seive_in_100.png)
+
+图中，灰色的 $1$ 代表它不参与这个过程（只是为了图好看是个正方形），而 $2$ 是我们根据定义得到的最小的质数，因此给这个数字标红。由 $2$ 是质数，我们可以得到其余的 $2$ 的倍数都是合数，因此它们的格子被标记了红色，而从 $2$ 到 $2^2 = 4$ 之间没被标记的数就一定是质数，即下一个质数：$3$，此时我们给 $3$ 标蓝，然后给所有 $3$ 的倍数格子都标蓝。注意到这个过程中有一些重复的情况，比如 $12$ 既是 $2$ 的倍数也是 $3$ 的倍数，这里就不重复标记，另外我们在标记时有一个情况不用考虑，比如标记 $3$ 的倍数时，不需要考虑 $2 \times 3$，因为这个情况已经在标记 $2$ 的倍数时覆盖了，我们直接从 $3 \times 3$ 出发。随后我们就可以得知，从 $3$ 到 $3^2 = 9$ 之间没被标记的数就是质数，即 $5$ 和 $7$。我们如法炮制，到了标记完 $7$ 的倍数之后，我们发现：$7$ 到 $7^2 = 49$ 之间没被标记的数都是质数了，下一个质数是 $11$，而 $11$ 的平方就已经是 $121$ 了，大于我们的目标 $100$，自此检查剩余格子没有标颜色的数字，它们就都是质数了。
+
+那么要怎么实现求 $n$ 以下的所有素数呢？
+
+### Python 实现
+
+其实实现方法很简单，我们要运用的工具是一个长为 $n-1$ 的布尔数组，用来标记这个值是否是质数。具体算法代码如下：
+
+```python
+import math
+def prime_less_than(n: int):
+        sieve = [True] * (n + 1)
+        sieve[0] = sieve[1] = False
+        for p in range(2, math.isqrt(n) + 1):
+            if sieve[p] == True:
+                for j in range(p * p, n + 1, p):
+                    sieve[j] = False
+        prime_list = [i for i, is_prime in enumerate(sieve) if is_prime]
+        return prime_list
+
+prime_list = prime_less_than(100)
+print(len(prime_list))
+```
+
+这个算法还是挺短小精干的，并且我们用到了一些特殊的手法。首先，我们创建一个从 `0` 到 `n` 的，长为 `n+1` 的布尔值数组并全部初始化为 `True`。这里使用这样的乘法也是 Python 特有的一种写法吧。随后我们使用连续赋值：`a = b = 1` 会让 `1` 先赋值给 `b`，再赋值给 `a`，相当于我们手动标记了 `0` 和 `1` 不是质数。接下来我们只需要遍历 `2` 到 `math.isqrt(n)+1`，标记整个数组中所有的合数为 `False`，便可以得到一个用来判断下标是否是质数的布尔值数组。由于我们开方时其实总是需要它的整数部分， 因此与其使用之前的 `math.sqrt()` 然后转为整数，不如干脆使用专门为此的 `math.isqrt()`，反而会方便很多，可能内部有优化，也省去我们用 `int()` 把结果包起来的功夫。
+
+那么要怎么标记呢？其实手法很简单：我们要检查的数现在都是以下标的形式存在的，而 `2` 就是第一个质数，因此只要从 `2` 的平方（`4`）开始，然后以 `2` 为步长，不断标记它们的值为 `False`，便实现了标记 `2` 的倍数为合数的功能。随后我们寻找下一个质数时，只要停在 `seive[p] == True` 的位置就行了（这里还是显式写出来了，实际上直接判断 `seive[p]` 会方便很多）。
+
+最后我们就需要把结果取出来。问题是我们用数组存储的都是布尔值，实际的数都放在了下标上。有没有什么办法把下标和值放在一起？`enumerate` 这个函数提供了这个方法。我们可以使用 `enumerate()` 函数则能把单纯的列表转换为迭代器，这里所谓的迭代器实际上是一份键值对表，不过必须通过 `for` 循环迭代才能查找里面的内容。举个简单的例子：
+
+```python
+str_list = ['a','b','c','d','e']
+enum_str_list = enumerate(str_list)
+print(enum_str_list)
+for kv_pair in enum_str_list:
+    print(kv_pair)
+```
+
+第三行的 `print` 不会给出具体的东西，它只会告诉我们 `<enumerate object at 0x00000286AF06E340>` 这样的鬼东西。想要查看内部的数据还就只能用 `for` 迭代取出，即第四五行的操作。得到的结果是：
+```output
+(0, 'a')
+(1, 'b')
+(2, 'c')
+(3, 'd')
+(4, 'e')
+```
+如您所见，是一个个的键值对，键为下标而值为原来 `str_list` 中下标对应的值。`enumerate` 的含义解决了，那这里的方括号内部包起来的东西是什么意思呢？这个是 Python 的列表构造器语法，或者叫 List Comprehension，它的语法其实读起来有点像数学上的集合，第一个部分我们写代表元，而 `for item in list if cond` 的写法就是说对 `list` 中的每个元素（用 `item` 代表）进行条件 `cond` 的判断，如果条件通过则将 `item` 里的什么东西放到前面的代表元中，否则就跳过。因此，这个函数的最后返回的东西可以理解为：返回一份列表，里面的值作为 `seive` 的下标时所对应的列表的值必须为真。
+
+通读这个代码，实际上它就是把我们前面描述的埃拉托色尼筛法的计算方式搬运到 Python 里而已。但是，虽然看着不起眼，它的效率还真不是盖的。我们对比一下它和我们用老办法计算 `1e6` 以内所有质数的速度：
+
+```python
+import math
+from time import perf_counter as pc
+
+
+def seive_method(n: int):
+    sieve = [True] * (n + 1)
+    sieve[0] = sieve[1] = False
+    for p in range(2, math.isqrt(n) + 1):
+        if sieve[p] == True:
+            for j in range(p * p, n + 1, p):
+                sieve[j] = False
+    prime_list = [i for i, is_prime in enumerate(sieve) if is_prime]
+    return prime_list
+
+
+def by_definition_method(n: int):
+    p_list = []
+    is_prime = True
+    for i in range(2, n + 1):
+        if i == 2:
+            is_prime = True
+        boundary = math.isqrt(i)
+        for p in p_list:
+            if p > boundary:
+                is_prime = True
+                break
+
+            trail_num = i / p
+            is_integer = int(trail_num) == trail_num
+            if is_integer and trail_num != 1:
+                is_prime = False
+                break
+        p_list.append(i) if is_prime == True else 1
+        is_prime = True
+
+    return p_list
+
+
+big_n = int(1e6)
+
+start_seive = pc()
+prime_list_seive = seive_method(big_n)
+end_seive = pc()
+print(f"Seive method with n = {big_n} time consuming: {end_seive - start_seive}")
+
+start_naive = pc()
+prime_list_naive = by_definition_method(big_n)
+end_naive = pc()
+print(f"Naive method with n = {big_n} time consuming: {end_naive - start_naive}")
+
+assert prime_list_seive == prime_list_naive
+```
+
+上面的代码中，`by_definition_method` 是把前面的 `check_prime_3` 改编为了算 $n$ 以内素数的算法。另外我们用了 `time.perf_counter` 来计算运行时间，方便比较。最后运行的结果如下：
+
+```output
+Seive method with n = 1000000 time consuming: 0.07576959999278188
+Naive method with n = 1000000 time consuming: 0.736862099962309
+```
+
+看似是 10 倍时间差，实则不然。我尝试过用 `1e8` 来测试，结果是筛法很快（十秒不到大概）就给出结果了，而老办法跑的快累死了还没出结果…… 筛法就是强口牙！
+
+那，速度还能不能再快一点？有的，兄弟，有的！我们手上的牌可太多啦！
+
+## 将筛法改进把！
+
+改进方法分为两派，首先我们可以考虑语言层面，其次算法本身也可以再改进。我们先来看一个新东西：`bytearray`。
+
+### `bytearray` 替代 `list[bool]`
+
+Python 里一切皆对象可不是吹的，把布尔值存储进 `list` 列表中，内部的内存依旧不算连续。然而，Python 还提供了一个更 “底层” 的工具：`bytearray`。我们可以直接往里面存 `b"\x00"` 和 `b"\x01"`，它们会被自动解释为 `0` 和 `1`，而在 `bytearray` 中这个东西存储方式就是连续的：
+
+```python
+print(bytearray(b"\x01")*5)
+```
+
+将会给出：
+
+```output
+bytearray(b'\x01\x01\x01\x01\x01')
+```
+
+而我们依旧还可以用下标来取出里面的值。此外，作为正牌 *数组*，它可以被切片赋值：
+
+```python
+ba = bytearray(b"\x01\x01\x01\x01\x01")
+ba[0:5:2] = bytearray(b"\x00")*3
+print(ba)
+```
+
+则会给出：
+
+```output
+bytearray(b'\x00\x01\x00\x01\x00')
+```
+
+可以看到我们成功地隔一个元素给另一个元素赋值为 `b"\x00"` 了。这个赋值方法会比一个个遍历然后赋值要快得多。这样改进后的算法给出的结果如下：
+
+```python
+def prime_lt_byte(n: int):
+    if n < 2:
+        return []
+
+    sieve = bytearray(b"\x01") * (n + 1)
+    sieve[:2] = b"\x00\x00"
+
+    for p in range(2, math.isqrt(n) + 1):
+        if sieve[p]:
+            start = p * p
+            sieve[start : n + 1 : p] = b"\x00" * ((n - start) // p + 1)
+
+    return [i for i in range(2, n + 1) if sieve[i]]
+```
+
+您也许好奇，`sieve[i]` 给出的不是 `b"\x00"` 就是 `b"\x01"`，怎么直接 `if` 就能判断了它的结果呢？
+
+
 
 
 [^1]: 信息来自于 人民教育出版社小学数学教材五年级下册 2022 版（ISBN 978-7-107-37173-8）的第二章，[在线阅读](https://book.pep.com.cn/1221001502141/mobile/index.html)
-[^2]: 本设备采用 Intel(R) Core(TM) i9-14900K，个人认为算是消费级 CPU 里比较先进的一块了。
+[^2]: 本设备 CPU 采用 Intel(R) Core(TM) i9-14900K，个人认为算是消费级 CPU 里比较先进的一块了。
