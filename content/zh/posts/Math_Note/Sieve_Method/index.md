@@ -17,7 +17,6 @@ math: true
 license: 
 hidden: false
 comments: true
-draft: true
 ---
 
 *素数，一个神奇的概念，重要但难以预测，直到我们有了计算机。那么要怎么找到第 $n$ 个素数呢？又要怎么找出 $n$ 以下的所有素数呢？*
