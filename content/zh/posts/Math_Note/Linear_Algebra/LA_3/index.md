@@ -16,50 +16,6 @@ math: true
 hidden: false
 comments: true
 ---
-$$
-% =====  =====
-\gdef       \vect           #1{\mathbf{#1}}                             % abstract vector
-\gdef       \cvect          #1{\boldsymbol{#1}}
-\gdef       \basis          #1#2{\mathcal{#1}_{#2}}                            % basis of vector space
-\gdef       \basev          #1#2#3{\{\vect{#1}_{#2}\}_{#2=1}^{#3}}                     % base vector collection
-\gdef       \cbasev         #1#2#3{\{\cvect{#1}^{#2}\}_{#2=1}^{#3}}                      % dual basis e^i
-\gdef       \vrep           #1#2{[\vect{#1}]_{#2}}                           % coordinate representation [v]_B
-\gdef       \rep            #1{[\vect{#1}]}
-\gdef       \mrep           #1#2#3{[{#1}]_{#2}^{#3}}                      % representation [L]_{C,B}
-% 
-\gdef       \iprod          #1#2{\langle #1, #2 \rangle}                % inner product
-\gdef       \tran           #1{\vect{#1}^{\mkern-1.5mu\mathsf{T}}}
-\gdef       \mat            #1{\mathbf{#1}}                             % matrix (representation)
-\gdef       \field          #1{\mathbb{#1}}                             % 
-\gdef       \xto            #1{\xrightarrow{#1}}                        % arrow with label
-\gdef       \xfrom          #1{\xleftarrow{#1}}                         % left arrow with label
-\gdef       \Hom            {\operatorname{Hom}}             % morphisms between A and B
-\gdef       \Iso            {\operatorname{Iso}}
-\gdef       \End            {\operatorname{End}}                  % 
-\gdef       \Aut            {\operatorname{Aut}}                  % 
-\gdef       \cat            #1{\mathsf{#1}}                             % category symbol: e.g., \cat{Vect}, \cat{Set}
-\gdef       \Mat            {\operatorname{Mat}}
-\gdef       \Bilin          {\operatorname{Bilin}}
-\gdef       \t              {^{\mathsf{T}}}
-\gdef       \id             {\mat{I}}                                % identity matrix
-\gdef       \R              {\field{R}}                                % 
-\gdef       \C              {\field{C}}                                % 
-\gdef       \ot             {\otimes}                                   % tensor product symbol
-\gdef       \zero           {\vect{0}}                                  % 
-\gdef       \one            {\vect{1}}                                  % 
-\gdef       \idop           {\mathrm{id}}                               % identity morphism
-\gdef       \comp           {\circ}                                     % composition symbol
-\gdef       \Set            {\cat{Set}}                                 % category of sets
-\gdef       \Vectk          {\cat{Vect}_{\field{k}}}                    % category of vector spaces
-\gdef       \Vect           {\cat{Vect}}                                % 
-% 
-\gdef       \BaseB             {\basis{B}{}}
-\gdef       \BaseC             {\basis{C}{}}
-\gdef       \BaseBV             {\basis{B}{V}}
-\gdef       \BaseCW             {\basis{C}{W}}
-\gdef       \BaseE          {\basis{E}{}}
-\gdef       \BaseH          {\basis{H}{}}
-$$
 
 *书接上回，在对 $\Hom(\R,V)$ 以及 $\Hom(V,\R)$ 有了一定认识，且有了 **对偶** 这样特殊的对象后，我们终于可以出发研究线性映射空间 $\Hom(V,W)$ 了。而矩阵空间 $\Mat(m,n)$ 与线性映射空间之间又有什么样的联系呢？让我们就在这一章里探索一番吧！*
 
@@ -223,7 +179,7 @@ $$
 
 另一个自然而然且有趣的话题是，对偶空间内元素的矩阵表示是什么样的？然而在这个 $\Hom(V,W)$ 的对偶空间中，结论是有点明显的。如果 $\Hom(V,W)$ 这个线性空间对应的矩阵空间为 $\Mat(m,n)$，那么 $\Hom(V,W)^* = \Hom(W,V)$ 对应的矩阵空间自然就是 $\Mat(n,m)$ 了。
 
-然而尽管如此，想要知道每个元素的具体情况，我们依旧需要仔细考察。好消息是，*对偶向量*的概念能帮助我们观察对偶空间中的情况。要回顾 *对偶向量* 的概念，请参考[这里]()。
+然而尽管如此，想要知道每个元素的具体情况，我们依旧需要仔细考察。好消息是，*对偶向量*的概念能帮助我们观察对偶空间中的情况。要回顾 *对偶向量* 的概念，请参考[这里](/zh/posts/math_note/linear_algebra/la_2/#对偶空间-v)。
 
 ### 矩阵不止有一种乘法
 

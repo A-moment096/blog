@@ -11,7 +11,7 @@ tags:
 title: "Installing Arch Linux on a Laptop (Physical Machine)"
 description: "Holiday's here, time to mess with my laptop~"
 date: 2025-05-02T16:12:04+08:00
-image: /images/Alice.png
+image: /images/アリス？.png
 math: true
 license: 
 hidden: false

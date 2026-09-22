@@ -24,48 +24,6 @@ comments: true
 
 {{<music auto="https://music.163.com/#/song?id=529668393" loop="none">}}
 
-$$
-% =====  =====
-\gdef       \vect           #1{\mathbf{#1}}                             % abstract vector
-\gdef       \cvect          #1{\boldsymbol{#1}}
-\gdef       \basis          #1#2{\mathcal{#1}_{#2}}                            % basis of vector space
-\gdef       \basev          #1#2#3{\{\vect{#1}_{#2}\}_{#2=1}^{#3}}                     % base vector collection
-\gdef       \cbasev         #1#2#3{\{\cvect{#1}^{#2}\}_{#2=1}^{#3}}                      % dual basis e^i
-\gdef       \vrep           #1#2{[\vect{#1}]_{#2}}                           % coordinate representation [v]_B
-\gdef       \rep            #1{[\vect{#1}]}
-\gdef       \mrep           #1#2#3{[{#1}]_{#2}^{#3}}                      % representation [L]_{C,B}
-% 
-\gdef       \iprod          #1#2{\langle #1, #2 \rangle}                % inner product
-\gdef       \mat            #1{\mathbf{#1}}                             % matrix (representation)
-\gdef       \field          #1{\mathbb{#1}}                             % 
-\gdef       \xto            #1{\xrightarrow{#1}}                        % arrow with label
-\gdef       \xfrom          #1{\xleftarrow{#1}}                         % left arrow with label
-\gdef       \Hom            {\operatorname{Hom}}             % morphisms between A and B
-\gdef       \Iso            {\operatorname{Iso}}
-\gdef       \End            {\operatorname{End}}                  % 
-\gdef       \Aut            {\operatorname{Aut}}                  % 
-\gdef       \cat            #1{\mathsf{#1}}                             % category symbol: e.g., \cat{Vect}, \cat{Set}
-\gdef       \Mat            {\operatorname{Mat}}
-\gdef       \t              {^{\mathsf{T}}}
-\gdef       \id             {\mat{I}}                                % identity matrix
-\gdef       \R              {\field{R}}                                % 
-\gdef       \C              {\field{C}}                                % 
-\gdef       \ot             {\otimes}                                   % tensor product symbol
-\gdef       \zero           {\vect{0}}                                  % 
-\gdef       \one            {\vect{1}}                                  % 
-\gdef       \idop           {\mathrm{id}}                               % identity morphism
-\gdef       \comp           {\circ}                                     % composition symbol
-\gdef       \Set            {\cat{Set}}                                 % category of sets
-\gdef       \Vectk          {\cat{Vect}_{\field{k}}}                    % category of vector spaces
-\gdef       \Vect           {\cat{Vect}}                                % 
-% 
-\gdef       \BaseB             {\basis{B}{}}
-\gdef       \BaseC             {\basis{C}{}}
-\gdef       \BaseBV             {\basis{B}{V}}
-\gdef       \BaseCW             {\basis{C}{W}}
-\gdef       \BaseE          {\basis{E}{}}
-$$
-
 ## 前言
 
 在上一章我们讨论完线性空间的基本情况后，一个自然的问题在于怎么研究线性空间之间的映射。我们已经拥有了那些定义，但是具体地，一个向量会怎么通过线性映射得到另一个空间中的向量的方式，我们暂时还没有结论。所幸，线性空间的基给了我们一些指引，借助它，我们可以把线性空间中的几乎所有线性的对象全部表达为 **矩阵** 的形式。另外，线性空间之间的线性映射全体，本身也有极为特殊的性质，甚至这样的性质会给我们很多的启发，而其中的 **对偶空间** 更是后续内容所依赖的重要概念。本章我们就讨论线性映射、线性映射全体、矩阵和线性映射的关系，以及所谓的对偶。

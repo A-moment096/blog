@@ -25,47 +25,6 @@ comments: true
 
 {{<music auto="https://music.163.com/#/song?id=537854740" loop="none">}}
 
-$$
-% =====  =====
-\gdef       \vect           #1{\mathbf{#1}}                             % abstract vector
-\gdef       \cvect          #1{\boldsymbol{#1}}
-\gdef       \basis          #1#2{\mathcal{#1}_{#2}}                            % basis of vector space
-\gdef       \basev          #1#2#3{\{\vect{#1}_{#2}\}_{#2=1}^{#3}}                     % base vector collection
-\gdef       \cbasev         #1#2{\mathbf{#1}^{#2}}                      % dual basis e^i
-\gdef       \vrep           #1#2{[\vect{#1}]_{\basis{#2}{}}}                           % coordinate representation [v]_B
-\gdef       \rep            #1{[\vect{#1}]}
-\gdef       \mrep           #1#2#3{[{#1}]_{\basis{#2}{}}^{\basis{#3}{}}}                      % representation [L]_{C,B}
-% 
-\gdef       \iprod          #1#2{\langle #1, #2 \rangle}                % inner product
-\gdef       \mat            #1{\mathbf{#1}}                             % matrix (representation)
-\gdef       \field          #1{\mathbb{#1}}                             % 
-\gdef       \xto            #1{\xrightarrow{#1}}                        % arrow with label
-\gdef       \xfrom          #1{\xleftarrow{#1}}                         % left arrow with label
-\gdef       \Hom            {\operatorname{Hom}}             % morphisms between A and B
-\gdef       \Iso            {\operatorname{Iso}}
-\gdef       \End            {\operatorname{End}}                  % 
-\gdef       \Aut            {\operatorname{Aut}}                  % 
-\gdef       \cat            #1{\mathsf{#1}}                             % category symbol: e.g., \cat{Vect}, \cat{Set}
-\gdef       \t              {^{\mathsf{T}}}
-\gdef       \id             {\mat{I}}                                % identity matrix
-\gdef       \R              {\field{R}}                                % 
-\gdef       \C              {\field{C}}                                % 
-\gdef       \ot             {\otimes}                                   % tensor product symbol
-\gdef       \zero           {\vect{0}}                                  % 
-\gdef       \one            {\vect{1}}                                  % 
-\gdef       \idop           {\mathrm{id}}                               % identity morphism
-\gdef       \comp           {\circ}                                     % composition symbol
-\gdef       \Set            {\cat{Set}}                                 % category of sets
-\gdef       \Vectk          {\cat{Vect}_{\field{k}}}                    % category of vector spaces
-\gdef       \Vect           {\cat{Vect}}                                % 
-% 
-\gdef       \BaseB             {\basis{B}{}}
-\gdef       \BaseC             {\basis{C}{}}
-\gdef       \BaseBV             {\basis{B}{V}}
-\gdef       \BaseCW             {\basis{C}{W}}
-\gdef       \BaseE          {\basis{E}{}}
-$$
-
 ## 前言
 
 由于鄙人需要学习一些力学（连续介质力学）的内容，涉及张量代数和张量微积分的概念，而要想理解它们就不得不提传说中的神秘课程：线性代数。所以既然如此，干脆就从代数学的角度，以线性代数为起点开始整个旅途。由于本文的内容掺杂了（也许很多的）我的个人理解，所以如果有错漏，请不吝赐教。
@@ -86,7 +45,7 @@ $$
 | 余向量 | 粗体希腊字母 | $\cvect{\beta}$，$\cvect{\varphi}$，$\cvect{\psi}$，$\cvect{\xi}$ |
 | 集合，向量空间 | 大写常规字母 | $U$, $V$, $W$|
 | 基 | - | $\basis{B}{V} = \basev{b}{i}{n}$, $\basis{C}{W} = \basev{c}{j}{m}$, $\basis{D}{}$ |
-| 向量表示 | - | $\vrep{v}{B} = (v^1,\dots,v^n)\t$, $[\vect{u}]$| 
+| 向量表示 | - | $\vrep{v}{\BaseB} = (v^1,\dots,v^n)\t$, $[\vect{u}]$| 
 | 线性映射 | 常规字母 | $L$, $R$, $S$, $T$ |
 | 线性映射，同构，自同态，自同构集合 | - | $\Hom(V,W)$, $\Iso(V,W)$, $\End(V)$, $\Aut(V)$ |
 | 线性空间范畴 | - | $\Vectk, \Vect$ |
