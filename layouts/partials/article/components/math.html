@@ -1,0 +1,67 @@
+{{- partial "helper/external" (dict "Context" . "Namespace" "KaTeX") -}}
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+        const options = {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "\\[", right: "\\]", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false }
+            ],
+            ignoredClasses: ["gist"],
+            macros: {
+                "\\vect": "\\mathbf{#1}",                        // abstract vector
+                "\\cvect": "\\boldsymbol{#1}",
+                "\\basis": "\\mathcal{#1}_{#2}",                  // basis of vector space
+                // 
+                "\\basev": "\\{\\vect{#1}_{#2}\\}_{#2=1}^{#3}",   // base vector collection
+                "\\cbasev": "\\{\\cvect{#1}^{#2}\\}_{#2=1}^{#3}",                   // dual basis e^i
+                "\\vrep": "[\\vect{#1}]_{#2}",        // coordinate representation [v]_B
+                "\\rep": "[\\vect{#1}]",
+                "\\mrep": "[{#1}]_{\\basis{#2}{}}^{\\basis{#3}{}}", // representation [L]_{C,B}
+                "\\iprod": "\\langle #1, #2 \\rangle",            // inner product
+                "\\tran": "{\\mathbf{#1}^{\\mkern-1.5mu\\mathsf{T}}}",                        // transpose
+                "\\mat": "\\mathbf{#1}",                        // matrix (representation)
+                "\\field": "\\mathbb{#1}",
+                "\\xto": "\\xrightarrow{#1}",                   // arrow with label
+                "\\xfrom": "\\xleftarrow{#1}",                    // left arrow with label
+                // Category theory
+                "\\Hom": "\\operatorname{Hom}",                 // morphisms between A and B
+                "\\Iso": "\\operatorname{Iso}",
+                "\\End": "\\operatorname{End}",
+                "\\Aut": "\\operatorname{Aut}",
+                "\\cat": "\\mathsf{#1}",                        // category symbol: e.g., \cat{Vect}, \cat{Set}
+                "\\Mat": "\\operatorname{Mat}",
+                "\\Bilin": "\\operatorname{Bilin}",
+                // 
+                "\\t": "^{\\mathsf{T}}",
+                "\\id": "\\mat{I}",                            // identity matrix
+                "\\R": "\\field{R}",
+                "\\C": "\\field{C}",
+                "\\ot": "\\otimes",                            // tensor product symbol
+                "\\zero": "\\vect{0}",
+                "\\one": "\\vect{1}",
+                "\\idop": "\\mathrm{id}",                        // identity morphism
+                "\\comp": "\\circ",                              // composition symbol
+                "\\Set": "\\cat{Set}",                          // category of sets
+                "\\Vectk": "\\cat{Vect}_{\\field{k}}",            // category of vector spaces
+                "\\Vect": "\\cat{Vect}",
+                //
+                "\\BaseB": "\\basis{B}{}",
+                "\\BaseC": "\\basis{C}{}",
+                "\\BaseBV": "\\basis{B}{V}",
+                "\\BaseCW": "\\basis{C}{W}",
+                "\\BaseE": "\\basis{E}{}",
+                "\\BaseH": "\\basis{H}{}",
+            },
+            throwOnError: false
+        };
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, options);
+            }
+        });
+    });
+</script>
