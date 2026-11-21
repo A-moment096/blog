@@ -2,6 +2,7 @@
 // NAVIGATION MODULE
 // Menu, Navigation, and Interactive Elements
 // =============================================================================
+@use "../../themes/stack/assets/scss/breakpoints" as breakpoints;
 
 // 菜单栏样式 - 下拉菜单改圆角样式
 .menu {
@@ -17,7 +18,7 @@
   padding: 30px 30px;
   max-height: max-content;
 
-  @include respond(xl) {
+  @include breakpoints.respond(xl) {
     padding: 15px 0;
   }
 
@@ -25,7 +26,7 @@
   .menu-bottom-section {
     gap: 30px;
 
-    @include respond(xl) {
+    @include breakpoints.respond(xl) {
       gap: 25px;
     }
   }
@@ -34,7 +35,7 @@
     display: flex;
   }
 
-  @include respond(md) {
+  @include breakpoints.respond(md) {
     align-items: flex-end;
     display: flex;
     background-color: transparent;
@@ -48,7 +49,7 @@
     vertical-align: middle;
     padding: 0;
 
-    @include respond(md) {
+    @include breakpoints.respond(md) {
       width: 100%;
     }
 

@@ -23,20 +23,20 @@
  */
 
 // Core Modules
-@import 'modules/variables';
-@import 'modules/layout';
-@import 'modules/sidebar';
-@import 'modules/articles';
-@import 'modules/friend-links';
-@import 'modules/image-position';
-@import 'modules/code-block';
-@import 'modules/navigation';
-@import 'modules/animations';
-@import 'modules/components';
-@import 'modules/mermaid';
-@import 'modules/scrollbars';
-@import 'modules/archives';
-@import 'modules/attachments';
-@import 'modules/widgets';
-@import 'modules/font';
-@import 'modules/commutative-diagram';
+@use 'modules/variables';
+@use 'modules/layout';
+@use 'modules/sidebar';
+@use 'modules/articles';
+@use 'modules/friend-links';
+@use 'modules/image-position';
+@use 'modules/code-block';
+@use 'modules/navigation';
+@use 'modules/animations';
+@use 'modules/components';
+@use 'modules/mermaid';
+@use 'modules/scrollbars';
+@use 'modules/archives';
+@use 'modules/attachments';
+@use 'modules/widgets';
+@use 'modules/font';
+@use 'modules/commutative-diagram';

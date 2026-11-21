@@ -4,6 +4,6 @@
 // =============================================================================
 
 // 导入各个子模块
-@import "articles/blockquotes";
-@import "articles/categories"; 
-@import "articles/article-layout";
+@use "articles/blockquotes";
+@use "articles/categories"; 
+@use "articles/article-layout";

@@ -2,6 +2,7 @@
 // SIDEBAR MODULE
 // 侧边栏布局和响应式增强
 // =============================================================================
+@use "../../themes/stack/assets/scss/breakpoints" as breakpoints;
 
 // 左侧栏基础样式
 .container .left-sidebar {
@@ -14,14 +15,14 @@
         max-height: 100vh;
         overflow-y: auto;
 
-        @include respond(lg) {
+        @include breakpoints.respond(lg) {
             max-height: calc(100vh - var(--main-top-padding) * 3);
         }
     }
 
     gap: 20px;
 
-    @include respond(lg) {
+    @include breakpoints.respond(lg) {
         gap: 25px;
     }
 

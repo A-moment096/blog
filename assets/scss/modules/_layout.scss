@@ -2,6 +2,7 @@
 // LAYOUT MODULE
 // Container, Sidebar, and Page Layout Styles
 // =============================================================================
+@use "../../themes/stack/assets/scss/breakpoints" as breakpoints;
 
 // 修复引用块内容窄页面显示问题
 a {
@@ -34,7 +35,7 @@ a {
   gap: var(--section-separation);
   padding-top: var(--main-top-padding);
 
-  @include respond(md) {
+  @include breakpoints.respond(md) {
     padding: 0 37px;
   }
 }
@@ -48,7 +49,7 @@ main.main {
   flex-direction: column;
   gap: var(--section-separation);
 
-  @include respond(md) {
+  @include breakpoints.respond(md) {
     padding-top: var(--main-top-padding);
   }
 }
@@ -67,25 +68,25 @@ main.main {
     order: -1;
     max-width: var(--right-sidebar-max-width);
 
-    @include respond(lg) {
+    @include breakpoints.respond(lg) {
       display: flex;
     }
   }
 
   &.extended {
-    @include respond(md) {
+    @include breakpoints.respond(md) {
       max-width: 1280px;
       --left-sidebar-max-width: 25%;
       --right-sidebar-max-width: 22% !important;
     }
 
-    @include respond(lg) {
+    @include breakpoints.respond(lg) {
       max-width: 1600px;
       --left-sidebar-max-width: 20%;
       --right-sidebar-max-width: 30%;
     }
 
-    @include respond(xl) {
+    @include breakpoints.respond(xl) {
       max-width: 1800px;
       --left-sidebar-max-width: 15%;
       --right-sidebar-max-width: 25%;
@@ -93,17 +94,17 @@ main.main {
   }
 
   &.compact {
-    @include respond(md) {
+    @include breakpoints.respond(md) {
       --left-sidebar-max-width: 25%;
       max-width: 768px;
     }
 
-    @include respond(lg) {
+    @include breakpoints.respond(lg) {
       max-width: 1024px;
       --left-sidebar-max-width: 20%;
     }
 
-    @include respond(xl) {
+    @include breakpoints.respond(xl) {
       max-width: 1280px;
     }
   }

@@ -38,6 +38,9 @@ jobs:
     - name: "📦 Run pnpm"
       working-directory: ./_frontend
       run: pnpm i && pnpm build
+
+    - name: Install Dart Sass Embedded
+      run: npm install --global sass-embedded@1.108.2
       
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v3

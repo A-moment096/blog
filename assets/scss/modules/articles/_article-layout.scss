@@ -2,6 +2,7 @@
 // ARTICLE LAYOUT MODULE
 // 文章列表、文章内容图片、归档页面等布局相关样式
 // =============================================================================
+@use "../../../../themes/stack/assets/scss/breakpoints" as breakpoints;
 
 // 文章封面高度 (统一定义)
 .article-list article .article-image img {
@@ -9,11 +10,11 @@
   height: 200px !important;
   object-fit: cover;
 
-  @include respond(md) {
+  @include breakpoints.respond(md) {
     height: 250px !important;
   }
 
-  @include respond(xl) {
+  @include breakpoints.respond(xl) {
     height: 285px !important;
   }
 }
@@ -57,7 +58,7 @@
   margin-top: -5px;
   font-size: 1.5rem;
 
-  @include respond(md) {
+  @include breakpoints.respond(md) {
     font-size: 1.6rem;
   }
 }
