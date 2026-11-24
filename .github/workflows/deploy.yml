@@ -61,3 +61,4 @@ jobs:
         force_orphan: false  # Preserves git history
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
+        cname: blog.a-moment.top
